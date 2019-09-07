@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        body {
+            min-height: 100%;
+            background: #fff;
+            padding: 0;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+            color: #333;
+            font-size: 14px;
+            min-width: 1000px;
+        }
+        .container {
+            width: 100%;
+            padding: 0 15px;
+            margin: 0 auto;
+            display: flex;
+            align-items: space-around;
+        }
+        header {
+            display: flexbox;
+            background-color: #222;
+            height: 80px;
+            display: flex;
+            align-items: space-around;
+        }
+        .wrapper {
+            display: flex;
+            align-items: center;
+            flex-flow: nowrap row;
+            justify-content: space-around;
+        }
+        .logo {
+            background-image: url(../img/111.jpg);
+            display: flex;
+            align-self: center;
+            height: 50px;
+            width: 50px;
+        }
+        .menu {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+        }
+        .item1 {
+            margin-left: 30px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .link {
+            display: inline;
+            outline: none;
+            border: 0;
+            text-decoration: none;
+            cursor: pointer;
+            padding: 0;
+            font-size: 16px;
+            background: transparent;
+            box-shadow: none;
+            color: #fff;
+            line-height: inherit;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        .fill {
+            margin-left: 300px;
+        }
+        .left_button {
+            display: inline;
+            outline: none;
+            border: 0;
+            text-decoration: none;
+            padding: 0;
+            font-size: 16px;
+            background: #ec030300;
+            box-shadow: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            line-height: inherit;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        .icon_search {
+            background-image: url(../img/search__min_.svg);
+            display: block;
+            width: 30px;
+            height: 30px;
+            border: 0;
+            outline: none;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .icon_profile {
+            background-image: url(../img/profile__min_.svg);
+            display: block;
+            width: 30px;
+            height: 30px;
+            border: 0;
+            outline: none;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .resume_button {
+            border: 1px solid;
+            font-family: inherit;
+            line-height: 36px;
+            padding: 0 15px;
+            color: #9efba1;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="wrapper">
+                <a class="logo" href="">
+                    <span class="ibat"></span>
+                </a>
+                <div class="menu">
+                    <div class="item1">
+                        <a class="link" href = "#">Мои резюме</a>
+                    </div>
+                    <div class="item1">
+                        <a class="link" href = "#">Отклики</a>     
+                    </div>
+                    <div class="item1">
+                        <a class="link" href = "#">Помощь</a>
+                    </div>
+                    <div class="fill"></div>
+                    <div class="item1">
+                        <button class="left_button">
+                            <span class="icon_search"></span>
+                            <span class="search-text">&nbsp;
+                                <span class="supernova-link-switch">Поиск</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="item1">
+                        <a href="#" class="resume_button" disabled="" tabindex="-1">Создать резюме</a>
+                    </div>
+                    <div class="item1">
+                        <button class="left_button">
+                            <span class="icon_profile"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+
+</html>
