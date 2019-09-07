@@ -5,6 +5,7 @@
     "express": "^4.17.1"
   },
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "now-build": "echo pukk"
   }
 }
