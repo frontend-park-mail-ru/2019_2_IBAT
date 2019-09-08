@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        html, body, div, span, table, tbody, thead, tfoot, tr, td, hr, br, p, em, abbr, strong, small, h1, h2, h3, h4, h5, h6, img, sub, sup, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, iframe, object, a, article, aside, audio, bdi, canvas, data, datalist, details, figcaption, figure, footer, header, main, mark, meter, nav, output, progress, section, summary, time, video {
+            padding: 0;
+            margin: 0;
+            border: 0;
+            outline: none;
+            background: transparent;
+        }
+        body {
+            min-height: 100%;
+            background: #fff;
+            padding: 0;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+            color: #333;
+            font-size: 14px;
+            min-width: 1000px;
+        }
+        .container {
+            width: 100%;
+            padding: 0 15px;
+            margin: 0 auto;
+            display: flex;
+            align-items: space-around;
+        }
+        header {
+            display: flexbox;
+            background-color: #222;
+            height: 80px;
+            display: flex;
+            align-items: space-around;
+        }
+        .wrapper {
+            display: flex;
+            align-items: center;
+            flex-flow: nowrap row;
+            justify-content: space-around;
+        }
+        .logo {
+            background-image: url(../img/111.jpg);
+            display: flex;
+            align-self: center;
+            height: 50px;
+            width: 50px;
+        }
+        .menu {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+        }
+        .item1 {
+            margin-left: 30px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .link {
+            display: inline;
+            outline: none;
+            border: 0;
+            text-decoration: none;
+            cursor: pointer;
+            padding: 0;
+            font-size: 16px;
+            background: transparent;
+            box-shadow: none;
+            color: #fff;
+            line-height: inherit;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        .fill {
+            margin-left: 300px;
+        }
+        .left_button {
+            display: inline;
+            outline: none;
+            border: 0;
+            text-decoration: none;
+            padding: 0;
+            font-size: 16px;
+            background: #ec030300;
+            box-shadow: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            line-height: inherit;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        .icon_search {
+            background-image: url(../img/search__min_.svg);
+            display: block;
+            width: 30px;
+            height: 30px;
+            border: 0;
+            outline: none;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .icon_profile {
+            background-image: url(../img/profile__min_.svg);
+            display: block;
+            width: 30px;
+            height: 30px;
+            border: 0;
+            outline: none;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .resume_button {
+            border: 1px solid;
+            font-family: inherit;
+            line-height: 36px;
+            padding: 0 15px;
+            color: #9efba1;
+            text-decoration: none;
+        }
+        .main-content-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .bloko-columns-wrapper {
+            margin: 0 auto;
+            width: 1000px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .row-content {
+            padding: 50px 0;
+        }
+        .bloko-columns-row {
+            display: inline-block;
+            vertical-align: top;
+            margin-bottom: 20px;
+        }
+        .column_container {
+            width: 640px;
+            padding: 0;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .header {
+            font-size: 36px;
+            line-height: normal;
+            font-weight: 400;
+            margin: 0 0 15px;
+            padding: 0;
+        }
+        .vacancy-salary {
+            font-size: 22px;
+            margin-bottom: 25px;
+        }
+        .vacancy-title {
+            margin-bottom: 25px;
+        }
+        .bloko-button_stretched {
+            width: 100%;
+            text-align: center;
+        }
+        .bloko-button {
+            display: inline-block;
+            box-sizing: border-box;
+            margin: 0;
+            border-radius: 0;
+            text-decoration: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            white-space: nowrap;
+            -webkit-appearance: none;
+            cursor: pointer;
+            height: 38px;
+            position: relative;
+            padding: 0 15px;
+            border: 1px solid;
+            font-size: 14px;
+            font-family: inherit;
+            line-height: 36px;
+            transition: background-color .2s ease-in-out,color .2s ease-in-out,box-shadow .2s ease-in-out;
+            color: #fff;
+            border-color: #8cb900;
+            background-color: #8cb900;
+        }
+        .main_info {
+            display: flex;
+            flex-direction: column;
+        }
+        .g-user-content {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .g-user-content p, .g-user-content ul, .g-user-content ol, .g-user-content hr {
+            margin-bottom: 15px;
+        }
+        .g-user-content ul, .g-user-content ol {
+            margin-left: 20px;
+        }
+        .vacancy-company-wrapper {
+            display: flex;
+            justify-content: space-between;
+        }
+        .vacancy-company {
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            box-sizing: border-box;
+            min-width: 1px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            margin-bottom: 20px;
+        }
+        .vacancy-company-name-wrapper {
+            margin-bottom: 5px;
+            font-size: 24px;
+        }
+        a {
+            color: #09f;
+            text-decoration: none;
+            border: 0;
+            background: transparent;
+            font-size: inherit;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="wrapper">
+                <a class="logo" href="">
+                    <span class="ibat"></span>
+                </a>
+                <div class="menu">
+                    <div class="item1">
+                        <a class="link" href = "#">Мои резюме</a>
+                    </div>
+                    <div class="item1">
+                        <a class="link" href = "#">Отклики</a>     
+                    </div>
+                    <div class="item1">
+                        <a class="link" href = "#">Помощь</a>
+                    </div>
+                    <div class="fill"></div>
+                    <div class="item1">
+                        <button class="left_button">
+                            <span class="icon_search"></span>
+                            <span class="search-text">&nbsp;
+                                <span class="supernova-link-switch">Поиск</span>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="item1">
+                        <a href="#" class="resume_button" disabled="" tabindex="-1">Создать резюме</a>
+                    </div>
+                    <div class="item1">
+                        <button class="left_button">
+                            <span class="icon_profile"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="main-content-wrapper">
+        <div class="main-content">
+            <div class="bloko-columns-wrapper">
+                <div class="row-content">
+                    <div class="bloko-columns-row">
+                        <div class="column_container">
+                            <div class>
+                                <div class="vacancy-title">
+                                    <h1 class="header" data-qa="vacancy-title" itemprop="title">Инженер по пожарной безопасности</h1>
+                                    <p class="vacancy-salary"> з/п не указана</p>
+                                </div>
+                                <div data-qa="vacancy-company" class="vacancy-company">
+                                    <p class="vacancy-company-name-wrapper">
+                                        <a class="vacancy-company-name" href="">
+                                            <span itemprop="name"> adidas, Центральный офис</span>
+                                        </a>   
+                                    </p>
+                                </div>
+                                <div class="main_info">
+                                    <div class="bloko-columns-row">
+                                        <div class="vacancy-action_stretched">
+                                            <a rel="nofollow" href="" class="bloko-button">Откликнуться</a>
+                                        </div>
+                                    </div>
+                                    <div class="bloko-columns-row">
+                                        <div class="vacancy-description">
+                                            <div class="bloko-gap bloko-gap_bottom">
+                                                <p>Требуемый опыт работы:
+                                                    <span data-qa="vacancy-experience">3–6 лет</span>
+                                                </p>
+                                                <p data-qa="vacancy-view-employment-mode">
+                                                    <meta itemprop="employmentType" content="FULL_TIME">Полная занятость, <span itemprop="workHours">полный день</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bloko-columns-row">
+                                        <div class="vacancy-section">
+                                            <div class="g-user-content" data-qa="vacancy-description" itemprop="description">
+                                                <p> </p> <p><strong>Обязанности:</strong></p> <ul> <li> <p>Обеспечение контроля качественного выпуска проектной документации;</p> </li> <li> <p>Организация работ подрядных организаций и контроль выполненных работ;</p> </li> <li> <p>Активная коммуникация с государственными органами и участие в проверках;</p> </li> <li> <p>Организация и контроль устранения выявленных нарушений законодательства в области пожарной безопасности;</p> </li> <li> <p>Организация и контроль за обучением в области пожарной безопасности;</p> </li> <li> <p>Организация и контроль работ по пожарной безопасности в офисах компании.</p> </li> </ul> <p> </p> <p><strong>Требования:</strong></p> <ul> <li> <p>Профильное высшее образование;</p> </li> <li> <p>Релевантный опыт работы на аналогичной должности не менее 3-х лет;</p> </li> <li>Отличное знание нормативной документации и требований в области пожарной безопасности;</li> <li> <p>Опыт проведение проверок объектов;</p> </li> <li> <p>Мобильность (поездки на объекты для организации и контроля работ);</p> </li> <li> <p>Ответственность, исполнительность, умение работать в режиме многозадачности.</p> </li> </ul> <p> </p> <p><strong>Условия:</strong></p> <ul> <li>Возможности карьерного роста в центральном офисе компании;</li> <li>Работу в дружной команде профессионалов;</li> <li>Интересные задачи;</li> <li>Фиксированный оклад;</li> <li>Скидки 40% на продукцию компании;</li> <li>Частичную компенсацию питания;</li> <li>Тренажерный зал. Занятия йогой, танцами, crossfit в офисе компании;</li> <li>Корпоративный транспорт от станции м. Крылатское и м. Улица 1905 года, до офиса (10-15 минут).</li> </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bloko-columns-row">
+                                        <div class="vacancy-action_stretched">
+                                            <a rel="nofollow" href="" class="bloko-button">Откликнуться</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vacancy_noprint">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
