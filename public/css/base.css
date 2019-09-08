@@ -1,3 +1,11 @@
+html, body, div, span, table, tbody, thead, tfoot, tr, td, hr, br, p, em, abbr, strong, small, h1, h2, h3, h4, h5, h6, img, sub, sup, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, iframe, object, a, article, aside, audio, bdi, canvas, data, datalist, details, figcaption, figure, footer, header, main, mark, meter, nav, output, progress, section, summary, time, video {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+
 body {
     min-height: 100%;
     background: #fff;
@@ -87,7 +95,7 @@ header {
 }
 
 .logo {
-    background-image: url(/img/111.jpg);
+    background-image: url(../img/111.jpg);
     display: flex;
     align-self: center;
     height: 50px;
@@ -124,6 +132,7 @@ header {
     -moz-appearance: none;
 }
 
+
 .fill {
     margin-left: 300px;
 }
@@ -147,7 +156,7 @@ header {
 }
 
 .icon_search {
-    background-image: url(/img/search__min_.svg);
+    background-image: url(../img/search__min_.svg);
     display: block;
     width: 30px;
     height: 30px;
@@ -158,7 +167,7 @@ header {
 }
 
 .icon_profile {
-    background-image: url(/img/profile__min_.svg);
+    background-image: url(../img/profile__min_.svg);
     display: block;
     width: 30px;
     height: 30px;
@@ -221,4 +230,263 @@ input:valid {
 
 input:invalid {
     border-color: red;
+}
+
+
+.main-content-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.bloko-columns-wrapper {
+    margin: 0 auto;
+    width: 1000px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.row-content {
+    padding: 50px 0;
+}
+
+.bloko-columns-row {
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 20px;
+}
+
+.column_container {
+    width: 640px;
+    padding: 0;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.header {
+    font-size: 36px;
+    line-height: normal;
+    font-weight: 400;
+    margin: 0 0 15px;
+    padding: 0;
+}
+
+.vacancy-salary {
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+.vacancy-title {
+    margin-bottom: 25px;
+}
+
+.bloko-button_stretched {
+    width: 100%;
+    text-align: center;
+}
+
+.bloko-button {
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0;
+    border-radius: 0;
+    text-decoration: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    -webkit-appearance: none;
+    cursor: pointer;
+    height: 38px;
+    position: relative;
+    padding: 0 15px;
+    border: 1px solid;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 36px;
+    transition: background-color .2s ease-in-out,color .2s ease-in-out,box-shadow .2s ease-in-out;
+    color: #fff;
+    border-color: #8cb900;
+    background-color: #8cb900;
+}
+
+.main_info {
+    display: flex;
+    flex-direction: column;
+}
+
+.g-user-content {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.g-user-content p, .g-user-content ul, .g-user-content ol, .g-user-content hr {
+    margin-bottom: 15px;
+}
+
+.g-user-content ul, .g-user-content ol {
+    margin-left: 20px;
+}
+
+.vacancy-company-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.vacancy-company {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 1px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    margin-bottom: 20px;
+}
+
+.vacancy-company-name-wrapper {
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+a {
+    color: #09f;
+    text-decoration: none;
+    border: 0;
+    background: transparent;
+    font-size: inherit;
+    outline: none;
+}
+
+.main_content-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.blocko-columns-wrapper {
+    width: 680px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+
+}
+.header_resume {
+    font-weight: 400;
+    margin: 20px 0px 15px;
+    padding: 0;
+}
+.bloko-input {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 38px;
+    padding: 0 11px;
+    margin: 0;
+    border-radius: 0;
+    border: 1px solid #cbd1d4;
+    font-size: 14px;
+    font-family: Arial,sans-serif;
+    color: #333;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    background-color: #fff;
+    line-height: 38px;
+}
+.input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+}
+.form_span {
+    margin: 15px 0;
+}
+.block {
+    margin-bottom: 20px;
+}
+.date {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+}
+.date_content{
+    display: table-cell;
+    position: relative;
+    display: inline-block;
+}
+.bloko-select-placeholder {
+    position: absolute;
+    z-index: 999;
+    top: 1px;
+    left: 1px;
+    right: 26px;
+    bottom: 1px;
+    background: #fff;
+    color: #acb5ba;
+    padding-left: 11px;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+}
+.blocko-select {
+    height: 38px;
+    padding: 0 11px;
+    margin: 0;
+    border-radius: 0;
+    border: 1px solid #cbd1d4;
+    font-size: 14px;
+    font-family: Arial,sans-serif;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    color: #333;
+    border-color: #cbd1d4;
+    background-color: #f9f9f9;
+    padding-right: 26px;
+    background-color: #fff;
+    background-image: url(../img/select__min_.svg);
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+.bloko-select-placeholder-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bloko-radio__text {
+    line-height: 1.5;
+    position: relative;
+    display: table-cell;
+}
+.bloko-textarea {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 38px;
+    padding: 0 11px;
+    margin: 0;
+    border-radius: 0;
+    border: 1px solid #cbd1d4;
+    font-size: 14px;
+    font-family: Arial,sans-serif;
+    color: #333;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    background-color: #fff;
+    padding: 10px 11px;
+    height: 76px;
+    resize: vertical;
 }
