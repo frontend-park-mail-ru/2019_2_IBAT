@@ -5,6 +5,26 @@
     <link rel="stylesheet" href="css/page.css"/>
     <link rel="stylesheet" href="css/normalize.css"/>
     <link rel="stylesheet" href="css/header.css"/>
+    <style>
+        .content {
+            display: flex;
+            flex-flow: wrap row;
+        }
+
+        .content {
+            margin: 0 auto;
+            width: 1000px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .main-content {
+        
+        }
+        .right-column {           
+
+        }
+    </style>
 </head>
 
 <body class="page">
@@ -13,29 +33,36 @@
             <img src="img/ibat.jpg" alt="logo" class="logo__img">
         </div>
         
-        <div class="menu header__menu">
+        <nav class="menu header__menu">
             <a class="menu__link" href="#">Мои резюме</a>
             <a class="menu__link" href="#">Отклики</a>
-        </div>
+        </nav>
 
         <div class="header-fill"></div>
 
         <form class="search-form header__search-form" action="/">
-            <input class="block-input search-form__search" type="text" placeholder="Вакансия" name="s">
-            <input class="block-button block-button__blue search-form__submit" type="submit">
+            <input class="block-input search-form__search" type="text" placeholder="Поиск" name="s">
+            <input class="button button_green" type="submit" placeholder="Поиск">
         </form>
         
         <div class="resume-button header__resume-button">
-            <a class="supernova-button supernova-button__green" href="#">Создать резюме</a>
+            <a class="button button_supernova header__button" href="#">Создать резюме</a>
         </div>
 
         <div class="profile header__profile">
             <a class="profile__link" href="#">
-                <span class="icon-profile"></span>
+                <span class="profile__icon"></span>
             </a>
         </div>
-
     </header>
+
+    <div class="content">
+        <div class="main-content">
+        </div>
+
+        <div class="right-column">
+        </div>
+    </div>
 </body>
 
 </html>

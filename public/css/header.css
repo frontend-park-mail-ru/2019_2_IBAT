@@ -67,32 +67,6 @@
     line-height: 38px;
 }
 
-.block-button {
-    display: inline-block;
-    box-sizing: border-box;
-    margin: 0;
-    border-radius: 0;
-    border: 1px solid;
-    border-color: #cbd1d4;
-    font-size: 14px;
-    font-family: inherit;
-    color: #333;
-    background-color: #f9f9f9;
-    height: 38px;
-    padding: 0 15px;
-    line-height: 36px;
-    text-decoration: none;
-    white-space: nowrap;
-    cursor: pointer;
-    position: relative;  
-}
-
-.block-button__blue {
-    color: #fff;
-    border-color: #0f8fee;
-    background-color: #0f8fee;
-}
-
 .header__search-form {
     align-self: center;
 }
@@ -111,7 +85,7 @@
     height: 80px;
 }
 
-.icon-profile {
+.profile__icon {
     background-image: url(../img/profile__min_.svg);
     width: 30px;
     height: 30px;
@@ -123,23 +97,30 @@
     margin-left: 15px;
 }
 
-.supernova-button {
+.button {
     display: inline-block;
     box-sizing: border-box;
     margin: 0;
     border-radius: 0;
-    text-decoration: none;
-    white-space: nowrap;
-    cursor: pointer;
-    height: 38px;
-    position: relative;
-    padding: 0 15px;
     border: 1px solid;
     font-size: 14px;
     font-family: inherit;
+    height: 38px;
+    padding: 0 15px;
     line-height: 36px;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    position: relative;
+    color: #333;
+    border-color: #cbd1d4;
+    background-color: #f9f9f9;  
+}
+
+.button_green {
     color: #fff;
-    border-color: rgba(255,255,255,.5);
+    border-color: rgba(158,251,161,0);
+    background: rgba(158,251,161,.5);
 }
 
 .header__resume-button {
@@ -147,7 +128,8 @@
     margin-left: 20px;
 }
 
-.supernova-button__green {
+.header__button {
+    background-color: #222;
     color: #9efba1;
     border-color: rgba(158,251,161,.5);
 }
