@@ -1,45 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" href="css/normalize.css"/>
     <link rel="stylesheet" href="css/base.css"/>
-    <title>IBAT</title>
+    <link rel="stylesheet" href="css/header.css"/>
+    <title>Вход</title>
+    <style>
+        .page_background {
+            background: url(img/back-form__min_.jpg) no-repeat center top fixed;
+            color: #fff;
+            background-size: cover;
+            background-color: #373c55;
+            min-height: 100%;
+            margin: 0 auto;
+            font-size: 14px;
+            font-family: Arial,sans-serif;
+            position: relative;
+            line-height: 21px;
+            max-width: none;
+        }
+        .page_background {
+            opacity: 1; /* Значение прозрачности */
+        }
+    </style>
 </head>
 
-<body>
-    <div class="wrapper">
-        <div class="row">
-            <div class="col-1">
-        
-            </div>
-            <div class="col-2">
-                <form>
-                    <span>Вход в личный кабинет</span>
-                    <input type="email" placeholder="Email" required>
-                    <input type="password" placeholder="Пароль" required>
-                    <buttom>Войти в личный кабинет</buttom>
-                    <div class="row">
-                        <input type="checkbox">Запомнить меня<Br>
-                        <a href="">Получить пароль</a>
-                    </div>
-                </form>
-                <form>
-                    <span>Регистрация</span>
-                    <div class="row">
-                        <buttom>Соискателя</buttom>
-                        <buttom>Работодателя</buttom>
-                    </div>
-                </form>
-            </div>
-            <div class="col-1">
-        
-            </div>
+<body class="page page_background">
+    <header class="header page_background">
+        <div class="logo header__logo">
+            <img src="img/ibat.jpg" alt="logo" class="logo__img">
         </div>
-    </div>
-
+    </header>
 </body>
 
 </html>

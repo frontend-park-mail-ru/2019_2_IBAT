@@ -1,72 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/normalize.css"/>
     <link rel="stylesheet" href="css/base.css"/>
-    <title>IBAT</title>
+    <link rel="stylesheet" href="css/header.css"/>
+    <title>Регистрация соискателя</title>
+    <style>
+    .signup-form {
+        font-family: inherit;
+        font-size: 14px;
+        width: 450px;
+    }
+    .signup-form__row{
+        margin-bottom: 20px ;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .span {
+        width: 200px;
+
+    }
+    </style>
 </head>
 
-<body>
-    <div class="wrapper">
-        <div class="row">
-            <div class="col-1">
+<body class="page">
+    <header class="header">
+        <div class="logo header__logo">
+            <img src="img/ibat.jpg" alt="logo" class="logo__img">
+        </div>
         
-            </div>
-            <div class="col-2">
-                <div class="row">
-                    <h3>Регистрация соискателя</h3>
+        <div class="header-fill"></div>
+    
+        <form class="search-form header__search-form" action="/">
+            <input class="input search-form__search" type="text" placeholder="Поиск" name="s">
+            <input class="button button_green" type="submit" placeholder="Поиск">
+        </form>
+        
+        <div class="login-button header__login-button">
+            <a class="button button_supernova header__button" href="#"> Войти </a>
+        </div>
+    </header>
+   
+    <div class="main-content">
+        <div class="left-column">
+            <h1 class="title-h1">Регистрация соискателя</h1>
+            <form class="signup-form" method="POST">
+                <div class="signup-form__row">
+                    <span class="span">Имя</span>
+                    <input class="input" type="text">
                 </div>
-                <form>
-                    <div class="row-1">
-                        <div class="col-3">
-                            <p1>Имя</p1>
-                        </div>
-                        <div class="col">
-                            <input type="text" required>
-                        </div>
-                    </div>
-                    <div class="row-1">
-                        <div class="col-3">
-                            <p>Фамилия</p>
-                        </div>
-                        <div class="col">
-                            <input type="text" required>
-                        </div>
-                    </div>
-                    <div class="row-1">
-                        <div class="col-3">
-                            <p>Email</p>
-                        </div>
-                        <div class="col">
-                            <input type="email" required>
-                        </div>
-                    </div>
-                    <div class="row-1">
-                        <div class="col-3">
-                        </div>
-                        <div class="col">
-                            <button>Зарегистрироваться</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <p>Уже зарегистрированы?</p>
-                        </div>
-                        <div class="col">
-                            <a href="">Войти</a>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-3">
-        
-            </div>
+                <div class="signup-form__row">
+                    <span class="span">Фамилия</span>
+                    <input class="input" type="text">
+                </div>
+                <div class="signup-form__row">
+                    <span class="span">Email</span>
+                    <input class="input" type="email">
+                </div>
+                <div class="signup-form__row">
+                    <span class="span">Пароль</span>
+                    <input class="input" type="password">
+                </div>
+                <div class="signup-form__row">
+                    <span class="span">Подтверждение пароля</span>
+                    <input class="input" type="password">
+                </div>
+                <div class="signup-form__row">
+                    <button class="button button_blue" type="password">Зарегистрироваться</button>
+                </div>
+            </form>
+        </div>
+        <div class="right-column">
+            
         </div>
     </div>
-
 </body>
 
 </html>
