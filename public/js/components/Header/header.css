@@ -54,11 +54,11 @@
 }
 
 .search-form__submit {
-    
+
 }
 
 .search-form__search {
-    
+
 }
 
 .profile__link {
@@ -68,7 +68,7 @@
 }
 
 .profile__icon {
-    background-image: url(../img/profile__min_.svg);
+    background-image: url(../../../img/profile__min_.svg);
     width: 30px;
     height: 30px;
     outline: none;

@@ -1,26 +1,28 @@
-.signin-offer {
-    background-color: #222;
-    color: #fff;
-    padding: 15px;
-    height: 75px;
-    width: 300px;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: space-between;
-}
+@import '../js/components/Header/header.css';
 
-.signin-offer__choices {
-    display: flex;
-    flex-flow: row nowrap;
-    width: 250px;
-}
-.button_seeker-button {
-    width: 125px;
-}
-.button_employer-button {
-    width: 125px;
-}
-.right-column__signin-offer{
-    margin-top: 35px;
-}
+/*.signin-offer {*/
+/*    background-color: #222;*/
+/*    color: #fff;*/
+/*    padding: 15px;*/
+/*    height: 75px;*/
+/*    width: 300px;*/
+/*    display: flex;*/
+/*    flex-flow: column nowrap;*/
+/*    align-items: center;*/
+/*    justify-content: space-between;*/
+/*}*/
+
+/*.signin-offer__choices {*/
+/*    display: flex;*/
+/*    flex-flow: row nowrap;*/
+/*    width: 250px;*/
+/*}*/
+/*.button_seeker-button {*/
+/*    width: 125px;*/
+/*}*/
+/*.button_employer-button {*/
+/*    width: 125px;*/
+/*}*/
+/*.right-column__signin-offer{*/
+/*    margin-top: 35px;*/
+/*}*/
