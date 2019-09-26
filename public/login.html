@@ -15,15 +15,24 @@
 <body class="page page_background">
     <header class="header page_background">
         <div class="logo header__logo">
-            <img src="img/ibat.jpg" alt="logo" class="logo__img">
+            <a href="index.html">
+                <img src="img/ibat.jpg" alt="logo" class="logo__img">
+            </a>
         </div>
     </header>
     <div class="content">
         <div class="login">
-            <form class="login__form">
+            <form class="login__form" novalidate>
                 <label class="login-header">Вход в личный кабинет</label>
-                <input class="input login__input" type="email" required="required" placeholder="Email">
-                <input class="input login__input" type="password" required="required" placeholder="Пароль">
+                <span class="error-msg"></span>
+                <div class=login__input>
+                    <input class="input email" type="email" placeholder="Email">
+                    <span class="error" aria-live="polite"></span>
+                </div>
+                <div class="login__input">
+                    <input class="input password" type="password" placeholder="Пароль">
+                    <span class="error" aria-live="polite"></span>
+                </div>
                 <input class="button button_blue login__button" type="submit" value="Войти в личный кабинет">
                 <div class="login-remember">
                     <label class="checkbox">
@@ -46,6 +55,7 @@
             </form>
         </div>
     </div>
+    <script type="module" src="js/login.js"></script>
 </body>
 
 </html>

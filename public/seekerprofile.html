@@ -12,7 +12,9 @@
 <body class="page">
     <header class="header">
         <div class="logo header__logo">
-            <img src="img/ibat.jpg" alt="logo" class="logo__img">
+            <a href="index.html">
+                <img src="img/ibat.jpg" alt="logo" class="logo__img">
+            </a>
         </div>
         
         <nav class="menu header__menu">
@@ -66,18 +68,26 @@
                     <span class="span">Подтверждение пароля</span>
                     <input class="input" type="password">
                 </div>
-                <div class="signup-form__row">
-                    <button class="button button_blue">Добавить фото</button>
+                
+                <div class="signup-form__column">
+                    <input type="file" class="upload" accept="image/*"/>
+                    <span>
+                        <img class="thumb" src="">
+                    </span>
                 </div>
+                <!-- <div class="signup-form__row">
+                    <button class="button button_blue">Добавить фото</button>
+                </div> -->
                 <div class="signup-form__row">
                     <button class="button button_blue">Редактировать</button>
                 </div>
             </form>
         </div>
         <div class="right-column">
-            
+           
         </div>
     </div>
+    <script type="module" src="js/seekerprofile.js"></script>
 </body>
 
 </html>

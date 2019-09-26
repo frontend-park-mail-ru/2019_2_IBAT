@@ -12,7 +12,9 @@
 <body class="page">
     <header class="header">
         <div class="logo header__logo">
-            <img src="img/ibat.jpg" alt="logo" class="logo__img">
+            <a href="index.html">
+                <img src="img/ibat.jpg" alt="logo" class="logo__img">
+            </a>
         </div>
         
         <div class="header-fill"></div>
@@ -23,36 +25,51 @@
         </form>
         
         <div class="login-button header__login-button">
-            <a class="button button_supernova header__button" href="#"> Войти </a>
+            <a class="button button_supernova header__button" href="login.html"> Войти </a>
         </div>
     </header>
    
     <div class="main-content">
         <div class="left-column">
             <h1 class="title-h1">Регистрация соискателя</h1>
-            <form class="signup-form" method="POST">
+            <form class="signup-form" method="POST" novalidate>
                 <div class="signup-form__row">
                     <span class="span">Имя</span>
-                    <input class="input" type="text">
+                    <div class="signup-form__row__input">
+                        <input class="input" type="text" name="firstName">
+                        <span class="error" aria-live="polite"></span>
+                    </div>
                 </div>
                 <div class="signup-form__row">
                     <span class="span">Фамилия</span>
-                    <input class="input" type="text">
+                    <div class="signup-form__row__input">
+                        <input class="input" type="text" name="lastName">
+                        <span class="error" aria-live="polite"></span>
+                    </div>  
                 </div>
                 <div class="signup-form__row">
                     <span class="span">Email</span>
-                    <input class="input" type="email">
+                    <div class="signup-form__row__input">
+                        <input class="input email" type="email" name="login">
+                        <span class="error"></span>
+                    </div>
                 </div>
                 <div class="signup-form__row">
                     <span class="span">Пароль</span>
-                    <input class="input" type="password">
+                    <div class="signup-form__row__input">
+                        <input class="input password" type="password" name="Password">
+                        <span class="error" aria-live="polite"></span>
+                    </div>
                 </div>
                 <div class="signup-form__row">
                     <span class="span">Подтверждение пароля</span>
-                    <input class="input" type="password">
+                    <div class="signup-form__row__input">
+                        <input class="input passwordConfirm" type="password" name="PasswordConfirm">
+                        <span class="error" aria-live="polite"></span>
+                    </div>
                 </div>
                 <div class="signup-form__row">
-                    <button class="button button_blue">Зарегистрироваться</button>
+                    <button class="button button_blue" type="submit">Зарегистрироваться</button>
                 </div>
             </form>
         </div>
@@ -60,6 +77,6 @@
             
         </div>
     </div>
+    <script type="module" src="js/signupseeker.js"></script>
 </body>
-
 </html>
