@@ -6,6 +6,7 @@ module.exports = {
     path: path.resolve(__dirname, 'public/dist'),
     filename: 'application.js'
   },
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -29,8 +30,5 @@ module.exports = {
         use : 'pug-loader'
       }
     ]
-  },
-  'node': {
-    fs  : 'empty'
   }
 };

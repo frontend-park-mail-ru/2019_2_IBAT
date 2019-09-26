@@ -7,13 +7,12 @@
     "start": "nodemon server/server.js",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
+    "watch": "webpack --watch --mode development",
     "now-build": "echo pukk"
   },
   "devDependencies": {
     "css-loader": "^3.2.0",
     "express": "^4.17.1",
-    "fs": "0.0.1-security",
-    "pug": "^2.0.4",
     "pug-loader": "^2.4.0",
     "style-loader": "^1.0.0",
     "url-loader": "^2.1.0",
