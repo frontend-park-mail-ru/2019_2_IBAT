@@ -1,7 +1,5 @@
 import template from './header.pug';
 
-const pug = require('pug');
-
 export class HeaderComponent {
   constructor (parent = document.body, data = {}) {
     this._parent = parent;
@@ -17,9 +15,7 @@ export class HeaderComponent {
   // }
 
   render () {
-    this._parent.innerHTML = pug.compile(template)(
-      this._data
-    );
+    this._parent.innerHTML = template(this._data)
   }
 
 }

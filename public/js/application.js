@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   header.classList.add('header');
 
   const data = { hhRole: getCookie('hh_role') };
-  new HeaderComponent(header,data).render();
+  new HeaderComponent(header, data).render();
   page.appendChild(header);
 });
 
