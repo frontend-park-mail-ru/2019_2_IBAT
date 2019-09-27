@@ -25,9 +25,9 @@ passwordConfirm.addEventListener("input", function(event){
 }, false);
 
 email.addEventListener("input", function(event) {
-    let isValid = Validation.validateEmail(email.value, true);
+    let notValid = Validation.validateEmail(email.value, true);
     let error = email.nextElementSibling;
-    if (Validation.isEmptyField(email.value) || isValid) {
+    if (Validation.isEmptyField(email.value) || !notValid) {
         email.className = "input";
         error.innerHTML = "";
         error.classNamem = "error";

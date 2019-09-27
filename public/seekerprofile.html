@@ -43,37 +43,52 @@
     <div class="main-content">
         <div class="left-column">
             <h1 class="title-h1">Настройки профиля</h1>
-            <form class="signup-form" method="POST">
+            <form class="form profile-form" method="POST" novalidate>
                 <div class="signup-form__row">
                     <span class="span">Имя</span>
-                    <input class="input" type="text">
+                    <div class="signup-form__row__input">
+                        <input class="input" type="text">
+                    </div>
                 </div>
                 <div class="signup-form__row">
                     <span class="span">Фамилия</span>
-                    <input class="input" type="text">
+                    <div class="signup-form__row__input">
+                        <input class="input" type="text">
+                    </div>
                 </div>
                 <div class="signup-form__row">
                     <span class="span">Отчество</span>
-                    <input class="input" type="text">
+                    <div class="signup-form__row__input">
+                        <input class="input" type="text">
+                    </div>
                 </div>
                 <div class="signup-form__row">
                     <span class="span">Email</span>
-                    <input class="input" type="email">
+                    <div class="signup-form__row__input">
+                        <input class="input email" type="email" name="login">
+                        <span class="error"></span>
+                    </div>
                 </div>
                 <div class="signup-form__row">
                     <span class="span">Новый пароль</span>
-                    <input class="input" type="password">
+                    <div class="signup-form__row__input">
+                        <input class="input password" type="password" name="Password">
+                        <span class="error" aria-live="polite"></span>
+                    </div>
                 </div>
                 <div class="signup-form__row">
                     <span class="span">Подтверждение пароля</span>
-                    <input class="input" type="password">
+                    <div class="signup-form__row__input">
+                        <input class="input passwordConfirm" type="password" name="PasswordConfirm">
+                        <span class="error" aria-live="polite"></span>
+                    </div>
                 </div>
                 
                 <div class="signup-form__column">
+                    <span class="span">Аватар</span>
                     <input type="file" class="upload" accept="image/*"/>
-                    <span>
-                        <img class="thumb" src="">
-                    </span>
+                    <img class="thumb" src="">
+                    <span class="error-msg"></span>
                 </div>
                 <!-- <div class="signup-form__row">
                     <button class="button button_blue">Добавить фото</button>
