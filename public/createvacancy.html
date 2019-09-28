@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="css/normalize.css"/>
     <link rel="stylesheet" href="css/base.css"/>
     <link rel="stylesheet" href="css/header.css"/>
-    <!-- Подключаются только смотря какая страница -->
-    <link rel="stylesheet" href="css/index.css"/>
+
+    <title>Создание вакансии</title>
 </head>
 
 <body class="page">
@@ -34,9 +34,9 @@
         </form>
 
         <!--Эта часть для незарегистрированного пользователя-->
-        <div class="login-button header__login-button">
+        <!-- <div class="login-button header__login-button">
             <a class="button header__button" href="login.html"> Войти  </a>
-        </div>
+        </div> -->
         <!--Конец части для незаоегистрированного пользователя-->
 
         <!--Это для seeker-->
@@ -45,41 +45,29 @@
         </div> -->
         <!--конец для seeker-->
 
-        <!-- Это для любого зареганного пользователя -->
-        <!-- <div class="profile header__profile">
+        <!--Это для employer-->
+        <div class="resume-button header__resume-button">
+            <a class="button button_supernova header__button" href="createvacancy.html">Создать вакансию</a>
+        </div>
+        <!--конец для employer-->
+
+        <!-- Это для любого зареганного пользователя иконка профиля-->
+        <div class="profile header__profile">
             <a class="profile__link" href="#">
                 <span class="profile__icon"></span>
             </a>
-        </div> -->
+        </div>
         <!-- Это для любого зареганного пользователя -->
     </header>
-     <!-- main-content везде, кроме login.html, там другой контент и структура верстки-->
+    <!-- main-content везде, кроме login.html, там другой контент и структура верстки-->
     <div class="main-content">
+        <!-- left-column везде кроме login.html(там ввобще другой блок контент), сменяется только ее содержание -->
         <div class="left-column">
-            <!-- left-column везде кроме login.html(там ввобще другой блок контент), сменяется только ее содержание -->
-            <h1>Вакансии</h1>
-            <!-- left-column везде кроме login.html(там ввобще другой блок контент), сменяется только ее содержание -->
+            <!-- Доделаю -->
+            <!-- Тут будет весь контент создания вакансии -->
         </div>
+         <!-- right-column везде кроме login.html, сменяется только ее содержание -->
         <div class="right-column">
-            <!-- right-column везде кроме login.html, сменяется только ее содержание -->
-
-            <!-- этот блок только для незареганного пользователя на главной странице -->
-            <div class="signin-offer right-column__signin-offer">
-                <span class="signin-offer__header">
-                    Регистрация
-                </span>
-                <div class="signin-offer__choices">
-                    <a class="button button_seeker-button" href="signupseeker.html">
-                        Соискателя
-                    </a>
-                    <a class="button button_employer-button">
-                        Работодателя
-                    </a>
-                </div>
-            </div>
-            <!-- конец блока только для незареганного пользователя на главной странице -->
-
-            <!-- right-column везде, сменяется только ее содержание -->
         </div>
     </div>
 </body>

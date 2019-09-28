@@ -41,7 +41,7 @@
 
         <!--Это для seeker-->
         <div class="resume-button header__resume-button">
-            <a class="button button_supernova header__button" href="#">Создать резюме</a>
+            <a class="button button_supernova header__button" href="createresume.html">Создать резюме</a>
         </div>
         <!--конец для seeker-->
 
@@ -61,56 +61,53 @@
             <!-- Блок для seekerprofile -->
             <h1 class="title-h1">Настройки профиля</h1>
             <form class="form profile-form" method="POST" novalidate>
-                <div class="signup-form__row">
+                <div class="form__row">
                     <span class="span">Имя</span>
-                    <div class="signup-form__row__input">
+                    <div class="form__row__input">
                         <input class="input" type="text">
                     </div>
                 </div>
-                <div class="signup-form__row">
+                <div class="form__row">
                     <span class="span">Фамилия</span>
-                    <div class="signup-form__row__input">
+                    <div class="form__row__input">
                         <input class="input" type="text">
                     </div>
                 </div>
-                <div class="signup-form__row">
+                <div class="form__row">
                     <span class="span">Отчество</span>
-                    <div class="signup-form__row__input">
+                    <div class="form__row__input">
                         <input class="input" type="text">
                     </div>
                 </div>
-                <div class="signup-form__row">
+                <div class="form__row">
                     <span class="span">Email</span>
-                    <div class="signup-form__row__input">
+                    <div class="form__row__input">
                         <input class="input email" type="email" name="login">
                         <span class="error"></span>
                     </div>
                 </div>
-                <div class="signup-form__row">
+                <div class="form__row">
                     <span class="span">Новый пароль</span>
-                    <div class="signup-form__row__input">
+                    <div class="form__row__input">
                         <input class="input password" type="password" name="Password">
                         <span class="error" aria-live="polite"></span>
                     </div>
                 </div>
-                <div class="signup-form__row">
+                <div class="form__row">
                     <span class="span">Подтверждение пароля</span>
-                    <div class="signup-form__row__input">
+                    <div class="form__row__input">
                         <input class="input passwordConfirm" type="password" name="PasswordConfirm">
                         <span class="error" aria-live="polite"></span>
                     </div>
                 </div>
                 
-                <div class="signup-form__column">
+                <div class="form__column">
                     <span class="span">Аватар</span>
                     <input type="file" class="upload" accept="image/*"/>
                     <img class="thumb" src="">
                     <span class="error-msg"></span>
                 </div>
-                <!-- <div class="signup-form__row">
-                    <button class="button button_blue">Добавить фото</button>
-                </div> -->
-                <div class="signup-form__row">
+                <div class="form__row">
                     <button class="button button_blue">Редактировать</button>
                 </div>
             </form>
@@ -120,6 +117,7 @@
            
         </div>
     </div>
+    <!-- Подключаются только смотря какая страница -->
     <script type="module" src="js/seekerprofile.js"></script>
 </body>
 
