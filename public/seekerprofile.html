@@ -60,7 +60,7 @@
         <div class="left-column">
             <!-- Блок для seekerprofile -->
             <h1 class="title-h1">Настройки профиля</h1>
-            <form class="form profile-form" method="POST" novalidate>
+            <form class="form profile-form" method="POST" enctype="multipart/form-data" novalidate>
                 <div class="form__row">
                     <span class="span">Имя</span>
                     <div class="form__row__input">
@@ -103,7 +103,7 @@
                 
                 <div class="form__column">
                     <span class="span">Аватар</span>
-                    <input type="file" class="upload" accept="image/*"/>
+                    <input type="file" class="upload" name="my_file" accept="image/*"/>
                     <img class="thumb" src="">
                     <span class="error-msg"></span>
                 </div>
