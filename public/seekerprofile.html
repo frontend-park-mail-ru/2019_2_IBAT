@@ -2,23 +2,29 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
+    <!-- Подключаются везде -->
     <link rel="stylesheet" href="css/normalize.css"/>
     <link rel="stylesheet" href="css/base.css"/>
     <link rel="stylesheet" href="css/header.css"/>
-    <link rel="stylesheet" href="css/index.css"/>
+    <!-- Подключаются только смотря какая страница -->
     <link rel="stylesheet" href="css/signupseeker.css"/>
 </head>
 
 <body class="page">
     <header class="header">
+        <!--Логотип везде -->
         <div class="logo header__logo">
-            <img src="img/ibat.jpg" alt="logo" class="logo__img">
+            <a href="index.html">
+                <img src="img/ibat.jpg" alt="logo" class="logo__img">
+            </a>
         </div>
         
+        <!--Эта часть для seeker -->
         <nav class="menu header__menu">
             <a class="menu__link" href="#">Мои резюме</a>
             <a class="menu__link" href="#">Отклики</a>
         </nav>
+        <!--конец часть для seeker -->
 
         <div class="header-fill"></div>
 
@@ -26,58 +32,93 @@
             <input class="input search-form__search" type="text" placeholder="Поиск" name="s">
             <input class="button button_green" type="submit" placeholder="Поиск">
         </form>
-        
-        <div class="resume-button header__resume-button">
-            <a class="button button_supernova header__button" href="#">Создать резюме</a>
-        </div>
 
+        <!--Эта часть для незарегистрированного пользователя-->
+        <!-- <div class="login-button header__login-button">
+            <a class="button header__button" href="login.html"> Войти  </a>
+        </div> -->
+        <!--Конец части для незаоегистрированного пользователя-->
+
+        <!--Это для seeker-->
+        <div class="resume-button header__resume-button">
+            <a class="button button_supernova header__button" href="createresume.html">Создать резюме</a>
+        </div>
+        <!--конец для seeker-->
+
+        <!-- Это для любого зареганного пользователя иконка профиля-->
         <div class="profile header__profile">
             <a class="profile__link" href="#">
                 <span class="profile__icon"></span>
             </a>
         </div>
+        <!-- Это для любого зареганного пользователя -->
     </header>
-
+ 
+       <!-- main-content везде, кроме login.html, там другой контент и структура верстки-->
     <div class="main-content">
+         <!-- left-column везде кроме login.html, сменяется только ее содержание -->
         <div class="left-column">
+            <!-- Блок для seekerprofile -->
             <h1 class="title-h1">Настройки профиля</h1>
-            <form class="signup-form" method="POST">
-                <div class="signup-form__row">
+            <form class="form profile-form" method="POST" novalidate>
+                <div class="form__row">
                     <span class="span">Имя</span>
-                    <input class="input" type="text">
+                    <div class="form__row__input">
+                        <input class="input" type="text">
+                    </div>
                 </div>
-                <div class="signup-form__row">
+                <div class="form__row">
                     <span class="span">Фамилия</span>
-                    <input class="input" type="text">
+                    <div class="form__row__input">
+                        <input class="input" type="text">
+                    </div>
                 </div>
-                <div class="signup-form__row">
+                <div class="form__row">
                     <span class="span">Отчество</span>
-                    <input class="input" type="text">
+                    <div class="form__row__input">
+                        <input class="input" type="text">
+                    </div>
                 </div>
-                <div class="signup-form__row">
+                <div class="form__row">
                     <span class="span">Email</span>
-                    <input class="input" type="email">
+                    <div class="form__row__input">
+                        <input class="input email" type="email" name="login">
+                        <span class="error"></span>
+                    </div>
                 </div>
-                <div class="signup-form__row">
+                <div class="form__row">
                     <span class="span">Новый пароль</span>
-                    <input class="input" type="password">
+                    <div class="form__row__input">
+                        <input class="input password" type="password" name="Password">
+                        <span class="error" aria-live="polite"></span>
+                    </div>
                 </div>
-                <div class="signup-form__row">
+                <div class="form__row">
                     <span class="span">Подтверждение пароля</span>
-                    <input class="input" type="password">
+                    <div class="form__row__input">
+                        <input class="input passwordConfirm" type="password" name="PasswordConfirm">
+                        <span class="error" aria-live="polite"></span>
+                    </div>
                 </div>
-                <div class="signup-form__row">
-                    <button class="button button_blue">Добавить фото</button>
+                
+                <div class="form__column">
+                    <span class="span">Аватар</span>
+                    <input type="file" class="upload" accept="image/*"/>
+                    <img class="thumb" src="">
+                    <span class="error-msg"></span>
                 </div>
-                <div class="signup-form__row">
+                <div class="form__row">
                     <button class="button button_blue">Редактировать</button>
                 </div>
             </form>
+            <!-- Конец Блока для seekerprofile -->
         </div>
         <div class="right-column">
-            
+           
         </div>
     </div>
+    <!-- Подключаются только смотря какая страница -->
+    <script type="module" src="js/seekerprofile.js"></script>
 </body>
 
 </html>

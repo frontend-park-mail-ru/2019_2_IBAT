@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <!-- Подключаются везде -->
     <link rel="stylesheet" href="css/normalize.css"/>
     <link rel="stylesheet" href="css/base.css"/>
     <link rel="stylesheet" href="css/header.css"/>
-    <title>Страница вакансии</title>
+
+    <title>Создание вакансии</title>
 </head>
 
 <body class="page">
@@ -19,10 +20,10 @@
         </div>
         
         <!--Эта часть для seeker -->
-        <nav class="menu header__menu">
+        <!-- <nav class="menu header__menu">
             <a class="menu__link" href="#">Мои резюме</a>
             <a class="menu__link" href="#">Отклики</a>
-        </nav>
+        </nav> -->
         <!--конец часть для seeker -->
 
         <div class="header-fill"></div>
@@ -39,10 +40,16 @@
         <!--Конец части для незаоегистрированного пользователя-->
 
         <!--Это для seeker-->
-        <div class="resume-button header__resume-button">
+        <!-- <div class="resume-button header__resume-button">
             <a class="button button_supernova header__button" href="#">Создать резюме</a>
-        </div>
+        </div> -->
         <!--конец для seeker-->
+
+        <!--Это для employer-->
+        <div class="resume-button header__resume-button">
+            <a class="button button_supernova header__button" href="createvacancy.html">Создать вакансию</a>
+        </div>
+        <!--конец для employer-->
 
         <!-- Это для любого зареганного пользователя иконка профиля-->
         <div class="profile header__profile">
@@ -52,10 +59,17 @@
         </div>
         <!-- Это для любого зареганного пользователя -->
     </header>
-    <!--Страница отдельной вакансии тут
-                ...
-                ...
-    -->
+    <!-- main-content везде, кроме login.html, там другой контент и структура верстки-->
+    <div class="main-content">
+        <!-- left-column везде кроме login.html(там ввобще другой блок контент), сменяется только ее содержание -->
+        <div class="left-column">
+            <!-- Доделаю -->
+            <!-- Тут будет весь контент создания вакансии -->
+        </div>
+         <!-- right-column везде кроме login.html, сменяется только ее содержание -->
+        <div class="right-column">
+        </div>
+    </div>
 </body>
 
 </html>

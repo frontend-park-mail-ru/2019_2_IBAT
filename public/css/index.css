@@ -2,7 +2,7 @@
     background-color: #222;
     color: #fff;
     padding: 15px;
-    height: 75px;
+    height: 125px;
     width: 300px;
     display: flex;
     flex-flow: column nowrap;
@@ -12,15 +12,25 @@
 
 .signin-offer__choices {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     width: 250px;
+    margin-bottom: 10px;
 }
 .button_seeker-button {
-    width: 125px;
+    width: 250px;
+    background-color: #222;
+    color: #0f8fee;
+    border-color:  #0f8fee;
+    margin-bottom: 10px; 
 }
+
 .button_employer-button {
-    width: 125px;
+    background-color: #222;
+    color:#0f8fee;
+    border-color:   #0f8fee;
+    width: 250px;
 }
+
 .right-column__signin-offer{
     margin-top: 35px;
 }
