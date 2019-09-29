@@ -7,6 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const router = new Router(application);
     router.add('/', new MainPage());
     router.add('/signupseeker', new SignupSeeker());
-    router.add('/vacancies', new);
+    // router.add('/vacancies', new);
     router.start();
 });
