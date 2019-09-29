@@ -1,47 +1,35 @@
-import { HeaderComponent } from './components/Header/Header.js';
-import { Api } from '../../modules/api.js';
+import {renderBase} from "../../utils/util";
+import {Api} from '../../utils/api.js';
+import {HeaderComponent} from '../../components/Header/Header.js';
+import {SignupMenuComponent} from "../../components/SignupMenu/SignupMenu";
 
-class MainPage {
-
-    constructor(){
+export class MainPage {
+    constructor() {
         Api.checkSession()
             .then(response => {
-                if(response.status>=300){
+                if (response.status >= 300) {
                     throw new Error("Неверный статус");
                 }
                 response.json();
             })
-            .then(data=>{
-                this._data=data.class;
-                render();
+            .then(data => {
+                this.render(undefined, data);
             })
-            .catch(err=>{
-                if(err.status==401){
-                    this._data='anonymous';
+            .catch(err => {
+                if (err.status === 400) {
+                    this.render(undefined, {hhRole: 'anonymous'});
+                } else {
+                    console.error(err);
                 }
-                console.error(err);
-            })
-    }
-    
-    render(){
-        new HeaderComponent().render();
+            });
     }
 
-    _checkSession(){
-        
+    render(root = document.body, data = {hhRole: 'anonymous'}) {
+        renderBase(root);
+        const header = document.querySelector('.header');
+        new HeaderComponent(header, data).render();
+
+        const rightColumn = document.querySelector('.right-column');
+        new SignupMenuComponent(rightColumn, data).render();
     }
 }
-
-
-
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     const page = document.querySelector('.page');
-//     const header = document.createElement('header');
-
-//     header.classList.add('header');
-
-//     const data = { hhRole: getCookie('hh_role') };
-//     new HeaderComponent(header, data).render();
-//     page.appendChild(header);
-// });
