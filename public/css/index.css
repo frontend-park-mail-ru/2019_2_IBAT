@@ -1,3 +1,7 @@
+@import "base.css";
+@import "normalize.css";
+
+@import "../components/Header/header.css";
 
 .signin-offer {
     background-color: #222;
@@ -17,7 +21,6 @@
     width: 250px;
     margin-bottom: 10px;
 }
-
 .button_seeker-button {
     width: 250px;
     background-color: #222;

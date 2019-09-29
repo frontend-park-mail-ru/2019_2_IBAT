@@ -1,27 +1,30 @@
-//<div class="logo header__logo">
-//    <img src="img/ibat.jpg" alt="logo" class="logo__img">
-//</div>
-//
-//<div class="header-fill"></div>
-//
-//<form class="search-form header__search-form" action="/">
-//    <input class="input search-form__search" type="text" placeholder="Поиск" name="s">
-//    <input class="button button_green" type="submit" placeholder="Поиск">
-//</form>
 div.logo.header__logo
     img.logo__img(src='img/ibat.jpg', alt='logo')
 
+if hhRole === 'seeker'
+    nav.menu.header__menu
+        a.menu__link(href='#') Мои резюме
+        a.menu__link(href='#') Отклики
+
 div.header-fill
 
-form.search-form.header__search-form(action='/')
+form.search-form.header__search-form(action='/#')
     input.input.search-form__search(type='text', placeholder='Поиск', name='s')
     input.button.button_green(type='submit', placeholder='Поиск')
 
-- const hhRole="seeker";
 case hhRole
-    when 'anonymous'
-        div(class=['login-button','header__login-button'])
-            a.href='login.html'
-        //<div class="login-button header__login-button">
-        //<a class="button button_supernova header__button" href="login.html"> Войти  </a>
-        //</div>
+    when 'seeker'
+        div.resune-button.header__resume-button
+            a.button.button_supernova.header__button(href='/create_resume') Создать резюме
+    when 'employer'
+
+        div.profile.header__profile
+            a.profile__link(href='/profile')
+                span.profile__icon
+
+        form(action='/auth', method='DELETE')
+            div.login-button.header__login-button
+                input.button.button_supernova.header__button(type="submit", value="Выйти")
+    default
+        div.login-button.header__login-button
+            a.button.button_supernova.header__button(href='/login.html') Войти
