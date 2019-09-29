@@ -7,13 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const router = new Router(application);
     router.add('/', new MainPage());
     router.add('/signupseeker', new SignupSeeker());
-
+    // router.add('/vacancies', new);
     router.start();
 });
-
-function getCookie(name) {
-    let matches = document.cookie.match(new RegExp(
-        '(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'
-    ));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-}
