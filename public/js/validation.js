@@ -26,8 +26,6 @@ export default class Validation {
         if (withRegex && !Validation.validateEmailRegex(email)) {
             return errEmailIsInvalid;
         }
-
-        return true;
     }
     /**
      * Валидирует пароль.
