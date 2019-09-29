@@ -1,4 +1,5 @@
 import template from './header.pug';
+import './header.css'
 
 export class HeaderComponent {
   constructor (parent = document.body, data = {}) {

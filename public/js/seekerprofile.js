@@ -1,4 +1,4 @@
-import  Validation  from './validation.js';
+import  Validation  from '../modules/validation.js/index.js';
 
 const errInvalidPasswordData = 'Must contain at least 8 chars';
 const errNotEqualPassRePass = 'Password and Password Repeat are not equal';
