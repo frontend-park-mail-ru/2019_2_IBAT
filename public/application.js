@@ -1,3 +1,2 @@
-import {MainPage} from './pages/main/main.js';
-
-new MainPage();
+// import {MainPage} from './pages/main/main.js';
+import Api from './modules/api';
