@@ -1,18 +1,30 @@
 {
   "name": "IBAT_server",
   "version": "1.0.0",
-  "dependencies": {
-    "express": "^4.17.1",
-    "uuidv4": "^5.0.1"
-  },
+  "private": true,
+  "dependencies": {},
   "scripts": {
     "start": "nodemon server/server.js",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "watch": "webpack --watch --mode development",
     "now-build": "echo pukk"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "@babel/register": "^7.6.2",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2"
+=======
+    "css-loader": "^3.2.0",
+    "express": "^4.17.1",
+    "pug-loader": "^2.4.0",
+    "style-loader": "^1.0.0",
+    "url-loader": "^2.1.0",
+    "uuidv4": "^5.0.1",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
+>>>>>>> b5bffbdc6770fb7feab882b700aebaba141da5de
   }
 }
