@@ -1,12 +1,18 @@
 import {renderBase} from "../../utils/util";
+import Validation from '../../modules/validation';
+import {Api} from "../../modules/api";
+
 import template from './signupseeker.pug'
-import Validation from '../../utils/validation';
 import {HeaderComponent} from "../../components/Header/Header";
 
 const errInvalidPasswordData = 'Must contain at least 8 chars';
 const errNotEqualPassRePass = 'Password and Password Repeat are not equal';
 
 export class SignupSeeker {
+
+    constructor(router){
+        this._router=router;
+    }
 
     render(root = document.body, data = {hhRole: 'anonymous'}) {
         renderBase(root);
@@ -112,16 +118,7 @@ export class SignupSeeker {
                     second_name: lastName.value,
                     password: password.value
                 };
-                //TODO вынести адрес сервера в конфиги
-                fetch('http://82.146.43.113:8080/seeker', {
-                    method: 'POST',
-                    mode: 'cors',
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json; charset=utf-8'
-                    },
-                    body: JSON.stringify(user)
-                })
+                Api.signUpSeeker(user)
                     .then(r => {
                         if (r.status === 400) {
                             throw new Error("Такой пользователь уже существует!");

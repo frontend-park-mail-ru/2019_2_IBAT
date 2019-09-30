@@ -1,10 +1,15 @@
 import {renderBase} from "../../utils/util";
-import {Api} from '../../utils/api.js';
+import {Api} from '../../modules/api.js';
 import {HeaderComponent} from '../../components/Header/Header.js';
 import {SignupMenuComponent} from "../../components/SignupMenu/SignupMenu";
 
 export class MainPage {
-    constructor() {
+    constructor(router) {
+        this._router=router;
+        this._checkSession();
+    }
+
+    _checkSession() {
         Api.checkSession()
             .then(response => {
                 if (response.status >= 300) {
