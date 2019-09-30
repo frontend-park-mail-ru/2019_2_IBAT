@@ -1,6 +1,6 @@
 import Net from './net.js';
 
-export default class Api {
+export class Api {
     /**
      * Проверяет сессию
      * @returns {Promise}
@@ -11,60 +11,45 @@ export default class Api {
 
     /**
      * Авторизует пользователя
-     * @param email
-     * @param password
      * @returns {Promise<Response>}
+     * @param user
      */
-    static signIn ({ email, password } = {}) {
+    static signIn (user = {}) {
         return Net.doPost({
             url: '/auth',
-            body: {
-                'login': email,
-                'password': password,
-            }
+            body: user
         });
     }
 
     /**
-     * Регистрирует соискателя
-     * @param email
-     * @param firstName
-     * @param secondName
-     * @param password
-     * @returns {Promise<Response>}
+     * Выходит из профиля
+     * @returns {Promise}
      */
-    static signUpSeeker ({ email, firstName, secondName, password } = {}) {
+    static signOut(){
+        return Net.doDelete({url: '/auth'});
+    }
+
+    /**
+     * Регистрирует соискателя
+     * @returns {Promise<Response>}
+     * @param user
+     */
+    static signUpSeeker (user={}) {
         return Net.doPost({
             url: '/seeker',
-            body: {
-                "email" : email,
-                "first_name" : firstName,
-                "second_name" : secondName,
-                "password" :    password,
-            }
+            body: user
         });
     }
 
     /**
      * Регистрирует соискателя
-     * @param ...
      * @returns {Promise<Response>}
+     * @param user
      */
-    static signUpEmployer ({ CompanyName, Site, FirstName, SecondName, Email,  phoneNumber, ExtraNumber,  Password, City, EmplNum } = {}) {
+    static signUpEmployer (user = {}) {
         return Net.doPost({
             url: '/employer',
-            body: {
-                "company_name": CompanyName,
-                "site": Site,
-                "first_name": FirstName,
-                "second_name": SecondName,
-                "email": Email,
-                "phone_number": phoneNumber,
-                "extra_number": ExtraNumber,
-                "password": Password,
-                "city": City,
-                "empl_num": EmplNum,
-            }
+            body: user
         });
     }
 
@@ -123,24 +108,14 @@ export default class Api {
 
     /**
      * Создание вакансии
-     * @param VacancyData
+     * @param Vacancy
      * @returns {Promise<Response>}
      */
     // Надо сделать модель Resume(пока что просто поля через запятую)
-    static createResume ({ CompanyName, Experience, Profession, Position, Tasks, Requirements, Wage, Conditions, About } = {}) {
+    static createVacancy(vacancy = {}) {
         return Net.doPost({
             url: '/vacancy',
-            body : {
-                "company_name": CompanyName,
-                "experience": Experience,
-                "profession": Profession,
-                "position":  Position,
-                "task": Tasks,
-                "requirements": Requirements,
-                "wage": Wage,
-                "conditions": Conditions,
-                "about": About,
-            }         
+            body : vacancy
         });
     }
 

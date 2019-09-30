@@ -1,7 +1,10 @@
 @import "base.css";
 @import "normalize.css";
+@import "signup.css";
+@import "login.css";
 
 @import "../components/Header/header.css";
+@import "../components/ShortVacncy/ShortVacancy.css";
 
 .signin-offer {
     background-color: #222;

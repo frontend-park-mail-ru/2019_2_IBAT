@@ -1,5 +1,6 @@
-div.signin-offer.right-column__signin-offer
-    span.signin-offer__header Регистрация
-    div.signin-offer__choices
-        a.button.button_seeker-button(href='/signupseeker') Соискателя
-        a.button.button_employer-button(href='/signupemployer') Работадателя
+if hhRole==='anonymous'
+    div.signin-offer.right-column__signin-offer
+        span.signin-offer__header Регистрация
+        div.signin-offer__choices
+            a.button.button_seeker-button(href='/signupseeker') Соискателя
+            a.button.button_employer-button(href='/signupemployer') Работадателя

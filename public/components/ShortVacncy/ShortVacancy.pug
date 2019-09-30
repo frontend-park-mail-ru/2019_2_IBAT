@@ -1,15 +1,17 @@
-- var vacancyName="Стажер Sberseasons JavaScript";
-- var ware="3&nbsp;000-4&nbsp;000 USD"
-- var city="Москва"
-- var description="Основное направление - это проектирование, разработка и адаптация специфических клиентских приложений для различных платформ (Web, Android, iOS, tvOS, Smart TV и... Уверенное владение JavaScript, ES6/7, HTML5, CSS3, LESS/SCSS, React, Redux, WebPack, Flow. Плюсом будет опыт работы..."
-- var companyUrl = '#'
+- var city="Москва";
+- var companyUrl = '#';
+- var companyImg = 'https://hhcdn.ru/employer-logo/2460361.png';
+
+- var vacancyName =  profession + ' ' +  position;
+- var text = about + '/n' + requirements
 
 div.short-vacancy
     span
         a(href="#") #{vacancyName}
-    div #{ware}
+    div #{wage} руб.
+    span #{company_name}
     span #{city}
     div.short-vacancy__row
-        div #{description}
+        div #{about}
         a(href=companyUrl)
-            img(src="https://hhcdn.ru/employer-logo/2460361.png", alt="Alpha Technology USA LLC")
+            img(src=companyImg, alt="Alpha Technology USA LLC")

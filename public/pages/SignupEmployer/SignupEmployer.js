@@ -2,13 +2,13 @@ import {renderBase} from "../../utils/util";
 import Validation from '../../modules/validation';
 import {Api} from "../../modules/api";
 
-import template from './signupseeker.pug'
+import template from './signupemployer.pug'
 import {HeaderComponent} from "../../components/Header/Header";
 
 const errInvalidPasswordData = 'Must contain at least 8 chars';
 const errNotEqualPassRePass = 'Password and Password Repeat are not equal';
 
-export class SignupSeeker {
+export class SignupEmployer {
 
     constructor(router){
         this._router=router;
@@ -26,9 +26,15 @@ export class SignupSeeker {
 
         const signupForm = view.querySelector('.signup-form');
 
+        const companyName = signupForm.elements['companyName'];
+        const site = signupForm.elements['site'];
+        const email = signupForm.elements['email'];
+        const city = signupForm.elements['city'];
+        const employerNumber = signupForm.elements['employerNumber'];
         const firstName = signupForm.elements['firstName'];
         const lastName = signupForm.elements['lastName'];
-        const email = signupForm.elements['login'];
+        const phoneNumber = signupForm.elements['phoneNumber'];
+        const extraPhoneNumber = signupForm.elements['extraPhoneNumber'];
         const password = signupForm.elements['Password'];
         const passwordConfirm = signupForm.elements['PasswordConfirm'];
 
@@ -110,25 +116,30 @@ export class SignupSeeker {
             if (wasfail) {
                 passwordConfirm.value = "";
                 password.value = "";
-
+                return;
             } else {
                 // HTTP POST REQUEST
                 const user = {
+                    company_name: companyName.value,
+                    site: site.value,
                     email: email.value,
+                    city: city.value,
+                    // empl_num: employerNumber.value,
                     first_name: firstName.value,
-                    //TODO выполнить унификацию lastName(фронтенд) и second_name(бэкенд)
                     second_name: lastName.value,
+                    phone_number: phoneNumber.value,
+                    extra_number: extraPhoneNumber.value,
                     password: password.value
                 };
-                Api.signUpSeeker(user)
-                    .then(res => {
-                        if (res.status >= 300) {
-                            return res.json();
+                Api.signUpEmployer(user)
+                    .then(r => {
+                        if (r.status === 400) {
+                            throw new Error("Такой пользователь уже существует!");
                         }
+                        router.toStartPage();
                     })
-                    .then(err => {
-                        console.error(err);
-                        alert(err);
+                    .catch(err => {
+                        alert(err.message);
                     });
             }
         }, false);

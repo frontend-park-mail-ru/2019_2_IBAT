@@ -16,6 +16,15 @@ case hhRole
     when 'seeker'
         div.resune-button.header__resume-button
             a.button.button_supernova.header__button(href='/create_resume') Создать резюме
+
+        div.profile.header__profile
+            a.profile__link(href='/profile')
+                span.profile__icon
+
+        form(action='/auth', method='DELETE')
+            div.login-button.header__login-button
+                button.button.button_supernova.header__button(type="submit") Выйти
+
     when 'employer'
 
         div.profile.header__profile
@@ -24,7 +33,7 @@ case hhRole
 
         form(action='/auth', method='DELETE')
             div.login-button.header__login-button
-                input.button.button_supernova.header__button(type="submit", value="Выйти")
+                a.button.button_supernova.header__button(type="submit") Выйти
     default
         div.login-button.header__login-button
-            a.button.button_supernova.header__button(href='/login.html') Войти
+            a.button.button_supernova.header__button(href='/signin') Войти

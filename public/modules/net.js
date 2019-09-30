@@ -1,4 +1,4 @@
-const serverURL = 'http://82.146.43.113:8080';
+const serverURL = 'https://82.146.43.113:8080';
 
 
 export default class Net {
@@ -10,6 +10,7 @@ export default class Net {
     static doGet ({ url = '/' } = {}) {
         return fetch(Net.getServerURL() + url, {
             method: 'GET',
+            mode: 'cors',
             credentials: 'include'
         });
     }
