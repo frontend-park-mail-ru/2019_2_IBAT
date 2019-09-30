@@ -40,12 +40,12 @@ export class MainPage {
 
         if (data.hhRole === 'anonymous' || data.hhRole === 'seeker') {
             const leftColumn = document.querySelector('.left-column');
-            Api.getResumes()
-                .then(response => {
+            Api.getVacancies()
+                .then(function(response) {
                     if (response.status >= 300) {
                         throw new Error("Неверный статус");
                     }
-                    response.json();
+                    return response.json();
                 })
                 .then(vacancies => {
                     let list = document.createElement("div");
@@ -55,13 +55,9 @@ export class MainPage {
                     leftColumn.appendChild(list);
 
                     if (vacancies) {
-                        vacancies.forEach(vacancy => {
-                            new ShortVacancyComponent(list, vacancy).render();
-                        });
-                    }
-                    // test
-                    for (let i = 0; i < 3; i++) {
-                        new ShortVacancyComponent(list).render();
+                        for (let vacancy in vacancies) {
+                            new ShortVacancyComponent(list, vacancies[vacancy]).render();
+                        }
                     }
                 })
         } 
