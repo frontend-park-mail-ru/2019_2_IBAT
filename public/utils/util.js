@@ -1,4 +1,6 @@
 export function renderBase(root) {
+    root.innerHTML = '';
+    
     const header = document.createElement('header');
     header.className = 'header';
 

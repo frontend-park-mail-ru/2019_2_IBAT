@@ -2,6 +2,7 @@
 @import "normalize.css";
 
 @import "../components/Header/header.css";
+@import "../components/ShortVacncy/ShortVacancy.css";
 
 .signin-offer {
     background-color: #222;

@@ -1,6 +1,6 @@
 import Net from './net.js';
 
-export default class Api {
+export class Api {
     /**
      * Проверяет сессию
      * @returns {Promise}
@@ -123,24 +123,14 @@ export default class Api {
 
     /**
      * Создание вакансии
-     * @param VacancyData
+     * @param Vacancy
      * @returns {Promise<Response>}
      */
     // Надо сделать модель Resume(пока что просто поля через запятую)
-    static createResume ({ CompanyName, Experience, Profession, Position, Tasks, Requirements, Wage, Conditions, About } = {}) {
+    static createVacancy(vacancy = {}) {
         return Net.doPost({
             url: '/vacancy',
-            body : {
-                "company_name": CompanyName,
-                "experience": Experience,
-                "profession": Profession,
-                "position":  Position,
-                "task": Tasks,
-                "requirements": Requirements,
-                "wage": Wage,
-                "conditions": Conditions,
-                "about": About,
-            }         
+            body : vacancy
         });
     }
 
