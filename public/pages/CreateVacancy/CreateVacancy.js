@@ -7,8 +7,7 @@ import {HeaderComponent} from "../../components/Header/Header";
 
 export class CreateVacancy {
 
-    constructor(router){
-        this._router=router;
+    constructor(){
     }
 
     render(root = document.body, data = {hhRole: 'anonymous'}) {
@@ -66,7 +65,7 @@ export class CreateVacancy {
                         if (r.status === 400) {
                             throw new Error("Такой пользователь уже существует!");
                         }
-                        this._router.toStartPage();
+                        window.router.toStartPage();
                     })
                     .catch(err => {
                         alert(err.message);

@@ -10,13 +10,11 @@ const errNotEqualPassRePass = 'Password and Password Repeat are not equal';
 
 export class SignupEmployer {
 
-    constructor(router){
-        this._router=router;
+    constructor(){
     }
 
     render(root = document.body, data = {hhRole: 'anonymous'}) {
         renderBase(root);
-        const router=this._router;
 
         const header = document.querySelector('.header');
         new HeaderComponent(header, data).render();
@@ -136,7 +134,7 @@ export class SignupEmployer {
                         if (r.status === 400) {
                             throw new Error("Такой пользователь уже существует!");
                         }
-                        router.toStartPage();
+                        window.router.toStartPage();
                     })
                     .catch(err => {
                         alert(err.message);

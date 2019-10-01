@@ -2,7 +2,6 @@ import Router from './modules/router';
 import {MainPage} from './pages/main/main'
 import {SignupSeeker} from "./pages/SignupSeeker/SignupSeeker";
 import {CreateVacancy} from "./pages/CreateVacancy/CreateVacancy";
-import {CreateVacancy} from "./pages/CreateVacancy/CreateVacancy";
 import {SignupEmployer} from "./pages/SignupEmployer/SignupEmployer";
 import {SignIn} from "./pages/Signin/Signin";
 
@@ -13,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     router.add('/signupseeker', new SignupSeeker(router));
     router.add('/signupemployer', new SignupEmployer(router));
     router.add('/signin', new SignIn(router));
-    router.add('/vacancy', new CreateVacancy());
+    router.add('/create_vacancy', new CreateVacancy());
+    window.router=router;
     router.start();
 });

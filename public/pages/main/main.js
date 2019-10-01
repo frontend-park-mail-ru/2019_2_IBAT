@@ -5,31 +5,10 @@ import {SignupMenuComponent} from "../../components/SignupMenu/SignupMenu";
 import {ShortVacancyComponent} from "../../components/ShortVacncy/ShortVacancy";
 
 export class MainPage {
-    constructor(router) {
-        this._router = router;
-        // this._checkSession();
+    constructor() {
     }
 
-    _checkSession() {
-        Api.checkSession()
-            .then(response => {
-                if (response.status === 401) {
-                    this.render(undefined, {hhRole: 'anonymous'});
-                    throw new Error("error");
-                }
-                return response.json();
-            })
-            .then(data => {
-                data.hhRole=data.class;
-                this.render(undefined, data);
-            })
-            .catch(err=>{
-                // console.log(err);
-            })
-    }
-
-    render(root = document.body, data = {hhRole: 'anonymous'}) {
-        this._checkSession();
+    _postRender(root, data){
         renderBase(root);
         const header = document.querySelector('.header');
         new HeaderComponent(header, data).render();
@@ -60,5 +39,22 @@ export class MainPage {
                     }
                 })
         }
+    }
+
+    render(root = document.body, data = {hhRole: 'anonymous'}) {
+        Api.checkSession()
+            .then(response => {
+                if (response.status === 401) {
+                    throw new Error("error");
+                }
+                return response.json();
+            })
+            .then(data => {
+                data.hhRole=data.class;
+                this._postRender(root, data);
+            })
+            .catch(err=>{
+                this._postRender(root, {hhRole: 'anonymous'});
+            })
     }
 }

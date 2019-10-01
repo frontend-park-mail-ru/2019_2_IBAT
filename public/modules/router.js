@@ -17,14 +17,10 @@ export default class Router {
 
     _change(path) {
 
-        if (this.currentRoute === path) {
-            return
-        }
-
         if (this.routes.has(path)) {
 
             const currentPage = this.routes.get(this.currentRoute);
-            if(currentPage) this.root.innerHTML = '';
+            if (currentPage) this.root.innerHTML = '';
 
             const page = this.routes.get(path);
             page.render(this.root);
@@ -44,19 +40,6 @@ export default class Router {
             if (ev.target.tagName === 'A') {
                 ev.preventDefault();
                 this._change(Router._normalizePath(ev.target.pathname));
-            }
-        });
-
-        this.root.addEventListener('submit', (ev)=>{
-            if (ev.target.action.match( /\/auth/g)) {
-                ev.preventDefault();
-                Api.signOut()
-                    .then(res=>{
-                        if(res.statusCode>=300){
-                            console.error("Пользователь не авторизован!");
-                        }
-                        this.toStartPage();
-                    })
             }
         });
 

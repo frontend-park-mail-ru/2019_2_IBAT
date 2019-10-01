@@ -1,5 +1,6 @@
 div.logo.header__logo
-    img.logo__img(src='img/ibat.jpg', alt='logo')
+    a(href='/')
+        img.logo__img(src='img/ibat.jpg', alt='logo')
 
 if hhRole === 'seeker'
     nav.menu.header__menu
@@ -26,6 +27,8 @@ case hhRole
                 button.button.button_supernova.header__button(type="submit") Выйти
 
     when 'employer'
+        div.resune-button.header__resume-button
+            a.button.button_supernova.header__button(href='/create_vacancy') Создать резюме
 
         div.profile.header__profile
             a.profile__link(href='/profile')

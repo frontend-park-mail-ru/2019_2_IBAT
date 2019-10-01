@@ -10,14 +10,11 @@ const errNotEqualPassRePass = 'Password and Password Repeat are not equal';
 
 export class SignIn {
 
-    constructor(router) {
-        this._router = router;
+    constructor() {
     }
 
     render(root = document.body, data = {hhRole: 'anonymous'}) {
         renderBase(root);
-
-        const router = this._router;
 
         root.className='page';
         const header = root.querySelector('.header');
@@ -65,13 +62,14 @@ export class SignIn {
                 };
                 Api.signIn(user)
                     .then(res=>{
-                        if(res.status>=300){
-                            return res.json();
+                        if(res.status===400){
+                            throw new Error("Неверный пароль")
                         }
-                        router.toStartPage();
-                        return;
                     })
-                    .then(err=>{
+                    .then(res=>{
+                       window.router.toStartPage();
+                    })
+                    .catch(err=>{
                         console.log(err);
                         alert(err);
                     });

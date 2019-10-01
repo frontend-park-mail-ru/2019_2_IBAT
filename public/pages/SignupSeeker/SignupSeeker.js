@@ -10,13 +10,11 @@ const errNotEqualPassRePass = 'Password and Password Repeat are not equal';
 
 export class SignupSeeker {
 
-    constructor(router){
-        this._router=router;
+    constructor(){
     }
 
     render(root = document.body, data = {hhRole: 'anonymous'}) {
         renderBase(root);
-        const router=this._router;
 
         const header = document.querySelector('.header');
         new HeaderComponent(header, data).render();
@@ -90,7 +88,7 @@ export class SignupSeeker {
             if (testPass) {
                 if (testPass === errInvalidPasswordData) {
                     let error = password.nextElementSibling;
-                    error.innerHTML = "Пароль должен иметь 8 символов, 1 цифру, 1 в верхнем и 1 в нижнем регистре"
+                    error.innerHTML = "Пароль должен иметь 8 символов, 1 цифру, 1 в верхнем и 1 в нижнем регистре";
                     error.className = "error active";
                     password.className = "input invalid";
                     passwordConfirm.className = "input invalid";
