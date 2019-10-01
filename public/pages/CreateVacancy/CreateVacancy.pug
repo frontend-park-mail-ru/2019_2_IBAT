@@ -1,0 +1,38 @@
+h1.title-h1 Создание вакансии
+form.resume-form(method="POST" novalidate)
+    h2.title-h2 Основные данные
+    div.form__row
+        span.span Название компании
+        div.form__row__input
+            input.input.company-name(type="text")
+            span.error(aria-live='polite')
+    div.form__row
+        span.span Профессия
+        div.form__row__input
+            input.input.profession(type="text")
+            span.error(aria-live='polite')
+    div.form__row
+        span.span Должность
+        div.form__row__input
+            input.input.position(type="text")
+            span.error(aria-live='polite')
+    div.form__row
+        span.span Опыт работы
+        div.form__row__input
+            section.input.experience(type="text")
+                option(value="Без опыта работы") Без опыта работы
+                option(value="1-3года") 1-3года
+                option(value="3-5лет") 3-5лет
+                option(value="5+ лет") 5+ лет
+            span.error(aria-live='polite')
+    div.form__row
+        span.span Оплата
+        div.form__row__input
+            input.input.wage(type="text")
+            span.error(aria-live='polite')
+    div.form__row
+        span.span О вакансии
+        div.form__row__input
+            textarea.input.about(name="about", rows="10" placeholder="Расскажите об обязанностях подробнее")
+            span.error(aria-live='polite')
+    button.button.button_blue(type='submit') Создать       
