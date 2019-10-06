@@ -1,4 +1,4 @@
-import template from './signupmenu.pug'
+import template from './signupmenu.pug';
 
 export class SignupMenuComponent{
     constructor (parent = document.body, data = {}) {

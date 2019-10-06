@@ -1,4 +1,4 @@
-import template from './ShortVacancy.pug'
+import template from './ShortVacancy.pug';
 
 export class ShortVacancyComponent{
     constructor (parent = document.body, data = {}) {

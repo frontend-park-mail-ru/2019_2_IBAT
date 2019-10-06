@@ -1,8 +1,8 @@
-import {renderBase} from "../../utils/util";
-import {Api} from '../../modules/api.js';
-import {HeaderComponent} from '../../components/Header/Header.js';
-import {SignupMenuComponent} from "../../components/SignupMenu/SignupMenu";
-import {ShortVacancyComponent} from "../../components/ShortVacncy/ShortVacancy";
+import { renderBase } from '../../../utils/util';
+import { Api } from '../../modules/api.js';
+import { HeaderComponent } from '../../../components/Header/Header.js';
+import { SignupMenuComponent } from '../../../components/SignupMenu/SignupMenu';
+import { ShortVacancyComponent } from '../../../components/ShortVacncy/ShortVacancy';
 
 export class MainPage {
     constructor() {

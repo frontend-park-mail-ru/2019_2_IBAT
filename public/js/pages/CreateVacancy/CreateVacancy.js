@@ -1,9 +1,9 @@
-import {renderBase} from "../../utils/util";
+import { renderBase } from '../../../utils/util';
 import Validation from '../../modules/validation';
-import {Api} from "../../modules/api";
+import { Api } from '../../modules/api';
 
-import template from './CreateVacancy.pug'
-import {HeaderComponent} from "../../components/Header/Header";
+import template from './CreateVacancy.pug';
+import { HeaderComponent } from '../../../components/Header/Header';
 
 export class CreateVacancy {
 

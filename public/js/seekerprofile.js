@@ -1,4 +1,4 @@
-import  Validation  from '../modules/validation.js/index.js';
+import Validation from './modules/validation.js/index.js';
 
 const errInvalidPasswordData = 'Must contain at least 8 chars';
 const errNotEqualPassRePass = 'Password and Password Repeat are not equal';
@@ -36,13 +36,13 @@ function handleFileSelect(event) {
         let reader = new FileReader();
 
         avatar.title = file.name;
-    
+
         reader.onload = function(event) {
             avatar.src = event.target.result;
         };
-    
+
         reader.readAsDataURL(file);
-    } 
+    }
 }
 
 file.addEventListener("change", handleFileSelect ,false)

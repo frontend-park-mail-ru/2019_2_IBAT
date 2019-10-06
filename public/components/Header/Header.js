@@ -1,5 +1,5 @@
-import template from './header.pug';
-import {Api} from "../../modules/api";
+import template from '../../js/views/Header/header.pug';
+import { Api } from '../../js/modules/api';
 
 export class HeaderComponent {
     constructor(parent = document.body, data = {}) {

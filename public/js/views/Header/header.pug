@@ -22,21 +22,19 @@ case hhRole
             a.profile__link(href='/profile')
                 span.profile__icon
 
-        form(action='/auth', method='DELETE')
-            div.login-button.header__login-button
-                button.button.button_supernova.header__button(type="submit") Выйти
+        div.login-button.header__login-button
+            input.button.button_supernova.header__button(type='button', name='signOut', value='Выйти')
 
     when 'employer'
         div.resune-button.header__resume-button
-            a.button.button_supernova.header__button(href='/create_vacancy') Создать резюме
+            a.button.button_supernova.header__button(href='/create_vacancy') Создать вакансию
 
         div.profile.header__profile
             a.profile__link(href='/profile')
                 span.profile__icon
 
-        form(action='/auth', method='DELETE')
-            div.login-button.header__login-button
-                a.button.button_supernova.header__button(type="submit") Выйти
+        div.login-button.header__login-button
+            input.button.button_supernova.header__button(type='button', name='signOut', value='Выйти')
     default
         div.login-button.header__login-button
             a.button.button_supernova.header__button(href='/signin') Войти

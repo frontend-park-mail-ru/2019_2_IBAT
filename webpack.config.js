@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './public/application.js',
+  entry: './public/js/application.js',
   output: {
     path: path.resolve(__dirname, 'public/dist'),
     filename: 'application.js'

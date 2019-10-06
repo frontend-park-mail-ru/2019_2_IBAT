@@ -1,0 +1,32 @@
+div.left-column
+    h1.title-h1 Регистрация соискателя
+    form.form.signup-form(method='POST', novalidate)
+        div.form__row
+            span.span Имя
+            div.form__row__input
+                input.input(type='text', name='firstName')
+                span.error(aria-live='polite')
+        div.form__row
+            span.span Фамилия
+            div.form__row__input
+                input.input(type='text', name='lastName')
+                span.error(aria-live='polite')
+
+        div.form__row
+            span.span Email
+            div.form__row__input
+                input.input.email(type='email', name='login')
+                span.error
+        div.form__row
+            span.span Пароль
+            div.form__row__input
+                input.input.password(type='password', name='password')
+                span.error(aria-live='polite')
+        div.form__row
+            span.span Подтверждение пароля
+            div.form__row__input
+                input.input.passwordConfirm(type='password', name='passwordConfirm')
+                span.error(aria-live='polite')
+        div.form__row
+            button.button.button_blue(type='submit') Зарегистрироваться
+
