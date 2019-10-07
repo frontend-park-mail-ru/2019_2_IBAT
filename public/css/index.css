@@ -3,7 +3,7 @@
 @import "signup.css";
 @import "login.css";
 
-@import "../components/Header/header.css";
+@import "../js/views/Header/header.css";
 @import "../components/ShortVacncy/shortVacancy.css";
 
 .signin-offer {
