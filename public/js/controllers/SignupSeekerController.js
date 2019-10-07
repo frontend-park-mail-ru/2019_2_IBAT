@@ -10,13 +10,13 @@ const eventList = [
 
 export class SignupSeekerController {
   constructor (root, globalEventBus, router) {
-    this._eventBus = new EventBus(eventList);
-    this._eventBus.subscribeToEvent('signUpSuccess', (data) => {
+    const eventBus = new EventBus(eventList);
+    eventBus.subscribeToEvent('signUpSuccess', (data) => {
       globalEventBus.triggerEvent('headerLoad', data);
       router.toStartPage();
     });
 
-    this.signupSeekerView = new SignupSeekerView(root, this._eventBus);
-    this.signupSeekerModel = new SignupSeekerModel(this._eventBus);
+    this.signupSeekerView = new SignupSeekerView(root, eventBus);
+    this.signupSeekerModel = new SignupSeekerModel(eventBus);
   }
 }

@@ -20,6 +20,10 @@
     line-height: 38px;
 }
 
+.input:disabled{
+    background: #dddddd;
+}
+
 .invalid {
     border-color: #900;
     background-color: #FDD;
@@ -34,7 +38,7 @@ input:focus:invalid {
 }
 
 .thumb {
-    height: 75px;
+    height: 256px;
     border: 1px solid #000;
     margin: 10px 5px 0 0;
 }
@@ -49,12 +53,10 @@ input:focus:invalid {
 
 .error.active {
     background-color: #900;
+    color: #fff;
+    line-height: 1.5;
 }
 
-.error-msg {
-    color: #900;
-    padding: 5px;
-}
 
 .button {
     text-align: center;

@@ -7,14 +7,14 @@ const eventList = [
   'checkAuthResponse',
   'signOut',
   'signOutResponse'
-  // SERVICE.LOAD_USER,
-  // SERVICE.LOAD_USER_RESPONSE,
-  // ROUTER.BACK_TO_MENU
 ];
 
 export class HeaderController {
-  constructor (root, globalEventBus) {
+  constructor (root, globalEventBus, router) {
     const eventBus = new EventBus(eventList);
+    eventBus.subscribeToEvent('signOutResponse', ()=>{
+      router.toStartPage();
+    });
 
     this.headerView = new HeaderView(root, eventBus, globalEventBus);
     this.headerModel = new HeaderModel(eventBus);

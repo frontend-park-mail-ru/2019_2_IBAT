@@ -61,13 +61,8 @@
 
 }
 
-.profile__link {
-    display: flex;
-    align-items: center;
-    height: 80px;
-}
-
 .profile__icon {
+    display: flex;
     background-image: url(../../../img/profile__min_.svg);
     width: 30px;
     height: 30px;
@@ -77,6 +72,7 @@
 
 .header__profile {
     margin-left: 15px;
+    align-self: center;
 }
 
 .header__resume-button {

@@ -1,14 +1,15 @@
-import template from './ShortVacancy.pug';
+import template from './shortVacancy.pug';
 
 export class ShortVacancyComponent{
-    constructor (parent = document.body, data = {}) {
-        this._parent = parent;
+    constructor (data = {}) {
         this._data = data;
+
+        this._vacancy = document.createElement('div');
+        this._vacancy.className='short-vacancy';
+        this._vacancy.innerHTML = template(this._data);
     }
 
-    render () {
-        let vacancy = document.createElement('div');
-        vacancy.innerHTML = template(this._data)
-        this._parent.appendChild(vacancy);
+    appendToList(list) {
+        list.appendChild(this._vacancy);
     }
 }

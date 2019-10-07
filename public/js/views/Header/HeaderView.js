@@ -9,6 +9,7 @@ export class HeaderView extends View {
     this._eventBus.subscribeToEvent('checkAuthResponse', this._onAuthResponse.bind(this));
     this._eventBus.subscribeToEvent('signOutResponse', this._onAuthResponse.bind(this));
     this._globalEventBus.subscribeToEvent('headerLoad', this._onRenderHeader.bind(this));
+    this._globalEventBus.subscribeToEvent('getRoleFromHeader', this._getRole.bind(this));
   }
 
   render (data = {}) {
@@ -17,22 +18,23 @@ export class HeaderView extends View {
   }
 
   _onRenderHeader (data) {
-    //TODO исправить это недоразумение на бэке, отправлять hhRole, что угодно, только не class
-    if(data){
-      data.hhRole=data.class;
-    }
     super.render(data);
+    this._data = data;
 
-    const signOutButton=this._root.querySelector('input[name=signOut]');
-    if(signOutButton){
-      signOutButton.addEventListener('click',(ev)=>{
-        this._eventBus.triggerEvent('signOut')
+    const signOutButton = this._root.querySelector('input[name=signOut]');
+    if (signOutButton) {
+      signOutButton.addEventListener('click', (ev) => {
+        this._eventBus.triggerEvent('signOut');
       });
     }
-
   }
 
   _onAuthResponse (data) {
     this._globalEventBus.triggerEvent('headerLoad', data);
   }
+
+  _getRole () {
+    return this._role;
+  }
 }
+

@@ -19,18 +19,18 @@ export class SignInView extends View {
   }
 
   setValidationListeners () {
-    const login=this._loginForm.elements['login'];
+    const email = this._loginForm.elements['email'];
 
-    login.addEventListener("input", function (event) {
+    email.addEventListener('input', function (event) {
       const notValid = Validation.validateEmail(event.target.value, true);
       const error = event.target.nextElementSibling;
       if (Validation.isEmptyField(event.target.value) || !notValid) {
-        event.target.className = "input";
-        error.innerHTML = "";
-        error.className = "error";
+        event.target.className = 'input';
+        error.innerHTML = '';
+        error.className = 'error';
       } else {
-        event.target.className = "input invalid";
-        error.innerHTML = "Некорректный email";
+        event.target.className = 'input invalid';
+        error.innerHTML = 'Некорректный email';
       }
     }, false);
   }
@@ -44,6 +44,9 @@ export class SignInView extends View {
   _onSubmit (ev) {
     ev.preventDefault();
     let wasfail = false;
+
+    const email = this._loginForm.elements['email'];
+    const password = this._loginForm.elements['password'];
 
     const inputs = this._loginForm.querySelectorAll('.input');
     inputs.forEach(input => {
@@ -65,8 +68,8 @@ export class SignInView extends View {
       password.value = '';
     } else {
       const user = {
-        login: this._loginForm.elements['login'].value,
-        password: this._loginForm.elements['password'].value
+        email: email.value,
+        password: password.value
       };
       this._eventBus.triggerEvent('signIn', user);
     }

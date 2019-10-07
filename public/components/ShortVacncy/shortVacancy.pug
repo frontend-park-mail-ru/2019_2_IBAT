@@ -1,0 +1,14 @@
+- const companyUrl = '#';
+- const companyImg = 'https://hhcdn.ru/employer-logo/2460361.png';
+
+- const vacancyName =  vacancy.profession + ' ' + vacancy.position;
+- const text = vacancy.about + '/n' + vacancy.requirements
+
+span
+    a(href='/vacancy/' + vacancyId) #{vacancyName}
+div #{vacancy.wage} руб.
+span #{vacancy.company_name}
+div.short-vacancy__row
+    p #{text}
+    a(href=companyUrl)
+        img(src=companyImg, alt="Alpha Technology USA LLC")

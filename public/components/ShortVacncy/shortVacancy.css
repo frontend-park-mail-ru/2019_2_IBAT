@@ -1,14 +1,15 @@
-.short-vacancy{
+.short-vacancy {
     display: flex;
     flex-direction: column;
     font-size: 12px;
     padding: 15px;
+    margin: 20px 20px 0;
     border: 1px solid #f1c846;
-    max-width: 699px;
+    width: 800px;
     line-height: 1.571;
 }
 
-.short-vacancy__row{
+.short-vacancy__row {
     display: flex;
     flex-direction: row;
 }

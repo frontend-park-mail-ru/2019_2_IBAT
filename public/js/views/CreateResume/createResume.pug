@@ -1,0 +1,88 @@
+div.left-column
+    h1.title-h1 Создание резюме
+    form.resume-form(method='POST' novalidate)
+        h2.title-h2 Контактные данные
+
+        div.form__row
+            span.span Имя
+            div.form__row__input
+                input.input(type='text', name='first_name')
+                span.error(aria-live='polite')
+
+        div.form__row
+            span.span Фамилия
+            div.form__row__input
+                input.input(type='text', name='second_name')
+                span.error(aria-live='polite')
+
+        div.form__row
+            span.span Город
+            div.form__row__input
+                input.input(type='text', name='city')
+                span.error
+
+        div.form__row
+            span.span Телефон
+            div.form__row__input
+                input.input(type='text', name='phone_number')
+                span.error
+
+        h2.title-h2 Основная информация
+
+        div.form__row
+            span.span Дата рождения
+            div.form__row__input
+                input.input(type='data', name='birth_date')
+                span.error
+
+        div.form__row
+            span.span Пол
+            div.form__row__input
+                select.input.sex(name='sex')
+                    option(value='F') Женский
+                    option(value='M') Мужской
+                    option(value='?') Не определился
+                span.error
+
+        div.form__row
+            span.span Гражданство
+            div.form__row__input
+                input.input(type='text', name='citizenship')
+                span.error
+
+        div.form__row
+            span.span Опыт работы
+            div.form__row__input
+                select.input.experience(name='experience')
+                    option(value='Без опыта работы') Без опыта работы
+                    option(value='1-3года') 1-3года
+                    option(value='3-5лет') 3-5лет
+                    option(value='5+ лет') 5+ лет
+                span.error
+
+        div.form__row
+            span.span О себе
+            div.form__row__input
+                textarea.input.about(
+                    name='about',
+                    rows='10',
+                    placeholder='Расскажите о своих качествах, знаниях, увлечениях, которые, как вам кажется, будут полезны работодателю')
+                span.error
+
+        h2.title-h2 Образование
+
+            div.form__row
+                span.span Уровень
+                div.form__row__input
+                    select.input.education(name='education')
+                        option(value='higher') Высшее
+                        option(value='bachelor') Бакалавр
+                        option(value='master') Магистр
+                        option(value='candidate') Кандидат наук
+                        option(value='doctor') Доктор наук
+                        option(value='unfinished_higher') Неоконченное высшее
+                        option(value='secondary') Среднее
+                        option(value='special_secondary') Среднее специальное
+                    span.error
+
+        button.button.button_blue(type='submit') Создать
