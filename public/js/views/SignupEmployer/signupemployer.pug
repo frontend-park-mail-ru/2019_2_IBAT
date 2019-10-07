@@ -1,0 +1,74 @@
+div.left-column
+    h1.title-h1 Регистрация работадетеля
+    form.form.signup-form(method='POST', novalidate)
+        div.form__row
+            span.span Название компании
+            div.form__row__input
+                input.input(type='text', name='companyName')
+                span.error(aria-live='polite')
+
+        div.form__row
+            span.span Сайт
+            div.form__row__input
+                input.input(type='text', name='site')
+                span.error
+
+        div.form__row
+            span.span Количество сотрудниклв
+            div.form__row__input
+                input.input(type='number', name='employerNumber')
+                span.error
+
+        div.form__row
+            span.span Email
+            div.form__row__input
+                input.input.email(type='email', name='login')
+                span.error
+
+        div.form__row
+            span.span Город
+            div.form__row__input
+                input.input(type='text', name='city')
+                span.error
+
+        h2.title-h2 Контактное лицо
+        div.form__row
+            span.span Имя
+            div.form__row__input
+                input.input(type='text', name='firstName')
+                span.error
+
+        div.form__row
+            span.span Фамилия
+            div.form__row__input
+                input.input(type='text', name='lastName')
+                span.error
+
+        div.form__row
+            span.span Телефон
+            div.form__row__input
+                input.input(type='tel', name='phoneNumber')
+                span.error
+
+        div.form__row
+            span.span Дополнительный телефон
+            div.form__row__input
+                input.input(type='tel', name='extraPhoneNumber')
+                span.error
+
+        div.form__row
+            span.span Пароль
+            div.form__row__input
+                input.input.password(type='password', name='password')
+                span.error(aria-live='polite')
+
+        div.form__row
+            span.span Подтверждение пароля
+            div.form__row__input
+                input.input.passwordConfirm(type='password', name='passwordConfirm')
+                span.error(aria-live='polite')
+
+        div.form__row
+            button.button.button_blue(type='submit') Зарегистрироваться
+
+

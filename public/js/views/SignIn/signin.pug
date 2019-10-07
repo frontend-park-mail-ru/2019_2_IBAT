@@ -1,0 +1,23 @@
+div.login-wrapper
+    div.login.login-wrapper__login
+        div.error-block
+        form.login__form(novalidate)
+            label.login-header Вход в личный кабинет
+            span.error
+            div.login__input
+                input.input.email(type='email', placeholder='Email', name='email')
+                span.error(aria-live='polite')
+            div.login__input
+                input.input.password(type='password', placeholder='Пароль', name='password')
+                span.error(aria-live='polite')
+            input.button.button_blue.login__button(type='submit', value='Войти в личный кабинет')
+            //div.login-remember
+                //label.checkbox
+                //    input.checkbox__input(type='checkbox', value='yes')
+                    //span.checkbox__input Запомнить
+                //a(href='#') Получить пароль
+            div.account-register
+                span.account-hint Регистрация
+                div.signin-offer__choices
+                    a.button.button_seeker-button(href='/signupseeker') Соискателя
+                    a.button.button_employer-button(href='/signupemployer') Работадателя

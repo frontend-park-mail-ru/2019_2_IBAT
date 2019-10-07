@@ -1,14 +1,28 @@
-import template from './ShortVacancy.pug'
+import template from './shortVacancy.pug';
+import { Api } from '../../js/modules/api';
+import Net from '../../js/modules/net';
 
 export class ShortVacancyComponent{
-    constructor (parent = document.body, data = {}) {
-        this._parent = parent;
+    constructor (data = {}) {
         this._data = data;
+
+        this._vacancy = document.createElement('div');
+        this._vacancy.className='short-vacancy';
+        this._vacancy.innerHTML = template(this._data);
+
+        Api.getEmployerById(this._data.vacancy.owner_id)
+          .then(res=>{
+              if(res.ok){
+                res.json().then(data=>{
+                  this._vacancy.querySelector('.employer-logo')
+                    .setAttribute('src',`${Net.getServerURL()}/${data.path_to_img}`);
+                });
+              }
+          })
+          .catch(err=>console.error(err));
     }
 
-    render () {
-        let vacancy = document.createElement('div');
-        vacancy.innerHTML = template(this._data)
-        this._parent.appendChild(vacancy);
+    appendToList(list) {
+        list.appendChild(this._vacancy);
     }
 }

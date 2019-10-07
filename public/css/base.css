@@ -20,6 +20,10 @@
     line-height: 38px;
 }
 
+.input:disabled{
+    background: #dddddd;
+}
+
 .invalid {
     border-color: #900;
     background-color: #FDD;
@@ -34,7 +38,7 @@ input:focus:invalid {
 }
 
 .thumb {
-    height: 75px;
+    height: 256px;
     border: 1px solid #000;
     margin: 10px 5px 0 0;
 }
@@ -42,23 +46,17 @@ input:focus:invalid {
 .error {
     width: 100%;
     padding: 0;
-    font-size: 80%;
-    color: white;
+    font-size: 100%;
+    color: #900;
     border-radius: 0 0 5px 5px;
-
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
 }
 
 .error.active {
     background-color: #900;
-    padding: 0.3em;
+    color: #fff;
+    line-height: 1.5;
 }
 
-.error-msg {
-    color: #900;
-    padding: 5px;
-}
 
 .button {
     text-align: center;
@@ -78,7 +76,7 @@ input:focus:invalid {
     position: relative;
     color: #333;
     border-color: #cbd1d4;
-    background-color: #f9f9f9;  
+    background-color: #f9f9f9;
 }
 
 .button_green {
@@ -91,6 +89,10 @@ input:focus:invalid {
     color: #fff;
     border-color: #0f8fee;
     background-color: #0f8fee;
+}
+
+.button_disabled {
+    background: #b2b2b2;
 }
 
 .main-content {

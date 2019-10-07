@@ -1,0 +1,96 @@
+div.left-column
+    h1.title-h1 Профиль пользователя
+
+    h2.title-h2 Изменить аватарку:
+    div.form__column
+        input.upload(type='file', name='my_file', accept='image/*')
+        img.thumb(src=profile.path_to_img)
+        span.error
+
+    div.form__row
+        button.button.button_disabled.save-avatar(disabled) Сохранить аватарку
+
+    form.form.profile-form(method='POST', enctype='multipart/form-data', novalidate)
+
+        div.form__row
+            span.span Email
+            div.form__row__input
+                input.input(type='text', name='email', value=profile.email, disabled)
+
+        case role
+            when 'seeker'
+                div.form__row
+                    span.span Имя
+                    div.form__row__input
+                        input.input(type='text', name='first_name', value=profile.first_name)
+
+                div.form__row
+                    span.span Фамилия
+                    div.form__row__input
+                        input.input(type='text', name='second_name', value=profile.second_name)
+
+            when 'employer'
+                div.form__row
+                    span.span Название компании
+                    div.form__row__input
+                        input.input(type='text', name='company_name', value=profile.company_name)
+                        span.error(aria-live='polite')
+
+                div.form__row
+                    span.span Сайт
+                    div.form__row__input
+                        input.input(type='text', name='site', value=profile.site)
+                        span.error
+
+                div.form__row
+                    span.span Количество сотрудниклв
+                    div.form__row__input
+                        input.input(type='number', name='empl_num', value=profile.empl_num)
+                        span.error
+
+                div.form__row
+                    span.span Город
+                    div.form__row__input
+                        input.input(type='text', name='city', value=profile.city)
+                        span.error
+
+                h2.title-h2 Контактное лицо
+                div.form__row
+                    span.span Имя
+                    div.form__row__input
+                        input.input(type='text', name='first_name', value=profile.first_name)
+                        span.error
+
+                div.form__row
+                    span.span Фамилия
+                    div.form__row__input
+                        input.input(type='text', name='second_name', value=profile.second_name)
+                        span.error
+
+                div.form__row
+                    span.span Телефон
+                    div.form__row__input
+                        input.input(type='tel', name='phone_number', value=profile.phone_number)
+                        span.error
+
+                div.form__row
+                    span.span Дополнительный телефон
+                    div.form__row__input
+                        input.input(type='tel', name='extra_phone_number', value=profile.extra_phone_number)
+                        span.error
+
+
+        div.form__row
+            span.span Новый пароль
+            div.form__row__input
+                input.input.password(type='password', name='password', value=profile.password)
+                span.error(aria-live='polite')
+
+        div.form__row
+            span.span Подтверждение пароля
+            div.form__row__input
+                input.input.password(type='password', name='passwordConfirm', value=profile.password)
+                span.error(aria-live='polite')
+
+        div.form__row
+            button.button.button_blue.save-profile(type='submit') Сохранить профиль

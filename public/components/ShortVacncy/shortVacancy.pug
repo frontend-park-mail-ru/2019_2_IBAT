@@ -1,0 +1,12 @@
+- const vacancyName =  vacancy.profession + ' ' + vacancy.position;
+- const text = vacancy.about + '/n' + vacancy.requirements
+
+a(href=`/vacancy/${vacancyId}`) #{vacancyName}
+div #{vacancy.wage} руб.
+div #{vacancy.company_name}
+    a(href=`employer/${vacancy.owner_id}`)
+div.vacancy-serp-item__row
+    div.vacancy-serp-item__info
+        p #{text}
+    div.vacancy-serp-item__sidebar
+        img.employer-logo(alt="Alpha Technology USA LLC")
