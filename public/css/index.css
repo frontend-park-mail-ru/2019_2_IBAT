@@ -4,7 +4,7 @@
 @import "login.css";
 
 @import "../js/views/Header/header.css";
-@import "../components/ShortVacncy/shortVacancy.css";
+@import "card_list.css";
 
 .signin-offer {
     background-color: #222;

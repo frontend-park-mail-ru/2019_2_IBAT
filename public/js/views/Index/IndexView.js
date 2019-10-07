@@ -1,6 +1,7 @@
 import template from './index.pug';
 import { View } from '../../modules/view';
 import { ShortVacancyComponent } from '../../../components/ShortVacncy/ShortVacancy';
+import { ShortResumeComponent } from '../../../components/ShortResume/ShortResume';
 
 export class IndexView extends View {
 
@@ -8,23 +9,55 @@ export class IndexView extends View {
     super(root, template, eventBus, globalEventBus);
 
     this._eventBus.subscribeToEvent('getVacanciesSuccess', this._onGetVacanciesSuccess.bind(this));
+    this._eventBus.subscribeToEvent('getResumesSuccess', this._onGetResumesSuccess.bind(this));
+    this._eventBus.subscribeToEvent('checkAuthResponse', this._onAuthResponse.bind(this));
   }
 
   render (data = {}) {
     super.render(data);
 
-    this._role=this._globalEventBus.triggerEvent('getRoleFromHeader');
-    this._eventBus.triggerEvent('getVacancies');
+    this._eventBus.triggerEvent('checkAuth');
   }
 
-  _onGetVacanciesSuccess(vacancies){
+  _onGetVacanciesSuccess (vacancies) {
     const list = document.createElement('div');
-    list.className='list';
+    list.className = 'list';
     this._root.appendChild(list);
 
     if (vacancies) {
-      for (const [vacancyId,vacancy] of Object.entries(vacancies)) {
-        new ShortVacancyComponent({vacancyId, vacancy}).appendToList(list);
+      for (const [vacancyId, vacancy] of Object.entries(vacancies)) {
+        new ShortVacancyComponent({ vacancyId, vacancy }).appendToList(list);
+      }
+    }
+  }
+
+  _onGetResumesSuccess (resumes) {
+    const list = document.createElement('div');
+    list.className = 'list';
+    this._root.appendChild(list);
+
+    if (resumes) {
+      for (const [resumeId, resume] of Object.entries(resumes)) {
+        new ShortResumeComponent({ resumeId, resume }).appendToList(list);
+      }
+    }
+  }
+
+  _onAuthResponse (data) {
+    this._role = data.role;
+
+    switch (this._role) {
+      case 'employer': {
+        this._eventBus.triggerEvent('getResumes');
+        break;
+      }
+      case 'seeker': {
+        this._eventBus.triggerEvent('getVacancies');
+        break;
+      }
+      default: {
+        this._eventBus.triggerEvent('getVacancies');
+        break;
       }
     }
   }

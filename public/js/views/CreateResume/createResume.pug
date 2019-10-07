@@ -30,6 +30,26 @@ div.left-column
         h2.title-h2 Основная информация
 
         div.form__row
+            span.span Желаемая профессия
+            div.form__row__input
+                input.input(type='text', name='profession')
+                span.error(aria-live='polite')
+
+        div.form__row
+            span.span Желаемая должность
+            div.form__row__input
+                input.input(type='text', name='position')
+                span.error(aria-live='polite')
+
+        div.form__row
+            span.span Желаемая заработанная плата
+            div.form__row__input
+                input.input(type='number', name='wage')
+                span.error(aria-live='polite')
+
+        h2.title-h2 Личная информация
+
+        div.form__row
             span.span Дата рождения
             div.form__row__input
                 input.input(type='data', name='birth_date')
@@ -71,18 +91,18 @@ div.left-column
 
         h2.title-h2 Образование
 
-            div.form__row
-                span.span Уровень
-                div.form__row__input
-                    select.input.education(name='education')
-                        option(value='higher') Высшее
-                        option(value='bachelor') Бакалавр
-                        option(value='master') Магистр
-                        option(value='candidate') Кандидат наук
-                        option(value='doctor') Доктор наук
-                        option(value='unfinished_higher') Неоконченное высшее
-                        option(value='secondary') Среднее
-                        option(value='special_secondary') Среднее специальное
-                    span.error
+        div.form__row
+            span.span Уровень
+            div.form__row__input
+                select.input.education(name='education')
+                    option(value='higher') Высшее
+                    option(value='bachelor') Бакалавр
+                    option(value='master') Магистр
+                    option(value='candidate') Кандидат наук
+                    option(value='doctor') Доктор наук
+                    option(value='unfinished_higher') Неоконченное высшее
+                    option(value='secondary') Среднее
+                    option(value='special_secondary') Среднее специальное
+                span.error
 
         button.button.button_blue(type='submit') Создать

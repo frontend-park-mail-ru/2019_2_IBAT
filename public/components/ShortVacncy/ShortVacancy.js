@@ -7,7 +7,7 @@ export class ShortVacancyComponent{
         this._data = data;
 
         this._vacancy = document.createElement('div');
-        this._vacancy.className='short-vacancy';
+        this._vacancy.className='card';
         this._vacancy.innerHTML = template(this._data);
 
         Api.getEmployerById(this._data.vacancy.owner_id)

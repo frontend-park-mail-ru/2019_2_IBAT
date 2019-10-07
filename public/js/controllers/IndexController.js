@@ -5,7 +5,12 @@ import { EventBus } from '../modules/eventbus';
 const eventList=[
   'getVacancies',
   'getVacanciesSuccess',
-  'getVacanciesFailed'
+  'getVacanciesFailed',
+  'getResumes',
+  'getResumesSuccess',
+  'getResumesFailed',
+  'checkAuth',
+  'checkAuthResponse'
 ];
 
 export class IndexController {

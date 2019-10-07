@@ -14,10 +14,6 @@ export default class Router {
     }
 
     route(path) {
-        if (this.currentRoute === path) {
-            return;
-        }
-
         const currentView = this.routes.get(this.currentRoute);
         if (currentView){
             currentView.hide();
