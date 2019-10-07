@@ -21,6 +21,8 @@ export class ProfileView extends View {
 
     this._eventBus.subscribeToEvent('saveAvatarFailed',
       this._onSaveAvatarFailed.bind(this));
+    this._eventBus.subscribeToEvent('saveAvatarSuccess',
+      this._onSaveAvatarSuccess.bind(this));
   }
 
   render (data = {}) {
@@ -65,6 +67,10 @@ export class ProfileView extends View {
       }.bind(this);
 
       reader.readAsDataURL(file);
+
+      this._avatarButton.removeAttribute('disabled');
+      this._avatarButton.classList.remove('button_disabled');
+      this._avatarButton.classList.add('button_blue');
     }
   }
 
@@ -75,6 +81,12 @@ export class ProfileView extends View {
 
   _onSaveAvatarFailed (data) {
     this._avatar.nextElementSibling.innerHTML=data.error;
+  }
+
+  _onSaveAvatarSuccess (data) {
+    this._avatarButton.classList.remove('button_blue');
+    this._avatarButton.classList.add('button_disabled');
+    this._avatarButton.setAttribute('disabled', true);
   }
 
   _onSaveProfile (ev) {

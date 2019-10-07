@@ -125,8 +125,7 @@ export class Api {
 
   /**
    * Запрос списка резюме
-   * @param ...
-   * @returns {Promise<Response>}
+   * returns {Promise<Response>}
    */
   static getResumes () {
     return Net.doGet({
@@ -146,8 +145,8 @@ export class Api {
 
   /**
    * Запрос данных резюме
-   * @param Id
    * @returns {Promise<Response>}
+   * @param id
    */
   static getResumeById (id = {}) {
     return Net.doGet({
@@ -157,8 +156,8 @@ export class Api {
 
   /**
    * Запрос данных вакансии
-   * @param Id
    * @returns {Promise<Response>}
+   * @param id
    */
   static getVacancyById (id = {}) {
     return Net.doGet({
@@ -166,4 +165,14 @@ export class Api {
     });
   }
 
+  /**
+   * Запрос работадателя по его id
+   * @param id
+   * @returns {Promise<Response>}
+   */
+  static getEmployerById(id={}){
+    return Net.doGet({
+      url: '/employer' + '/' + id
+    });
+  }
 }

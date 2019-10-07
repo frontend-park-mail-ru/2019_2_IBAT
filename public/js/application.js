@@ -9,6 +9,7 @@ import { SignupEmployerController } from './controllers/SignupEmployerController
 import { CreateVacancyController } from './controllers/CreateVacancyController';
 import { CreateResumeController } from './controllers/CreateResumeController';
 import { ProfileController } from './controllers/ProfileController';
+import { VacancyPageController } from './controllers/VacancyPageController';
 // import {SignupSeeker} from "./pages/SignupSeeker/SignupSeeker";
 // import {SignupEmployer} from "./pages/SignupEmployer/SignupEmployer";
 // import {SignIn} from "./pages/Signin/Signin";
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const createVacancyController = new CreateVacancyController(content, globalEventBus, router);
   const createResumeController = new CreateResumeController(content, globalEventBus, router);
   const profileController = new ProfileController(content, router);
+  const vacancyPageController = new VacancyPageController(content, router);
 
   headerController.headerView.render();
 
@@ -43,10 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   router.add('/createvacancy', createVacancyController.createVacancyView);
   router.add('/createresume', createResumeController.createResumeView);
   router.add('/profile', profileController.profileView);
+  router.add('/vacancy', vacancyPageController.vacancyPageView);
 
-  // router.add('/signupseeker', new SignupSeeker(router));
-  // router.add('/signupemployer', new SignupEmployer(router));
-  // router.add('/create_vacancy', new CreateVacancy());
-  // window.router = router;
   router.start();
 });

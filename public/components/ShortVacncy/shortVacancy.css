@@ -9,7 +9,19 @@
     line-height: 1.571;
 }
 
-.short-vacancy__row {
+.employer-logo{
+    max-width: 110px;
+    max-height: 70px;
+}
+.vacancy-serp-item__row {
     display: flex;
-    flex-direction: row;
+}
+.vacancy-serp-item__info{
+    flex-basis: 100%;
+    width: 100%;
+}
+.vacancy-serp-item__sidebar{
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
 }

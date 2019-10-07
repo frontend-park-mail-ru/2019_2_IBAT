@@ -23,9 +23,16 @@ export default class Router {
             currentView.hide();
         }
 
-        if (this.routes.has(path)) {
-            const view = this.routes.get(path);
-            view.render();
+        if (window.location.pathname !== path) {
+            window.history.pushState(null, null, path);
+        }
+
+        const routePath='/' + path.split('/')[1];
+        //TODO костыль, переделать под нормальный роутинг для /vacancy/{id}
+        if (this.routes.has(routePath)) {
+            const view = this.routes.get(routePath);
+            const id = this._extractIdFromPath(path);
+            view.render(id);
             this.currentRoute = path;
         } else {
             //Error 404
@@ -45,5 +52,21 @@ export default class Router {
         });
 
         this.route(Router._normalizePath(window.location.pathname));
+    }
+
+    //TODO переделать под нормальный роутинг
+    _routesHasPath(path){
+
+        return Array.from(this.routes.keys()).some(regexKey=>regexKey.includes(path));
+    }
+
+    //TODO переделать под номрмальный ротуинг
+    _getView (path) {
+        const key=Array.from(this.routes.keys()).find(regexKey=>RegExp(regexKey).test(path));
+        return this.routes.get(key);
+    }
+
+    _extractIdFromPath (path) {
+        return path.split('/').pop();
     }
 }

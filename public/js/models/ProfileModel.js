@@ -57,9 +57,7 @@ export class ProfileModel {
     Api.uploadAvatar({ avatar })
       .then(res => {
         if (res.ok) {
-          res.json().then(data => {
-            this._eventBus.triggerEvent('saveAvatarSuccess', data);
-          });
+            this._eventBus.triggerEvent('saveAvatarSuccess');
         } else {
           res.json().then(data => {
             this._eventBus.triggerEvent('saveAvatarFailed', data);

@@ -91,6 +91,10 @@ input:focus:invalid {
     background-color: #0f8fee;
 }
 
+.button_disabled {
+    background: #b2b2b2;
+}
+
 .main-content {
     width: 100%;
     display: flex;
