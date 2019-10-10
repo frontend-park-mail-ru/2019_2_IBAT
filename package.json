@@ -14,13 +14,14 @@
     "build": "webpack --mode production",
     "watch": "webpack --watch --mode development",
     "now-build": "npm run build",
-    "eslint": "./node_modules/eslint/bin/eslint.js"
+    "eslint": "./node_modules/eslint/bin/eslint.js",
+    "precommit": "lint-staged"
   },
   "devDependencies": {
     "css-loader": "^3.2.0",
     "eslint-config-prettier": "^6.4.0",
-    "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
     "express": "^4.17.1",
     "husky": "^3.0.8",
     "lint-staged": "^9.4.2",
@@ -36,6 +37,7 @@
   "lint-staged": {
     "*.{js}": [
       "prettier --write",
+      "eslint --fix",
       "git add"
     ]
   }
