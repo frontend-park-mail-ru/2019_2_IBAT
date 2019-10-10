@@ -4,8 +4,7 @@ import { ShortVacancyComponent } from '../../../components/ShortVacncy/ShortVaca
 import { ShortResumeComponent } from '../../../components/ShortResume/ShortResume';
 
 export class IndexView extends View {
-
-  constructor (root, eventBus, globalEventBus) {
+  constructor(root, eventBus, globalEventBus) {
     super(root, template, eventBus, globalEventBus);
 
     this._eventBus.subscribeToEvent('getVacanciesSuccess', this._onGetVacanciesSuccess.bind(this));
@@ -13,37 +12,37 @@ export class IndexView extends View {
     this._eventBus.subscribeToEvent('checkAuthResponse', this._onAuthResponse.bind(this));
   }
 
-  render (data = {}) {
+  render(data = {}) {
     super.render(data);
 
     this._eventBus.triggerEvent('checkAuth');
   }
 
-  _onGetVacanciesSuccess (vacancies) {
+  _onGetVacanciesSuccess(vacancies) {
     const list = document.createElement('div');
     list.className = 'list';
     this._root.appendChild(list);
 
     if (vacancies) {
-      for (const [vacancyId, vacancy] of Object.entries(vacancies)) {
+      Object.entries(vacancies).forEach(([vacancyId, vacancy]) => {
         new ShortVacancyComponent({ vacancyId, vacancy }).appendToList(list);
-      }
+      });
     }
   }
 
-  _onGetResumesSuccess (resumes) {
+  _onGetResumesSuccess(resumes) {
     const list = document.createElement('div');
     list.className = 'list';
     this._root.appendChild(list);
 
     if (resumes) {
-      for (const [resumeId, resume] of Object.entries(resumes)) {
+      Object.entries(resumes).forEach(([resumeId, resume]) => {
         new ShortResumeComponent({ resumeId, resume }).appendToList(list);
-      }
+      });
     }
   }
 
-  _onAuthResponse (data) {
+  _onAuthResponse(data) {
     this._role = data.role;
 
     switch (this._role) {

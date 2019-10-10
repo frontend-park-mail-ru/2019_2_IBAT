@@ -6,9 +6,7 @@
   },
   "extends": ["prettier"],
   "plugins": ["prettier", "import"],
-  "rules": {
-    "jsx-quotes": [1, "prefer-double"]
-  },
+  "rules": {},
   "parserOptions": {
     "sourceType": "module"
   }

@@ -1,190 +1,189 @@
 .page {
-    font-family: Arial, sans-serif;
-    background-color: #fff;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
 }
 
 .input {
-    display: inline-block;
-    box-sizing: border-box;
-    margin: 0;
-    border-radius: 0;
-    border: 1px solid;
-    border-color: #cbd1d4;
-    font-size: 14px;
-    font-family: Arial,sans-serif;
-    color: #333;
-    background-color: #fff;
-    height: 38px;
-    padding: 0 11px;
-    width: 100%;
-    line-height: 38px;
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0;
+  border-radius: 0;
+  border: 1px solid;
+  border-color: #cbd1d4;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #fff;
+  height: 38px;
+  padding: 0 11px;
+  width: 100%;
+  line-height: 38px;
 }
 
-.input:disabled{
-    background: #dddddd;
+.input:disabled {
+  background: #dddddd;
 }
 
 .invalid {
-    border-color: #900;
-    background-color: #FDD;
+  border-color: #900;
+  background-color: #fdd;
 }
 input:focus {
-    outline: none;
-    border-color: #07a6e6;
+  outline: none;
+  border-color: #07a6e6;
 }
 
 input:focus:invalid {
-    outline: none;
+  outline: none;
 }
 
 .thumb {
-    height: 256px;
-    border: 1px solid #000;
-    margin: 10px 5px 0 0;
+  height: 256px;
+  border: 1px solid #000;
+  margin: 10px 5px 0 0;
 }
 
 .error {
-    width: 100%;
-    padding: 0;
-    font-size: 100%;
-    color: #900;
-    border-radius: 0 0 5px 5px;
+  width: 100%;
+  padding: 0;
+  font-size: 100%;
+  color: #900;
+  border-radius: 0 0 5px 5px;
 }
 
 .error.active {
-    background-color: #900;
-    color: #fff;
-    line-height: 1.5;
+  background-color: #900;
+  color: #fff;
+  line-height: 1.5;
 }
 
-
 .button {
-    text-align: center;
-    display: inline-block;
-    box-sizing: border-box;
-    margin: 0;
-    border-radius: 0;
-    border: 1px solid;
-    font-size: 14px;
-    font-family: inherit;
-    height: 38px;
-    padding: 0 15px;
-    line-height: 36px;
-    text-decoration: none;
-    white-space: nowrap;
-    cursor: pointer;
-    position: relative;
-    color: #333;
-    border-color: #cbd1d4;
-    background-color: #f9f9f9;
+  text-align: center;
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0;
+  border-radius: 0;
+  border: 1px solid;
+  font-size: 14px;
+  font-family: inherit;
+  height: 38px;
+  padding: 0 15px;
+  line-height: 36px;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  color: #333;
+  border-color: #cbd1d4;
+  background-color: #f9f9f9;
 }
 
 .button_green {
-    color: #fff;
-    border-color: rgba(158,251,161,0);
-    background: rgba(158,251,161,.5);
+  color: #fff;
+  border-color: rgba(158, 251, 161, 0);
+  background: rgba(158, 251, 161, 0.5);
 }
 
 .button_blue {
-    color: #fff;
-    border-color: #0f8fee;
-    background-color: #0f8fee;
+  color: #fff;
+  border-color: #0f8fee;
+  background-color: #0f8fee;
 }
 
 .button_disabled {
-    background: #b2b2b2;
+  background: #b2b2b2;
 }
 
 .main-content {
-    width: 100%;
-    display: flex;
-    flex-flow: row wrap;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
 }
 .left-column {
-    flex-basis: 50%;
-    display: flex;
-    flex-direction: column;
-    margin: 0 40px;
-    padding: 40px 40px;
-    box-sizing: border-box;
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 40px;
+  padding: 40px 40px;
+  box-sizing: border-box;
 }
 
 .right-column {
-    flex-grow: 1;
-    display: flex;
-    justify-content: space-around;
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-around;
 }
 
 .title-h1 {
-    font-family: Arial, sans-serif;
-    line-height: normal;
-    font-weight: 400;
-    margin: 15px 0px;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  line-height: normal;
+  font-weight: 400;
+  margin: 15px 0;
+  padding: 0;
 }
 
 .title-h2 {
-    font-family: Arial, sans-serif;
-    line-height: normal;
-    font-weight: 300;
-    margin: 0 0 15px;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  line-height: normal;
+  font-weight: 300;
+  margin: 0 0 15px;
+  padding: 0;
 }
 
 .signin-offer {
-    background-color: #222;
-    color: #fff;
-    padding: 15px;
-    height: 75px;
-    width: 300px;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: space-between;
+  background-color: #222;
+  color: #fff;
+  padding: 15px;
+  height: 75px;
+  width: 300px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .signin-offer__choices {
-    display: flex;
-    flex-flow: row nowrap;
-    width: 250px;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 250px;
 }
 .button_seeker-button {
-    width: 125px;
+  width: 125px;
 }
 .button_employer-button {
-    width: 125px;
+  width: 125px;
 }
-.right-column__signin-offer{
-    margin-top: 35px;
+.right-column__signin-offer {
+  margin-top: 35px;
 }
 
 .form {
-    font-family: inherit;
-    font-size: 14px;
-    width: 450px;
+  font-family: inherit;
+  font-size: 14px;
+  width: 450px;
 }
-.form__row{
-    margin-bottom: 20px ;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: flex-start;
+.form__row {
+  margin-bottom: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .form__column {
-    margin-bottom: 20px ;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: flex-start;
-    justify-content: flex-start;
+  margin-bottom: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .span {
-    width: 150px;
+  width: 150px;
 }
 
 .form__row__input {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }

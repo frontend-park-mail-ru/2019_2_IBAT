@@ -5,7 +5,8 @@
   "dependencies": {
     "airbnb": "0.0.2",
     "eslint": "^6.5.1",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "lint": "^0.7.0"
   },
   "scripts": {
     "start": "nodemon server/server.js",
@@ -33,7 +34,7 @@
     "webpack-cli": "^3.3.9"
   },
   "lint-staged": {
-    "*.{js, jsx}": [
+    "*.{js}": [
       "prettier --write",
       "git add"
     ]
