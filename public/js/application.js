@@ -10,9 +10,7 @@ import { CreateVacancyController } from './controllers/CreateVacancyController';
 import { CreateResumeController } from './controllers/CreateResumeController';
 import { ProfileController } from './controllers/ProfileController';
 import { VacancyPageController } from './controllers/VacancyPageController';
-// import {SignupSeeker} from "./pages/SignupSeeker/SignupSeeker";
-// import {SignupEmployer} from "./pages/SignupEmployer/SignupEmployer";
-// import {SignIn} from "./pages/Signin/Signin";
+import { ResumePageController } from './controllers/ResumePageController';
 
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.querySelector('.page');
@@ -23,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const globalEventBus = new EventBus([
     'headerLoad',
-    'getRoleFromHeader'
+    'getRoleFromHeader',
   ]);
 
   const headerController = new HeaderController(header, globalEventBus, router);
@@ -35,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const createResumeController = new CreateResumeController(content, globalEventBus, router);
   const profileController = new ProfileController(content, router);
   const vacancyPageController = new VacancyPageController(content, router);
+  const resumePageController = new ResumePageController(content, router);
 
   headerController.headerView.render();
 
@@ -46,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   router.add('/createresume', createResumeController.createResumeView);
   router.add('/profile', profileController.profileView);
   router.add('/vacancy', vacancyPageController.vacancyPageView);
+  router.add('/resume', resumePageController.resumePageView);
 
   router.start();
 });

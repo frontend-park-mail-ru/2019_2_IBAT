@@ -2,11 +2,11 @@
 - const text = vacancy.about + '/n' + vacancy.requirements
 
 a(href=`/vacancy/${vacancyId}`) #{vacancyName}
-div #{vacancy.wage} руб.
-div #{vacancy.company_name}
+span.card__span #{vacancy.wage} руб.
+span.card__span #{vacancy.company_name}
     a(href=`employer/${vacancy.owner_id}`)
 div.vacancy-serp-item__row
     div.vacancy-serp-item__info
-        p #{text}
+        span.card__span #{text}
     div.vacancy-serp-item__sidebar
-        img.employer-logo(alt="Alpha Technology USA LLC")
+        img.employer-logo

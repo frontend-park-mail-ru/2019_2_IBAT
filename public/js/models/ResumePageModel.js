@@ -1,23 +1,23 @@
 import { Api } from '../modules/api';
 
-export class VacancyPageModel {
+export class ResumePageModel {
 
   constructor (eventBus) {
     this._eventBus = eventBus;
 
-    this._eventBus.subscribeToEvent('loadVacancy', this._loadVacancy.bind(this));
+    this._eventBus.subscribeToEvent('loadResume', this._loadResume.bind(this));
   }
 
-  _loadVacancy (id) {
-    Api.getVacancyById(id)
+  _loadResume (id) {
+    Api.getResumeById(id)
       .then(response => {
         if (response.ok) {
           response.json().then(data => {
-            this._eventBus.triggerEvent('loadVacancySuccess', data);
+            this._eventBus.triggerEvent('loadResumeSuccess', data);
           });
         } else {
           response.json().then(data => {
-            this._eventBus.triggerEvent('loadVacancyFailed', data);
+            this._eventBus.triggerEvent('loadResumeFailed', data);
           });
         }
       })

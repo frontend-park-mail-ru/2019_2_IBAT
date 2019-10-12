@@ -19,7 +19,7 @@ export class HeaderView extends View {
 
   _onRenderHeader (data) {
     super.render(data);
-    this._data = data;
+    this._role = data.role;
 
     const signOutButton = this._root.querySelector('input[name=signOut]');
     if (signOutButton) {

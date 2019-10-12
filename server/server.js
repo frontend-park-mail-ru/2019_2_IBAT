@@ -9,25 +9,26 @@ const PUBLIC = 'public';
 
 const users = {};
 const ids = {};
-const resumes=[
+const resumes = [
   {
-    name : 'Java бог',
+    name: 'Java бог',
     back: 5,
-    salary: 1000000
+    salary: 1000000,
   },
   {
-    name : 'UI/UX инженер',
+    name: 'UI/UX инженер',
     back: 1,
-    salary: 10000
-  }
+    salary: 10000,
+  },
 ];
-const vacancies=[
+const vacancies = [
   {
-    name: 'Java слуга'
+    name: 'Java слуга',
   },
   {
-    name: 'Чел, который сделает и бек, и фронт, и дизайн, и кинет магазин в первые страницы поисковика'
-  }
+    name:
+      'Чел, который сделает и бек, и фронт, и дизайн, и кинет магазин в первые страницы поисковика',
+  },
 ];
 
 const app = express();
@@ -38,24 +39,24 @@ app.post('/seeker', (req, res) => {
   const firstName = req.body.firstName;
   const secondName = req.body.secondName;
   const password = req.body.password;
-  const hhRole='seeker';
+  const hhRole = 'seeker';
 
   if (users[email]) {
     res.status(400).json({ error: 'Такой пользователь уже существует!' });
   }
 
   const sessionId = uuid();
-  ids[sessionId]=email;
+  ids[sessionId] = email;
   users[email] = {
     email,
     firstName,
     secondName,
     password,
-    hhRole
+    hhRole,
   };
 
   res.cookie('session_id', sessionId);
-  res.cookie('hh_role',hhRole);
+  res.cookie('hh_role', hhRole);
   res.status(200);
 });
 
@@ -73,7 +74,7 @@ app.post('/employer', (req, res) => {
   }
 
   const sessionId = uuid();
-  ids[sessionId]=email;
+  ids[sessionId] = email;
   users[email] = {
     email,
     firstName,
@@ -81,7 +82,7 @@ app.post('/employer', (req, res) => {
     orgName,
     orgFormat,
     password,
-    hhRole
+    hhRole,
   };
 
   res.cookie('session_id', sessionId);
@@ -105,9 +106,7 @@ app.post('/auth', (req, res) => {
       .json({ error: 'Пользователь уже авторизирован!' });
   }
 
-  const alreadyLoggedUserSessionId = ids.keys.find(session =>
-    session.email === user.email
-  );
+  const alreadyLoggedUserSessionId = ids.keys.find(session => session.email === user.email);
   if (alreadyLoggedUserSessionId) {
     res.cookie('session_id', alreadyLoggedUserSessionId);
   } else {
@@ -119,19 +118,19 @@ app.post('/auth', (req, res) => {
   }
 });
 
-app.del('/auth',(req,res)=>{
-  const sessionId=req.cookie['session_id'];
-  if(!ids[sessionId]){
-    return res.status(405).json({error: 'Пользователь не авторизован!'});
+app.del('/auth', (req, res) => {
+  const sessionId = req.cookie['session_id'];
+  if (!ids[sessionId]) {
+    return res.status(405).json({ error: 'Пользователь не авторизован!' });
   }
   delete ids.sessionId;
 });
 
-app.get('/resumes', (res,req)=>{
+app.get('/resumes', (res, req) => {
   res.json(resumes);
 });
 
-app.get('/vacancies', (res,req)=>{
+app.get('/vacancies', (res, req) => {
   res.json(vacancies);
 });
 
