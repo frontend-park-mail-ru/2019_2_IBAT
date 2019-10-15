@@ -1,0 +1,8 @@
+.header__profile-icon {
+  display: flex;
+  background-image: url(../../../../img/profile__min_.svg);
+  width: 30px;
+  height: 30px;
+  outline: none;
+  text-decoration: none;
+}

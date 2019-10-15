@@ -1,50 +1,45 @@
-@import "base.css";
-@import "normalize.css";
-@import "signup.css";
-@import "login.css";
+/* do not touch anything bellow */
+@import './normalize.css';
+@import './base.css';
+@import './Input/input.css';
+@import './Button/button.css';
+@import './Button/_blue/button_blue.css';
+@import './Button/_green/button_green.css';
+@import './Button/_small/button_small.css';
+@import './Button/_stretched/button_stretched.css';
+@import './Button/_disabled/button_disabled.css';
+@import './Link/link.css';
+@import './Header/header.css';
+@import './Header/__logo/header__logo.css';
+@import './Header/__menu/header__menu.css';
+@import './Header/__menu/__link/header__link.css';
+@import './Header/__fill/header__fill.css';
+@import './Header/__button/header__button.css';
+@import './Header/__profile/header__profile.css';
+@import './Header/__profile/__profile-icon/header__profile-icon.css';
+@import './Login-wrapper/login-wrapper.css';
+@import './Login-wrapper/__login/login-wrapper__login.css';
+@import './Login/login.css';
+@import './Login/__form/login__form.css';
+@import './Login/__input/login__input.css';
+@import './Login/__error/login__error.css';
+@import './Login/__error/_active/login__error_active.css';
+@import './Login/__header/login__header.css';
+@import './Error/error.css';
+@import './Error/_active/error_active.css';
+@import './Error/_active/error_active.css';
+@import './Login/__account-register/login__account-register.css';
+@import './Login/__account-register/__account-hint/login__account-hint.css';
+@import './Login/__account-register/__account-choices/login__account-choices.css';
+@import './Login/__account-register/__register-button/login__register-button.css';
+/* do not touch anything above*/
 
-@import "../js/views/Header/header.css";
-@import "card_list.css";
+@import 'signup.css';
+@import 'login.css';
+@import 'card_list.css';
 
-.signin-offer {
-    background-color: #222;
-    color: #fff;
-    padding: 15px;
-    height: 125px;
-    width: 300px;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.signin-offer__choices {
-    display: flex;
-    flex-flow: column nowrap;
-    width: 250px;
-    margin-bottom: 10px;
-}
-.button_seeker-button {
-    width: 250px;
-    background-color: #222;
-    color: #0f8fee;
-    border-color:  #0f8fee;
-    margin-bottom: 10px;
-}
-
-.button_employer-button {
-    background-color: #222;
-    color:#0f8fee;
-    border-color:   #0f8fee;
-    width: 250px;
-}
-
-.right-column__signin-offer{
-    margin-top: 35px;
-}
-
-.list{
-    display: flex;
-    flex-direction: column;
-    max-width: 600px;
+.list {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
 }

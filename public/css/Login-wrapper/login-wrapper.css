@@ -1,0 +1,17 @@
+.login-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background: url(../../img/back-form__min_.jpg) no-repeat center top fixed;
+  color: #fff;
+  background-size: cover;
+  background-color: #373c55;
+  min-height: 100%;
+  margin: 0 auto;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  position: relative;
+  line-height: 21px;
+  max-width: none;
+  opacity: 1; /* Значение прозрачности */
+}

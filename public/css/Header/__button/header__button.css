@@ -1,0 +1,7 @@
+.header__button {
+  align-self: center;
+  margin-left: 20px;
+  background-color: #222;
+  color: #9efba1;
+  border-color: rgba(158, 251, 161, 0.5);
+}

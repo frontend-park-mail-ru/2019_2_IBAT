@@ -1,0 +1,7 @@
+.header {
+  height: 80px;
+  padding: 0 15px;
+  margin: 0 auto;
+  background-color: #222;
+  display: flex;
+}

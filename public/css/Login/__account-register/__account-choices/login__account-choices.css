@@ -1,0 +1,4 @@
+.login__account-choices {
+  display: flex;
+  flex-flow: row nowrap;
+}
