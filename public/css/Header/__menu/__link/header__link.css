@@ -4,3 +4,11 @@
   height: 18px;
   align-self: center;
 }
+
+.header__link:hover {
+  color: rgb(145, 194, 250);
+}
+
+.header__link:active {
+  color: rgb(145, 194, 250);
+}

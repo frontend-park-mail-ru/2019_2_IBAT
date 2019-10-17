@@ -6,3 +6,10 @@
   outline: none;
   text-decoration: none;
 }
+.header__profile-icon:hover {
+  background-position: -30px 0;
+}
+
+.header__profile-icon:active {
+  background-position: -30px 0;
+}

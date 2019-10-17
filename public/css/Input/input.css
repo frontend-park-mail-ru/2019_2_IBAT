@@ -24,6 +24,10 @@ input:focus {
   border-color: #07a6e6;
 }
 
+.input:hover {
+  border-color: #a6adb1;
+}
+
 input:focus:invalid {
   outline: none;
 }

@@ -41,48 +41,10 @@ html {
   justify-content: space-around;
 }
 
-.title-h1 {
-  font-family: Arial, sans-serif;
-  line-height: normal;
-  font-weight: 400;
-  margin: 15px 0;
-  padding: 0;
-}
-
 .title-h2 {
   font-family: Arial, sans-serif;
   line-height: normal;
   font-weight: 300;
   margin: 0 0 15px;
   padding: 0;
-}
-.form {
-  font-family: inherit;
-  font-size: 14px;
-  width: 450px;
-}
-.form__row {
-  margin-bottom: 20px;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.form__column {
-  margin-bottom: 20px;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.span {
-  width: 150px;
-}
-
-.form__row__input {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
 }

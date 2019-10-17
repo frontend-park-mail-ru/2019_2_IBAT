@@ -5,3 +5,11 @@
   color: #9efba1;
   border-color: rgba(158, 251, 161, 0.5);
 }
+
+.header__button:active {
+  border-color: #9efba1;
+}
+
+.header__button:focus {
+  border-color: #9efba1;
+}

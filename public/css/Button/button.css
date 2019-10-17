@@ -18,3 +18,11 @@
   border-color: #cbd1d4;
   background-color: #f9f9f9;
 }
+
+.button:hover {
+  border-color: #a6adb1;
+}
+
+.button:focus {
+  border-color: #07a6e6;
+}
