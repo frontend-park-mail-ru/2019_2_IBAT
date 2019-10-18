@@ -27,10 +27,10 @@ export class SignInView extends View {
         const error = event.target.nextElementSibling;
         if (Validation.isEmptyField(event.target.value) || !notValid) {
           error.innerHTML = '';
-          error.removeClass = 'error_active';
+          error.classList.remove('error_active');
         } else {
           error.innerHTML = 'Некорректный email';
-          error.addClass = 'error_active';
+          error.classList.add('error_active');
         }
       },
       false
@@ -55,12 +55,12 @@ export class SignInView extends View {
       if (Validation.isEmptyField(input.value)) {
         const error = input.nextElementSibling;
         error.innerHTML = 'Обязательное поле';
-        error.addClass = 'error_active';
+        error.classList.add('error_active');
         wasfail = true;
       } else {
         const error = input.nextElementSibling;
         error.innerHTML = '';
-        error.removeClass = 'error_active';
+        error.classList.remove('error_active');
       }
     });
 
