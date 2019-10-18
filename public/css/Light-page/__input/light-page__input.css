@@ -1,5 +1,4 @@
-.login__input {
-  margin-bottom: 20px;
+.light-page__input {
   display: flex;
   flex-direction: column;
 }

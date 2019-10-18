@@ -1,6 +1,7 @@
 /* do not touch anything bellow */
 @import './normalize.css';
 @import './base.css';
+@import './Margin/margin.css';
 @import './Input/input.css';
 @import './Button/button.css';
 @import './Button/_blue/button_blue.css';
@@ -17,29 +18,31 @@
 @import './Header/__button/header__button.css';
 @import './Header/__profile/header__profile.css';
 @import './Header/__profile/__profile-icon/header__profile-icon.css';
-@import './Login-wrapper/login-wrapper.css';
-@import './Login-wrapper/__login/login-wrapper__login.css';
-@import './Login/login.css';
-@import './Login/__form/login__form.css';
-@import './Login/__input/login__input.css';
-@import './Login/__error/login__error.css';
-@import './Login/__error/_active/login__error_active.css';
-@import './Login/__header/login__header.css';
+@import './Wrapper/wrapper.css';
+@import './Wrapper/__light-page/wrapper__light-page.css';
+@import './Light-page/light-page.css';
+@import './Light-page/__account-register/light-page__account-register.css';
+@import './Light-page/__account-register/__account-choices/light-page__account-choices.css';
+@import './Light-page/__account-register/__account-hint/light-page__account-hint.css';
+@import './Light-page/__account-register/__register-button/light-page__register-button.css';
+@import './Light-page/__button/light-page__button.css';
+@import './Light-page/__error/light-page__error.css';
+@import './Light-page/__error/_active/light-page__error_active.css';
+@import './Light-page/__form/light-page__form.css';
+@import './Light-page/__header/light-page__header.css';
+@import './Light-page/__input/light-page__input.css';
 @import './Error/error.css';
 @import './Error/_active/error_active.css';
 @import './Error/_active/error_active.css';
-@import './Login/__account-register/login__account-register.css';
-@import './Login/__account-register/__account-hint/login__account-hint.css';
-@import './Login/__account-register/__account-choices/login__account-choices.css';
-@import './Login/__account-register/__register-button/login__register-button.css';
 @import './Title/title-h1.css';
 @import './Form-row/form-row.css';
 @import './Form-row/__key/form-row__key.css';
 @import './Form-row/__value/form-row__value.css';
+@import './Input/_invalid/input_invalid.css';
+@import './Light-page/__title/light-page__title.css';
+@import './Light-page/__title/-additional/light-page__title-additional.css';
 /* do not touch anything above*/
 
-@import 'signup.css';
-@import 'login.css';
 @import 'card_list.css';
 
 .list {

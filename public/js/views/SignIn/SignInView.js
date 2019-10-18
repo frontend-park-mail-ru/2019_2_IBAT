@@ -26,13 +26,11 @@ export class SignInView extends View {
         const notValid = Validation.validateEmail(event.target.value, true);
         const error = event.target.nextElementSibling;
         if (Validation.isEmptyField(event.target.value) || !notValid) {
-          event.target.className = 'input';
           error.innerHTML = '';
-          error.className = 'error';
+          error.removeClass = 'error_active';
         } else {
-          event.target.className = 'input invalid';
           error.innerHTML = 'Некорректный email';
-          error.className = 'error error_active';
+          error.addClass = 'error_active';
         }
       },
       false
@@ -40,8 +38,8 @@ export class SignInView extends View {
   }
 
   _onSubmitFailed(data) {
-    const error = this._root.querySelector('.login__error-js');
-    error.classList.add('login__error_active');
+    const error = this._root.querySelector('.light-page__error-js');
+    error.classList.add('light-page__error_active');
     error.innerHTML = `<p>${data.error}<p>`;
   }
 
@@ -57,14 +55,12 @@ export class SignInView extends View {
       if (Validation.isEmptyField(input.value)) {
         const error = input.nextElementSibling;
         error.innerHTML = 'Обязательное поле';
-        error.className = 'error error_active';
-        input.className = 'input invalid';
+        error.addClass = 'error_active';
         wasfail = true;
       } else {
         const error = input.nextElementSibling;
         error.innerHTML = '';
-        error.className = 'error';
-        input.className = 'input';
+        error.removeClass = 'error_active';
       }
     });
 

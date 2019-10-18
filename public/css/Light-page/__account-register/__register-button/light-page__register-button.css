@@ -1,11 +1,11 @@
-.login__register-button {
+.light-page__register-button {
   display: inline-flex;
   box-sizing: border-box;
   width: 50%;
   padding-left: 5px;
 }
 
-.login__register-button:first-child {
+.light-page__register-button:first-child {
   padding-right: 5px;
   padding-left: 0;
 }
