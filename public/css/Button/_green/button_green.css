@@ -1,17 +1,20 @@
 .button_green {
   color: #fff;
-  border-color: rgba(158, 251, 161, 0);
-  background: rgba(158, 251, 161, 0.5);
+  background: #a8de00;
+  border-color: #a8de00;
 }
 
 .button_green:active {
-  border-color: #9efba1;
+  border-color: #8cb900;
+  background-color: #8cb900;
 }
 
 .button_green:focus {
-  border-color: #9efba1;
+  border-color: #8cb900;
+  background-color: #8cb900;
 }
 
 .button_green:hover {
-  border-color: #9efba1;
+  border-color: #8cb900;
+  background-color: #8cb900;
 }

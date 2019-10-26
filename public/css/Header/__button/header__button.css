@@ -2,18 +2,18 @@
   align-self: center;
   margin-left: 20px;
   background-color: transparent;
-  color: rgba(101, 230, 105, 0.842);
-  border-color: rgba(64, 248, 70, 0.596);
+  color: #9efba1;
+  border-color: rgba(158, 251, 161, 0.5);
 }
 
 .header__button:hover {
-  border-color: #9efba1;
+  border-color: rgba(158, 251, 161);
 }
 
 .header__button:focus {
-  border-color: #9efba1;
+  border-color: rgba(158, 251, 161);
 }
 
 .header__button:active {
-  border-color: #9efba1;
+  border-color: rgba(158, 251, 161);
 }
