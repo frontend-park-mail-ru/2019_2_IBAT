@@ -1,0 +1,19 @@
+.header__button {
+  align-self: center;
+  margin-left: 20px;
+  background-color: transparent;
+  color: #9efba1;
+  border-color: rgba(158, 251, 161, 0.5);
+}
+
+.header__button:hover {
+  border-color: rgba(158, 251, 161);
+}
+
+.header__button:focus {
+  border-color: rgba(158, 251, 161);
+}
+
+.header__button:active {
+  border-color: rgba(158, 251, 161);
+}

@@ -1,74 +1,37 @@
-div.left-column
-    h1.title-h1 Регистрация работадетеля
-    form.form.signup-form(method='POST', novalidate)
-        div.form__row
-            span.span Название компании
-            div.form__row__input
-                input.input(type='text', name='companyName')
-                span.error(aria-live='polite')
+div.wrapper
+    div.light-page.wrapper__light-page
+        div.light-page__error.light-page__error-js
+        form.light-page__form.signupemp__form-js(novalidate)
+            label.light-page__header Регистрация работадетеля
+            div.light-page__input.mb5
+                input.input(type='text', placeholder='Название компании', name='companyName')
 
-        div.form__row
-            span.span Сайт
-            div.form__row__input
-                input.input(type='text', name='site')
+            div.light-page__input.mb5
+                input.input(type='text', placeholder='Сайт', name='site')
+
+            div.light-page__input.mb10
+                input.input(type='text', placeholder='Город', name='city')
+
+            label.light-page__title.mb10
+                span Контактное лицо
+                span.light-page__title-additional (Конфиденциально)
+            div.light-page__input.mb5
+                input.input(type='text', placeholder='Имя', name='firstName')
+
+            div.light-page__input.mb5
+                input.input(type='text', placeholder='Фамилия', name='secondName')
+
+            div.light-page__input.mb5
+                input.input(type='tel', placeholder='Контактный телефон', name='phoneNumber')
+
+            label.light-page__title.mb10
+                span Учётные данные для входа
+            div.light-page__input.mb5
+                input.input.login-js(type='email', placeholder='Электронная почта', name='login')
                 span.error
-
-        div.form__row
-            span.span Количество сотрудниклв
-            div.form__row__input
-                input.input(type='number', name='employerNumber')
+            div.light-page__input.mb5
+                input.input.password-js(type='password', placeholder='Пароль', name='pass')
                 span.error
-
-        div.form__row
-            span.span Email
-            div.form__row__input
-                input.input.email(type='email', name='login')
-                span.error
-
-        div.form__row
-            span.span Город
-            div.form__row__input
-                input.input(type='text', name='city')
-                span.error
-
-        h2.title-h2 Контактное лицо
-        div.form__row
-            span.span Имя
-            div.form__row__input
-                input.input(type='text', name='firstName')
-                span.error
-
-        div.form__row
-            span.span Фамилия
-            div.form__row__input
-                input.input(type='text', name='lastName')
-                span.error
-
-        div.form__row
-            span.span Телефон
-            div.form__row__input
-                input.input(type='tel', name='phoneNumber')
-                span.error
-
-        div.form__row
-            span.span Дополнительный телефон
-            div.form__row__input
-                input.input(type='tel', name='extraPhoneNumber')
-                span.error
-
-        div.form__row
-            span.span Пароль
-            div.form__row__input
-                input.input.password(type='password', name='password')
-                span.error(aria-live='polite')
-
-        div.form__row
-            span.span Подтверждение пароля
-            div.form__row__input
-                input.input.passwordConfirm(type='password', name='passwordConfirm')
-                span.error(aria-live='polite')
-
-        div.form__row
-            button.button.button_blue(type='submit') Зарегистрироваться
-
-
+            div.light-page__input.mb10
+                input.input.passwordConfirm-js(type='password', placeholder='Подтверждение пароля', name='repass')
+            input.button.button_blue.button_stretched.light-page__button(type='submit', value='Зарегистрировать компаню')

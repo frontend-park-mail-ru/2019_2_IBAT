@@ -6,13 +6,12 @@ const errInvalidPasswordData = 'Must contain at least 8 chars';
 const errNotEqualPassRePass = 'Password and Password Repeat are not equal';
 
 export class SignupSeekerView extends View {
-
-  constructor (root, eventBus) {
+  constructor(root, eventBus) {
     super(root, template, eventBus);
     this._eventBus.subscribeToEvent('signUpFailed', this._onSubmitFailed.bind(this));
   }
 
-  render (data = {}) {
+  render(data = {}) {
     super.render(data);
 
     this._signupForm = this._root.querySelector('.signup-form');
@@ -21,40 +20,52 @@ export class SignupSeekerView extends View {
     this.setValidationOnChangeListeners();
   }
 
-  setValidationOnChangeListeners () {
+  setValidationOnChangeListeners() {
     const login = this._signupForm.elements['login'];
     const password = this._signupForm.elements['password'];
     const passwordConfirm = this._signupForm.elements['passwordConfirm'];
 
-    password.addEventListener('input', function (event) {
-      const error = event.target.nextElementSibling;
-      event.target.className = 'input';
-      error.innerHTML = '';
-      error.className = 'error';
-    }, false);
-
-    passwordConfirm.addEventListener('input', function (event) {
-      const error = event.target.nextElementSibling;
-      event.target.className = 'input';
-      error.innerHTML = '';
-      error.className = 'error';
-    }, false);
-
-    login.addEventListener('input', function (event) {
-      const notValid = Validation.validateEmail(event.target.value, true);
-      const error = event.target.nextElementSibling;
-      if (Validation.isEmptyField(event.target.value) || !notValid) {
+    password.addEventListener(
+      'input',
+      function(event) {
+        const error = event.target.nextElementSibling;
         event.target.className = 'input';
         error.innerHTML = '';
         error.className = 'error';
-      } else {
-        event.target.className = 'input invalid ';
-        error.innerHTML = 'Некорректный email';
-      }
-    }, false);
+      },
+      false
+    );
+
+    passwordConfirm.addEventListener(
+      'input',
+      function(event) {
+        const error = event.target.nextElementSibling;
+        event.target.className = 'input';
+        error.innerHTML = '';
+        error.className = 'error';
+      },
+      false
+    );
+
+    login.addEventListener(
+      'input',
+      function(event) {
+        const notValid = Validation.validateEmail(event.target.value, true);
+        const error = event.target.nextElementSibling;
+        if (Validation.isEmptyField(event.target.value) || !notValid) {
+          event.target.className = 'input';
+          error.innerHTML = '';
+          error.className = 'error';
+        } else {
+          event.target.className = 'input invalid ';
+          error.innerHTML = 'Некорректный email';
+        }
+      },
+      false
+    );
   }
 
-  _onSubmitFailed (data) {
+  _onSubmitFailed(data) {
     const login = this._signupForm.querySelector('[name="login"]');
     login.classList.add('invalid');
 
@@ -62,7 +73,7 @@ export class SignupSeekerView extends View {
     error.innerHTML = data.error;
   }
 
-  _onSubmit (ev) {
+  _onSubmit(ev) {
     ev.preventDefault();
     let wasfail = false;
 
@@ -77,7 +88,7 @@ export class SignupSeekerView extends View {
       if (Validation.isEmptyField(input.value)) {
         const error = input.nextElementSibling;
         error.innerHTML = 'Обязательное поле';
-        error.className = 'error active';
+        error.className = 'error error_active';
         input.className = 'input invalid';
         wasfail = true;
       } else {
@@ -91,7 +102,7 @@ export class SignupSeekerView extends View {
     if (!email.validity.valid) {
       const error = email.nextElementSibling;
       error.innerHTML = 'Неверный email!';
-      error.className = 'error active';
+      error.className = 'error error_active';
       wasfail = true;
     }
 
@@ -99,8 +110,9 @@ export class SignupSeekerView extends View {
     if (testPass) {
       if (testPass === errInvalidPasswordData) {
         const error = password.nextElementSibling;
-        error.innerHTML = 'Пароль должен иметь 8 символов, 1 цифру, 1 в верхнем и 1 в нижнем регистре';
-        error.className = 'error active';
+        error.innerHTML =
+          'Пароль должен иметь 8 символов, 1 цифру, 1 в верхнем и 1 в нижнем регистре';
+        error.className = 'error error_active';
         password.className = 'input invalid';
         passwordConfirm.className = 'input invalid';
         wasfail = true;
@@ -110,7 +122,7 @@ export class SignupSeekerView extends View {
       if (test === errNotEqualPassRePass) {
         const error = passwordConfirm.nextElementSibling;
         error.innerHTML = 'Пароли не совпадают';
-        error.className = 'error active';
+        error.className = 'error error_active';
         password.className = 'input invalid';
         passwordConfirm.className = 'input invalid';
         wasfail = true;
@@ -119,14 +131,13 @@ export class SignupSeekerView extends View {
     if (wasfail) {
       passwordConfirm.value = '';
       password.value = '';
-
     } else {
       const user = {
         email: email.value,
         first_name: firstName.value,
         //TODO выполнить унификацию lastName(фронтенд) и second_name(бэкенд)
         second_name: lastName.value,
-        password: password.value
+        password: password.value,
       };
       this._eventBus.triggerEvent('signUp', user);
     }

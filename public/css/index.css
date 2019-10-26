@@ -1,50 +1,52 @@
-@import "base.css";
-@import "normalize.css";
-@import "signup.css";
-@import "login.css";
+/* do not touch anything bellow */
+@import './normalize.css';
+@import './base.css';
+@import './Margin/margin.css';
+@import './Input/input.css';
+@import './Button/button.css';
+@import './Button/_blue/button_blue.css';
+@import './Button/_green/button_green.css';
+@import './Button/_small/button_small.css';
+@import './Button/_stretched/button_stretched.css';
+@import './Button/_disabled/button_disabled.css';
+@import './Link/link.css';
+@import './Header/header.css';
+@import './Header/__logo/header__logo.css';
+@import './Header/__menu/header__menu.css';
+@import './Header/__menu/__link/header__link.css';
+@import './Header/__fill/header__fill.css';
+@import './Header/__button/header__button.css';
+@import './Header/__profile/header__profile.css';
+@import './Header/__profile/__profile-icon/header__profile-icon.css';
+@import './Wrapper/wrapper.css';
+@import './Wrapper/__light-page/wrapper__light-page.css';
+@import './Light-page/light-page.css';
+@import './Light-page/__account-register/light-page__account-register.css';
+@import './Light-page/__account-register/__account-choices/light-page__account-choices.css';
+@import './Light-page/__account-register/__account-hint/light-page__account-hint.css';
+@import './Light-page/__account-register/__register-button/light-page__register-button.css';
+@import './Light-page/__button/light-page__button.css';
+@import './Light-page/__error/light-page__error.css';
+@import './Light-page/__error/_active/light-page__error_active.css';
+@import './Light-page/__form/light-page__form.css';
+@import './Light-page/__header/light-page__header.css';
+@import './Light-page/__input/light-page__input.css';
+@import './Error/error.css';
+@import './Error/_active/error_active.css';
+@import './Error/_active/error_active.css';
+@import './Title/title-h1.css';
+@import './Form-row/form-row.css';
+@import './Form-row/__key/form-row__key.css';
+@import './Form-row/__value/form-row__value.css';
+@import './Input/_invalid/input_invalid.css';
+@import './Light-page/__title/light-page__title.css';
+@import './Light-page/__title/-additional/light-page__title-additional.css';
+/* do not touch anything above*/
 
-@import "../js/views/Header/header.css";
-@import "card_list.css";
+@import 'card_list.css';
 
-.signin-offer {
-    background-color: #222;
-    color: #fff;
-    padding: 15px;
-    height: 125px;
-    width: 300px;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.signin-offer__choices {
-    display: flex;
-    flex-flow: column nowrap;
-    width: 250px;
-    margin-bottom: 10px;
-}
-.button_seeker-button {
-    width: 250px;
-    background-color: #222;
-    color: #0f8fee;
-    border-color:  #0f8fee;
-    margin-bottom: 10px;
-}
-
-.button_employer-button {
-    background-color: #222;
-    color:#0f8fee;
-    border-color:   #0f8fee;
-    width: 250px;
-}
-
-.right-column__signin-offer{
-    margin-top: 35px;
-}
-
-.list{
-    display: flex;
-    flex-direction: column;
-    max-width: 600px;
+.list {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
 }

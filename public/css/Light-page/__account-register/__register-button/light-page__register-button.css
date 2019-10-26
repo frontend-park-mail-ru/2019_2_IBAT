@@ -1,0 +1,11 @@
+.light-page__register-button {
+  display: inline-flex;
+  box-sizing: border-box;
+  width: 50%;
+  padding-left: 5px;
+}
+
+.light-page__register-button:first-child {
+  padding-right: 5px;
+  padding-left: 0;
+}

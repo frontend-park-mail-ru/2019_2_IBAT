@@ -4,14 +4,14 @@ module.exports = {
   entry: './public/js/application.js',
   output: {
     path: path.resolve(__dirname, 'public/dist'),
-    filename: 'application.js'
+    filename: 'application.js',
   },
   devtool: 'inline-source-map',
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         // Для включения в css файлов шрифтов и картинок
@@ -20,15 +20,13 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.pug/,
-        use : 'pug-loader'
-      }
-    ]
-  }
+        use: 'pug-loader',
+      },
+    ],
+  },
+  performance: { hints: false },
 };

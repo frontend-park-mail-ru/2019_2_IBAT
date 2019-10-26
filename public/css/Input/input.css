@@ -1,0 +1,33 @@
+.input {
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0;
+  border-radius: 0;
+  border: 1px solid;
+  border-color: #cbd1d4;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #fff;
+  height: 38px;
+  padding: 0 11px;
+  width: 100%;
+  line-height: 38px;
+}
+
+.input:disabled {
+  background: #dddddd;
+}
+
+input:focus {
+  outline: none;
+  border-color: #07a6e6;
+}
+
+.input:hover {
+  border-color: #a6adb1;
+}
+
+input:focus:invalid {
+  outline: none;
+}
