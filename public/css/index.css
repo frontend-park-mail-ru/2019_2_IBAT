@@ -41,6 +41,17 @@
 @import './Input/_invalid/input_invalid.css';
 @import './Light-page/__title/light-page__title.css';
 @import './Light-page/__title/-additional/light-page__title-additional.css';
+
+@import './Create-resume/__section/create-resume__section.css';
+@import './Create-resume/__legend/create-resume__legend.css';
+@import './Create-resume/__section/create-resume__section.css';
+@import './Create-resume/__about/create-resume__about.css';
+
+@import './Resume/__header-wrapper/resume__header-wrapper.css';
+@import './Resume/__photo/resume__photo.css';
+@import './Resume-userpic/resume-userpic.css';
+@import './Resume-userpic/__default-wrapper/resume-userpic__default-wrapper.css';
+@import './Resume-userpic/__default/resume-userpic__default.css';
 /* do not touch anything above*/
 
 @import 'card_list.css';

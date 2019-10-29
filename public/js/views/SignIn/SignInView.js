@@ -23,14 +23,12 @@ export class SignInView extends View {
     email.addEventListener(
       'input',
       function(event) {
-        const notValid = Validation.validateEmail(event.target.value, true);
-        const error = event.target.nextElementSibling;
+        let notValid = Validation.validateEmail(event.target.value, true);
+        let error = event.target.nextElementSibling;
         if (Validation.isEmptyField(event.target.value) || !notValid) {
-          error.innerHTML = '';
-          error.classList.remove('error_active');
+          View._removeInputError(event.target, error);
         } else {
-          error.innerHTML = 'Некорректный email';
-          error.classList.add('error_active');
+          View._addInputError(event.target, error,'Некорректный email');
         }
       },
       false
@@ -38,7 +36,7 @@ export class SignInView extends View {
   }
 
   _onSubmitFailed(data) {
-    const error = this._root.querySelector('.light-page__error-js');
+    let error = this._root.querySelector('.light-page__error-js');
     error.classList.add('light-page__error_active');
     error.innerHTML = `<p>${data.error}<p>`;
   }
@@ -50,19 +48,8 @@ export class SignInView extends View {
     const email = this._loginForm.elements['email'];
     const password = this._loginForm.elements['password'];
 
-    const inputs = this._loginForm.querySelectorAll('.input');
-    inputs.forEach(input => {
-      if (Validation.isEmptyField(input.value)) {
-        const error = input.nextElementSibling;
-        error.innerHTML = 'Обязательное поле';
-        error.classList.add('error_active');
-        wasfail = true;
-      } else {
-        const error = input.nextElementSibling;
-        error.innerHTML = '';
-        error.classList.remove('error_active');
-      }
-    });
+    let inputs = this._loginForm.querySelectorAll('.input');
+    wasfail = View._validateObligotaryInputs(inputs);
 
     if (wasfail) {
       password.value = '';

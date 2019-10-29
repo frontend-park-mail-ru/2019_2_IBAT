@@ -1,9 +1,47 @@
+import Validation from '../modules/validation';
+
 export class View {
   constructor (root, template, eventBus, globalEventBus) {
     this._root = root;
     this._eventBus = eventBus;
     this._globalEventBus = globalEventBus;
     this._template = template;
+  }
+
+  static _addInputError(input, error, msg = '') {
+    if (input) {
+      input.classList.add('input_invalid');
+    }
+    if (error) {
+      error.classList.add('error_active');
+      error.innerHTML = msg;
+    }
+  };
+
+  static _validateObligotaryInputs(inputs = {}) {
+    let wasfail = false;
+    if (inputs) {
+      inputs.forEach(input => {
+        let error = input.nextElementSibling;
+        if (Validation.isEmptyField(input.value)) {
+          this._addInputError(input, error,'Обязательное поле');
+          wasfail = true;
+        } else {
+          this._removeInputError(input, error)
+        }
+      });
+    }
+    return wasfail;
+  }
+
+  static _removeInputError(input, error) {
+    if (input) {
+      input.classList.remove('input_invalid');
+    }
+    if (error) {
+      error.classList.remove('error_active');
+      error.innerHTML = '';
+    }
   }
 
   render (data) {

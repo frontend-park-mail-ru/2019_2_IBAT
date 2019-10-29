@@ -1,0 +1,6 @@
+.resume-userpic {
+    width: 130px;
+    position: relative;
+    border-radius: 2px;
+    flex-shrink: 0;
+}

@@ -1,27 +1,24 @@
 div.left-column
     h1.title-h1 Создание вакансии
     form.vacancy-form(method="POST" novalidate)
-        div.form__row
-            span.span Название компании
-            div.form__row__input
+        div.create-resume__section
+            span.create-resume__legend Название компании
+            div.create-resume__input.mb5
                 input.input.company-name(type="text", name='company_name')
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span Профессия
-            div.form__row__input
+            span.create-resume__legend Профессия
+            div.create-resume__input.mb5
                 input.input.profession(type="text", name='profession')
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span Должность
-            div.form__row__input
+            span.create-resume__legend Должность
+            div.create-resume__input.mb5
                 input.input.position(type="text", name='position')
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span Опыт работы
-            div.form__row__input
+            span.create-resume__legend Опыт работы
+            div.create-resume__input.mb5
                 select.input.experience(name='experience')
                     option(value="Без опыта работы") Без опыта работы
                     option(value="1-3года") 1-3года
@@ -29,16 +26,14 @@ div.left-column
                     option(value="5+ лет") 5+ лет
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span Оплата
-            div.form__row__input
+            span.create-resume__legend Оплата
+            div.create-resume__input.mb5
                 input.input.wage(type="text", name='wage')
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span О вакансии
-            div.form__row__input
-                textarea.input.about(name="about", rows="10" placeholder="Расскажите об обязанностях подробнее")
+            span.create-resume__legend О вакансии
+            div.create-resume__input.mb5
+                textarea.input.create-resume__about(name="about", rows="10" placeholder="Расскажите об обязанностях подробнее")
                 span.error(aria-live='polite')
 
-        button.button.button_blue(type='submit') Создать
+        button.button.button_blue(type='submit') Создать и опубликовать
