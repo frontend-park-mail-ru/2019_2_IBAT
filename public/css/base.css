@@ -40,11 +40,3 @@ html {
   display: flex;
   justify-content: space-around;
 }
-
-.title-h2 {
-  font-family: Arial, sans-serif;
-  line-height: normal;
-  font-weight: 300;
-  margin: 0 0 15px;
-  padding: 0;
-}
