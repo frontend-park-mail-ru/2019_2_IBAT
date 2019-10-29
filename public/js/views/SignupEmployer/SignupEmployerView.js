@@ -25,12 +25,8 @@ export class SignupEmployerView extends View {
       input.addEventListener(
         'input',
         function(event) {
-          event.target.classList.remove('input_invalid');
-          const error = event.target.nextElementSibling;
-          if (error != null) {
-            error.innerHTML = '';
-            error.classList.remove('error_active');
-          }
+          let error = event.target.nextElementSibling;
+          View._removeInputError(event.target, error)
         },
         false
       );
@@ -39,16 +35,12 @@ export class SignupEmployerView extends View {
     login.addEventListener(
       'input',
       function(event) {
-        const notValid = Validation.validateEmail(event.target.value, true);
-        const error = event.target.nextElementSibling;
+        let notValid = Validation.validateEmail(event.target.value, true);
+        let error = event.target.nextElementSibling;
         if (Validation.isEmptyField(event.target.value) || !notValid) {
-          event.target.classList.remove('input_invalid');
-          error.innerHTML = '';
-          error.classList.remove('error_active');
+          View._removeInputError(event.target, error)
         } else {
-          event.target.classList.add('input_invalid');
-          error.innerHTML = 'Некорректный email';
-          error.classList.add('error_active');
+          View._addInputError(event.target, error, 'Некорректный email');
         }
       },
       false
@@ -56,7 +48,7 @@ export class SignupEmployerView extends View {
   }
 
   _onSubmitFailed(data) {
-    const message = this._root.querySelector('.light-page__error-js');
+    let message = this._root.querySelector('.light-page__error-js');
     message.classList.add('light-page__error_active');
     message.innerHTML = `<p>${data.error}<p>`;
   }
@@ -72,39 +64,28 @@ export class SignupEmployerView extends View {
     const firstName = this._signupForm.elements['firstName'];
     const lastName = this._signupForm.elements['secondName'];
     const phoneNumber = this._signupForm.elements['phoneNumber'];
-    const extraPhoneNumber = this._signupForm.elements['extraPhoneNumber'];
+    // const extraPhoneNumber = this._signupForm.elements['extraPhoneNumber'];
     const password = this._signupForm.elements['pass'];
     const passwordConfirm = this._signupForm.elements['repass'];
 
-    const inputs = this._signupForm.querySelectorAll('.input');
-    inputs.forEach(input => {
-      if (Validation.isEmptyField(input.value)) {
-        input.classList.add('input_invalid');
-        wasfail = true;
-        hasEmptyField = true;
-      } else {
-        input.classList.remove('input_invalid');
-      }
-    });
+    let inputs = this._signupForm.querySelectorAll('.input');
+    wasfail = View._validateObligotaryInputs(inputs);
 
     if (!email.validity.valid) {
-      const error = email.nextElementSibling;
-      error.innerHTML = 'Неверный email!';
-      error.classList.add('error_active');
+      let error = email.nextElementSibling;
+      View._addInputError(email, error, 'Неверный email!');
       wasfail = true;
     }
 
-    const testPass = Validation.validateRepass(passwordConfirm.value, password.value);
+    let testPass = Validation.validateRepass(passwordConfirm.value, password.value);
     if (testPass) {
-      const error = password.nextElementSibling;
-      error.innerHTML = testPass;
-      error.classList.add('error_active');
-      password.classList.add('input_invalid');
-      passwordConfirm.classList.add('input_invalid');
+      let error = password.nextElementSibling;
+      View._addInputError(password, error, testPass);
+      View._addInputError(passwordConfirm);
       wasfail = true;
     }
     if (wasfail) {
-      const message = this._root.querySelector('.light-page__error-js');
+      let message = this._root.querySelector('.light-page__error-js');
       if (hasEmptyField) {
         message.classList.add('light-page__error_active');
         message.innerHTML = 'Заполните обязательные поля';
@@ -115,7 +96,7 @@ export class SignupEmployerView extends View {
       passwordConfirm.value = '';
       password.value = '';
     } else {
-      const user = {
+      let user = {
         company_name: companyName.value,
         site: site.value,
         email: email.value,
@@ -123,7 +104,7 @@ export class SignupEmployerView extends View {
         first_name: firstName.value,
         second_name: lastName.value,
         phone_number: phoneNumber.value,
-        extra_number: extraPhoneNumber.value,
+        // extra_number: extraPhoneNumber.value,
         password: password.value,
       };
       this._eventBus.triggerEvent('signUp', user);

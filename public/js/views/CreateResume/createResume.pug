@@ -1,78 +1,70 @@
 div.left-column
-    h1.title-h1 Создание резюме
-    form.resume-form(method='POST' novalidate)
+    h1.title-h1 Ваше резюме
+    form.create-resume-form(method='POST' novalidate)
         h2.title-h2 Контактные данные
 
-        div.form__row
-            span.span Имя
-            div.form__row__input
+        div.create-resume__section
+            span.create-resume__legend Имя
+            div.create-resume__input.mb5
                 input.input(type='text', name='first_name')
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span Фамилия
-            div.form__row__input
+            span.create-resume__legend Фамилия
+            div.create-resume__input.mb5
                 input.input(type='text', name='second_name')
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span Город
-            div.form__row__input
+            span.create-resume__legend Город
+            div.create-resume__input.mb5
                 input.input(type='text', name='city')
                 span.error
 
-        div.form__row
-            span.span Телефон
-            div.form__row__input
+            span.create-resume__legend Телефон
+            div.create-resume__input.mb5
                 input.input(type='text', name='phone_number')
                 span.error
 
         h2.title-h2 Основная информация
 
-        div.form__row
-            span.span Желаемая профессия
-            div.form__row__input
+        div.create-resume__section
+            span.create-resume__legend Желаемая профессия
+            div.create-resume__input.mb5
                 input.input(type='text', name='profession')
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span Желаемая должность
-            div.form__row__input
+            span.create-resume__legend Желаемая должность
+            div.create-resume__input.mb5
                 input.input(type='text', name='position')
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span Желаемая заработанная плата
-            div.form__row__input
+            span.create-resume__legend Желаемая заработанная плата
+            div.create-resume__input.mb5
                 input.input(type='number', name='wage')
                 span.error(aria-live='polite')
 
         h2.title-h2 Личная информация
 
-        div.form__row
-            span.span Дата рождения
-            div.form__row__input
+        div.create-resume__section
+            span.create-resume__legend Дата рождения
+            div.create-resume__input.mb5
                 input.input(type='data', name='birth_date')
                 span.error
 
-        div.form__row
-            span.span Пол
-            div.form__row__input
+            span.create-resume__legend Пол
+            div.create-resume__input.mb5
                 select.input.sex(name='sex')
                     option(value='F') Женский
                     option(value='M') Мужской
                     option(value='?') Не определился
                 span.error
 
-        div.form__row
-            span.span Гражданство
-            div.form__row__input
+            span.create-resume__legend Гражданство
+            div.create-resume__input.mb5
                 input.input(type='text', name='citizenship')
                 span.error
 
-        div.form__row
-            span.span Опыт работы
-            div.form__row__input
+            span.create-resume__legend Опыт работы
+            div.create-resume__input.mb5
                 select.input.experience(name='experience')
                     option(value='Без опыта работы') Без опыта работы
                     option(value='1-3года') 1-3года
@@ -80,10 +72,9 @@ div.left-column
                     option(value='5+ лет') 5+ лет
                 span.error
 
-        div.form__row
-            span.span О себе
-            div.form__row__input
-                textarea.input.about(
+            span.create-resume__legend О себе
+            div.create-resume__input.mb5
+                textarea.input.create-resume__about(
                     name='about',
                     rows='10',
                     placeholder='Расскажите о своих качествах, знаниях, увлечениях, которые, как вам кажется, будут полезны работодателю')
@@ -91,9 +82,9 @@ div.left-column
 
         h2.title-h2 Образование
 
-        div.form__row
-            span.span Уровень
-            div.form__row__input
+        div.create-resume__section
+            span.create-resume__legend Уровень
+            div.create-resume__input.mb5
                 select.input.education(name='education')
                     option(value='higher') Высшее
                     option(value='bachelor') Бакалавр
@@ -105,4 +96,4 @@ div.left-column
                     option(value='special_secondary') Среднее специальное
                 span.error
 
-        button.button.button_blue(type='submit') Создать
+        button.button.button_blue(type='submit') Создать  опубликовать
