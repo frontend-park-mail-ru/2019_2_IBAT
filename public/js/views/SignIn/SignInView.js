@@ -26,9 +26,9 @@ export class SignInView extends View {
         let notValid = Validation.validateEmail(event.target.value, true);
         let error = event.target.nextElementSibling;
         if (Validation.isEmptyField(event.target.value) || !notValid) {
-          this._removeInputError(event.target, error);
+          View._removeInputError(event.target, error);
         } else {
-          this._addInputError(event.target, error,'Некорректный email');
+          View._addInputError(event.target, error,'Некорректный email');
         }
       },
       false
@@ -49,7 +49,7 @@ export class SignInView extends View {
     const password = this._loginForm.elements['password'];
 
     let inputs = this._loginForm.querySelectorAll('.input');
-    wasfail = this._validateObligotaryInputs(inputs);
+    wasfail = View._validateObligotaryInputs(inputs);
 
     if (wasfail) {
       password.value = '';
