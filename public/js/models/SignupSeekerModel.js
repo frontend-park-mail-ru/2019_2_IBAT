@@ -12,6 +12,7 @@ export class SignupSeekerModel {
     Api.signUpSeeker(user)
       .then(res => {
         if (res.status === 200) {
+          setItem('token', res.headers['X-CSRF-Tokene']);
           res.json().then(data => {
             this._eventBus.triggerEvent('signUpSuccess', data);
           });

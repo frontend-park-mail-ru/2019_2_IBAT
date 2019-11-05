@@ -29,7 +29,8 @@ export default class Net {
             credentials: 'include',
             mode: 'cors',
             headers: {
-                'Content-Type': 'application/json; charset=utf-8'
+                'Content-Type': 'application/json; charset=utf-8',
+                'X-CSRF-Token': getItem('token')
             }
         });
     }

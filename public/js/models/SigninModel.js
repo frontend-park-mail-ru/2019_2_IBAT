@@ -12,6 +12,7 @@ export class SigninModel {
     Api.signIn(user)
       .then(res => {
         if (res.status === 200) {
+          setItem('token', res.headers['X-CSRF-Tokene']);
           res.json().then(data => {
             this._eventBus.triggerEvent('signInSuccess', data);
           });
