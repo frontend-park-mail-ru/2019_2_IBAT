@@ -23,6 +23,7 @@ export default class Net {
      * @returns {Promise<Response>}
      */
     static doPost ({ url = '/', body = {}, host = Net.getServerURL() } = {}) {
+        let token = localStorage.getItem('token');
         return fetch(host + url, {
             method: 'POST',
             body: JSON.stringify(body),
@@ -30,7 +31,7 @@ export default class Net {
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
-                'X-CSRF-Token': getItem('token')
+                'X-CSRF-Token': token
             }
         });
     }

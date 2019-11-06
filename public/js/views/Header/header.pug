@@ -1,14 +1,27 @@
+- var searchUrl = '#'
+case role
+    when 'seeker'
+        - var searchUrl = '/search/vacancy'
+    when 'employer'
+        - var searchUrl = '/search/resume'
+    default
+        - var searchUrl = '/search/vacancy'
+
 div.header__logo
     a(href='/')
         img(src='img/ibat.jpg', alt='logo')
 
 if role === 'seeker'
     nav.header__menu
-        a.link.header__link(href='#') Мои резюме
-        a.link.header__link(href='#') Отклики
+        a.link.header__link.header__menu-link(href='#') Мои резюме
+        a.link.header__link.header__menu-link(href='#') Отклики
 
 div.header__fill
 
+div.header__search
+    a.header__search-button(href=`${searchUrl}`)
+        span.header__search-icon
+        span.header__link &nbsp;Поиск
 if role
     case role
         when 'seeker'

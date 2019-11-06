@@ -12,7 +12,8 @@ export class SignupEmployerModel {
     Api.signUpEmployer(user)
       .then(res => {
         if (res.status === 200) {
-          setItem('token', res.headers['X-CSRF-Tokene']);
+          let token = res.headers.get('X-Csrf-Token');
+          localStorage.setItem('token', token);
           res.json().then(data => {
             this._eventBus.triggerEvent('signUpSuccess', data);
           });

@@ -1,4 +1,4 @@
-import Router from './modules/router';
+import { Router } from './modules/router';
 import { EventBus } from './modules/eventbus';
 
 import { IndexController } from './controllers/IndexController';
@@ -11,6 +11,7 @@ import { CreateResumeController } from './controllers/CreateResumeController';
 import { ProfileController } from './controllers/ProfileController';
 import { VacancyPageController } from './controllers/VacancyPageController';
 import { ResumePageController } from './controllers/ResumePageController';
+import { SearchVacancyController } from './controllers/SearchVacancyController';
 
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.querySelector('.page');
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const profileController = new ProfileController(content, router);
   const vacancyPageController = new VacancyPageController(content, router);
   const resumePageController = new ResumePageController(content, router);
+  const searchVacancyController = new SearchVacancyController(content, globalEventBus, router);
 
   headerController.headerView.render();
 
@@ -47,5 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
   router.add('/vacancy', vacancyPageController.vacancyPageView);
   router.add('/resume', resumePageController.resumePageView);
 
+  router.add('/search/vacancy', searchVacancyController.searchVacancyView);
+  // router.add('/search/resume', );
   router.start();
 });

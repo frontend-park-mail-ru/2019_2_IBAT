@@ -1,0 +1,7 @@
+.header__search {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-left: 20px;
+    white-space: nowrap;
+}

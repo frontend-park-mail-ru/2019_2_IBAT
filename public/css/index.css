@@ -13,10 +13,14 @@
 @import './Header/header.css';
 @import './Header/__logo/header__logo.css';
 @import './Header/__menu/header__menu.css';
-@import './Header/__menu/__link/header__link.css';
+@import './Header/__menu/__menu-link/header__menu-link.css';
+@import './Header/__link/header__link.css';
 @import './Header/__fill/header__fill.css';
 @import './Header/__button/header__button.css';
 @import './Header/__profile/header__profile.css';
+@import './Header/__search-button/header__search-button.css';
+@import './Header/__search-icon/header__search-icon.css';
+@import './Header/__search/header__search.css';
 @import './Header/__profile/__profile-icon/header__profile-icon.css';
 @import './Wrapper/wrapper.css';
 @import './Wrapper/__light-page/wrapper__light-page.css';

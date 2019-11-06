@@ -1,0 +1,12 @@
+.header__link {
+  color: #fff;
+  font-size: 14px;
+}
+
+.header__link:hover {
+  color: #90ccff;
+}
+
+.header__link:active {
+  color: #90ccff;
+}
