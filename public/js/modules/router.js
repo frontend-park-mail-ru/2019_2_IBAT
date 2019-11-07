@@ -24,14 +24,31 @@ export class Router {
     }
 
     const routePath = '/' + path.split('/')[1];
+    console.log("Router:route -> routePath ", routePath);
+
     //TODO костыль, переделать под нормальный роутинг для /vacancy/{id}
     if (this.routes.has(routePath)) {
       const view = this.routes.get(routePath);
+      console.log('Router:route -> view ', view);
+
       const id = this._extractIdFromPath(path);
+      console.log('Router:route -> id ', id);
+
       data = { id, ...data };
+      console.log('Router:route -> data', data);
+
       view.render(data);
       this.currentRoute = path;
     } else {
+      if (this.routes.has(path)) {
+        console.log('Router:route -> path ', path);
+        const view = this.routes.get(path);
+        console.log('Router:route -> view ', view);
+        console.log('Router:route -> data', data);
+  
+        view.render(data);
+        this.currentRoute = path;
+      }
       //Error 404
     }
   }
@@ -44,9 +61,14 @@ export class Router {
     window.onpopstate = _ => {
       this.route(window.location.pathname);
     };
-    this.root.addEventListener('click', (ev) => {
+
+    console.log('Router:start -> root', this.root);
+    console.log('Router:start -> routes', this.routes);
+
+    window.addEventListener('click', (ev) => {
       if (ev.target.tagName === 'A') {
         ev.preventDefault();
+        console.log('Router:start -> root ', Router._normalizePath(ev.target.pathname))
         this.route(Router._normalizePath(ev.target.pathname));
       }
     });

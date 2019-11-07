@@ -22,7 +22,7 @@ export class HeaderModel {
         this._eventBus.triggerEvent('checkAuthResponse', body);
       })
       .catch(error => {
-        console.error(error);
+        console.log(error);
       });
   }
 

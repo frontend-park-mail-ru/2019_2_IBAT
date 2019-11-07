@@ -27,7 +27,7 @@ html {
 }
 
 .left-column {
-  flex-basis: 50%;
+  flex-basis: 66%;
   display: flex;
   flex-direction: column;
   margin: 0 40px;
