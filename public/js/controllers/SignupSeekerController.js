@@ -13,7 +13,7 @@ export class SignupSeekerController {
     const eventBus = new EventBus(eventList);
     eventBus.subscribeToEvent('signUpSuccess', (data) => {
       globalEventBus.triggerEvent('headerLoad', data);
-      router.toStartPage();
+      router.redirect('/');
     });
 
     this.signupSeekerView = new SignupSeekerView(root, eventBus);

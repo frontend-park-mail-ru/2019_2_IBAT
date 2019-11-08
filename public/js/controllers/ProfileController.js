@@ -19,7 +19,7 @@ export class ProfileController {
   constructor (root, router) {
     const eventBus = new EventBus(eventList);
     eventBus.subscribeToEvent('saveProfileSuccess', () => {
-      router.toStartPage();
+      router.redirect('/');
     });
 
     this.profileView = new ProfileView(root, eventBus);

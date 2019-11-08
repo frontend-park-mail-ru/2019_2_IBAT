@@ -13,7 +13,7 @@ export class SignupEmployerController {
     const eventBus = new EventBus(eventList);
     eventBus.subscribeToEvent('signUpSuccess', (data) => {
       globalEventBus.triggerEvent('headerLoad', data);
-      router.toStartPage();
+      router.redirect('/');
     });
 
     this.signupEmployerView = new SignupEmployerView(root, eventBus);

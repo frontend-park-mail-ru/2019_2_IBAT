@@ -3,16 +3,19 @@ import { SearchVacancyView } from '../views/SearchVacancy/SearchVacancyView';
 import { SearchVacancyModel } from '../models/SearchVacancyModel';
 
 const eventList = [
-
+    'find',
+    'searchSuccess',
+    'searchFailed',
 ];
   
 export class SearchVacancyController {
     constructor (root, globalEventBus, router) {
         const eventBus = new EventBus(eventList);
-        // eventBus.subscribeToEvent('createSuccess', (_)=>{
-        //     router.toStartPage();
-        // });
-        this.searchVacancyView = new SearchVacancyView(root, eventBus, globalEventBus);
+        eventBus.subscribeToEvent('searchSuccess', (url, vacancies) => {
+            console.log('searchcontroller', url, vacancies);
+            router.redirect(url, vacancies);
+        });
+        this.searchVacancyView = new SearchVacancyView(root, eventBus);
         this.searchVacancyModel = new SearchVacancyModel(eventBus);
     }
 }

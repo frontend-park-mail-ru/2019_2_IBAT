@@ -61,6 +61,11 @@
 @import './Search/__input/search__input.css';
 @import './Search/__legend/search__legend.css';
 @import './Search/__checkboxes/search__checkboxes.css';
+@import './Search/__item/search__item.css';
+@import './Search/__wage/search__wage.css';
+@import './Search/__currency/search__currency.css';
+@import './Search/__experience/search__experience.css';
+@import './Search/search.css';
 /* do not touch anything above*/
 
 @import 'card_list.css';

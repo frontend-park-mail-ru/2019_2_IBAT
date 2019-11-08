@@ -144,6 +144,16 @@ export class Api {
   }
 
   /**
+   * Запрос на поиск вакансий
+   * @param {String} getParameters
+   * @returns {Promise<Response>}
+   */
+  static searchVacancies(getParameters) {
+    console.log(getParameters);
+    return Net.doGet({ url: '/vacancies' + getParameters });
+  }
+
+  /**
    * Запрос данных резюме
    * @returns {Promise<Response>}
    * @param id

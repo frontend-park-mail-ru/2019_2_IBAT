@@ -1,7 +1,7 @@
 - const vacancyName =  vacancy.profession + ' ' + vacancy.position;
 - const text = vacancy.about + '/n' + vacancy.requirements
 
-a(href=`/vacancy/${vacancyId}`) #{vacancyName}
+a(href=`/vacancy/${vacancy.id}`) #{vacancyName}
 span.card__span #{vacancy.wage} руб.
 span.card__span #{vacancy.company_name}
     a(href=`employer/${vacancy.owner_id}`)

@@ -24,15 +24,25 @@
   border-color: #07a6e6;
 }
 
-input:focus {
-  outline: none;
-  border-color: #07a6e6;
-}
-
 .input:hover {
   border-color: #a6adb1;
 }
 
+input:focus input:active{
+  outline: none;
+  border-color: #07a6e6;
+}
+
 input:focus:invalid {
   outline: none;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=checkbox] {
+  align-self: center;
 }

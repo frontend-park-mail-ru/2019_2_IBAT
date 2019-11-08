@@ -19,9 +19,10 @@ if role === 'seeker'
 div.header__fill
 
 div.header__search
-    a.header__search-button(href=`${searchUrl}`)
-        span.header__search-icon
-        span.header__link &nbsp;Поиск
+    div.header__search-button
+        a.header__search-icon(href=`${searchUrl}`)
+        a.header__link(href=`${searchUrl}`) Поиск 
+            
 if role
     case role
         when 'seeker'

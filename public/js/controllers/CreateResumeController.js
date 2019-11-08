@@ -12,7 +12,7 @@ export class CreateResumeController {
   constructor (root, globalEventBus, router) {
     const eventBus = new EventBus(eventList);
     eventBus.subscribeToEvent('createSuccess', (_)=>{
-      router.toStartPage();
+      router.redirect('/');
     });
     this.createResumeView = new CreateResumeView(root, eventBus, globalEventBus);
     this.createResumeModel = new CreateResumeModel(eventBus);

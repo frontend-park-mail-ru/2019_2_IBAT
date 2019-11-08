@@ -12,7 +12,7 @@ export class CreateVacancyController {
   constructor (root, globalEventBus, router) {
     const eventBus = new EventBus(eventList);
     eventBus.subscribeToEvent('createSuccess', (_)=>{
-      router.toStartPage();
+      router.redirect('/');
     });
     this.createVacancyView = new CreateVacancyView(root, eventBus, globalEventBus);
     this.createVacancyModel = new CreateVacancyModel(eventBus);

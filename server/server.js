@@ -118,7 +118,7 @@ app.post('/auth', (req, res) => {
   }
 });
 
-app.del('/auth', (req, res) => {
+app.delete('/auth', (req, res) => {
   const sessionId = req.cookie['session_id'];
   if (!ids[sessionId]) {
     return res.status(405).json({ error: 'Пользователь не авторизован!' });

@@ -13,7 +13,7 @@ export class SigninController {
     const eventBus = new EventBus(eventList);
     eventBus.subscribeToEvent('signInSuccess', (data) => {
       globalEventBus.triggerEvent('headerLoad', data);
-      router.toStartPage();
+      router.redirect('/');
     });
 
     this.signInView = new SignInView(root, eventBus);

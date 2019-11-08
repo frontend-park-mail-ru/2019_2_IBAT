@@ -13,7 +13,7 @@ export class HeaderController {
   constructor (root, globalEventBus, router) {
     const eventBus = new EventBus(eventList);
     eventBus.subscribeToEvent('signOutResponse', ()=>{
-      router.toStartPage();
+      router.redirect('/');
     });
 
     this.headerView = new HeaderView(root, eventBus, globalEventBus);

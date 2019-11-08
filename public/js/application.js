@@ -12,6 +12,7 @@ import { ProfileController } from './controllers/ProfileController';
 import { VacancyPageController } from './controllers/VacancyPageController';
 import { ResumePageController } from './controllers/ResumePageController';
 import { SearchVacancyController } from './controllers/SearchVacancyController';
+import { FoundVacanciesController } from './controllers/FoundVacanciesController';
 
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.querySelector('.page');
@@ -36,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const vacancyPageController = new VacancyPageController(content, router);
   const resumePageController = new ResumePageController(content, router);
   const searchVacancyController = new SearchVacancyController(content, globalEventBus, router);
+  const foundVacanciesController = new FoundVacanciesController(content, globalEventBus, router);
 
   headerController.headerView.render();
 
@@ -50,6 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
   router.add('/resume', resumePageController.resumePageView);
 
   router.add('/search/vacancy', searchVacancyController.searchVacancyView);
+  router.add('/vacancies', foundVacanciesController.foundVacanciesView);
+  
   // router.add('/search/resume', );
   router.start();
 });

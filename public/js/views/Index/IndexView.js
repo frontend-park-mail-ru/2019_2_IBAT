@@ -23,6 +23,7 @@ export class IndexView extends View {
     list.className = 'list';
     this._root.appendChild(list);
 
+    console.log('INDEX:onGetVacanciesSuccess', vacancies);
     if (vacancies) {
       Object.entries(vacancies).forEach(([vacancyId, vacancy]) => {
         new ShortVacancyComponent({ vacancyId, vacancy }).appendToList(list);

@@ -1,3 +1,10 @@
+
+
+const pathsWithId = [
+  '/profile',
+  '/vacancy',
+  '/resume'
+]
 export class Router {
   constructor (root) {
     this.root = root;
@@ -5,10 +12,20 @@ export class Router {
     this.currentRoute = null;
   }
 
-  toStartPage () {
-    this.route('/');
+  /**
+   * Переход на страницу path с нужными даннами data для неё
+   * @param {String} path
+   * @param {Object} data 
+   */
+  redirect(path, data = {}) {
+    this.route(path, data)
   }
 
+  /**
+   * Добавление на path нужное view
+   * @param {String} path
+   * @param {Object} view
+   */
   add (path, view) {
     this.routes.set(path, view);
   }
@@ -22,32 +39,27 @@ export class Router {
     if (window.location.pathname !== path) {
       window.history.pushState(null, null, path);
     }
-
-    const routePath = '/' + path.split('/')[1];
-    console.log("Router:route -> routePath ", routePath);
+    const pathWithoutParameters = path.split('?')[0];
+    console.log(pathWithoutParameters);
+    const routePath = '/' + pathWithoutParameters.split('/')[1];
 
     //TODO костыль, переделать под нормальный роутинг для /vacancy/{id}
     if (this.routes.has(routePath)) {
       const view = this.routes.get(routePath);
-      console.log('Router:route -> view ', view);
-
-      const id = this._extractIdFromPath(path);
-      console.log('Router:route -> id ', id);
-
-      data = { id, ...data };
-      console.log('Router:route -> data', data);
-
-      view.render(data);
+      
+      if(pathsWithId.find(el => el == routePath)) {
+        let id = this._extractIdFromPath(path);
+        data = { id, ...data };
+      }
+      console.log('router-> render(data)', data);
       this.currentRoute = path;
+      view.render(data);
     } else {
-      if (this.routes.has(path)) {
-        console.log('Router:route -> path ', path);
-        const view = this.routes.get(path);
-        console.log('Router:route -> view ', view);
-        console.log('Router:route -> data', data);
-  
-        view.render(data);
+      if (this.routes.has(pathWithoutParameters)) {
+        const view = this.routes.get(pathWithoutParameters);
         this.currentRoute = path;
+        console.log('router-> render(data)', data);
+        view.render(data);
       }
       //Error 404
     }
@@ -62,16 +74,17 @@ export class Router {
       this.route(window.location.pathname);
     };
 
-    console.log('Router:start -> root', this.root);
-    console.log('Router:start -> routes', this.routes);
-
     window.addEventListener('click', (ev) => {
       if (ev.target.tagName === 'A') {
         ev.preventDefault();
-        console.log('Router:start -> root ', Router._normalizePath(ev.target.pathname))
         this.route(Router._normalizePath(ev.target.pathname));
       }
     });
+    
+    window.addEventListener('popstate', (event) => {
+      if (!history.state.url) return;
+      this.route(history.state.url);
+    }, false);
 
     this.route(Router._normalizePath(window.location.pathname));
   }
