@@ -20,6 +20,6 @@ export class SignupEmployerController extends Controller {
     });
 
     this._view = new SignupEmployerView(this._root, eventBus);
-    this._model = signupEmployerModel = new SignupEmployerModel(eventBus);
+    this._model = new SignupEmployerModel(eventBus);
   }
 }
