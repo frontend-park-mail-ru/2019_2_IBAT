@@ -170,8 +170,12 @@ export class Api {
    * @param id
    */
   static getVacancyById (id = {}) {
+    let vacancyId = id['id'];
+    let vacancyid = {id};
+    console.log('vacancyid', vacancyId);
+    console.log('vacancyId', vacancyid);
     return Net.doGet({
-      url: '/vacancy' + '/' + id
+      url: '/vacancy' + '/' + vacancyId
     });
   }
 

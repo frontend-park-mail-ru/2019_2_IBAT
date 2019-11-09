@@ -7,8 +7,16 @@ module.exports = {
     filename: 'application.js',
   },
   devtool: 'inline-source-map',
+  resolve: {
+    extensions: [".ts", ".js"]
+  },
   module: {
     rules: [
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,

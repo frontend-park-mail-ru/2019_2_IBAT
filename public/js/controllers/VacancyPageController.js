@@ -1,6 +1,7 @@
-import { EventBus } from '../modules/eventbus';
-import { VacancyPageView } from '../views/VacancyPage/VacancyPageView';
 import { VacancyPageModel } from '../models/VacancyPageModel';
+import { VacancyPageView } from '../views/VacancyPage/VacancyPageView';
+import { Controller } from '../modules/controller';
+import { EventBus } from '../modules/eventbus';
 
 const eventList = [
   'loadVacancy',
@@ -8,11 +9,12 @@ const eventList = [
   'loadVacancyFailed'
 ];
 
-export class VacancyPageController {
+export class VacancyPageController extends Controller {
   constructor (root, globalEventBus, router) {
+    super(root, null, null);
     const eventBus = new EventBus(eventList);
 
-    this.vacancyPageView = new VacancyPageView(root, eventBus);
-    this.vacancyPageModel = new VacancyPageModel(eventBus);
+    this._view = new VacancyPageView(this._root, eventBus);
+    this._model = new VacancyPageModel(eventBus);
   }
 }

@@ -3,18 +3,16 @@ div.wrapper
         div.light-page__error.light-page__error-js
         form.light-page__form.login__form-js(novalidate)
             label.light-page__header Вход в личный кабинет
+            
             div.light-page__input.mb10
                 input.input.email(type='email', placeholder='Email', name='email')
                 span.error(aria-live='polite')
+
             div.light-page__input.mb20
                 input.input.password(type='password', placeholder='Пароль', name='password')
                 span.error(aria-live='polite')
             input.button.button_blue.button_stretched.light-page__button(type='submit', value='Войти в личный кабинет')
-            //- div.light-page-remember
-            //-     label.checkbox
-            //-         input.checkbox__input(type='checkbox', value='yes')
-            //-         span.checkbox__input Запомнить
-            //-     a(href='#') Получить пароль
+ 
             div.light-page__account-register
                 span.light-page__account-hint Регистрация
                 div.light-page__account-choices

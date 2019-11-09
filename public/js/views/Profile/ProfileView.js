@@ -75,7 +75,7 @@ export class ProfileView extends View {
   }
 
   _onSaveAvatar(){
-    const avatar=this._fileInput.files[0] || null;
+    const avatar = this._fileInput.files[0] || null;
     this._eventBus.triggerEvent('saveAvatar', avatar);
   }
 
@@ -100,20 +100,16 @@ export class ProfileView extends View {
     if (testPass) {
       if (testPass === errInvalidPasswordData) {
         let error = password.nextElementSibling;
-        error.innerHTML = 'Пароль должен иметь 8 символов, 1 цифру, 1 в верхнем и 1 в нижнем регистре';
-        error.className = 'error active';
-        password.className = 'input invalid';
-        passwordConfirm.className = 'input invalid';
+        View._addInputError(password, error, 'Пароль должен иметь 8 символов, 1 цифру, 1 в верхнем и 1 в нижнем регистре')
+        View._addInputError(passwordConfirm);
         wasfail = true;
       }
     } else {
       let test = Validation.validateRepass(passwordConfirm.value, password.value);
       if (test === errNotEqualPassRePass) {
         let error = passwordConfirm.nextElementSibling;
-        error.innerHTML = 'Пароли не совпадают';
-        error.className = 'error active';
-        password.className = 'input invalid';
-        passwordConfirm.className = 'input invalid';
+        View._addInputError( password, error, 'Пароли не совпадают');
+        View._addInputError(passwordConfirm);
         wasfail = true;
       }
     }
@@ -128,7 +124,7 @@ export class ProfileView extends View {
           profile[elem.name] = elem.value;
         }
       });
-      profile['path_to_img']=this._avatar.src;
+      profile['path_to_img'] = this._avatar.src;
       this._eventBus.triggerEvent('saveProfile', profile, this._role);
     }
   }

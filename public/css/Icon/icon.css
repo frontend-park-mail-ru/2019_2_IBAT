@@ -1,10 +1,8 @@
-.header__search-icon {
+.icon {
     display: flex;
-    background-image: url(../../../img/search__min_.svg);
     width: 30px;
     height: 30px;
     outline: none;
     text-decoration: none;
     border: 0;
 }
-

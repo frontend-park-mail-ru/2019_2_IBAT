@@ -1,8 +1,9 @@
-import { IndexView } from '../views/Index/IndexView';
 import { IndexModel } from '../models/IndexModel';
+import { IndexView } from '../views/Index/IndexView';
+import { Controller } from '../modules/controller';
 import { EventBus } from '../modules/eventbus';
 
-const eventList=[
+const eventList = [
   'getVacancies',
   'getVacanciesSuccess',
   'getVacanciesFailed',
@@ -13,12 +14,14 @@ const eventList=[
   'checkAuthResponse'
 ];
 
-export class IndexController {
-  constructor (root, globalEventBus) {
-    this._eventBus = new EventBus(eventList);
+export class IndexController extends Controller {
+  constructor (root, globalEventBus, router) {
+    super(root, globalEventBus, null)
 
-    this.indexView = new IndexView(root, this._eventBus, globalEventBus);
-    this.indexModel = new IndexModel(this._eventBus);
+    const eventBus = new EventBus(eventList);
+
+    this._view = new IndexView(this._root, eventBus, this._globalEventBus);
+    this._model = new IndexModel(eventBus);
   }
 
 }

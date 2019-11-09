@@ -1,6 +1,7 @@
-import { EventBus } from '../modules/eventbus';
-import { SignInView } from '../views/SignIn/SignInView';
 import { SigninModel } from '../models/SigninModel';
+import { SignInView } from '../views/SignIn/SignInView';
+import { Controller } from '../modules/controller';
+import { EventBus } from '../modules/eventbus';
 
 const eventList = [
   'signIn',
@@ -8,15 +9,17 @@ const eventList = [
   'signInFailed',
 ];
 
-export class SigninController {
+export class SigninController extends Controller {
   constructor (root, globalEventBus, router) {
+    super(root, globalEventBus, router);
+
     const eventBus = new EventBus(eventList);
     eventBus.subscribeToEvent('signInSuccess', (data) => {
-      globalEventBus.triggerEvent('headerLoad', data);
-      router.redirect('/');
+      this._globalEventBus.triggerEvent('headerLoad', data);
+      this._router.redirect('/');
     });
 
-    this.signInView = new SignInView(root, eventBus);
-    this.signInModel = new SigninModel(eventBus);
+    this._view = new SignInView(this._root, eventBus);
+    this._model = new SigninModel(eventBus);
   }
 }

@@ -10,6 +10,8 @@
 @import './Button/_stretched/button_stretched.css';
 @import './Button/_disabled/button_disabled.css';
 @import './Link/link.css';
+@import './Icon/icon.css';
+
 @import './Header/header.css';
 @import './Header/__logo/header__logo.css';
 @import './Header/__menu/header__menu.css';
@@ -19,9 +21,12 @@
 @import './Header/__button/header__button.css';
 @import './Header/__profile/header__profile.css';
 @import './Header/__search-button/header__search-button.css';
-@import './Header/__search-icon/header__search-icon.css';
+@import './Header/__search/__search-icon/header__search-icon.css';
 @import './Header/__search/header__search.css';
+@import './Header/__favorites/header__favorites.css';
+@import './Header/__favorites/__favorites-icon/header__favorites-icon.css';
 @import './Header/__profile/__profile-icon/header__profile-icon.css';
+
 @import './Wrapper/wrapper.css';
 @import './Wrapper/__light-page/wrapper__light-page.css';
 @import './Light-page/light-page.css';

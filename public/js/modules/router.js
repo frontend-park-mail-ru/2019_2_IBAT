@@ -5,6 +5,7 @@ const pathsWithId = [
   '/vacancy',
   '/resume'
 ]
+
 export class Router {
   constructor (root) {
     this.root = root;
@@ -22,30 +23,31 @@ export class Router {
   }
 
   /**
-   * Добавление на path нужное view
+   * Добавление на path нужный controller
    * @param {String} path
-   * @param {Object} view
+   * @param {Controller} controller
    */
-  add (path, view) {
-    this.routes.set(path, view);
+  add (path, controller) {
+    this.routes.set(path, controller);
   }
 
   route (path, data = {}) {
-    const currentView = this.routes.get(this.currentRoute);
-    if (currentView) {
-      currentView.hide();
+    const currentController = this.routes.get(this.currentRoute);
+    if (currentController) {
+      currentController.close();
     }
 
     if (window.location.pathname !== path) {
       window.history.pushState(null, null, path);
     }
+    
     const pathWithoutParameters = path.split('?')[0];
     console.log(pathWithoutParameters);
     const routePath = '/' + pathWithoutParameters.split('/')[1];
 
     //TODO костыль, переделать под нормальный роутинг для /vacancy/{id}
     if (this.routes.has(routePath)) {
-      const view = this.routes.get(routePath);
+      const controller = this.routes.get(routePath);
       
       if(pathsWithId.find(el => el == routePath)) {
         let id = this._extractIdFromPath(path);
@@ -53,13 +55,13 @@ export class Router {
       }
       console.log('router-> render(data)', data);
       this.currentRoute = path;
-      view.render(data);
+      controller.openWithData(data);
     } else {
       if (this.routes.has(pathWithoutParameters)) {
-        const view = this.routes.get(pathWithoutParameters);
+        const controller = this.routes.get(pathWithoutParameters);
         this.currentRoute = path;
         console.log('router-> render(data)', data);
-        view.render(data);
+        controller.openWithData(data);
       }
       //Error 404
     }
@@ -79,7 +81,7 @@ export class Router {
         ev.preventDefault();
         this.route(Router._normalizePath(ev.target.pathname));
       }
-    });
+    }, true);
     
     window.addEventListener('popstate', (event) => {
       if (!history.state.url) return;

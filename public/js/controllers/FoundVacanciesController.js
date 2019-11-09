@@ -1,16 +1,19 @@
-import { EventBus } from '../modules/eventbus';
-import { FoundVacanciesView } from '../views/FoundVacancies/FoundVacanciesView';
 import { FoundVacanciesModel } from '../models/FoundVacanciesModel';
+import { FoundVacanciesView } from '../views/FoundVacancies/FoundVacanciesView';
+import { Controller } from '../modules/controller';
+import { EventBus } from '../modules/eventbus';
 
 const eventList = [
-
+  // will appear soon
 ];
 
-export class FoundVacanciesController {
+export class FoundVacanciesController extends Controller {
   constructor (root, globalEventBus, router) {
+    super(root, globalEventBus, router);
+
     const eventBus = new EventBus(eventList);
 
-    this.foundVacanciesView = new FoundVacanciesView(root, eventBus, globalEventBus);
-    this.foundVacanciesModel = new FoundVacanciesModel(eventBus);
+    this._view = new FoundVacanciesView(this._root, eventBus, this._globalEventBus);
+    this._model = new FoundVacanciesModel(eventBus);
   }
 }

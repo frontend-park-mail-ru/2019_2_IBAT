@@ -39,21 +39,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchVacancyController = new SearchVacancyController(content, globalEventBus, router);
   const foundVacanciesController = new FoundVacanciesController(content, globalEventBus, router);
 
-  headerController.headerView.render();
+  headerController.openWithData();
 
-  router.add('/', indexController.indexView);
-  router.add('/signin', signinController.signInView);
-  router.add('/signupseeker', signupSeekerController.signupSeekerView);
-  router.add('/signupemployer', signupEmployerController.signupEmployerView);
-  router.add('/createvacancy', createVacancyController.createVacancyView);
-  router.add('/createresume', createResumeController.createResumeView);
-  router.add('/profile', profileController.profileView);
-  router.add('/vacancy', vacancyPageController.vacancyPageView);
-  router.add('/resume', resumePageController.resumePageView);
+  router.add('/', indexController);
+  router.add('/signin', signinController);
+  router.add('/signupseeker', signupSeekerController);
+  router.add('/signupemployer', signupEmployerController);
+  router.add('/createvacancy', createVacancyController);
+  router.add('/createresume', createResumeController);
+  router.add('/profile', profileController);
+  router.add('/vacancy', vacancyPageController);
+  router.add('/resume', resumePageController);
 
-  router.add('/search/vacancy', searchVacancyController.searchVacancyView);
-  router.add('/vacancies', foundVacanciesController.foundVacanciesView);
-  
-  // router.add('/search/resume', );
+  router.add('/search/vacancy', searchVacancyController);
+  router.add('/vacancies', foundVacanciesController);
+  // router.add('/favorite_vacancies', favoriteVacanciesControler.favoriteVacancies );
   router.start();
 });

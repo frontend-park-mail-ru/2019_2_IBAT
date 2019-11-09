@@ -20,7 +20,7 @@ div.header__fill
 
 div.header__search
     div.header__search-button
-        a.header__search-icon(href=`${searchUrl}`)
+        a.icon.header__search-icon(href=`${searchUrl}`)
         a.header__link(href=`${searchUrl}`) Поиск 
             
 if role
@@ -28,13 +28,17 @@ if role
         when 'seeker'
             a.button.header__button(href='/createresume') Создать резюме
 
+            div.header__favorites
+                a.icon.header__favorites-icon(href='/favorite_vacancies')
+
         when 'employer'
             a.button.header__button(href='/createvacancy') Разместить вакансию
 
-    //- вот тут всё нормалтьно работает с переходом
-    div.header__profile
-        a.header__profile-icon(href='/profile')
+            div.header__favorites
+                a.icon.header__favorites-icon(href='/favorite_resumes')
 
+    div.header__profile
+        a.icon.header__profile-icon(href='/profile')
 
     input.button.header__button(type='button', name='signOut', value='Выйти')
 

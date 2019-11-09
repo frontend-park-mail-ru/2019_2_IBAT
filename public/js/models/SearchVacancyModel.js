@@ -14,9 +14,10 @@ export class SearchVacancyModel {
 
       // Временный костыль, на бэке не обрабатывается остальное
       getParameters += 
-        'region=' + searchParameters['region'] + '&' +
+        // 'region=' + searchParameters['region'] + '&' +
         'wage=' + searchParameters['wage'] + '&' +
         'experience=' + searchParameters['experience'];
+      // конец костыля
 
       searchParameters['type_of_employment'].forEach(element => {
         getParameters += '&type_of_employment=' + element
@@ -26,9 +27,9 @@ export class SearchVacancyModel {
         getParameters += '&work_schedule=' + element
       });
       console.log('getParameters:', getParameters);
+      
       let url = '/vacancies' + getParameters
-      // конец костыля
-
+      
       Api.searchVacancies(getParameters)
         .then (response => {
           console.log(response)

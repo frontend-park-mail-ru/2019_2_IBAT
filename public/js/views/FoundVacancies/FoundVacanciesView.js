@@ -16,10 +16,8 @@ export class FoundVacanciesView extends View {
     console.log(data);
     super.render(data);
 
-    const list = document.createElement('div');
-    list.className = 'list';
-    this._root.appendChild(list);
-
+    const list = document.querySelector('.list');
+    
     if (vacancies) {
       Object.entries(vacancies).forEach(([vacancyId, vacancy]) => {
         new ShortVacancyComponent({ vacancyId, vacancy }).appendToList(list);

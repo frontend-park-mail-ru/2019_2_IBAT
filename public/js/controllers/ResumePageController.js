@@ -1,6 +1,7 @@
-import { EventBus } from '../modules/eventbus';
-import { ResumePageView } from '../views/ResumePage/ResumePageView';
 import { ResumePageModel } from '../models/ResumePageModel';
+import { ResumePageView } from '../views/ResumePage/ResumePageView';
+import { Controller } from '../modules/controller';
+import { EventBus } from '../modules/eventbus';
 
 const eventList = [
   'loadResume',
@@ -8,11 +9,13 @@ const eventList = [
   'loadResumeFailed'
 ];
 
-export class ResumePageController {
+export class ResumePageController extends Controller {
   constructor (root, globalEventBus, router) {
+    super(root, null, null);
+
     const eventBus = new EventBus(eventList);
 
-    this.resumePageView = new ResumePageView(root, eventBus);
-    this.resumePageModel = new ResumePageModel(eventBus);
+    this._view = new ResumePageView(this._root, eventBus);
+    this._view = new ResumePageModel(eventBus);
   }
 }

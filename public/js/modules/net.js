@@ -43,9 +43,13 @@ export default class Net {
      * @returns {Promise<Response>}
      */
     static doDelete ({ url = '/', body = {} } = {}) {
+        let token = localStorage.getItem('token');
         return fetch(Net.getServerURL() + url, {
             method: 'DELETE',
-            credentials: 'include'
+            credentials: 'include',
+            headers: { 
+                'X-CSRF-Token': token
+            }
         });
     }
 
@@ -56,13 +60,15 @@ export default class Net {
      * @returns {Promise<Response>}
      */
     static doPut ({ url = '/', body = {} } = {}) {
+        let token = localStorage.getItem('token');
         return fetch(Net.getServerURL() + url, {
             method: 'PUT',
             body: JSON.stringify(body),
             credentials: 'include',
             mode: 'cors',
             headers: {
-                'Content-Type': 'application/json; charset=utf-8'
+                'Content-Type': 'application/json; charset=utf-8',
+                'X-CSRF-Token': token
             }
         });
     }
@@ -82,11 +88,15 @@ export default class Net {
      * @returns {Promise<Response>}
      */
     static doPostFormData ({ url = '/', body = {} } = {}) {
+        let token = localStorage.getItem('token');
         return fetch(Net.getServerURL() + url, {
             method: 'POST',
             body,
             mode: 'cors',
-            credentials: 'include'
+            credentials: 'include',
+            headers: {
+                'X-CSRF-Token': token
+            }
         });
     }
 }

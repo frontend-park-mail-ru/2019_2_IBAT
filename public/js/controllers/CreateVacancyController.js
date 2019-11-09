@@ -1,6 +1,7 @@
-import { EventBus } from '../modules/eventbus';
-import { CreateVacancyView } from '../views/CreateVacancy/CreateVacancyView';
 import { CreateVacancyModel } from '../models/CreateVacancyModel';
+import { CreateVacancyView } from '../views/CreateVacancy/CreateVacancyView';
+import { Controller } from '../modules/controller';
+import { EventBus } from '../modules/eventbus';
 
 const eventList = [
   'createVacancy',
@@ -8,13 +9,16 @@ const eventList = [
   'createFailed'
 ];
 
-export class CreateVacancyController {
+export class CreateVacancyController extends Controller {
   constructor (root, globalEventBus, router) {
+    super(root, globalEventBus, router);
+
     const eventBus = new EventBus(eventList);
     eventBus.subscribeToEvent('createSuccess', (_)=>{
-      router.redirect('/');
+      this._router.redirect('/');
     });
-    this.createVacancyView = new CreateVacancyView(root, eventBus, globalEventBus);
-    this.createVacancyModel = new CreateVacancyModel(eventBus);
+
+    this._view = new CreateVacancyView(this._root, eventBus, this._globalEventBus);
+    this._model = new CreateVacancyModel(eventBus);
   }
 }
