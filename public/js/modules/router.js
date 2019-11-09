@@ -21,7 +21,7 @@ export class Router {
   redirect(path, data = {}) {
     this.route(path, data)
   }
-
+  
   /**
    * Добавление на path нужный controller
    * @param {String} path

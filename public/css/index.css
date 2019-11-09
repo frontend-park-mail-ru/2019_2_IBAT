@@ -71,6 +71,9 @@
 @import './Search/__currency/search__currency.css';
 @import './Search/__experience/search__experience.css';
 @import './Search/search.css';
+
+@import './Favorite-vacancies/favorite-vacancies.css';
+@import './Favorite-vacancies/__no-vacancies/favorite-vacancies__no-vacancies.css';
 /* do not touch anything above*/
 
 @import 'card_list.css';

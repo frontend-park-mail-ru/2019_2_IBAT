@@ -189,4 +189,14 @@ export class Api {
       url: '/employer' + '/' + id
     });
   }
+
+  /**
+   * Запрос на избранные вакансии
+   * @returns {Promise<Response>}
+   */
+  static getFavoriteVacancies( ){
+    return Net.doGet({
+      url: '/favorite_vacancies'
+    });
+  }
 }

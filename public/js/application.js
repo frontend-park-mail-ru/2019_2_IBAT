@@ -13,6 +13,7 @@ import { VacancyPageController } from './controllers/VacancyPageController';
 import { ResumePageController } from './controllers/ResumePageController';
 import { SearchVacancyController } from './controllers/SearchVacancyController';
 import { FoundVacanciesController } from './controllers/FoundVacanciesController';
+import { FavoriteVacanciesController } from './controllers/FavoriteVacanciesController';
 
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.querySelector('.page');
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const content = document.querySelector('.main-content');
 
   const router = new Router(body);
-
+  
   const globalEventBus = new EventBus([
     'headerLoad',
     'getRoleFromHeader',
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const resumePageController = new ResumePageController(content, router);
   const searchVacancyController = new SearchVacancyController(content, globalEventBus, router);
   const foundVacanciesController = new FoundVacanciesController(content, globalEventBus, router);
+  const favoriteVacanciesController = new FavoriteVacanciesController(content, globalEventBus, router);
 
   headerController.openWithData();
 
@@ -53,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   router.add('/search/vacancy', searchVacancyController);
   router.add('/vacancies', foundVacanciesController);
-  // router.add('/favorite_vacancies', favoriteVacanciesControler.favoriteVacancies );
+  router.add('/favorite_vacancies', favoriteVacanciesController);
+
   router.start();
 });
