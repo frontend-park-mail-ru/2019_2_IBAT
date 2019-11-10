@@ -10,7 +10,11 @@ export class Api {
   }
 
   /**
-   * Авторизует пользователя
+   * Авторизует  static getVacancies () {
+    return Net.doGet({
+      url: '/vacancies',
+    });
+  }пользователя
    * @returns {Promise<Response>}
    * @param user
    */
@@ -170,12 +174,8 @@ export class Api {
    * @param id
    */
   static getVacancyById (id = {}) {
-    let vacancyId = id['id'];
-    let vacancyid = {id};
-    console.log('vacancyid', vacancyId);
-    console.log('vacancyId', vacancyid);
     return Net.doGet({
-      url: '/vacancy' + '/' + vacancyId
+      url: '/vacancy' + '/' + id
     });
   }
 
