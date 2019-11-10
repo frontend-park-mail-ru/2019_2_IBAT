@@ -6,13 +6,18 @@ import { EventBus } from '../modules/eventbus';
 const eventList = [
   'loadVacancy',
   'loadVacancySuccess',
-  'loadVacancyFailed'
+  'loadVacancyFailed',
+  'respondToVacancy'
 ];
 
 export class VacancyPageController extends Controller {
   constructor (root, globalEventBus, router) {
     super(root, null, null);
     const eventBus = new EventBus(eventList);
+
+    eventBus.subscribeToEvent('respondToVacancy', data => {
+      router.route('/chooseResumePage', data);
+    });
 
     this._view = new VacancyPageView(this._root, eventBus);
     this._model = new VacancyPageModel(eventBus);

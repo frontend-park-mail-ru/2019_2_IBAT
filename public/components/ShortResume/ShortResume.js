@@ -1,15 +1,15 @@
 import template from './shortResume.pug';
 
 export class ShortResumeComponent {
-  constructor (data = {}) {
-    this._data = data;
+  constructor (resume = {}, isChooseMode = false) {
+    this._resume = resume;
 
-    this._resume = document.createElement('div');
-    this._resume.className = 'card';
-    this._resume.innerHTML = template(this._data);
+    this._resumeCard = document.createElement('div');
+    this._resumeCard.classList.add('card');
+    this._resumeCard.innerHTML = template({ ...this._resume, isChooseMode });
   }
 
   appendToList (list) {
-    list.appendChild(this._resume);
+    list.appendChild(this._resumeCard);
   }
 }

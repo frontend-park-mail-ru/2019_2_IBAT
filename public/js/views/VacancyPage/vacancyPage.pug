@@ -14,3 +14,7 @@ div.left-column
     div.form__row
         span.span О вакансии:
         span.span #{about}
+
+    if role === 'seeker'
+        div.form-row
+            button.button.button_blue(id='respondToVacancyButton', type='submit') Откликнуться

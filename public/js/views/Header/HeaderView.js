@@ -34,7 +34,7 @@ export class HeaderView extends View {
   }
 
   _getRole () {
-    return this._role;
+    this._globalEventBus.triggerEvent('getRoleFromHeaderResponse', this._role);
   }
 }
 

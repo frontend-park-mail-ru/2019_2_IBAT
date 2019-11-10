@@ -3,19 +3,19 @@ import { Api } from '../../js/modules/api';
 import Net from '../../js/modules/net';
 
 export class ShortVacancyComponent{
-    constructor (data = {}) {
-        this._data = data;
+    constructor (vacancy = {}) {
+        this._vacancy = vacancy;
 
-        this._vacancy = document.createElement('div');
-        this._vacancy.className='card';
-        this._vacancy.innerHTML = template(this._data);
+        this._vacancyCard = document.createElement('div');
+        this._vacancyCard.className='card';
+        this._vacancyCard.innerHTML = template(this._vacancy);
 
-        Api.getEmployerById(this._data.vacancy.owner_id)
+        Api.getEmployerById(this._vacancy.owner_id)
           .then(res=>{
               if(res.ok){
-                res.json().then(data=>{
-                  this._vacancy.querySelector('.employer-logo')
-                    .setAttribute('src',`${Net.getServerURL()}/${data.path_to_img}`);
+                res.json().then(employer=>{
+                  this._vacancyCard.querySelector('.employer-logo')
+                    .setAttribute('src',`${Net.getServerURL()}/${employer.path_to_img}`);
                 });
               }
           })
@@ -23,6 +23,6 @@ export class ShortVacancyComponent{
     }
 
     appendToList(list) {
-        list.appendChild(this._vacancy);
+        list.appendChild(this._vacancyCard);
     }
 }

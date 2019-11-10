@@ -14,17 +14,22 @@ export class IndexModel {
     Api.getVacancies()
       .then(res => {
         if (res.ok) {
-          res.json().then(data=>{
-            this._eventBus.triggerEvent('getVacanciesSuccess', data);
+          res.json().then(data => {
+            const vacancies = Object.keys(data).map(key => {
+              return {
+                vacancyId: key,
+                ...data[key]
+              };
+            });
+            this._eventBus.triggerEvent('getVacanciesSuccess', vacancies);
           });
-        }
-        else{
-          res.json().then(data=>{
+        } else {
+          res.json().then(data => {
             this._eventBus.triggerEvent('getVacanciesFailed', data);
           });
         }
       })
-      .catch(err=>{
+      .catch(err => {
         console.error(err);
       });
   }
@@ -33,17 +38,22 @@ export class IndexModel {
     Api.getResumes()
       .then(res => {
         if (res.ok) {
-          res.json().then(data=>{
-            this._eventBus.triggerEvent('getResumesSuccess', data);
+          res.json().then(data => {
+            const resumes = Object.keys(data).map(key => {
+              return {
+                resumeId: key,
+                ...data[key]
+              };
+            });
+            this._eventBus.triggerEvent('getResumesSuccess', resumes);
           });
-        }
-        else{
-          res.json().then(data=>{
+        } else {
+          res.json().then(data => {
             this._eventBus.triggerEvent('getResumesFailed', data);
           });
         }
       })
-      .catch(err=>{
+      .catch(err => {
         console.error(err);
       });
   }

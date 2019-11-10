@@ -25,8 +25,8 @@ export class IndexView extends View {
 
     console.log('INDEX:onGetVacanciesSuccess', vacancies);
     if (vacancies) {
-      Object.entries(vacancies).forEach(([vacancyId, vacancy]) => {
-        new ShortVacancyComponent({ vacancyId, vacancy }).appendToList(list);
+      vacancies.forEach(vacancy => {
+        new ShortVacancyComponent(vacancy).appendToList(list);
       });
     }
   }
@@ -37,8 +37,8 @@ export class IndexView extends View {
     this._root.appendChild(list);
 
     if (resumes) {
-      Object.entries(resumes).forEach(([resumeId, resume]) => {
-        new ShortResumeComponent({ resumeId, resume }).appendToList(list);
+      resumes.forEach(resume => {
+        new ShortResumeComponent(resume).appendToList(list);
       });
     }
   }
