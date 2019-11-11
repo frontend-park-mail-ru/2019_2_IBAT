@@ -1,6 +1,7 @@
 import template from './profile.pug';
 import { View } from '../../modules/view';
 import Validation from '../../modules/validation';
+import { PROFILE } from '../../modules/events';
 
 const errInvalidPasswordData = 'Must contain at least 8 chars';
 const errNotEqualPassRePass = 'Password and Password Repeat are not equal';
@@ -14,19 +15,19 @@ export class ProfileView extends View {
   constructor (root, eventBus) {
     super(root, template, eventBus);
 
-    this._eventBus.subscribeToEvent('loadProfileSuccess',
+    this._globalEventBus.subscribeToEvent(PROFILE.loadProfileSuccess,
       this._onLoadProfileSuccess.bind(this));
-    this._eventBus.subscribeToEvent('loadProfileFailed',
+    this._globalEventBus.subscribeToEvent(PROFILE.loadProfileFailed,
       this._onLoadProfileFailed.bind(this));
 
-    this._eventBus.subscribeToEvent('saveAvatarFailed',
+    this._globalEventBus.subscribeToEvent(PROFILE.saveAvatarFailed,
       this._onSaveAvatarFailed.bind(this));
-    this._eventBus.subscribeToEvent('saveAvatarSuccess',
+    this._globalEventBus.subscribeToEvent(PROFILE.saveAvatarSuccess,
       this._onSaveAvatarSuccess.bind(this));
   }
 
   render (data = {}) {
-    this._eventBus.triggerEvent('loadProfile');
+    this._globalEventBus.triggerEvent(PROFILE.loadProfile);
   }
 
   _onLoadProfileSuccess (data) {
@@ -76,7 +77,7 @@ export class ProfileView extends View {
 
   _onSaveAvatar(){
     const avatar = this._fileInput.files[0] || null;
-    this._eventBus.triggerEvent('saveAvatar', avatar);
+    this._globalEventBus.triggerEvent(PROFILE.saveAvatar, avatar);
   }
 
   _onSaveAvatarFailed (data) {
@@ -125,7 +126,7 @@ export class ProfileView extends View {
         }
       });
       profile['path_to_img'] = this._avatar.src;
-      this._eventBus.triggerEvent('saveProfile', profile, this._role);
+      this._globalEventBus.triggerEvent(PROFILE.saveProfile, profile, this._role);
     }
   }
 }

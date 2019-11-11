@@ -2,7 +2,7 @@
   display: flex;
   width: 100%;
   justify-content: center;
-  background: url(../../img/back-form__min_.jpg) no-repeat center top fixed;
+  background: url(/img/back-form__min_.jpg) no-repeat center top fixed;
   color: #fff;
   background-size: cover;
   background-color: #373c55;

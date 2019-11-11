@@ -1,27 +1,51 @@
 import template from './index.pug';
 import { View } from '../../modules/view';
-import { ShortVacancyComponent } from '../../../components/ShortVacncy/ShortVacancy';
+import { ShortVacancyComponent } from '../../../components/ShortVacancy/ShortVacancy';
 import { ShortResumeComponent } from '../../../components/ShortResume/ShortResume';
+import { AUTH, RESUME, VACANCY } from '../../modules/events';
 
 export class IndexView extends View {
-  constructor(root, eventBus, globalEventBus) {
-    super(root, template, eventBus, globalEventBus);
+  constructor (root, globalEventBus) {
+    super(root, template, globalEventBus);
 
-    this._eventBus.subscribeToEvent('getVacanciesSuccess', this._onGetVacanciesSuccess.bind(this));
-    this._eventBus.subscribeToEvent('getResumesSuccess', this._onGetResumesSuccess.bind(this));
-    this._eventBus.subscribeToEvent('checkAuthResponse', this._onAuthResponse.bind(this));
+    this._globalEventBus.subscribeToEvent(AUTH.checkAuthResponse, this._onAuthResponse.bind(this));
+    this._globalEventBus.subscribeToEvent(VACANCY.getVacanciesSuccess, this._onGetVacanciesSuccess.bind(this));
+    this._globalEventBus.subscribeToEvent(RESUME.getResumesSuccess, this._onGetResumesSuccess.bind(this));
   }
 
-  render(data = {}) {
+  render (data = {}) {
     super.render(data);
-
-    this._eventBus.triggerEvent('checkAuth');
+    this._globalEventBus.triggerEvent(AUTH.checkAuth);
   }
 
-  _onGetVacanciesSuccess(vacancies) {
+  _onAuthResponse (data) {
+    if(this.isViewClosed){
+      return;
+    }
+    switch (data.role) {
+      case 'employer': {
+        this._globalEventBus.triggerEvent(RESUME.getResumes);
+        break;
+      }
+      case 'seeker': {
+        this._globalEventBus.triggerEvent(VACANCY.getVacancies);
+        break;
+      }
+      default: {
+        this._globalEventBus.triggerEvent(VACANCY.getVacancies);
+        break;
+      }
+    }
+  }
+
+  _onGetVacanciesSuccess (vacancies) {
+    const left_column = document.createElement('div');
+    left_column.classList.add('left-column');
     const list = document.createElement('div');
     list.className = 'list';
-    this._root.appendChild(list);
+
+    left_column.appendChild(list);
+    this._root.appendChild(left_column);
 
     console.log('INDEX:onGetVacanciesSuccess', vacancies);
     if (vacancies) {
@@ -31,34 +55,20 @@ export class IndexView extends View {
     }
   }
 
-  _onGetResumesSuccess(resumes) {
+  _onGetResumesSuccess (resumes) {
+    const left_column = document.createElement('div');
+    left_column.classList.add('left-column');
     const list = document.createElement('div');
     list.className = 'list';
-    this._root.appendChild(list);
 
+    left_column.appendChild(list);
+    this._root.appendChild(left_column);
+
+    console.log('INDEX:onGetResumesSuccess', resumes);
     if (resumes) {
       resumes.forEach(resume => {
         new ShortResumeComponent(resume).appendToList(list);
       });
-    }
-  }
-
-  _onAuthResponse(data) {
-    this._role = data.role;
-
-    switch (this._role) {
-      case 'employer': {
-        this._eventBus.triggerEvent('getResumes');
-        break;
-      }
-      case 'seeker': {
-        this._eventBus.triggerEvent('getVacancies');
-        break;
-      }
-      default: {
-        this._eventBus.triggerEvent('getVacancies');
-        break;
-      }
     }
   }
 }

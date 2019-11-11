@@ -9,7 +9,7 @@ case role
 
 div.header__logo
     a(href='/')
-        img(src='img/ibat.jpg', alt='logo')
+        img(src='/img/ibat.jpg', alt='logo')
 
 if role === 'seeker'
     nav.header__menu
@@ -21,8 +21,8 @@ div.header__fill
 div.header__search
     div.header__search-button
         a.icon.header__search-icon(href=`${searchUrl}`)
-        a.header__link(href=`${searchUrl}`) Поиск 
-            
+        a.header__link(href=`${searchUrl}`) Поиск
+
 if role
     case role
         when 'seeker'

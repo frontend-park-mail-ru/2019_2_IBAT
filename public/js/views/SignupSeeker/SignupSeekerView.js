@@ -1,17 +1,18 @@
 import template from './signupseeker.pug';
 import { View } from '../../modules/view';
 import Validation from '../../modules/validation';
+import { AUTH } from '../../modules/events';
 
 const errInvalidPasswordData = 'Must contain at least 8 chars';
 const errNotEqualPassRePass = 'Password and Password Repeat are not equal';
 
 export class SignupSeekerView extends View {
-  constructor(root, eventBus) {
-    super(root, template, eventBus);
-    this._eventBus.subscribeToEvent('signUpFailed', this._onSubmitFailed.bind(this));
+  constructor (root, globalEventBus) {
+    super(root, template, globalEventBus);
+    this._globalEventBus.subscribeToEvent(AUTH.signUpFailed, this._onSubmitFailed.bind(this));
   }
 
-  render(data = {}) {
+  render (data = {}) {
     super.render(data);
 
     this._signupForm = this._root.querySelector('.signup-form');
@@ -20,15 +21,14 @@ export class SignupSeekerView extends View {
     this.setValidationOnChangeListeners();
   }
 
-  setValidationOnChangeListeners() {
+  setValidationOnChangeListeners () {
     const login = this._signupForm.elements['login'];
     const password = this._signupForm.elements['password'];
     const passwordConfirm = this._signupForm.elements['passwordConfirm'];
 
-    
     password.addEventListener(
       'input',
-      function(event) {
+      function (event) {
         let error = event.target.nextElementSibling;
         View._removeInputError(event.target, error);
       },
@@ -37,7 +37,7 @@ export class SignupSeekerView extends View {
 
     passwordConfirm.addEventListener(
       'input',
-      function(event) {
+      function (event) {
         let error = event.target.nextElementSibling;
         View._removeInputError(event.target, error);
       },
@@ -46,7 +46,7 @@ export class SignupSeekerView extends View {
 
     login.addEventListener(
       'input',
-      function(event) {
+      function (event) {
         let notValid = Validation.validateEmail(event.target.value, true);
         let error = event.target.nextElementSibling;
         if (Validation.isEmptyField(event.target.value) || !notValid) {
@@ -59,13 +59,13 @@ export class SignupSeekerView extends View {
     );
   }
 
-  _onSubmitFailed(data) {
+  _onSubmitFailed (data) {
     const login = this._signupForm.querySelector('[name="login"]');
     const error = login.nextElementSibling;
     View._addInputError(login, error, data.error);
   }
 
-  _onSubmit(ev) {
+  _onSubmit (ev) {
     ev.preventDefault();
     let wasfail = false;
 
@@ -81,7 +81,7 @@ export class SignupSeekerView extends View {
 
     if (!email.validity.valid) {
       let error = email.nextElementSibling;
-      View._addInputError(email, error,'Неверный email!');
+      View._addInputError(email, error, 'Неверный email!');
       wasfail = true;
     }
 
@@ -89,7 +89,7 @@ export class SignupSeekerView extends View {
     if (testPass) {
       if (testPass === errInvalidPasswordData) {
         let error = password.nextElementSibling;
-        View._addInputError(password, error,'Пароль должен иметь 8 символов, 1 цифру, 1 в верхнем и 1 в нижнем регистре');
+        View._addInputError(password, error, 'Пароль должен иметь 8 символов, 1 цифру, 1 в верхнем и 1 в нижнем регистре');
         View._addInputError(passwordConfirm);
         wasfail = true;
       }
@@ -113,7 +113,7 @@ export class SignupSeekerView extends View {
         second_name: lastName.value,
         password: password.value,
       };
-      this._eventBus.triggerEvent('signUp', user);
+      this._globalEventBus.triggerEvent(AUTH.signUpSeeker, user);
     }
   }
 }

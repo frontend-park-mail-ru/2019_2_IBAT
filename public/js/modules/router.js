@@ -27,7 +27,7 @@ export class Router {
   redirect (path, data = {}) {
     this.route(path, data, true);
   }
-  
+
   /**
    * Добавление на path нужный controller
    * @param {String} path
@@ -38,7 +38,7 @@ export class Router {
   }
 
   route (path, addToHistory = true, data = {}) {
-    const currentController = this.routes.get(this.currentRoute);
+    const currentController = this.routes.get(this._getRoutePath(this.currentRoute));
     if (currentController) {
       currentController.close();
     }
@@ -49,7 +49,7 @@ export class Router {
 
     const pathWithoutParameters = path.split('?')[0];
     console.log(pathWithoutParameters);
-    const routePath = '/' + pathWithoutParameters.split('/')[1];
+    const routePath = this._getRoutePath(pathWithoutParameters);
 
     //TODO костыль, переделать под нормальный роутинг для /vacancy/{id}
     if (this.routes.has(routePath)) {
@@ -71,6 +71,18 @@ export class Router {
         controller.openWithData(data);
       }
       //Error 404
+    }
+  }
+
+  /**
+   * Получает первичный маршрут для роутинга без параметров запроса
+   * @param pathWithoutParameters
+   * @returns {string}
+   * @private
+   */
+  _getRoutePath(pathWithoutParameters){
+    if(pathWithoutParameters){
+      return  '/' + pathWithoutParameters.split('/')[1];
     }
   }
 

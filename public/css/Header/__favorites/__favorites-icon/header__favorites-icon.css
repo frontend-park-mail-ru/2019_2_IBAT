@@ -1,5 +1,5 @@
 .header__favorites-icon {
-  background-image: url(../../../../img/favorites__min_.svg);
+  background-image: url(/img/favorites__min_.svg);
 }
 
 .header__favorites-icon:hover {

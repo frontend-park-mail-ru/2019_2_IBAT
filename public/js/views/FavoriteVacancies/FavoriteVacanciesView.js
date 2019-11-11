@@ -1,6 +1,6 @@
 import template from './favoriteVacancies.pug';
 import { View } from '../../modules/view';
-import { ShortVacancyComponent } from '../../../components/ShortVacncy/ShortVacancy';
+import { ShortVacancyComponent } from '../../../components/ShortVacancy/ShortVacancy';
 
 export class FavoriteVacanciesView extends View {
 
@@ -17,7 +17,7 @@ export class FavoriteVacanciesView extends View {
     super.render(data);
 
     const list = document.querySelector('.list');
-    
+
     if (vacancies) {
       Object.entries(vacancies).forEach(([vacancyId, vacancy]) => {
         new ShortVacancyComponent({ vacancyId, vacancy }).appendToList(list);

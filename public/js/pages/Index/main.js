@@ -2,7 +2,7 @@ import { renderBase } from '../../../utils/util';
 import { Api } from '../../modules/api.js';
 import { HeaderComponent } from '../../../components/Header/Header.js';
 import { SignupMenuComponent } from '../../../components/SignupMenu/SignupMenu';
-import { ShortVacancyComponent } from '../../../components/ShortVacncy/ShortVacancy';
+import { ShortVacancyComponent } from '../../../components/ShortVacancy/ShortVacancy';
 
 export class MainPage {
     constructor() {

@@ -1,14 +1,15 @@
 import template from './signin.pug';
 import { View } from '../../modules/view';
 import Validation from '../../modules/validation';
+import { AUTH } from '../../modules/events';
 
 export class SignInView extends View {
-  constructor(root, eventBus) {
-    super(root, template, eventBus);
-    this._eventBus.subscribeToEvent('signInFailed', this._onSubmitFailed.bind(this));
+  constructor (root, globalEventBus) {
+    super(root, template, globalEventBus);
+    this._globalEventBus.subscribeToEvent(AUTH.signInFailed, this._onSubmitFailed.bind(this));
   }
 
-  render(data = {}) {
+  render (data = {}) {
     super.render(data);
 
     this._loginForm = this._root.querySelector('.login__form-js');
@@ -17,31 +18,31 @@ export class SignInView extends View {
     this.setValidationListeners();
   }
 
-  setValidationListeners() {
+  setValidationListeners () {
     const email = this._loginForm.elements['email'];
 
     email.addEventListener(
       'input',
-      function(event) {
+      function (event) {
         let notValid = Validation.validateEmail(event.target.value, true);
         let error = event.target.nextElementSibling;
         if (Validation.isEmptyField(event.target.value) || !notValid) {
           View._removeInputError(event.target, error);
         } else {
-          View._addInputError(event.target, error,'Некорректный email');
+          View._addInputError(event.target, error, 'Некорректный email');
         }
       },
       false
     );
   }
 
-  _onSubmitFailed(data) {
+  _onSubmitFailed (data) {
     let error = this._root.querySelector('.light-page__error-js');
     error.classList.add('light-page__error_active');
     error.innerHTML = `<p>${data.error}<p>`;
   }
 
-  _onSubmit(ev) {
+  _onSubmit (ev) {
     ev.preventDefault();
     let wasfail = false;
 
@@ -58,7 +59,7 @@ export class SignInView extends View {
         email: email.value,
         password: password.value,
       };
-      this._eventBus.triggerEvent('signIn', user);
+      this._globalEventBus.triggerEvent(AUTH.signIn, user);
     }
   }
 }

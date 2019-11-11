@@ -1,11 +1,12 @@
 import template from './signupemployer.pug';
 import { View } from '../../modules/view';
 import Validation from '../../modules/validation';
+import { AUTH } from '../../modules/events';
 
 export class SignupEmployerView extends View {
-  constructor(root, eventBus) {
-    super(root, template, eventBus);
-    this._eventBus.subscribeToEvent('signUpFailed', this._onSubmitFailed.bind(this));
+  constructor(root, globalEventBus) {
+    super(root, template, globalEventBus);
+    this._globalEventBus.subscribeToEvent(AUTH.signUpFailed, this._onSubmitFailed.bind(this));
   }
 
   render(data = {}) {
@@ -64,7 +65,6 @@ export class SignupEmployerView extends View {
     const firstName = this._signupForm.elements['firstName'];
     const lastName = this._signupForm.elements['secondName'];
     const phoneNumber = this._signupForm.elements['phoneNumber'];
-    // const extraPhoneNumber = this._signupForm.elements['extraPhoneNumber'];
     const password = this._signupForm.elements['pass'];
     const passwordConfirm = this._signupForm.elements['repass'];
 
@@ -107,7 +107,7 @@ export class SignupEmployerView extends View {
         // extra_number: extraPhoneNumber.value,
         password: password.value,
       };
-      this._eventBus.triggerEvent('signUp', user);
+      this._globalEventBus.triggerEvent(AUTH.signUpEmployer, user);
     }
   }
 }

@@ -1,8 +1,8 @@
 - const vacancyName = `${profession}/${position}`;
-- const text = about + '/n' + requirements
+- const text = about + '\n' + requirements
 
-a(href=`/vacancy/${vacancyId}`) #{vacancyName}
-span.card__span #{wage} руб.
+a(href=`/vacancy/${id}`) #{vacancyName}
+span.card__span От #{wage_from} до #{wage_to}
 span.card__span #{company_name}
     a(href=`employer/${owner_id}`)
 div.vacancy-serp-item__row

@@ -1,8 +1,15 @@
 import { Router } from './modules/router';
 import { EventBus } from './modules/eventbus';
 
-import { IndexController } from './controllers/IndexController';
 import { HeaderController } from './controllers/HeaderController';
+import { IndexController } from './controllers/IndexController';
+import { AUTH, RESUME, VACANCY, PROFILE } from './modules/events';
+
+import authModel from './models/AuthModel';
+import vacancyModel from './models/VacancyModel';
+import resumeModel from './models/ResumeModel';
+import profileModel from './models/ProfileModel';
+
 import { SigninController } from './controllers/SigninController';
 import { SignupSeekerController } from './controllers/SignupSeekerController';
 import { SignupEmployerController } from './controllers/SignupEmployerController';
@@ -20,23 +27,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const header = document.querySelector('header');
   const content = document.querySelector('.main-content');
 
+  const globalEventBus = new EventBus([AUTH, VACANCY, RESUME, PROFILE].map(model => Object.values(model)).flat());
+  const models = {
+    auth: authModel,
+    vacancy: vacancyModel,
+    resume: resumeModel,
+    profile: profileModel
+  };
+  Object.values(models).forEach(model => model.setGlobalEventBus(globalEventBus));
+
   const router = new Router(body);
-  
-  const globalEventBus = new EventBus([
-    'headerLoad',
-    'getRoleFromHeader',
-  ]);
 
   const headerController = new HeaderController(header, globalEventBus, router);
-  const indexController = new IndexController(content, globalEventBus);
+  const indexController = new IndexController(content, globalEventBus, router);
   const signinController = new SigninController(content, globalEventBus, router);
   const signupSeekerController = new SignupSeekerController(content, globalEventBus, router);
   const signupEmployerController = new SignupEmployerController(content, globalEventBus, router);
   const createVacancyController = new CreateVacancyController(content, globalEventBus, router);
   const createResumeController = new CreateResumeController(content, globalEventBus, router);
-  const profileController = new ProfileController(content, router);
-  const vacancyPageController = new VacancyPageController(content, router);
-  const resumePageController = new ResumePageController(content, router);
+  const profileController = new ProfileController(content, globalEventBus, router);
+  const vacancyPageController = new VacancyPageController(content,globalEventBus, router);
+  const resumePageController = new ResumePageController(content, globalEventBus, router);
   const searchVacancyController = new SearchVacancyController(content, globalEventBus, router);
   const foundVacanciesController = new FoundVacanciesController(content, globalEventBus, router);
   const favoriteVacanciesController = new FavoriteVacanciesController(content, globalEventBus, router);

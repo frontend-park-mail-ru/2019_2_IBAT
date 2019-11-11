@@ -1,27 +1,17 @@
-import { IndexModel } from '../models/IndexModel';
 import { IndexView } from '../views/Index/IndexView';
 import { Controller } from '../modules/controller';
-import { EventBus } from '../modules/eventbus';
-
-const eventList = [
-  'getVacancies',
-  'getVacanciesSuccess',
-  'getVacanciesFailed',
-  'getResumes',
-  'getResumesSuccess',
-  'getResumesFailed',
-  'checkAuth',
-  'checkAuthResponse'
-];
+import { AUTH } from '../modules/events';
 
 export class IndexController extends Controller {
   constructor (root, globalEventBus, router) {
-    super(root, globalEventBus, null)
+    super(root, globalEventBus, router);
 
-    const eventBus = new EventBus(eventList);
+    this._globalEventBus.subscribeToEvent(AUTH.signOutResponse, () => {
+      this._router.redirect('/');
+    });
 
-    this._view = new IndexView(this._root, eventBus, this._globalEventBus);
-    this._model = new IndexModel(eventBus);
+    //TODO по факту можно вообще в контроллере не указывать модели
+    this._view = new IndexView(this._root, this._globalEventBus);
   }
 
 }

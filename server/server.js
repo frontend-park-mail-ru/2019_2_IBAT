@@ -15,9 +15,6 @@ const app = express();
 app.use(express.static(publicDirname));
 
 app.get('*', (req, res) => {
-  console.log(req.path);
-  console.log(__dirname);
-  console.log(publicDirname);
   res.sendFile(indexPath, (err) => {
     res.statusCode = 404;
     res.send(err);

@@ -1,14 +1,14 @@
 import Validation from '../modules/validation';
 
 export class View {
-  constructor (root, template, eventBus, globalEventBus) {
+  constructor (root, template, globalEventBus) {
     this._root = root;
-    this._eventBus = eventBus;
     this._globalEventBus = globalEventBus;
     this._template = template;
+    this.isViewClosed = true;
   }
 
-  static _addInputError(input, error, msg = '') {
+  static _addInputError (input, error, msg = '') {
     if (input) {
       input.classList.add('input_invalid');
     }
@@ -18,23 +18,23 @@ export class View {
     }
   };
 
-  static _validateObligotaryInputs(inputs = {}) {
+  static _validateObligotaryInputs (inputs = {}) {
     let wasfail = false;
     if (inputs) {
       inputs.forEach(input => {
         let error = input.nextElementSibling;
         if (Validation.isEmptyField(input.value)) {
-          this._addInputError(input, error,'Обязательное поле');
+          this._addInputError(input, error, 'Обязательное поле');
           wasfail = true;
         } else {
-          this._removeInputError(input, error)
+          this._removeInputError(input, error);
         }
       });
     }
     return wasfail;
   }
 
-  static _removeInputError(input, error) {
+  static _removeInputError (input, error) {
     if (input) {
       input.classList.remove('input_invalid');
     }
@@ -46,9 +46,11 @@ export class View {
 
   render (data) {
     this._root.innerHTML = this._template(data);
+    this.isViewClosed = false;
   }
 
   hide () {
     this._root.innerHTML = '';
+    this.isViewClosed = true;
   }
 }

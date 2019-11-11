@@ -1,25 +1,16 @@
-import { SearchVacancyModel } from '../models/SearchVacancyModel';
 import { SearchVacancyView } from '../views/SearchVacancy/SearchVacancyView';
 import { Controller } from '../modules/controller';
-import { EventBus } from '../modules/eventbus';
+import { VACANCY } from '../modules/events';
 
-const eventList = [
-    'find',
-    'searchSuccess',
-    'searchFailed',
-];
-  
-export class SearchVacancyController extends Controller{
-    constructor (root, globalEventBus, router) {
-        super(root, null, router);
+export class SearchVacancyController extends Controller {
+  constructor (root, globalEventBus, router) {
+    super(root, globalEventBus, router);
 
-        const eventBus = new EventBus(eventList);
-        eventBus.subscribeToEvent('searchSuccess', (url, vacancies) => {
-            console.log('searchcontroller', url, vacancies);
-            this._router.redirect(url, vacancies);
-        });
+    this._globalEventBus.subscribeToEvent(VACANCY.searchSuccess, (url, vacancies) => {
+      console.log('searchcontroller', url, vacancies);
+      this._router.redirect(url, vacancies);
+    });
 
-        this._view= new SearchVacancyView(this._root, eventBus);
-        this._model = new SearchVacancyModel(eventBus);
-    }
+    this._view = new SearchVacancyView(this._root, this._globalEventBus);
+  }
 }

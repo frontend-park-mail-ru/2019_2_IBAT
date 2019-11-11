@@ -1,40 +1,28 @@
 import template from './header.pug';
 import { View } from '../../modules/view';
+import { AUTH } from '../../modules/events';
 
 export class HeaderView extends View {
 
-  constructor (root, eventBus, globalEventBus) {
-    super(root, template, eventBus, globalEventBus);
+  constructor (root, globalEventBus) {
+    super(root, template, globalEventBus);
 
-    this._eventBus.subscribeToEvent('checkAuthResponse', this._onAuthResponse.bind(this));
-    this._eventBus.subscribeToEvent('signOutResponse', this._onAuthResponse.bind(this));
-    this._globalEventBus.subscribeToEvent('headerLoad', this._onRenderHeader.bind(this));
-    this._globalEventBus.subscribeToEvent('getRoleFromHeader', this._getRole.bind(this));
+    this._globalEventBus.subscribeToEvent(AUTH.checkAuthResponse, this._onAuthResponse.bind(this));
   }
 
   render (data = {}) {
     super.render(data);
-    this._eventBus.triggerEvent('checkAuth');
   }
 
-  _onRenderHeader (data) {
+  _onAuthResponse (data) {
     super.render(data);
-    this._role = data.role;
 
     const signOutButton = this._root.querySelector('input[name=signOut]');
     if (signOutButton) {
       signOutButton.addEventListener('click', (ev) => {
-        this._eventBus.triggerEvent('signOut');
+        this._globalEventBus.triggerEvent('signOut');
       });
     }
-  }
-
-  _onAuthResponse (data) {
-    this._globalEventBus.triggerEvent('headerLoad', data);
-  }
-
-  _getRole () {
-    this._globalEventBus.triggerEvent('getRoleFromHeaderResponse', this._role);
   }
 }
 

@@ -1,20 +1,37 @@
 import template from './resumePage.pug';
 import { View } from '../../modules/view';
+import { AUTH, RESUME } from '../../modules/events';
 
 export class ResumePageView extends View {
 
-  constructor (root, eventBus) {
-    super(root, template, eventBus);
+  constructor (root, globalEventBus) {
+    super(root, template, globalEventBus);
 
-    this._eventBus.subscribeToEvent('loadResumeSuccess', this._onLoadResumeSuccess.bind(this));
+    this._globalEventBus.subscribeToEvent(AUTH.checkAuthResponse, this._onAuthResponse.bind(this));
+    this._globalEventBus.subscribeToEvent(RESUME.getResumeSuccess, this._onLoadResumeSuccess.bind(this));
   }
 
   render (data = {}) {
-    this._eventBus.triggerEvent('loadResume', data);
-    // super.render(data);
+    super.render(data);
+
+    this._globalEventBus.triggerEvent(AUTH.checkAuth);
+    this._data = data;
+
+    this._globalEventBus.triggerEvent('loadResume', data);
   }
 
-  _onLoadResumeSuccess(data){
+  _onAuthResponse (data) {
+    if (this.isViewClosed) {
+      return;
+    }
+    this._data = { role: data.role, ...this._data };
+
+    this._globalEventBus.triggerEvent(RESUME.getResume, this._data.id);
+  }
+
+  _onLoadResumeSuccess (data) {
+    this._data = { ...data, ...this._data };
+
     super.render(data);
   }
 }

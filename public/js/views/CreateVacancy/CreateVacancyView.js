@@ -1,17 +1,19 @@
 import template from './createVacancy.pug';
 import { View } from '../../modules/view';
-import Validation from '../../modules/validation';
+import { AUTH, VACANCY } from '../../modules/events';
 
 export class CreateVacancyView extends View {
 
   constructor (root, eventBus) {
     super(root, template, eventBus);
 
-    this._eventBus.subscribeToEvent('createFailed', this._onSubmitFailed.bind(this));
+    this._globalEventBus.subscribeToEvent(VACANCY.createVacancyFailed, this._onSubmitFailed.bind(this));
   }
 
   render (data = {}) {
     super.render(data);
+
+    this._globalEventBus.triggerEvent(AUTH.checkAuth);
 
     this._createVacancyForm = this._root.querySelector('.vacancy-form');
     this._createVacancyForm.addEventListener('submit', this._onSubmit.bind(this), false);
@@ -20,7 +22,7 @@ export class CreateVacancyView extends View {
   _onSubmitFailed (data) {
     let login = this._signupForm.querySelector('[name="login"]');
     let error = login.nextElementSibling;
-    View._addInputError(login, error, data.error)
+    View._addInputError(login, error, data.error);
   }
 
   _onSubmit (ev) {
@@ -31,11 +33,11 @@ export class CreateVacancyView extends View {
     wasfail = View._validateObligotaryInputs(inputs);
 
     if (!wasfail) {
-      const vacancy={};
-      Array.prototype.forEach.call(this._createVacancyForm.elements, elem=>{
-        vacancy[elem.name]=elem.value;
+      const vacancy = {};
+      Array.prototype.forEach.call(this._createVacancyForm.elements, elem => {
+        vacancy[elem.name] = elem.value;
       });
-      this._eventBus.triggerEvent('createVacancy', vacancy);
+      this._globalEventBus.triggerEvent(VACANCY.createVacancy, vacancy);
     }
   }
 }
