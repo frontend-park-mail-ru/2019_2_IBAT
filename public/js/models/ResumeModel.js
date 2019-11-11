@@ -7,6 +7,7 @@ class ResumeModel {
     this._globalEventBus = globalEventBus;
 
     this._globalEventBus.subscribeToEvent(RESUME.getResumes, this._onGetResumes.bind(this));
+    this._globalEventBus.subscribeToEvent(RESUME.getResume, this._onGetResume.bind(this));
     this._globalEventBus.subscribeToEvent(RESUME.createResume, this._onCreateResume.bind(this));
   }
 
@@ -51,6 +52,25 @@ class ResumeModel {
         console.error(error);
       });
   }
+
+  _onGetResume (id) {
+    Api.getResumeById(id)
+      .then(response => {
+        if (response.ok) {
+          response.json().then(data => {
+            this._globalEventBus.triggerEvent(RESUME.getResumeSuccess, data);
+          });
+        } else {
+          response.json().then(data => {
+            this._globalEventBus.triggerEvent(RESUME.getResumesFailed, data);
+          });
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
 }
 
 export default new ResumeModel();

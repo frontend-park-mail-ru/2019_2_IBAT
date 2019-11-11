@@ -18,6 +18,9 @@ export class SignInView extends View {
     this.setValidationListeners();
   }
 
+  /**
+   * Ставит слушатели на поля для валидации
+   */
   setValidationListeners () {
     const email = this._loginForm.elements['email'];
 
@@ -36,12 +39,22 @@ export class SignInView extends View {
     );
   }
 
+  /**
+   * Вызывается, если авторизация не удалась
+   * @param data
+   * @private
+   */
   _onSubmitFailed (data) {
     let error = this._root.querySelector('.light-page__error-js');
     error.classList.add('light-page__error_active');
     error.innerHTML = `<p>${data.error}<p>`;
   }
 
+  /**
+   * Авторизация пользователя с валидацией полей
+   * @param ev
+   * @private
+   */
   _onSubmit (ev) {
     ev.preventDefault();
     let wasfail = false;

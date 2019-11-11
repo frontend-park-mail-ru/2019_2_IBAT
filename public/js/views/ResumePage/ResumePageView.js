@@ -17,9 +17,14 @@ export class ResumePageView extends View {
     this._globalEventBus.triggerEvent(AUTH.checkAuth);
     this._data = data;
 
-    this._globalEventBus.triggerEvent('loadResume', data);
+    this._globalEventBus.triggerEvent(RESUME.getResume, data);
   }
 
+  /**
+   * Получает данные авторизации(роль юзера) и запрашивает резюме
+   * @param data
+   * @private
+   */
   _onAuthResponse (data) {
     if (this.isViewClosed) {
       return;
@@ -29,6 +34,11 @@ export class ResumePageView extends View {
     this._globalEventBus.triggerEvent(RESUME.getResume, this._data.id);
   }
 
+  /**
+   * Вызывается при успешном получении резюме
+   * @param data
+   * @private
+   */
   _onLoadResumeSuccess (data) {
     this._data = { ...data, ...this._data };
 

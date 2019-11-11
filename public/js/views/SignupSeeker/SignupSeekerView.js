@@ -21,6 +21,9 @@ export class SignupSeekerView extends View {
     this.setValidationOnChangeListeners();
   }
 
+  /**
+   * Ставит слушатели на поля для валидации
+   */
   setValidationOnChangeListeners () {
     const login = this._signupForm.elements['login'];
     const password = this._signupForm.elements['password'];
@@ -59,12 +62,22 @@ export class SignupSeekerView extends View {
     );
   }
 
+  /**
+   * Вызывается если регистрации не удалась
+   * @param data
+   * @private
+   */
   _onSubmitFailed (data) {
     const login = this._signupForm.querySelector('[name="login"]');
     const error = login.nextElementSibling;
     View._addInputError(login, error, data.error);
   }
 
+  /**
+   * Регистрация соискателя
+   * @param ev
+   * @private
+   */
   _onSubmit (ev) {
     ev.preventDefault();
     let wasfail = false;

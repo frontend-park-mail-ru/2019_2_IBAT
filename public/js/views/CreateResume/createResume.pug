@@ -6,12 +6,12 @@ div.left-column
         div.create-resume__section
             span.create-resume__legend Имя
             div.create-resume__input.mb5
-                input.input(type='text', name='first_name')
+                input.input(type='text', value=profile.first_name, name='first_name')
                 span.error(aria-live='polite')
 
             span.create-resume__legend Фамилия
             div.create-resume__input.mb5
-                input.input(type='text', name='second_name')
+                input.input(type='text', value=profile.second_name, name='second_name')
                 span.error(aria-live='polite')
 
             span.create-resume__legend Город

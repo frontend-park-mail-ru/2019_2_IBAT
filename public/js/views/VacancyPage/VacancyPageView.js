@@ -16,9 +16,14 @@ export class VacancyPageView extends View {
     super.render(this._data);
 
     this._globalEventBus.triggerEvent(AUTH.checkAuth);
-    this._data=data;
+    this._data = data;
   }
 
+  /**
+   * Получает данные авторизации(роль юзера) и запрашивает вакансию
+   * @param data
+   * @private
+   */
   _onAuthResponse (data) {
     if (this.isViewClosed) {
       return;
@@ -28,20 +33,32 @@ export class VacancyPageView extends View {
     this._globalEventBus.triggerEvent(VACANCY.getVacancy, this._data.id);
   }
 
+  /**
+   * Получает конкретную вакансию от модели и ставит слушатель на "Откликнуться"
+   * @param data
+   * @private
+   */
   _onGetVacancySuccess (data) {
     this._data = { ...data, ...this._data };
 
     super.render(this._data);
 
     this.respondButton = document.getElementById('respondToVacancyButton');
-    this.respondButton.addEventListener('click', (ev) => {
-      //TODO првоерять что отклик уже был дан
-      this._globalEventBus.triggerEvent('respondToVacancy', {
-        vacancyId: document.location.pathname.split('/').pop()
+    if (this.respondButton) {
+      this.respondButton.addEventListener('click', (ev) => {
+        //TODO првоерять что отклик уже был дан
+        this._globalEventBus.triggerEvent('respondToVacancy', {
+          vacancyId: document.location.pathname.split('/').pop()
+        });
       });
-    });
+    }
   }
 
+  /**
+   * Вызывется при ошибке получения вакансии
+   * @param error
+   * @private
+   */
   _onGetVacancyFailed (error) {
     //
   }

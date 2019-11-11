@@ -14,6 +14,11 @@ export class HeaderView extends View {
     super.render(data);
   }
 
+  /**
+   * Получает данные авторизации с модели и обновляет headerView
+   * @param data
+   * @private
+   */
   _onAuthResponse (data) {
     super.render(data);
 

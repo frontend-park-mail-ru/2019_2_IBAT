@@ -18,6 +18,9 @@ export class SignupEmployerView extends View {
     this.setValidationOnChangeListeners();
   }
 
+  /**
+   * Ставит слушатели на поля для валидации
+   */
   setValidationOnChangeListeners() {
     const login = this._signupForm.elements['login'];
     const inputs = this._signupForm.querySelectorAll('input');
@@ -48,12 +51,22 @@ export class SignupEmployerView extends View {
     );
   }
 
+  /**
+   * Вызывается если регистрации не удалась
+   * @param data
+   * @private
+   */
   _onSubmitFailed(data) {
     let message = this._root.querySelector('.light-page__error-js');
     message.classList.add('light-page__error_active');
     message.innerHTML = `<p>${data.error}<p>`;
   }
 
+  /**
+   * Регистрация работадателя
+   * @param ev
+   * @private
+   */
   _onSubmit(ev) {
     ev.preventDefault();
     let wasfail = false;

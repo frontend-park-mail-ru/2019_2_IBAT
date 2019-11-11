@@ -18,6 +18,11 @@ export class IndexView extends View {
     this._globalEventBus.triggerEvent(AUTH.checkAuth);
   }
 
+  /**
+   * Получает данные авторизации(роль юзера) и запрашивает нужные данные в зависимости от роли
+   * @param data
+   * @private
+   */
   _onAuthResponse (data) {
     if(this.isViewClosed){
       return;
@@ -38,6 +43,11 @@ export class IndexView extends View {
     }
   }
 
+  /**
+   * Получает вакансии от модели и отображает списком
+   * @param vacancies
+   * @private
+   */
   _onGetVacanciesSuccess (vacancies) {
     const left_column = document.createElement('div');
     left_column.classList.add('left-column');
@@ -55,6 +65,11 @@ export class IndexView extends View {
     }
   }
 
+  /**
+   * Получает резюме от модели и отображает списком
+   * @param resumes
+   * @private
+   */
   _onGetResumesSuccess (resumes) {
     const left_column = document.createElement('div');
     left_column.classList.add('left-column');
