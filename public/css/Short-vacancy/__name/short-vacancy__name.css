@@ -1,0 +1,6 @@
+.short-vacancy__name {
+    font-size: 18px;
+    display: inline;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}

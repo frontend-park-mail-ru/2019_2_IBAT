@@ -1,12 +1,35 @@
-- const vacancyName = `${profession}/${position}`;
+- const vacancyName = `${position}`;
 - const text = about + '\n' + requirements
 
-a(href=`/vacancy/${id}`) #{vacancyName}
-span.card__span От #{wage_from} до #{wage_to}
-span.card__span #{company_name}
-    a(href=`employer/${owner_id}`)
-div.vacancy-serp-item__row
-    div.vacancy-serp-item__info
-        span.card__span #{text}
-    div.vacancy-serp-item__sidebar
-        img.employer-logo
+    div.short-vacancy.short-vacancy_gold
+        div.short-vacancy__row
+            div.short-vacancy__info
+                a.link.bloko-link(href=`/vacancy/${id}`) #{vacancyName}
+            div.short-vacancy__sidebar 
+                if wage_from != 0 && wage_to != 0
+                    div #{wage_from}-#{wage_to} руб.
+                if wage_from != 0 && wage_to == 0
+                    div от #{wage_from} руб.
+                                    
+        div.short-vacancy__meta-info
+            a.link.bloko-link.bloko-link_secondary(href=`employer/${owner_id}`) #{company_name}
+        div.short-vacancy__meta-info
+            span #{region}
+
+        div.short-vacancy__row
+            div.short-vacancy__info 
+                div #{text}
+            div.short-vacancy__sidebar
+                img.short-vacancy__logo
+        
+        div.short-vacancy__row
+            span.short-vacancy__controls-item
+                span.link.bloko-link.bloko-link_dimmed(href='#') Откликнуться
+            span.short-vacancy__controls-item
+                span(id=id)
+                    span.link.bloko-link.bloko-link_dimmed 
+                        span.short-vacancy__favorite_on В избранное
+                    if status
+                        span.short-vacancy__status #{status}
+                    //-    span.short-vacancy__favorite_off В избранном
+                    

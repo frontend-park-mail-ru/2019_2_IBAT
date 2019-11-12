@@ -42,13 +42,13 @@ export class ProfileView extends View {
     super.render(data);
     this._role = data.role;
 
-    this._profileForm = this._root.querySelector('.profile-form');
+    this._profileForm = this._root.querySelector('.profile__form');
     this._profileForm.addEventListener('submit', this._onSaveProfile.bind(this));
 
     this._fileInput = this._root.querySelector('input[name="my_file"]');
     this._fileInput.addEventListener('change', this._onHandleFileSelect.bind(this), false);
 
-    this._avatarButton = this._root.querySelector('.save-avatar');
+    this._avatarButton = this._root.querySelector('button[name="save_avatar"]');
     this._avatarButton.addEventListener('click', this._onSaveAvatar.bind(this));
 
     this._avatar = this._root.querySelector('.thumb');

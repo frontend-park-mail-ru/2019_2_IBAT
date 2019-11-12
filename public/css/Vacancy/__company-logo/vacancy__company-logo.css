@@ -1,0 +1,7 @@
+.vacancy__company-logo {
+    display: flex;
+    max-width: 150px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+}

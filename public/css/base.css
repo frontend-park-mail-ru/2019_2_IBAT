@@ -14,28 +14,25 @@ html {
 }
 
 .thumb {
-  height: 256px;
+  height: 250px;
   border: 1px solid #000;
-  margin: 10px 5px 0 0;
 }
 
 .main-content {
   height: 100%;
   width: 100%;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
 }
 
 .left-column {
-  flex-basis: 66%;
-  display: flex;
-  flex-direction: column;
+  flex-basis: 60%;
   padding: 40px 40px;
   box-sizing: border-box;
 }
 
 .right-column {
-  flex-grow: 1;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  padding: 40px 40px;
 }

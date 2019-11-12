@@ -3,13 +3,19 @@
 @import './base.css';
 @import './Margin/margin.css';
 @import './Input/input.css';
+@import './Block-icon/block-icon.css';
 @import './Button/button.css';
 @import './Button/_blue/button_blue.css';
 @import './Button/_green/button_green.css';
 @import './Button/_small/button_small.css';
 @import './Button/_stretched/button_stretched.css';
 @import './Button/_disabled/button_disabled.css';
+@import './Button/_icon-only/button_icon-only.css';
+@import './Button/_icon-only/button_icon-only.css';
 @import './Link/link.css';
+@import './Link/bloko-link.css';
+@import './Link/bloko-link_dimmed.css';
+@import './Link/bloko-link_secondary.css';
 @import './Icon/icon.css';
 
 @import './Header/header.css';
@@ -40,6 +46,7 @@
 @import './Light-page/__form/light-page__form.css';
 @import './Light-page/__header/light-page__header.css';
 @import './Light-page/__input/light-page__input.css';
+
 @import './Error/error.css';
 @import './Error/_active/error_active.css';
 @import './Error/_active/error_active.css';
@@ -74,16 +81,49 @@
 
 @import './Favorite-vacancies/favorite-vacancies.css';
 @import './Favorite-vacancies/__no-vacancies/favorite-vacancies__no-vacancies.css';
+
+@import './Short-vacancy/short-vacancy.css';
+@import './Short-vacancy/_gold/short-vacancy_gold.css';
+@import './Short-vacancy/__info/short-vacancy__info.css';
+@import './Short-vacancy/__name/short-vacancy__name.css';
+@import './Short-vacancy/__row/short-vacancy__row.css';
+@import './Short-vacancy/__wage/short-vacancy__wage.css';
+@import './Short-vacancy/__controls-item/short-vacancy__controls-item.css';
+@import './Short-vacancy/__meta-info/short-vacancy__meta-info.css';
+@import './Short-vacancy/__logo/short-vacancy__logo.css';
+@import './Short-vacancy/__sidebar/short-vacancy__sidebar.css';
+@import './Short-vacancy/__status/short-vacancy__status.css';
+@import './Vacancy/__company-logo-img/vacancy__company-logo-img.css';
+@import './Vacancy/__company-logo/vacancy__company-logo.css';
+@import './Vacancy/__company-wrapper/vacancy__company-wrapper.css';
+@import './Vacancy/__company/vacancy__company.css';
+@import './Vacancy/__title/vacancy__title.css';
+@import './Vacancy/__company-name/vacancy__company-name.css';
+@import './Vacancy/__salary/vacancy__salary.css';
+@import './Vacancy/__region/vacancy__region.css';
+@import './Vacancy/__action/vacancy__action.css';
+@import './Vacancy/__seeker-actions/vacancy__seeker-actions.css';
+@import './Vacancy/__description/vacancy__description.css';
+
+@import './Profile/__avatar/profile__avatar.css';
+@import './Profile/__hint/profile__hint.css';
+@import './Button/__icon/button__icon.css';
+@import './Profile/__form/profile__form.css';
+@import './Profile/__save-avatar/profile__save-avatar.css';
+@import './Form/__legend/form__legend.css';
+@import './Form/__input/form__input.css';
 /* do not touch anything above*/
 
-@import 'card_list.css';
 
 .list {
   display: flex;
   flex-direction: column;
-  max-width: 600px;
+  max-width: 610px;
 }
-
-.list_active{
-
+p {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
 }

@@ -1,20 +1,44 @@
+
+if wage_from != 0 && wage_to != 0
+    - var salary  = `oт ${wage_from} до ${wage_to}`
+else if wage_from != 0 && wage_to == 0
+    - var salary  = `oт ${wage_from}`
+else
+    - var salary = 'з/п не указана'
+
+-var employment_mode = 'Полная занятость, полный день'
+
 div.left-column
-    h1.title-h1 #{profession}
-    h2.title-h2 #{position}
+    div.vacancy__title
+        h1.title-h1 #{profession} #{position}
+        p.vacancy__salary #{salary}
 
-    div.form__row
-        span.span Оплата - от #{wage_from} до #{wage_to}
-
-    div.form__row
-        span.company-name Компания - #{company_name}
-
-    div.form__row
-        span.span Опыт работы - #{experience}
-
-    div.form__row
-        span.span О вакансии:
-        span.span #{about}
+    div.vacancy__company-wrapper
+        div.vacancy__company
+            a.vacancy__company-name(href=`employer/${owner_id}`) #{company_name}
+            p.vacancy__region #{region}
+        a.vacancy__company-logo(href=`employer/${owner_id}`)
+            img.vacancy__company-logo-image
 
     if role === 'seeker'
-        div.form-row
-            button.button.button_blue(id='respondToVacancyButton', type='submit') Откликнуться
+        div.vacancy__seeker-actions
+            div.vacancy__action
+                button.button.button_green(id='respondToVacancyButton', type='submit') Откликнуться
+            div.vacancy__action
+                button.button.button_icon-only
+                    span.button__icon
+                        span.block-icon.block-icon_favorite.block-icon_initial-impact
+                        //- span.block-icon.block-icon_favorite.block-icon_initial-primary disabled
+
+    div.vacancy__description
+        div.mb25
+            p.vacancy__experience Требуемый опыт работы: #{experience}
+            p.vacancy__employment-mode  #{employment_mode}
+        div.mb25
+            p О вакансии:
+            p #{about}
+            p Требования:
+            p #{requirements}
+            p Условия:
+            p #{conditioms}
+

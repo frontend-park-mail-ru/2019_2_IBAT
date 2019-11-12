@@ -1,3 +1,20 @@
 .link {
+  display: inline;
+  outline: none;
+  border: 0;
   text-decoration: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+  background: transparent;
+  box-shadow: none;
+}
+
+a {
+  color: #09f;
+  text-decoration: none;
+  border: 0;
+  background: transparent;
+  font-size: inherit;
+  outline: none;
 }

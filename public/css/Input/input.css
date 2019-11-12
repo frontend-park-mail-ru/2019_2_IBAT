@@ -46,3 +46,11 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=checkbox] {
   align-self: center;
 }
+
+.upload {
+  margin: 0;
+  width: auto;
+  box-sizing: border-box;
+  font-family: Arial,sans-serif;
+  font-size: 14px;
+}

@@ -1,0 +1,13 @@
+.short-vacancy__sidebar  {
+    flex: 0 0 auto;
+    margin-left: 15px;
+    font-size: 18px;
+}
+
+
+
+@media (max-width: 699px) {
+    .vacancy-serp-item__sidebar {
+        margin-left: 0;
+    }
+}
