@@ -10,7 +10,6 @@ export class IndexController extends Controller {
       this._router.redirect('/');
     });
 
-    //TODO по факту можно вообще в контроллере не указывать модели
     this._view = new IndexView(this._root, this._globalEventBus);
   }
 

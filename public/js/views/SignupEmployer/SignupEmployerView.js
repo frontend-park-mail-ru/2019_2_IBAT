@@ -74,7 +74,7 @@ export class SignupEmployerView extends View {
     const companyName = this._signupForm.elements['companyName'];
     const site = this._signupForm.elements['site'];
     const email = this._signupForm.elements['login'];
-    const city = this._signupForm.elements['city'];
+    const region = this._signupForm.elements['region'];
     const firstName = this._signupForm.elements['firstName'];
     const lastName = this._signupForm.elements['secondName'];
     const phoneNumber = this._signupForm.elements['phoneNumber'];
@@ -113,7 +113,7 @@ export class SignupEmployerView extends View {
         company_name: companyName.value,
         site: site.value,
         email: email.value,
-        city: city.value,
+        region: region.value,
         first_name: firstName.value,
         second_name: lastName.value,
         phone_number: phoneNumber.value,

@@ -28,7 +28,8 @@ export const VACANCY = {
   getVacancy: 'getV',
   getVacancySuccess: 'getVS',
   getVacancyFailed: 'loadVF',
-  respondToVacancy: 'respondToV',
+
+  chooseResume: 'chooseRes',
 
   search: 'search',
   searchSuccess: 'searchS',
@@ -39,10 +40,24 @@ export const VACANCY = {
   getFavoriteFailed: 'getFavF',
 };
 
+export const RESPOND = {
+  respondToVacancy: 'respondToVac',
+  respondToVacancySuccess: 'respondToVacS',
+  respondToVacancyFailed: 'respondToVacF',
+
+  getSeekerResponds: 'getOwnR',
+  getSeekerRespondsSuccess: 'getOwnRS',
+  getEmployerRespondsFailed: 'getOwnRF',
+};
+
 export const RESUME = {
   getResumes: 'getResumes',
   getResumesSuccess: 'getResumesS',
-  getResumesFailed: 'getResumesFailed',
+  getResumesFailed: 'getResumesF',
+
+  getOwnResumes: 'getOwnRes',
+  getOwnResumesSuccess: 'getOwnResS',
+  getOwnResumesFailed: 'getOwnResF',
 
   createResume: 'createRes',
   createResumeSuccess: 'createResS',
@@ -50,7 +65,7 @@ export const RESUME = {
 
   getResume: 'getRes',
   getResumeSuccess: 'getResS',
-  getResumeFailed: 'getResF'
+  getResumeFailed: 'getResF',
 };
 
 export const PROFILE = {

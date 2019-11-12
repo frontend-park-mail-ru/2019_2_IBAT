@@ -13,7 +13,7 @@ export class Router {
 
     window.onpopstate = _ => {
       if (window.location.pathname) {
-        this.route(window.location.pathname, false);
+        this.route({ path: window.location.pathname, addToHistory: false });
       }
     };
 
@@ -25,7 +25,7 @@ export class Router {
    * @param {Object} data
    */
   redirect (path, data = {}) {
-    this.route(path, data, true);
+    this.route({ path, data, addToHistory: true });
   }
 
   /**
@@ -37,7 +37,7 @@ export class Router {
     this.routes.set(path, controller);
   }
 
-  route (path, addToHistory = true, data = {}) {
+  route ({ path, data = {}, addToHistory = true } = {}) {
     const currentController = this.routes.get(this._getRoutePath(this.currentRoute));
     if (currentController) {
       currentController.close();
@@ -80,9 +80,9 @@ export class Router {
    * @returns {string}
    * @private
    */
-  _getRoutePath(pathWithoutParameters){
-    if(pathWithoutParameters){
-      return  '/' + pathWithoutParameters.split('/')[1];
+  _getRoutePath (pathWithoutParameters) {
+    if (pathWithoutParameters) {
+      return '/' + pathWithoutParameters.split('/')[1];
     }
   }
 
@@ -94,7 +94,7 @@ export class Router {
     window.addEventListener('click', (ev) => {
       if (ev.target.tagName === 'A') {
         ev.preventDefault();
-        this.route(Router._normalizePath(ev.target.pathname), true);
+        this.route({ path: Router._normalizePath(ev.target.pathname), addToHistory: true });
       }
     }, true);
 
@@ -103,7 +103,7 @@ export class Router {
     //   this.route(history.state.url);
     // }, false);
 
-    this.route(Router._normalizePath(window.location.pathname), false);
+    this.route({ path: Router._normalizePath(window.location.pathname), addToHistory: true });
   }
 
   _extractIdFromPath (path) {

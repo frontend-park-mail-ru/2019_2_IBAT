@@ -47,7 +47,7 @@ export class VacancyPageView extends View {
     if (this.respondButton) {
       this.respondButton.addEventListener('click', (ev) => {
         //TODO првоерять что отклик уже был дан
-        this._globalEventBus.triggerEvent('respondToVacancy', {
+        this._globalEventBus.triggerEvent(VACANCY.chooseResume, {
           vacancyId: document.location.pathname.split('/').pop()
         });
       });

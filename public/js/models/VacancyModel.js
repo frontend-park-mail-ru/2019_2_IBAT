@@ -1,5 +1,5 @@
 import { Api } from '../modules/api';
-import { VACANCY } from '../modules/events';
+import { RESUME, VACANCY } from '../modules/events';
 
 class VacancyModel {
 

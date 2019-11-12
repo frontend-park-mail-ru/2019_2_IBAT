@@ -9,6 +9,7 @@ class ResumeModel {
     this._globalEventBus.subscribeToEvent(RESUME.getResumes, this._onGetResumes.bind(this));
     this._globalEventBus.subscribeToEvent(RESUME.getResume, this._onGetResume.bind(this));
     this._globalEventBus.subscribeToEvent(RESUME.createResume, this._onCreateResume.bind(this));
+    this._globalEventBus.subscribeToEvent(RESUME.getOwnResumes, this._onGetOwnResumes.bind(this));
   }
 
   _onGetResumes () {
@@ -63,6 +64,24 @@ class ResumeModel {
         } else {
           response.json().then(data => {
             this._globalEventBus.triggerEvent(RESUME.getResumesFailed, data);
+          });
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
+  _onGetOwnResumes(){
+    Api.getOwnResumes()
+      .then(response => {
+        if (response.ok) {
+          response.json().then(data => {
+            this._globalEventBus.triggerEvent(RESUME.getOwnResumesSuccess, data);
+          });
+        } else {
+          response.json().then(data => {
+            this._globalEventBus.triggerEvent(RESUME.getOwnResumesFailed, data);
           });
         }
       })
