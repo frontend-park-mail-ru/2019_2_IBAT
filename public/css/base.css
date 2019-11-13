@@ -27,7 +27,8 @@ html {
 
 .left-column {
   flex-basis: 60%;
-  padding: 40px 40px;
+  padding: 40px 40px 100px;
+  height: max-content;
   box-sizing: border-box;
 }
 
@@ -35,4 +36,12 @@ html {
   display: flex;
   flex-direction: column;
   padding: 40px 40px;
+}
+
+.text_box {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }

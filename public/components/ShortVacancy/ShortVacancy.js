@@ -3,13 +3,17 @@ import { Api } from '../../js/modules/api';
 import Net from '../../js/modules/net';
 
 export class ShortVacancyComponent {
-  constructor (vacancy = {}, isStatusMode = false, status = {}) {
+  constructor (vacancy = {}, isStatusMode = false, status) {
     this._vacancy = vacancy;
-    this._vacancy['wage_from'] = this._vacancy['wage_from'].split('.')[0];
-    this._vacancy['wage_to'] = this._vacancy['wage_to'].split('.')[0];
+    console.log(vacancy);
+    if (this._vacancy['wage_from']){
+      this._vacancy['wage_from'] = this._vacancy['wage_from'].split('.')[0];
+    }
+    if (this._vacancy['wage_to']){
+      this._vacancy['wage_to'] = this._vacancy['wage_to'].split('.')[0];
+    }
 
     this._vacancyCard = document.createElement('div');
-    this._vacancyCard.className = 'card';
     this._vacancyCard.innerHTML = template({ ...this._vacancy, isStatusMode, status });
 
     let logo = this._vacancyCard.querySelector('.short-vacancy__logo ');

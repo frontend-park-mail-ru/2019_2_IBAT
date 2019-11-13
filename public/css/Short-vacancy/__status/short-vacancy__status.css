@@ -1,5 +1,4 @@
 .short-vacancy__status {
-    color: #a34c56;
-    align-self: flex-end;
-    
+    color:  #FF8000;
+    font-weight: 900;
 }

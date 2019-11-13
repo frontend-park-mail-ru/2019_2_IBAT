@@ -3,55 +3,55 @@ div.left-column
     form.create-resume-form(method='POST' novalidate)
         h2.title-h2 Контактные данные
 
-        div.create-resume__section
+        div.form__section
             span.form__legend Имя
-            div.form__input.mb5
+            div.form__input
                 input.input(type='text', value=profile.first_name, name='first_name')
                 span.error(aria-live='polite')
 
             span.form__legend Фамилия
-            div.form__input.mb5
+            div.form__input
                 input.input(type='text', value=profile.second_name, name='second_name')
                 span.error(aria-live='polite')
 
             span.form__legend Город
-            div.form__input.mb5
-                input.input(type='text', name='city')
+            div.form__input
+                input.input(type='text', name='city', placeholder='Москва')
                 span.error
 
             span.form__legend Телефон
-            div.form__input.mb5
-                input.input(type='text', name='phone_number')
+            div.form__input
+                input.input(type='text', name='phone_number', placeholder="+7(999)000-00-00")
                 span.error
 
         h2.title-h2 Основная информация
 
-        div.create-resume__section
+        div.form__section
             span.form__legend Желаемая профессия
-            div.form__input.mb5
+            div.form__input
                 input.input(type='text', name='profession')
                 span.error(aria-live='polite')
 
             span.form__legend Желаемая должность
-            div.form__input.mb5
+            div.form__input
                 input.input(type='text', name='position')
                 span.error(aria-live='polite')
 
             span.form__legend Желаемая заработанная плата
-            div.form__input.mb5
+            div.form__input
                 input.input(type='number', name='wage')
                 span.error(aria-live='polite')
 
         h2.title-h2 Личная информация
 
-        div.create-resume__section
+        div.form__section
             span.form__legend Дата рождения
-            div.form__input.mb5
+            div.form__input
                 input.input(type='data', name='birth_date')
                 span.error
 
             span.form__legend Пол
-            div.form__input.mb5
+            div.form__input
                 select.input.sex(name='sex')
                     option(value='F') Женский
                     option(value='M') Мужской
@@ -59,13 +59,13 @@ div.left-column
                 span.error
 
             span.form__legend Гражданство
-            div.form__input.mb5
+            div.form__input
                 input.input(type='text', name='citizenship')
                 span.error
 
             span.form__legend Опыт работы
-            div.form__input.mb5
-                select.input.experience(name='experience')
+            div.form__input
+                select.input(name='experience')
                     option(value='Без опыта работы') Без опыта работы
                     option(value='1-3года') 1-3года
                     option(value='3-5лет') 3-5лет
@@ -73,8 +73,8 @@ div.left-column
                 span.error
 
             span.form__legend О себе
-            div.form__input.mb5
-                textarea.input.create-resume__about(
+            div.form__input
+                textarea.input.form__about(
                     name='about',
                     rows='10',
                     placeholder='Расскажите о своих качествах, знаниях, увлечениях, которые, как вам кажется, будут полезны работодателю')
@@ -82,11 +82,10 @@ div.left-column
 
         h2.title-h2 Образование
 
-        div.create-resume__section
+        div.form__section
             span.form__legend Уровень
-            div.form__input.mb5
-                select.input.education(name='education')
-                    option(value='higher') Высшее
+            div.form__input
+                select.input(name='education')
                     option(value='bachelor') Бакалавр
                     option(value='master') Магистр
                     option(value='candidate') Кандидат наук

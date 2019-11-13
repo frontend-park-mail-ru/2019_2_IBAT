@@ -20,7 +20,7 @@ export class FavoriteVacanciesView extends View {
 
     if (vacancies) {
       Object.entries(vacancies).forEach(([vacancyId, vacancy]) => {
-        new ShortVacancyComponent({ vacancyId, vacancy }).appendToList(list);
+        new ShortVacancyComponent(vacancy).appendToList(list);
       });
     }
   }

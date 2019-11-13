@@ -38,9 +38,11 @@ export class VacancyPageView extends View {
    * @param data
    * @private
    */
-  _onGetVacancySuccess (data) {
+  _onGetVacancySuccess (data = {}) {
     this._data = { ...data, ...this._data };
-
+    this._data['wage_from'] = this._data['wage_from'].split('.')[0];
+    this._data['wage_to'] = this._data['wage_to'].split('.')[0];
+    
     super.render(this._data);
 
     this.respondButton = document.getElementById('respondToVacancyButton');
