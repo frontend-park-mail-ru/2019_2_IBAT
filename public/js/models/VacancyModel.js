@@ -79,8 +79,11 @@ class VacancyModel {
     let getParameters = '?';
 
     // Временный костыль, на бэке не обрабатывается остальное
+    if (searchParameters['region'] != '') {
+      getParameters +=
+        'region=' + searchParameters['region'] + '&';
+    }
     getParameters +=
-      // 'region=' + searchParameters['region'] + '&' +
       'wage=' + searchParameters['wage'] + '&' +
       'experience=' + searchParameters['experience'];
     // конец костыля
