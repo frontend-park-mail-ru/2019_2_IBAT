@@ -234,7 +234,7 @@ export class Api {
 
   static addFavoriteVacancy (vacancyId='') {
     return Net.doPost({
-      url: `/favorite_vacancy?vacancy_id=${vacancyId}`,
+      url: `/favorite_vacancy/${vacancyId}`,
     })
   }
 }
