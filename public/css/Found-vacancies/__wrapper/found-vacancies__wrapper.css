@@ -1,0 +1,6 @@
+.found-vacancies__wrapper {
+    padding: 40px 0;
+    width: 640px;
+    display: flex;
+    flex-direction: column;
+}

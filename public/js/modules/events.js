@@ -1,3 +1,6 @@
+// !!!ВНИМАНИЕ!!!
+// Значения событий не должны повторяться! 
+// Иначе вас ждёт бесконечный цикл и долгая откладка 
 export const AUTH = {
   checkAuth: 'checkAuth',
   checkAuthResponse: 'authR',

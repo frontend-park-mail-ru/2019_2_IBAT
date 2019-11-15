@@ -231,4 +231,10 @@ export class Api {
       url: `/responds?vacancy_id=${vacancyId}&resume_id=${resumeId}`,
     });
   }
+
+  static addFavoriteVacancy (vacancyId='') {
+    return Net.doPost({
+      url: `/favorite_vacancy?vacancy_id=${vacancyId}`,
+    })
+  }
 }

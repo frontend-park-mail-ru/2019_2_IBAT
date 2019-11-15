@@ -6,7 +6,7 @@ export class SearchVacancyController extends Controller {
   constructor (root, globalEventBus, router) {
     super(root, globalEventBus, router);
 
-    this._globalEventBus.subscribeToEvent(VACANCY.searchSuccess, (url, vacancies) => {
+    this._globalEventBus.subscribeToEvent(VACANCY.searchSuccess, (url, vacancies = []) => {
       console.log('searchcontroller', url, vacancies);
       this._router.redirect(url, vacancies);
     });

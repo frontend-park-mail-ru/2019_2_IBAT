@@ -38,10 +38,19 @@ div.short-vacancy.short-vacancy_gold
             span.short-vacancy__controls-item
                 span.link.bloko-link.bloko-link_dimmed(href='#') Откликнуться
             span.short-vacancy__controls-item
-                span(id=id)
-                    span.link.bloko-link.bloko-link_dimmed
-                        span.short-vacancy__favorite_on В избранное
-                        //-    span.short-vacancy__favorite_off В избранном
+                if !favorite
+                    span(id=id, name='switch')
+                        span.link.bloko-link.bloko-link_dimmed
+                            span.short-vacancy__favorite_off В избранное
+                        span.link.bloko-link.bloko-link_notify
+                            span.short-vacancy__favorite_on В избранном
+                else
+                    span.short-vacancy__favorite_selected(id=id, name='switch')
+                        span.link.bloko-link.bloko-link_dimmed
+                            span.short-vacancy__favorite_off В избранное
+                        span.link.bloko-link.bloko-link_notify
+                            span.short-vacancy__favorite_on В избранном
+                        
         else
             span Статус отклика: 
             span.short-vacancy__status #{status}

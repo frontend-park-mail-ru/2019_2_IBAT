@@ -25,11 +25,14 @@ div.left-column
     div.vacancy__seeker-actions
         div.vacancy__action
             button.button.button_green(id='respondToVacancyButton', type='submit') Откликнуться
-        div.vacancy__action
-            button.button.button_icon-only
-                span.button__icon
-                    span.block-icon.block-icon_favorite.block-icon_initial-impact
-                //- span.block-icon.block-icon_favorite.block-icon_initial-primary disabled
+        if !favorite
+            div.vacancy__action(id=id, name='switch')
+                button.button.button_blue.short-vacancy__favorite_off Добавить в избранное
+                button.button.button_disabled.short-vacancy__favorite_on В избранном
+        else
+            div.vacancy__action.short-vacancy__favorite_selected(id=id, name='switch')
+                button.button.button_blue.short-vacancy__favorite_off Добавить в избранное
+                button.button.button_disabled.short-vacancy__favorite_on В избранном
 
     div.vacancy__description
         div.mb25

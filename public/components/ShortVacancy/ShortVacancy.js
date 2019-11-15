@@ -16,6 +16,12 @@ export class ShortVacancyComponent {
     this._vacancyCard = document.createElement('div');
     this._vacancyCard.innerHTML = template({ ...this._vacancy, isStatusMode, status });
 
+    if (!this._vacancy['is_favorite']) {
+      let toFavorite = this._vacancyCard.querySelector('[name="switch"]');
+      console.log(toFavorite);
+      toFavorite.addEventListener('click', this._onToFavorite.bind(this), true);
+    }
+
     let logo = this._vacancyCard.querySelector('.short-vacancy__logo ');
     Api.getEmployerById(this._vacancy.owner_id)
       .then(res => {
@@ -38,7 +44,24 @@ export class ShortVacancyComponent {
       });
   }
 
-    appendToList(list) {
-        list.appendChild(this._vacancyCard);
-    }
+  _onToFavorite(event) {
+    console.log(event);
+    let link = event.currentTarget;
+    Api.addFavoriteVacancy(link.id)
+      .then(res => {
+        if (res.ok) {
+          link.classList.add('short-vacancy__favorite_selected');
+          link.removeEventListener('click', this._onToFavorite.bind(this));
+        } else {
+          console.log(res);
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  }
+
+  appendToList(list) {
+      list.appendChild(this._vacancyCard);
+  }
 }

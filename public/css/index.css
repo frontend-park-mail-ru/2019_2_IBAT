@@ -19,6 +19,7 @@
 @import './Link/bloko-link.css';
 @import './Link/bloko-link_dimmed.css';
 @import './Link/bloko-link_secondary.css';
+@import './Link/bloko-link_notify.css';
 @import './Error/error.css';
 @import './Error/_active/error_active.css';
 @import './Error/_active/error_active.css';
@@ -95,6 +96,7 @@
 @import './Short-vacancy/__logo/short-vacancy__logo.css';
 @import './Short-vacancy/__sidebar/short-vacancy__sidebar.css';
 @import './Short-vacancy/__status/short-vacancy__status.css';
+@import './Short-vacancy/__favorite/short-vacancy__favorite.css';
 
 @import './Vacancy/__company-logo-img/vacancy__company-logo-img.css';
 @import './Vacancy/__company-logo/vacancy__company-logo.css';
@@ -113,14 +115,16 @@
 @import './Profile/__form/profile__form.css';
 @import './Profile/__save-avatar/profile__save-avatar.css';
 
+@import './Found-vacancies/found-vacancies.css';
+@import './Found-vacancies/__top-row/found-vacancies__top-row.css';
+@import './Found-vacancies/__wrapper/found-vacancies__wrapper.css';
 
 /* do not touch anything above*/
-
 
 .list {
   display: flex;
   flex-direction: column;
-  max-width: 610px;
+  max-width: 690px;
 }
 p {
   padding: 0;
