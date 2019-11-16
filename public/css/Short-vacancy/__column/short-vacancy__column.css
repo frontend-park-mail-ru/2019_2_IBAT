@@ -1,0 +1,4 @@
+.short-vacancy__column {
+    display: flex;
+    flex-direction: column;
+}

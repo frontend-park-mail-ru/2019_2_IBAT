@@ -1,36 +1,57 @@
-- const vacancyName = `${position}`;
-- const text = about + '\n' + requirements
+- var vacancyName = `${position}`;
 
-    div.short-vacancy.short-vacancy_gold
-        div.short-vacancy__row
-            div.short-vacancy__info
-                a.link.bloko-link(href=`/vacancy/${id}`) #{vacancyName}
-            div.short-vacancy__sidebar
-                if wage_from != 0 && wage_to != 0
-                    div #{wage_from}-#{wage_to} руб.
-                if wage_from != 0 && wage_to == 0
-                    div от #{wage_from} руб.
+if wage_from != 0 && wage_to != 0
+    - var salary = `${wage_from}-${wage_to} руб.`
+else if wage_from != 0 && wage_to == 0
+    - var salary = `${wage_from} руб.`
+else if wage_from == 0 && wage_to != 0
+    - var salary = `${wage_to} руб.`
 
-        div.short-vacancy__meta-info
-            a.link.bloko-link.bloko-link_secondary(href=`employer/${owner_id}`) #{company_name}
-        div.short-vacancy__meta-info
-            span #{region}
+if region
+    - var city = `${region}`
+else
+    - var city = `Москва`
 
-        div.short-vacancy__row
-            div.short-vacancy__info
-                div #{text}
-            div.short-vacancy__sidebar
+//- Шаблон карточки вакансии
+div.short-vacancy.short-vacancy_gold
+    div.short-vacancy__row
+        div.short-vacancy__info.short-vacancy__title
+            a.link.bloko-link(href=`/vacancy/${id}`) #{vacancyName}
+        div.short-vacancy__sidebar
+            div #{salary}
+
+    div.short-vacancy__meta-info
+        a.link.bloko-link.bloko-link_secondary(href=`employer/${owner_id}`) #{company_name}
+    div.short-vacancy__meta-info
+        span #{city}
+
+    div.short-vacancy__row.short-vacancy__row_stretched
+        div.short-vacancy__column
+            div.text_box #{tasks}
+            div.text_box #{requirements}
+        div.short-vacancy__sidebar
+            a(href=`employer/${owner_id}`)
                 img.short-vacancy__logo
 
-        div.short-vacancy__row
-            if status
-                span.short-vacancy__status #{status}
-                    //-    span.short-vacancy__favorite_off В избранном
-
-            else
-                span.short-vacancy__controls-item
-                    span.link.bloko-link.bloko-link_dimmed(id='respondToVacancyButton', href='#') Откликнуться
-                span.short-vacancy__controls-item
-                    span(id=id)
+    div.short-vacancy__row
+        if !status
+            span.short-vacancy__controls-item
+                span.link.bloko-link.bloko-link_dimmed(href='#') Откликнуться
+            span.short-vacancy__controls-item
+                if !favorite
+                    span(id=id, name='switch')
                         span.link.bloko-link.bloko-link_dimmed
-                            span.short-vacancy__favorite_on В избранное
+                            span.short-vacancy__favorite_off В избранное
+                        span.link.bloko-link.bloko-link_notify
+                            span.short-vacancy__favorite_on В избранном
+                else
+                    span.short-vacancy__favorite_selected(id=id, name='switch')
+                        span.link.bloko-link.bloko-link_dimmed
+                            span.short-vacancy__favorite_off В избранное
+                        span.link.bloko-link.bloko-link_notify
+                            span.short-vacancy__favorite_on В избранном
+
+        else
+            span Статус отклика:
+            span.short-vacancy__status #{status}
+

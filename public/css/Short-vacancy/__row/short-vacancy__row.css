@@ -2,3 +2,7 @@
     display: flex;
     margin-bottom: 6px;
 }
+
+.short-vacancy__row_stretched {
+    justify-content: space-between;
+}

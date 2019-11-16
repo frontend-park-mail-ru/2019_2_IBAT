@@ -6,20 +6,30 @@ import { VACANCY } from '../../js/modules/events';
 
 export class ShortVacancyComponent extends Component {
   constructor ({vacancy = {}, isStatusMode = false, status, globalEventBus}={}) {
-    vacancy['wage_from'] = vacancy['wage_from'].split('.')[0];
-    vacancy['wage_to'] = vacancy['wage_to'].split('.')[0];
-
+    if (vacancy['wage_from']){
+      vacancy['wage_from'] = vacancy['wage_from'].split('.')[0];
+    }
+    if (vacancy['wage_to']){
+      vacancy['wage_to'] = vacancy['wage_to'].split('.')[0];
+    }
     super({ data: { ...vacancy, isStatusMode, status }, template, globalEventBus });
   }
 
   onFirstRender () {
+
+    if (!this.data['is_favorite']) {
+      let toFavorite = this.domElement.querySelector('[name="switch"]');
+      console.log(toFavorite);
+      toFavorite.addEventListener('click', this._onToFavorite.bind(this), true);
+    }
+
     let logo = this.domElement.querySelector('.short-vacancy__logo ');
     Api.getEmployerById(this.data.owner_id)
       .then(res => {
         if (res.ok) {
           res.json().then(employer => {
             if (employer.path_to_img !== '' && employer.path_to_img !== 'default.jpg') {
-              logo.setAttribute('src', `${Net.getServerURL()}/${employer.path_to_img}`);
+              logo.setAttribute('src',`${Net.getServerURL()}/${employer.path_to_img}`);
             } else {
               logo.style.display = 'none';
             }
@@ -43,6 +53,23 @@ export class ShortVacancyComponent extends Component {
       });
     }
   }
+  }
+
+  _onToFavorite(event) {
+    console.log(event);
+    let link = event.currentTarget;
+    Api.addFavoriteVacancy(link.id)
+      .then(res => {
+        if (res.ok) {
+          link.classList.add('short-vacancy__favorite_selected');
+          link.removeEventListener('click', this._onToFavorite.bind(this));
+        } else {
+          console.log(res);
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      });
 
   onRender () {
     //

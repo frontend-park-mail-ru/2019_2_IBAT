@@ -79,8 +79,11 @@ class VacancyModel {
     let getParameters = '?';
 
     // Временный костыль, на бэке не обрабатывается остальное
+    if (searchParameters['region'] != '') {
+      getParameters +=
+        'region=' + searchParameters['region'] + '&';
+    }
     getParameters +=
-      // 'region=' + searchParameters['region'] + '&' +
       'wage=' + searchParameters['wage'] + '&' +
       'experience=' + searchParameters['experience'];
     // конец костыля
@@ -131,6 +134,29 @@ class VacancyModel {
       .catch(error => {
         console.error(error);
         this._globalEventBus.triggerEvent(VACANCY.getFavoriteSuccess, []);
+      });
+  }
+
+  _onGetFavoriteIds() {
+    Api.getFavoriteVacancies()
+      .then(response => {
+        if (response.ok) {
+          response.json().then(vacancies => {
+            console.log(vacancies);
+            let ids = [];
+            vacancies.forEach(v => {
+              ids.push(v['id']);
+            })
+            this._globalEventBus.triggerEvent(VACANCY.getFavoriteIdsSuccess, ids);
+          });
+        } else {
+          console.log(response);
+          this._globalEventBus.triggerEvent(VACANCY.getFavoriteIdsSuccess, []);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        this._globalEventBus.triggerEvent(VACANCY.getFavoriteIdsSuccess, []);
       });
   }
 }

@@ -53,3 +53,11 @@ html {
   --employer-color_hover: #8F5262;
   --employer-color_light: #DF8099;
 }
+
+.text_box {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}

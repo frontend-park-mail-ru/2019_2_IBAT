@@ -1,4 +1,5 @@
 .form__legend {
     margin-bottom: 5px;
     font-size: 14px;
+    display: block;
 }

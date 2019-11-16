@@ -11,16 +11,15 @@ export class FavoriteVacanciesView extends View {
   render (vacancies = []) {
     console.log(vacancies);
     let data = {
-        'numOfVacancies': vacancies.length
+        'number_of_vacancies': vacancies.length
     };
-    console.log(data);
     super.render(data);
 
     const list = document.querySelector('.list');
 
     if (vacancies) {
-      Object.entries(vacancies).forEach(([vacancyId, vacancy]) => {
-        new ShortVacancyComponent({ vacancyId, vacancy }).appendToList(list);
+      vacancies.forEach((vacancy) => {
+        new ShortVacancyComponent(vacancy).appendToList(list);
       });
     }
   }

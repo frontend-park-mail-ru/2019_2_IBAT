@@ -1,3 +1,7 @@
+// !!!ВНИМАНИЕ!!!
+// Значения событий не должны повторяться!
+// Иначе вас ждёт бесконечный цикл и долгая откладка
+
 export const ACTIONS = {
   seekerGuestSlide: 'sgs',
   employerGuestSlide: 'egs',

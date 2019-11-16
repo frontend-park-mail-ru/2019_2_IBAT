@@ -98,11 +98,6 @@ export class Router {
       }
     }, true);
 
-    // window.addEventListener('popstate', (event) => {
-    //   if (!history.state.url) return;
-    //   this.route(history.state.url);
-    // }, false);
-
     this.route({ path: Router._normalizePath(window.location.pathname), addToHistory: true });
   }
 

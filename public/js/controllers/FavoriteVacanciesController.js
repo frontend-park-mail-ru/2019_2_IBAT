@@ -10,12 +10,14 @@ export class FavoriteVacanciesController extends Controller {
 
     this._globalEventBus.subscribeToEvent(VACANCY.getFavoriteSuccess, (vacancies = []) => {
       console.log(vacancies);
+      this._vacancies = vacancies;
+      console.log(window.URL);
       this._view.hide();
-      this._view.render(vacancies);
+      this._view.render(this._vacancies);
     });
   }
 
-  openWithData (data = []) {
+  openWithData (data = {}) {
     this._globalEventBus.triggerEvent(VACANCY.getFavorite);
   }
 }
