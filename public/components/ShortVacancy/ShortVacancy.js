@@ -53,7 +53,6 @@ export class ShortVacancyComponent extends Component {
       });
     }
   }
-  }
 
   _onToFavorite(event) {
     console.log(event);
@@ -70,8 +69,7 @@ export class ShortVacancyComponent extends Component {
       .catch(err => {
         console.error(err);
       });
-
+  }
   onRender () {
-    //
   }
 }
