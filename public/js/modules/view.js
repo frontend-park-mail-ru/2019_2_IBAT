@@ -47,10 +47,20 @@ export class View {
   render (data) {
     this._root.innerHTML = this._template(data);
     this.isViewClosed = false;
+
+    this.onRender();
+  }
+
+  onRender () {
+
   }
 
   hide () {
     this._root.innerHTML = '';
     this.isViewClosed = true;
+  }
+
+  merge (data) {
+    this._data = { ...this._data, ...data };
   }
 }

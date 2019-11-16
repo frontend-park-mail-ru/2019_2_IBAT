@@ -1,0 +1,7 @@
+.slider{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 250px;
+    justify-content: space-evenly;
+}

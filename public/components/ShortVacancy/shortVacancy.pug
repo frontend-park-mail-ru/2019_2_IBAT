@@ -23,12 +23,14 @@
                 img.short-vacancy__logo
 
         div.short-vacancy__row
-            span.short-vacancy__controls-item
-                span.link.bloko-link.bloko-link_dimmed(href='#') Откликнуться
-            span.short-vacancy__controls-item
-                span(id=id)
-                    span.link.bloko-link.bloko-link_dimmed
-                        span.short-vacancy__favorite_on В избранное
-                    if status
-                        span.short-vacancy__status #{status}
+            if status
+                span.short-vacancy__status #{status}
                     //-    span.short-vacancy__favorite_off В избранном
+
+            else
+                span.short-vacancy__controls-item
+                    span.link.bloko-link.bloko-link_dimmed(id='respondToVacancyButton', href='#') Откликнуться
+                span.short-vacancy__controls-item
+                    span(id=id)
+                        span.link.bloko-link.bloko-link_dimmed
+                            span.short-vacancy__favorite_on В избранное

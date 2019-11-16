@@ -1,8 +1,9 @@
-span.card__span #{position}
-span.card__span #{first_name} #{second_name}
-span.card__span #{wage}
-span.card__span #{region}
-span.card__span #{experience}
+div.card
+    span.card__span #{resume.position}
+    span.card__span #{resume.first_name} #{resume.second_name}
+    span.card__span #{resume.wage}
+    span.card__span #{resume.region}
+    span.card__span #{resume.experience}
 
-if isChooseMode
-    a.card__view-resume(href=`/resume/${id}`) Посмотреть резюме
+    if isChooseMode
+        a.link.card__view-resume(href=`/resume/${resume.id}`) Посмотреть резюме

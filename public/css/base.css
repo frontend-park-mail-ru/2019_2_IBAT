@@ -3,7 +3,8 @@ html {
 }
 
 .page {
-  font-family: Arial, sans-serif;
+  font-family: font-regular, sans-serif;
+  color: var(--text-color);
   background-color: #fff;
   height: 100%;
 }
@@ -22,7 +23,7 @@ html {
   height: 100%;
   width: 100%;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
 }
 
 .left-column {
@@ -35,4 +36,20 @@ html {
   display: flex;
   flex-direction: column;
   padding: 40px 40px;
+}
+
+:root{
+  --text-color: #333;
+
+  --primary-color: #C6CF5A;
+  --primary-color_hover: #aeb46e;
+  --primary-color_light: #DEE785;
+
+  --seeker-color: #39827B;
+  --seeker-color_hover: #38625D;
+  --seeker-color_light: #6FC1B8;
+
+  --employer-color: #BE536F;
+  --employer-color_hover: #8F5262;
+  --employer-color_light: #DF8099;
 }

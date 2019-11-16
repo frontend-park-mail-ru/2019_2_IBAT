@@ -3,13 +3,14 @@ import { EventBus } from './modules/eventbus';
 
 import { HeaderController } from './controllers/HeaderController';
 import { IndexController } from './controllers/IndexController';
-import { AUTH, PROFILE, RESPOND, RESUME, VACANCY } from './modules/events';
+import { ACTIONS, AUTH, PROFILE, RESPOND, RESUME, VACANCY, COMPANY } from './modules/events';
 
 import authModel from './models/AuthModel';
 import vacancyModel from './models/VacancyModel';
 import resumeModel from './models/ResumeModel';
 import profileModel from './models/ProfileModel';
 import respondModel from './models/RespondModel';
+import companyModel from './models/CompanyModel';
 
 import { SigninController } from './controllers/SigninController';
 import { SignupSeekerController } from './controllers/SignupSeekerController';
@@ -30,13 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const header = document.querySelector('header');
   const content = document.querySelector('.main-content');
 
-  const globalEventBus = new EventBus([AUTH, VACANCY, RESUME, PROFILE, RESPOND].map(model => Object.values(model)).flat());
+  const globalEventBus = new EventBus([AUTH, VACANCY, RESUME, PROFILE, RESPOND, ACTIONS, COMPANY].map(model => Object.values(model)).flat());
   const models = {
     auth: authModel,
     vacancy: vacancyModel,
     resume: resumeModel,
     profile: profileModel,
     respond: respondModel,
+    company: companyModel,
   };
   Object.values(models).forEach(model => model.setGlobalEventBus(globalEventBus));
 

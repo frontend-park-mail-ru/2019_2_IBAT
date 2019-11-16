@@ -1,7 +1,11 @@
 .header {
-  height: 80px;
-  padding: 0 15px;
-  margin: 0 auto;
-  background-color: #222;
-  display: flex;
+    height: 70px;
+    padding: 0 15px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-bottom: 1px solid #fff;
+    box-shadow: 0px 1px 5px var(--primary-color);
+    margin-bottom: 5px;
+    justify-content: space-between;
+    display: flex;
 }

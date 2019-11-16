@@ -1,3 +1,14 @@
+export const ACTIONS = {
+  seekerGuestSlide: 'sgs',
+  employerGuestSlide: 'egs',
+};
+
+export const COMPANY = {
+  getPopularCompanies: 'gpc',
+  getPopularCompaniesSuccess: 'gpcs'
+
+};
+
 export const AUTH = {
   checkAuth: 'checkAuth',
   checkAuthResponse: 'authR',

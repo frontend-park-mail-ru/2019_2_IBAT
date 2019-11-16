@@ -1,0 +1,11 @@
+.button_employer{
+    background-color: var(--employer-color);
+    border-color: var(--employer-color);
+    color: white;
+}
+
+.button_employer:hover{
+    background-color: var(--employer-color_hover);
+    border-color: var(--employer-color_hover);
+    color: white;
+}

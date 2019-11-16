@@ -29,8 +29,13 @@ export class MyRespondsView extends View {
     this._root.querySelector('.left-column').appendChild(list);
 
     responds.forEach(respond => {
-      new ShortVacancyComponent(respond.vacancy, true, respond.Status)
-        .appendToList(list);
+      new ShortVacancyComponent({
+        vacancy: respond.vacancy,
+        isStatusMode: true,
+        status: respond.Status,
+        globalEventBus: this._globalEventBus
+      })
+        .appendTo(list);
     });
   }
 }

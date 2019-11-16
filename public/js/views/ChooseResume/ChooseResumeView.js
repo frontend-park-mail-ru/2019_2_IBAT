@@ -39,10 +39,10 @@ export class ChooseResumeView extends View {
       resumes.forEach(resume => {
         new ShortResumeComponent(resume, true, (resume) => {
           this._globalEventBus.triggerEvent(RESPOND.respondToVacancy, {
-            resumeId: resume.id,
-            vacancyId: this._data.vacancyId
+            resume_id: resume.id,
+            vacancy_id: this._data.vacancyId
           });
-        }).appendToList(list);
+        }).appendTo(list);
       });
     }
   }

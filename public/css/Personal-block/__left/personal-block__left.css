@@ -1,0 +1,6 @@
+.personal-block__left{
+    display: flex;
+    flex-direction: column;
+    padding: 0 24px;
+    border-right: 1px solid var(--primary-color);
+}

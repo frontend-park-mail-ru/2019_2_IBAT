@@ -1,0 +1,5 @@
+.personal-block {
+    display: flex;
+    flex-direction: row;
+    padding: 48px 24px;
+}

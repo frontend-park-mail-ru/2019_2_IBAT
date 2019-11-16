@@ -22,10 +22,30 @@ export class HeaderView extends View {
   _onAuthResponse (data) {
     super.render(data);
 
-    const signOutButton = this._root.querySelector('input[name=signOut]');
+    const signOutButton = this._root.querySelector('div[id=signOut]');
+    const profileMenuButton = this._root.querySelector('button[name=profile-menu]');
+
+    if (profileMenuButton) {
+      profileMenuButton.addEventListener('click', _ => {
+        //TODO для верстки, если какие-то элементы меняют свое состояние то с одного, то на другое, использовать toggle() теперь
+        this._root.querySelector('.dropdown').classList.toggle('dropdown_show');
+      });
+    }
+
+    window.onclick = _ => {
+      if (!event.target.matches('.dropdown-btn')) {
+        const dropdowns = document.getElementsByClassName('dropdown');
+        Array.from(dropdowns).forEach(dropdown => {
+          if (dropdown.classList.contains('dropdown_show')) {
+            dropdown.classList.remove('dropdown_show');
+          }
+        });
+      }
+    };
+
     if (signOutButton) {
-      signOutButton.addEventListener('click', (ev) => {
-        this._globalEventBus.triggerEvent('signOut');
+      signOutButton.addEventListener('click', _ => {
+        this._globalEventBus.triggerEvent(AUTH.signOut);
       });
     }
   }

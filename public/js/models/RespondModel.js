@@ -10,8 +10,8 @@ class RespondModel {
     this._globalEventBus.subscribeToEvent(RESPOND.getSeekerResponds, this._onGetSeekerResponds.bind(this));
   }
 
-  _onSendRespond ({ resumeId, vacancyId }) {
-    Api.respondToVacancy(resumeId, vacancyId)
+  _onSendRespond ({ resume_id, vacancy_id }) {
+    Api.respondToVacancy(resume_id, vacancy_id)
       .then(response => {
         if (response.ok) {
           response.json().then(data => {
@@ -19,12 +19,12 @@ class RespondModel {
           });
         } else {
           response.json().then(data => {
-            this._globalEventBus.triggerEvent(RESPOND.respondToVacancyFailed, data);
+            this._globalEventBus.triggerEvent(RESPOND.respondToVacancySuccess, data);
           });
         }
       })
       .catch(error => {
-        console.error(error);
+        this._globalEventBus.triggerEvent(RESPOND.respondToVacancySuccess, data);
       });
   }
 

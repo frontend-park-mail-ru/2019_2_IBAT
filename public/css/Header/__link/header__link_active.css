@@ -1,0 +1,11 @@
+.header__link_active {
+    border: 1px solid var(--primary-color, white);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.header__link_active:hover {
+    border: 1px solid #b9c256;
+    padding: 10px;
+    border-radius: 10px;
+}

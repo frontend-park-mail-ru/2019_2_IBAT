@@ -10,8 +10,12 @@
   box-shadow: none;
 }
 
+.link:hover{
+  color: var(--primary-color_hover);
+}
+
 a {
-  color: #09f;
+  color: var(--text-color);
   text-decoration: none;
   border: 0;
   background: transparent;

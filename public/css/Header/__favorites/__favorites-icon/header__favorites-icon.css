@@ -1,11 +1,3 @@
 .header__favorites-icon {
-  background-image: url(/img/favorites__min_.svg);
-}
-
-.header__favorites-icon:hover {
-  background-position: -30px 0;
-}
-
-.header__favorites-icon:active {
-  background-position: -30px 0;
+  -webkit-mask-image: url(/img/favorites__min_.svg);
 }

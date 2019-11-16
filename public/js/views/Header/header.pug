@@ -1,46 +1,31 @@
-- var searchUrl = '#'
-case role
-    when 'seeker'
-        - var searchUrl = '/search/vacancy'
-    when 'employer'
-        - var searchUrl = '/search/resume'
-    default
-        - var searchUrl = '/search/vacancy'
-
 div.header__logo
-    a(href='/')
-        img(src='/img/ibat.jpg', alt='logo')
-
-if role === 'seeker'
-    nav.header__menu
-        a.link.header__link.header__menu-link(href='#') Мои резюме
-        a.link.header__link.header__menu-link(href='/my_responds') Отклики
+    a.title-h1(href='/') IBAT
 
 div.header__fill
-
-div.header__search
-    div.header__search-button
-        a.icon.header__search-icon(href=`${searchUrl}`)
-        a.header__link(href=`${searchUrl}`) Поиск
 
 if role
     case role
         when 'seeker'
-            a.button.header__button(href='/createresume') Создать резюме
+            a.header__link.header__link_active(href='/createresume') Создать резюме
 
             div.header__favorites
                 a.icon.header__favorites-icon(href='/favorite_vacancies')
 
         when 'employer'
-            a.button.header__button(href='/createvacancy') Разместить вакансию
+            a.header__link.header__link_active(href='/createvacancy') Разместить вакансию
 
             div.header__favorites
                 a.icon.header__favorites-icon(href='/favorite_resumes')
 
     div.header__profile
-        a.icon.header__profile-icon(href='/profile')
-
-    input.button.header__button(type='button', name='signOut', value='Выйти')
+        button.icon.header__profile-icon.dropdown-btn(name='profile-menu')
+        div.dropdown
+            if role === 'seeker'
+                a.dropdown__link(href='/resumes') Мои резюме
+            if role === 'employer'
+                a.dropdown__link(href='/vacancies') Мои вакансии
+            a.dropdown__link(href='/profile') Профиль
+            div.dropdown__link(id='signOut') Выйти
 
 else
-    a.button.header__button(href='/signin') Войти
+    a.header__link.header__link_active(href='/signin') Войти

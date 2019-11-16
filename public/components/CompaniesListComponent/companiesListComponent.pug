@@ -1,0 +1,4 @@
+a.link.title-h2(href='/companies') Компании
+if companies
+    each company in companies
+        a.link.link_list-item(href=`/company/${company.id}`) #{company.name}

@@ -1,3 +1,3 @@
 .header__fill {
-  margin-left: auto;
+  flex-grow: 1;
 }
