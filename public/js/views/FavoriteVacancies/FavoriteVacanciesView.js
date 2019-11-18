@@ -19,7 +19,7 @@ export class FavoriteVacanciesView extends View {
 
     if (vacancies) {
       vacancies.forEach((vacancy) => {
-        new ShortVacancyComponent({vacancy:vacancy, globalEventBus: this._globalEventBus }).appendTo(list);
+        new ShortVacancyComponent(vacancy).appendTo(list);
       });
     }
   }
