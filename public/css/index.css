@@ -169,6 +169,15 @@
 @import './Found-vacancies/__top-row/found-vacancies__top-row.css';
 @import './Found-vacancies/__wrapper/found-vacancies__wrapper.css';
 
+@import './Company/__logo-img/company__logo-img.css';
+@import './Company/__logo/company__logo.css';
+@import './Company/__sidebar-wrapper/company__sidebar-wrapper.css';
+@import './Company/__sidebar/company__sidebar.css';
+@import './Company/__short-info-header/company__short-info-header.css';
+@import './Company/__left-block/company__left-block.css';
+@import './Company/__right-block/company__right-block.css';
+@import './Company/__short-info/company__short-info.css';
+@import './Company/__vacancies-header/company__vacancies-header.css';
 /* do not touch anything above*/
 
 @import 'card_list.css';

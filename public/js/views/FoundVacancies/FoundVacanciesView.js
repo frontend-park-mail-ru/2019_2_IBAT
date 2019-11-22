@@ -27,7 +27,7 @@ export class FoundVacanciesView extends View {
 
     if (this._vacancies.length > 0) {
       this._vacancies.forEach(vacancy => {
-        new ShortVacancyComponent(vacancy).appendToList(list);
+        new ShortVacancyComponent({vacancy:vacancy,  globalEventBus: this._globalEventBus }).appendTo(list);
       });
     }
   }

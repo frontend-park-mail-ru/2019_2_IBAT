@@ -25,6 +25,7 @@ import { FoundVacanciesController } from './controllers/FoundVacanciesController
 import { FavoriteVacanciesController } from './controllers/FavoriteVacanciesController';
 import { ChooseResumeController } from './controllers/ChooseResumeController';
 import { MyRespondsController } from './controllers/MyRespondsController';
+import { EmployerPageController } from './controllers/EmployerPageController';
 
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.querySelector('.page');
@@ -59,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const favoriteVacanciesController = new FavoriteVacanciesController(content, globalEventBus, router);
   const chooseResumeController = new ChooseResumeController(content, globalEventBus, router);
   const myRespondsController = new MyRespondsController(content, globalEventBus, router);
+  const employerPageController = new EmployerPageController(content, globalEventBus, router)
 
   headerController.openWithData();
 
@@ -77,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
   router.add('/search/vacancy', searchVacancyController);
   router.add('/vacancies', foundVacanciesController);
   router.add('/favorite_vacancies', favoriteVacanciesController);
+  router.add('/employer', employerPageController);
 
   router.start();
 });

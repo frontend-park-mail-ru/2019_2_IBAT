@@ -4,3 +4,7 @@
     padding: 0 24px;
     border-right: 1px solid var(--primary-color);
 }
+
+.personal-block__left_no-border{
+    border-right: none;
+}

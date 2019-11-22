@@ -1,7 +1,8 @@
 const pathsWithId = [
   '/profile',
   '/vacancy',
-  '/resume'
+  '/resume',
+  '/employer'
 ];
 
 export class Router {
@@ -51,10 +52,10 @@ export class Router {
     console.log(pathWithoutParameters);
     const routePath = this._getRoutePath(pathWithoutParameters);
 
-    //TODO костыль, переделать под нормальный роутинг для /vacancy/{id}
     if (this.routes.has(routePath)) {
       const controller = this.routes.get(routePath);
 
+      //Роутинг для /.../{id}
       if (pathsWithId.find(el => el === routePath)) {
         let id = this._extractIdFromPath(path);
         data = { id, ...data };

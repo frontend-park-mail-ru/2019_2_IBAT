@@ -1,0 +1,11 @@
+.company__sidebar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    font-size: 13px;
+    position: relative;
+    padding: 20px;
+
+    background-color: #f9f9f9;
+}

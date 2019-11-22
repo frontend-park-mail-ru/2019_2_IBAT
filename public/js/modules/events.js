@@ -9,8 +9,10 @@ export const ACTIONS = {
 
 export const COMPANY = {
   getPopularCompanies: 'gpc',
-  getPopularCompaniesSuccess: 'gpcs'
+  getPopularCompaniesSuccess: 'gpcs',
 
+  getCompanyInfo: 'gci',
+  getCompanyInfoSuccess: 'gcis'
 };
 
 export const AUTH = {

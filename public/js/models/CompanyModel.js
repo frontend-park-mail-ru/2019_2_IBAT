@@ -1,5 +1,4 @@
 import { Api } from '../modules/api';
-import Net from '../modules/net';
 import { COMPANY, PROFILE } from '../modules/events';
 
 export class CompanyModel {
@@ -8,6 +7,20 @@ export class CompanyModel {
     this._globalEventBus = globalEventBus;
 
     this._globalEventBus.subscribeToEvent(COMPANY.getPopularCompanies, this._onGetPopularCompanies.bind(this));
+    this._globalEventBus.subscribeToEvent(COMPANY.getCompanyInfo, this._onGetCompanyInfo.bind(this));
+  }
+
+  _onGetCompanyInfo(id) {
+    console.log(id);
+    Api.getEmployerById(id)
+      .then(res => {
+        if (res.ok) {
+          res.json().then(data => {
+            console.log(data);
+            this._globalEventBus.triggerEvent(COMPANY.getCompanyInfoSuccess, data);
+          });
+        }
+      })
   }
 
   _onGetPopularCompanies () {

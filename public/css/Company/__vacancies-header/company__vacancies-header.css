@@ -1,0 +1,5 @@
+.company__vacancies-header {
+    border-top: 1px solid var(--primary-color);
+    padding-top: 14px;
+    margin: 20px 0;
+}
