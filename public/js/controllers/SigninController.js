@@ -7,7 +7,15 @@ export class SigninController extends Controller {
     super(root, globalEventBus, router);
 
     this._globalEventBus.subscribeToEvent(AUTH.signInSuccess, (data) => {
-      this._router.redirect('/');
+      if (data.role) {
+        if (data.role == 'support') {
+          this._router.redirect('/chat');
+        } else {
+          this._router.redirect('/');
+        }
+      } else {
+        this._router.redirect('/');
+      }
     });
 
     this._view = new SignInView(this._root, this._globalEventBus);
