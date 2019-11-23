@@ -15,6 +15,5 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   Object.values(models).forEach(model => model.setGlobalEventBus(globalEventBus));
 
-  const chatController = new ChatController(body, globalEventBus);
-
+  new ChatController(body, globalEventBus).start();
 });

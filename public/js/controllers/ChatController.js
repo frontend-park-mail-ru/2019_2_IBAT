@@ -5,8 +5,10 @@ export class ChatController {
   constructor (root, globalEventBus) {
     this._root = root;
     this._globalEventBus = globalEventBus;
+  }
 
-    globalEventBus.triggerEvent(AUTH.checkAuth, this._onAuthResponse.bind(this));
+  start(){
+    this._globalEventBus.triggerEvent(AUTH.checkAuth, this._onAuthResponse.bind(this));
     this._view = new IndexView(this._root, this._globalEventBus);
   }
 

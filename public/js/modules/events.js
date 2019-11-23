@@ -34,6 +34,9 @@ export const AUTH = {
 };
 
 export const CHAT = {
+  ws_opened: 'wsopen',
+  send: 'send',
+  receive: 'receive',
 
 };
 

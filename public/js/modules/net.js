@@ -1,5 +1,5 @@
-const serverURL = 'https://82.146.43.113:8080';
-
+export const serverURL = 'https://82.146.43.113:8080';
+export const serverChatURL = 'ws://82.146.43.113:8090/chat';
 
 export default class Net {
     /**
@@ -47,7 +47,7 @@ export default class Net {
         return fetch(Net.getServerURL() + url, {
             method: 'DELETE',
             credentials: 'include',
-            headers: { 
+            headers: {
                 'X-CSRF-Token': token
             }
         });
