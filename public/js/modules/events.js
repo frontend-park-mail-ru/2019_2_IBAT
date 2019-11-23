@@ -33,6 +33,10 @@ export const AUTH = {
 
 };
 
+export const CHAT = {
+
+};
+
 export const VACANCY = {
   getVacancies: 'getVacancies',
   getVacanciesSuccess: 'getVacanciesS',
