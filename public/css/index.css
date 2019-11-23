@@ -222,8 +222,6 @@ p {
     border-radius: 10px 10px 0 0;
 }
 .chatbubble .expanded {
-    height: 300px;
-    width: 350px;
     background-color: #fff;
     text-align: left;
     padding: 10px;
@@ -232,6 +230,8 @@ p {
     font-size: 14px;
 }
 
-.chat {
+.iframe-chat {
+    height: 500px;
+    width: 350px;
     background-color: #fff;
 }
