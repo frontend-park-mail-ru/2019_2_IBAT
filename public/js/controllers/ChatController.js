@@ -12,11 +12,12 @@ export class ChatController {
 
   _onAuthResponse (data) {
     if (data.role === 'support') {
-      this._view = new ChatView(this._root, this._globalEventBus);
-    } else if (data.role === 'seeker' || data.role === 'employer') {
       this._view = new SupportChatView(this._root, this._globalEventBus);
+    } else if (data.role === 'seeker' || data.role === 'employer') {
+      this._view = new ChatView(this._root, this._globalEventBus);
     } else {
       window.location = '/';
     }
+    this._view.render();
   }
 }
