@@ -1,10 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  entry: './public/js/application.js',
+  entry: {
+    application: './public/js/application.js',
+    chat: './public/js/chat.js'
+  },
   output: {
     path: path.resolve(__dirname, 'public/dist'),
-    filename: 'application.js',
+    filename: '[name].js',
   },
   devtool: 'inline-source-map',
   resolve: {
