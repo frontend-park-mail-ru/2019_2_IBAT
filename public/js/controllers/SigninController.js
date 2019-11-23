@@ -9,7 +9,7 @@ export class SigninController extends Controller {
     this._globalEventBus.subscribeToEvent(AUTH.signInSuccess, (data) => {
       if (data.role) {
         if (data.role == 'support') {
-          this._router.redirect('/chat');
+          window.location = '/chat'
         } else {
           this._router.redirect('/');
         }
