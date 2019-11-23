@@ -4,15 +4,16 @@ import { serverChatURL } from '../modules/net';
 class ChatModel {
   setGlobalEventBus (globalEventBus) {
     this._globalEventBus = globalEventBus;
+    window._globalEventBus = globalEventBus;
 
     this._globalEventBus.subscribeToEvent(CHAT.send, this._onSend.bind(this));
-    this._globalEventBus.subscribeToEvent(CHAT.receive, this._onReceive.bind(this));
 
     this.ws = new WebSocket(serverChatURL);
 
     this.ws.onopen = _ => {
       console.log('Соеденинение установлено');
       this._globalEventBus.triggerEvent(CHAT.ws_opened);
+      this.listen();
     };
 
     this.ws.onerror = error => {
@@ -30,19 +31,16 @@ class ChatModel {
   }
 
   _onSend (message) {
-    ws.send(message);
+    this.ws.send(message);
   }
 
-  _onReceive () {
-    ws.onmessage = event => {
-      const message = JSON.parse(event.data);
-      console.log(`Chat Received() ===> ${message}`);
+  listen () {
+    this.ws.onmessage = event => {
+      console.log(`Chat Received() ===> ${event.data}`);
 
-      this._globalEventBus.triggerEvent(CHAT.receive, message);
+      this._globalEventBus.triggerEvent(CHAT.receive, event.data);
     };
   }
-
 }
 
-window.chatModel=new ChatModel();
 export default new ChatModel();
