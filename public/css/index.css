@@ -194,3 +194,42 @@ p {
   outline: none;
   background: transparent;
 }
+
+.chatbubble {
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    right: 30px;
+    transition: transform .3s ease-in-out;
+}
+.chatbubble.opened {
+    transform: translateY(0)
+}
+
+.chatbubble .chat {
+    display: none;
+}
+
+.chatbubble .unexpanded {
+    display: block;
+    background-color: var(--primary-color_light);
+    padding: 10px 15px 10px;
+    position: relative;
+    cursor: pointer;
+    width: 350px;
+    border-radius: 10px 10px 0 0;
+}
+.chatbubble .expanded {
+    height: 300px;
+    width: 350px;
+    background-color: #fff;
+    text-align: left;
+    padding: 10px;
+    color: #333;
+    text-shadow: none;
+    font-size: 14px;
+}
+
+.chat {
+    background-color: #fff;
+}
