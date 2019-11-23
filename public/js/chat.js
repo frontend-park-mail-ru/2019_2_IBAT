@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     chat: chatModel,
   };
 
-  window.chatModel=chatModel;
+  window.chatModel = chatModel;
 
   Object.values(models).forEach(model => model.setGlobalEventBus(globalEventBus));
 

@@ -1,25 +1,27 @@
 import { IndexView } from '../views/Index/IndexView';
 import { AUTH } from '../modules/events';
+import { ChatView, SupportChatView } from '../views/ChatView/ChatView';
 
 export class ChatController {
   constructor (root, globalEventBus) {
     this._root = root;
     this._globalEventBus = globalEventBus;
+
+    this._globalEventBus.subscribeToEvent(AUTH.checkAuthResponse, this._onAuthResponse.bind(this));
+
   }
 
-  start(){
-    this._globalEventBus.triggerEvent(AUTH.checkAuth, this._onAuthResponse.bind(this));
-    this._view = new IndexView(this._root, this._globalEventBus);
+  start () {
+    console.log('ChatController start()');
+    this._globalEventBus.triggerEvent(AUTH.checkAuth);
+    this._view = new ChatView(this._root, this._globalEventBus);
   }
 
   _onAuthResponse (data) {
-    if (data.role === 'support') {
-      this._view = new SupportChatView(this._root, this._globalEventBus);
-    } else if (data.role === 'seeker' || data.role === 'employer') {
-      this._view = new ChatView(this._root, this._globalEventBus);
-    } else {
-      window.location = '/';
+    console.log('render()');
+
+    if (data.role === 'support' || data.role === 'seeker' || data.role === 'employer') {
+      this._view.render();
     }
-    this._view.render();
   }
 }
