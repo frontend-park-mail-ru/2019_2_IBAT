@@ -38,6 +38,8 @@
 @import './Form-row/__key/form-row__key.css';
 @import './Form-row/__value/form-row__value.css';
 
+@import './Chat/chat.css';
+
 @import './Header/header.css';
 @import './Header/__logo/header__logo.css';
 @import './Header/__menu/header__menu.css';
