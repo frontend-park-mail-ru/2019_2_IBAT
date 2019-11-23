@@ -22,8 +22,6 @@ export class ChatController {
 
     if (data.role === 'support' || data.role === 'seeker' || data.role === 'employer') {
       this._view.render();
-    } else {
-      window.location = '/';
     }
   }
 }
