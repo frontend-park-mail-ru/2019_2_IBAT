@@ -10,12 +10,10 @@
     display: flex;
     flex-basis: 90%;
     flex-direction: column;
-    padding: 16px;
     justify-content: start;
 }
 
 .chat__row{
-    padding: 16px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -23,11 +21,11 @@
 
 .message_my{
     margin: 8px;
-    align-self: end;
+    text-align: end;
 }
 
 .message_other{
     margin: 8px;
-    align-self: start;
+    text-align: start;
 }
 

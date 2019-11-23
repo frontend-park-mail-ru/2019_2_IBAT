@@ -31,6 +31,7 @@ class ChatModel {
   }
 
   _onSend (message) {
+    console.log(`onSend() === > ${message}`);
     this.ws.send(message);
   }
 
