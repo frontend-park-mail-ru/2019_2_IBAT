@@ -12,7 +12,10 @@ export const COMPANY = {
   getPopularCompaniesSuccess: 'gpcs',
 
   getCompanyInfo: 'gci',
-  getCompanyInfoSuccess: 'gcis'
+  getCompanyInfoSuccess: 'gcis',
+
+  search: 'scmp',
+  searchSuccess: 'scmps',
 };
 
 export const AUTH = {

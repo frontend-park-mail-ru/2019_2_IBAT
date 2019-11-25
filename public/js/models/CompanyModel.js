@@ -8,6 +8,7 @@ export class CompanyModel {
 
     this._globalEventBus.subscribeToEvent(COMPANY.getPopularCompanies, this._onGetPopularCompanies.bind(this));
     this._globalEventBus.subscribeToEvent(COMPANY.getCompanyInfo, this._onGetCompanyInfo.bind(this));
+    this._globalEventBus.subscribeToEvent(COMPANY.search, this._onSearchCompanies.bind(this));
   }
 
   _onGetCompanyInfo(id) {
@@ -56,6 +57,20 @@ export class CompanyModel {
         console.error(error);
       });
   }
-}
 
+  _onSearchCompanies(parametrs) {
+    new Promise((resolve, reject) => {
+      const companies = [
+        { id: '235fsd655423dfjsdf2', name: 'Sberbank' }
+      ];
+      resolve(companies);
+    })
+      .then(res => {
+        this._globalEventBus.triggerEvent(COMPANY.searchSuccess, res);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+}
 export default new CompanyModel();

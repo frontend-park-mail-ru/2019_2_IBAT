@@ -180,6 +180,9 @@
 @import './Company/__right-block/company__right-block.css';
 @import './Company/__short-info/company__short-info.css';
 @import './Company/__vacancies-header/company__vacancies-header.css';
+
+@import './Search-company/search-company.css';
+@import './Search-company/__name/search-company__name.css';
 /* do not touch anything above*/
 
 @import 'card_list.css';
