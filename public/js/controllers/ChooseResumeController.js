@@ -7,7 +7,7 @@ export class ChooseResumeController extends Controller {
     super(root, globalEventBus, router);
 
     this._globalEventBus.subscribeToEvent(RESPOND.respondToVacancySuccess, () => {
-      this._router.route({path:'/my_responds', addToHistory: true});
+      this._router.route({ path: '/my_responds', addToHistory: true });
     });
 
     this._view = new ChooseResumeView(this._root, this._globalEventBus);

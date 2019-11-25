@@ -226,15 +226,15 @@ export class Api {
     });
   }
 
-  static getResponds (resumeId='', vacancyId='') {
+  static getResponds (resumeId = '', vacancyId = '') {
     return Net.doGet({
       url: `/responds?vacancy_id=${vacancyId}&resume_id=${resumeId}`,
     });
   }
 
-  static addFavoriteVacancy (vacancyId='') {
+  static addFavoriteVacancy (vacancyId = '') {
     return Net.doPost({
       url: `/favorite_vacancy/${vacancyId}`,
-    })
+    });
   }
 }

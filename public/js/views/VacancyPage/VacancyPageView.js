@@ -43,7 +43,7 @@ export class VacancyPageView extends View {
     this._data = { ...data, ...this._data };
     this._data['wage_from'] = this._data['wage_from'].split('.')[0];
     this._data['wage_to'] = this._data['wage_to'].split('.')[0];
-    
+
     super.render(this._data);
 
     this.respondButton = document.getElementById('respondToVacancyButton');
@@ -73,7 +73,7 @@ export class VacancyPageView extends View {
     //
   }
 
-  _onToFavorite(event) {
+  _onToFavorite (event) {
     console.log(event);
     let link = event.currentTarget;
     Api.addFavoriteVacancy(link.id)
@@ -87,6 +87,6 @@ export class VacancyPageView extends View {
       })
       .catch(err => {
         console.error(err);
-      })
+      });
   }
 }

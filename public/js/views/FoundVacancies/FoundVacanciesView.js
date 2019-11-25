@@ -3,7 +3,6 @@ import { View } from '../../modules/view';
 import { ShortVacancyComponent } from '../../../components/ShortVacancy/ShortVacancy';
 import { AUTH } from '../../modules/events';
 
-
 export class FoundVacanciesView extends View {
 
   constructor (root, globalEventBus) {
@@ -16,7 +15,7 @@ export class FoundVacanciesView extends View {
     if (Array.isArray(vacancies)) {
       this._vacancies = vacancies;
     }
-    
+
     let data = {
       'number_of_vacancies': this._vacancies.length
     };
@@ -27,7 +26,7 @@ export class FoundVacanciesView extends View {
 
     if (this._vacancies.length > 0) {
       this._vacancies.forEach(vacancy => {
-        new ShortVacancyComponent({vacancy:vacancy,  globalEventBus: this._globalEventBus }).appendTo(list);
+        new ShortVacancyComponent({ vacancy: vacancy, globalEventBus: this._globalEventBus }).appendTo(list);
       });
     }
   }

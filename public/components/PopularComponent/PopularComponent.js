@@ -25,7 +25,7 @@ export class PopularComponent extends Component {
     if (this.data.items) {
       if (this.data.role === 'seeker' || this.data.role === 'seekerGuest') {
         this.data.items.forEach(vacancy => {
-          const shortVacancyComponent = new ShortVacancyComponent({vacancy, globalEventBus: this._globalEventBus} );
+          const shortVacancyComponent = new ShortVacancyComponent({ vacancy, globalEventBus: this._globalEventBus });
           shortVacancyComponent.appendTo(this.list);
         });
       }

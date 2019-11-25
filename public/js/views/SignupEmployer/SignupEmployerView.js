@@ -4,12 +4,12 @@ import Validation from '../../modules/validation';
 import { AUTH } from '../../modules/events';
 
 export class SignupEmployerView extends View {
-  constructor(root, globalEventBus) {
+  constructor (root, globalEventBus) {
     super(root, template, globalEventBus);
     this._globalEventBus.subscribeToEvent(AUTH.signUpFailed, this._onSubmitFailed.bind(this));
   }
 
-  render(data = {}) {
+  render (data = {}) {
     super.render(data);
 
     this._signupForm = this._root.querySelector('.signupemp__form-js');
@@ -21,16 +21,16 @@ export class SignupEmployerView extends View {
   /**
    * Ставит слушатели на поля для валидации
    */
-  setValidationOnChangeListeners() {
+  setValidationOnChangeListeners () {
     const login = this._signupForm.elements['login'];
     const inputs = this._signupForm.querySelectorAll('input');
 
     inputs.forEach(input => {
       input.addEventListener(
         'input',
-        function(event) {
+        function (event) {
           let error = event.target.nextElementSibling;
-          View._removeInputError(event.target, error)
+          View._removeInputError(event.target, error);
         },
         false
       );
@@ -38,11 +38,11 @@ export class SignupEmployerView extends View {
 
     login.addEventListener(
       'input',
-      function(event) {
+      function (event) {
         let notValid = Validation.validateEmail(event.target.value, true);
         let error = event.target.nextElementSibling;
         if (Validation.isEmptyField(event.target.value) || !notValid) {
-          View._removeInputError(event.target, error)
+          View._removeInputError(event.target, error);
         } else {
           View._addInputError(event.target, error, 'Некорректный email');
         }
@@ -56,7 +56,7 @@ export class SignupEmployerView extends View {
    * @param data
    * @private
    */
-  _onSubmitFailed(data) {
+  _onSubmitFailed (data) {
     let message = this._root.querySelector('.light-page__error-js');
     message.classList.add('light-page__error_active');
     message.innerHTML = `<p>${data.error}<p>`;
@@ -67,7 +67,7 @@ export class SignupEmployerView extends View {
    * @param ev
    * @private
    */
-  _onSubmit(ev) {
+  _onSubmit (ev) {
     ev.preventDefault();
     let wasfail = false;
     let hasEmptyField = false;

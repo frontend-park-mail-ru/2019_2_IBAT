@@ -1,8 +1,8 @@
-.link_list-item{
+.link_list-item {
     color: var(--text-color);
     margin: 8px;
 }
 
-.link_list-item:hover{
+.link_list-item:hover {
     color: var(--primary-color_hover);
 }

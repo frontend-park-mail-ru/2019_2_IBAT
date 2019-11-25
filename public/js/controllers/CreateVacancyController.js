@@ -6,7 +6,7 @@ export class CreateVacancyController extends Controller {
   constructor (root, globalEventBus, router) {
     super(root, globalEventBus, router);
 
-    this._globalEventBus.subscribeToEvent(VACANCY.createVacancySuccess, (_)=>{
+    this._globalEventBus.subscribeToEvent(VACANCY.createVacancySuccess, (_) => {
       //TODO перенаправлять на страницу вакансии
       this._router.redirect('/');
     });

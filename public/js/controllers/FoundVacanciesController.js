@@ -9,7 +9,7 @@ export class FoundVacanciesController extends Controller {
     this._view = new FoundVacanciesView(this._root, this._globalEventBus);
   }
 
-  openWithData(vacancies = {}) {
+  openWithData (vacancies = {}) {
     this._view.render(vacancies);
   }
 }

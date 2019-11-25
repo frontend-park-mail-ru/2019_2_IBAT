@@ -17,29 +17,31 @@ export default class Validation {
    * @param withRegex - flag (если true - то проверяется Regex на валидность)
    * @returns {string} если не валидный емаил, возвращает false.
    */
-  static validateEmail(email, withRegex = false) {
+  static validateEmail (email, withRegex = false) {
     if (!email || (withRegex && !Validation.validateEmailRegex(email))) {
       return errEmailIsInvalid;
     }
   }
+
   /**
    * Валидирует пароль.
    * @param password
    * @param withRegex - flag (если true - то пароль проверяется Regex на валидность)
    * @returns {string} если не валидный пароль, возвращает ошибку.
    */
-  static validatePassword(password, withRegex = false) {
+  static validatePassword (password, withRegex = false) {
     if (!password || (withRegex && !Validation.validatePassRegex(password))) {
       return errInvalidPasswordData;
     }
   }
+
   /**
    * Сравнивает 2 пароля.
    * @param repass
    * @param pass
    * @returns {string}
    */
-  static validateRepass(repass, pass) {
+  static validateRepass (repass, pass) {
     const errRepass = Validation.validatePassword(repass);
     if (errRepass) {
       return errRepass;
@@ -53,7 +55,7 @@ export default class Validation {
    * @param email
    * @returns {boolean}
    */
-  static validateEmailRegex(email) {
+  static validateEmailRegex (email) {
     return emailRegexExp.test(String(email).toLowerCase());
   }
 
@@ -62,15 +64,16 @@ export default class Validation {
    * @param pass
    * @returns {boolean}
    */
-  static validatePassRegex(pass) {
+  static validatePassRegex (pass) {
     return passRegexExp.test(String(pass));
   }
+
   /**
    * Проверяет на пустоту.
    * @param value
    * @returns {boolean}
    */
-  static isEmptyField(value) {
+  static isEmptyField (value) {
     return value == '';
   }
 
@@ -79,7 +82,7 @@ export default class Validation {
    * @param avatar
    * @returns {string}
    */
-  static validateAvatar(avatar) {
+  static validateAvatar (avatar) {
     const validExtensions = new Set(['gif', 'png', 'bmp', 'jpeg', 'jpg']);
     const extension = avatar.name.substring(avatar.name.lastIndexOf('.') + 1).toLowerCase();
     if (!validExtensions.has(extension)) {

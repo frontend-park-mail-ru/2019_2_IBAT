@@ -1,21 +1,21 @@
-import template from './searchBar.pug'
+import template from './searchBar.pug';
 
-export class SearchBarComponent{
-  constructor(data){
-    this._data=data;
+export class SearchBarComponent {
+  constructor (data) {
+    this._data = data;
   }
 
-  render(){
+  render () {
     return template(this._data);
   }
 
-  renderTo(element){
-    element.innerHTML=this.render();
+  renderTo (element) {
+    element.innerHTML = this.render();
 
     this.onRender();
   }
 
-  onRender(){
+  onRender () {
 
   };
 }

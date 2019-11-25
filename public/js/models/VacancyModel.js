@@ -118,7 +118,7 @@ class VacancyModel {
       });
   }
 
-  _onGetFavorite() {
+  _onGetFavorite () {
     Api.getFavoriteVacancies()
       .then(response => {
         if (response.ok) {
@@ -137,7 +137,7 @@ class VacancyModel {
       });
   }
 
-  _onGetFavoriteIds() {
+  _onGetFavoriteIds () {
     Api.getFavoriteVacancies()
       .then(response => {
         if (response.ok) {
@@ -146,7 +146,7 @@ class VacancyModel {
             let ids = [];
             vacancies.forEach(v => {
               ids.push(v['id']);
-            })
+            });
             this._globalEventBus.triggerEvent(VACANCY.getFavoriteIdsSuccess, ids);
           });
         } else {

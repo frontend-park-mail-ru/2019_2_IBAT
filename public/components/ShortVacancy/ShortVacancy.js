@@ -5,11 +5,11 @@ import { Component } from '../../js/modules/Component';
 import { VACANCY } from '../../js/modules/events';
 
 export class ShortVacancyComponent extends Component {
-  constructor ({vacancy = {}, isStatusMode = false, status, globalEventBus}={}) {
-    if (vacancy['wage_from']){
+  constructor ({ vacancy = {}, isStatusMode = false, status, globalEventBus } = {}) {
+    if (vacancy['wage_from']) {
       vacancy['wage_from'] = vacancy['wage_from'].split('.')[0];
     }
-    if (vacancy['wage_to']){
+    if (vacancy['wage_to']) {
       vacancy['wage_to'] = vacancy['wage_to'].split('.')[0];
     }
     super({ data: { ...vacancy, isStatusMode, status }, template, globalEventBus });
@@ -29,7 +29,7 @@ export class ShortVacancyComponent extends Component {
         if (res.ok) {
           res.json().then(employer => {
             if (employer.path_to_img !== '' && employer.path_to_img !== 'default.jpg') {
-              logo.setAttribute('src',`${Net.getServerURL()}/${employer.path_to_img}`);
+              logo.setAttribute('src', `${Net.getServerURL()}/${employer.path_to_img}`);
             } else {
               logo.style.display = 'none';
             }
@@ -54,7 +54,7 @@ export class ShortVacancyComponent extends Component {
     }
   }
 
-  _onToFavorite(event) {
+  _onToFavorite (event) {
     console.log(event);
     let link = event.currentTarget;
     Api.addFavoriteVacancy(link.id)
@@ -70,6 +70,7 @@ export class ShortVacancyComponent extends Component {
         console.error(err);
       });
   }
+
   onRender () {
   }
 }

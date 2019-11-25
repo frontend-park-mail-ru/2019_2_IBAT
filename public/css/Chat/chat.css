@@ -1,4 +1,4 @@
-.chat{
+.chat {
     display: flex;
     height: 100%;
     padding: 0 16px;
@@ -6,25 +6,25 @@
     justify-content: space-around;
 }
 
-.chat__content{
+.chat__content {
     display: flex;
     flex-basis: 90%;
     flex-direction: column;
     justify-content: start;
 }
 
-.chat__row{
+.chat__row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.message_my{
+.message_my {
     margin: 8px;
     text-align: end;
 }
 
-.message_other{
+.message_other {
     margin: 8px;
     text-align: start;
 }

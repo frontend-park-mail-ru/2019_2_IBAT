@@ -10,11 +10,11 @@ export class IndexController extends Controller {
       this._router.redirect('/');
     });
 
-    this._globalEventBus.subscribeToEvent(ACTIONS.seekerGuestSlide, (data)=>{
+    this._globalEventBus.subscribeToEvent(ACTIONS.seekerGuestSlide, (data) => {
       this._router.redirect('/', data);
     });
 
-    this._globalEventBus.subscribeToEvent(ACTIONS.employerGuestSlide, (data)=>{
+    this._globalEventBus.subscribeToEvent(ACTIONS.employerGuestSlide, (data) => {
       this._router.redirect('/', data);
     });
 

@@ -34,8 +34,7 @@ export class IndexView extends View {
     // //TODO костыль, чтобы этот checkAuth не затирал своим undefined для гостя его статус после клика (guestSeeker, guestEmployer)
     if (this._data.role && this._data.role.match('Guest') && !data.role) {
 
-    }
-    else {
+    } else {
       this.merge(data);
     }
     console.log(this._data.role);
@@ -84,7 +83,7 @@ export class IndexView extends View {
   }
 
   showPersonalBlock () {
-    console.log('showPersonalBlock()'+this._data.role);
+    console.log('showPersonalBlock()' + this._data.role);
     if (this._data.role === 'seeker' || this._data.role === 'employer') {
       const myEventsComponent = new MyEventsComponent(this._data);
       myEventsComponent.renderTo(this.personalBlockLeft);
