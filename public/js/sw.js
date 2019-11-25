@@ -1,7 +1,7 @@
 const { assets } = global.serviceWorkerOption;
 const cacheName = 'myCache';
 
-let assetsToCache = [...assets];
+let assetsToCache = [...assets, '/offline'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -22,7 +22,9 @@ self.addEventListener('fetch', (event) => {
         return fetch(event.request)
           .then((response) => {
             return caches.open(cacheName).then((cache) => {
-              cache.put(event.request, response.clone());
+              if(!event.request.url.includes('/api/')){
+                cache.put(event.request.url, response.clone());
+              }
               return response;
             });
           });
