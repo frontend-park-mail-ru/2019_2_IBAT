@@ -13,23 +13,29 @@ export class PopularComponent extends Component {
   }
 
   onFirstRender () {
-    if (this.data.role === 'seeker' || this.data.role === 'seekerGuest') {
+    if (this.getRole === 'seeker' || this.getRole === 'seekerGuest') {
       this._globalEventBus.triggerEvent(VACANCY.getVacancies);
     }
-    if (this.data.role === 'employer' || this.data.role === 'employerGuest') {
+    if (this.getRole === 'employer' || this.getRole === 'employerGuest') {
       this._globalEventBus.triggerEvent(RESUME.getResumes);
     }
   }
 
   onRender () {
     if (this.data.items) {
-      if (this.data.role === 'seeker' || this.data.role === 'seekerGuest') {
+      if (this.getRole === 'seeker' || this.getRole === 'seekerGuest') {
         this.data.items.forEach(vacancy => {
-          const shortVacancyComponent = new ShortVacancyComponent({ vacancy, globalEventBus: this._globalEventBus });
+          const shortVacancyComponent = new ShortVacancyComponent({
+            data: {
+              vacancy,
+              role: this.getRole
+            },
+            globalEventBus: this._globalEventBus
+          });
           shortVacancyComponent.appendTo(this.list);
         });
       }
-      if (this.data.role === 'employer' || this.data.role === 'employerGuest') {
+      if (this.getRole === 'employer' || this.getRole === 'employerGuest') {
         this.data.items.forEach(resume => {
           const shortResumeComponent = new ShortResumeComponent(resume);
           shortResumeComponent.appendTo(this.list);

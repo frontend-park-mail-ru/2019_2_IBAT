@@ -23,8 +23,11 @@ class AuthModel {
         }
       })
       .then(data => {
-        this._data = { ...this._data, role: data.role };
-        this._globalEventBus.triggerEvent(AUTH.checkAuthResponse, this._data);
+        this.data = { ...this.data, role: data.role };
+        if(data.role){
+          localStorage.setItem('role', data.role);
+        }
+        this._globalEventBus.triggerEvent(AUTH.checkAuthResponse);
       })
       .catch(error => {
         console.log(error);
@@ -35,7 +38,7 @@ class AuthModel {
     Api.signOut()
       .then(res => {
         if (res.ok) {
-          this._data.role = undefined;
+          this.data.role = undefined;
           this._globalEventBus.triggerEvent(AUTH.signOutResponse);
         }
       })

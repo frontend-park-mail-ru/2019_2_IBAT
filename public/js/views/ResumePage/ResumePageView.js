@@ -15,7 +15,7 @@ export class ResumePageView extends View {
     super.render(data);
 
     this._globalEventBus.triggerEvent(AUTH.checkAuth);
-    this._data = data;
+    this.data = data;
 
     this._globalEventBus.triggerEvent(RESUME.getResume, data);
   }
@@ -29,9 +29,8 @@ export class ResumePageView extends View {
     if (this.isViewClosed) {
       return;
     }
-    this._data = { role: data.role, ...this._data };
 
-    this._globalEventBus.triggerEvent(RESUME.getResume, this._data.id);
+    this._globalEventBus.triggerEvent(RESUME.getResume, this.data.id);
   }
 
   /**
@@ -40,7 +39,7 @@ export class ResumePageView extends View {
    * @private
    */
   _onLoadResumeSuccess (data) {
-    this._data = { ...data, ...this._data };
+    this.data = { ...data, ...this.data };
 
     super.render(data);
   }

@@ -7,7 +7,7 @@ export class CreateResumeController extends Controller {
     super(root, globalEventBus, router);
 
     this._globalEventBus.subscribeToEvent(RESUME.createResumeSuccess, (_) => {
-      this._router.redirect('/');
+      this._router.redirect({path: '/'});
     });
 
     this._view = new CreateResumeView(this._root, this._globalEventBus);

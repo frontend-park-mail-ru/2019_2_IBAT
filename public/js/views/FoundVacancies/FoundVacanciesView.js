@@ -1,7 +1,7 @@
 import template from './foundVacancies.pug';
 import { View } from '../../modules/view';
 import { ShortVacancyComponent } from '../../../components/ShortVacancy/ShortVacancy';
-import { AUTH } from '../../modules/events';
+import { ACTIONS } from '../../modules/events';
 
 export class FoundVacanciesView extends View {
 
@@ -26,8 +26,16 @@ export class FoundVacanciesView extends View {
 
     if (this._vacancies.length > 0) {
       this._vacancies.forEach(vacancy => {
-        new ShortVacancyComponent({ vacancy: vacancy, globalEventBus: this._globalEventBus }).appendTo(list);
+        new ShortVacancyComponent({ data: { vacancy } }).appendTo(list);
       });
     }
+
+    this.changeButton.addEventListener('click',ev=>{
+      this._globalEventBus.triggerEvent(ACTIONS.changeRequest);
+    });
+  }
+
+  get changeButton(){
+    return this._root.querySelector('.change-request-js');
   }
 }

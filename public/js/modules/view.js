@@ -45,6 +45,7 @@ export class View {
   }
 
   render (data) {
+    data = { ...data, role: this.getRole };
     this._root.innerHTML = this._template(data);
     this.isViewClosed = false;
 
@@ -61,6 +62,15 @@ export class View {
   }
 
   merge (data) {
-    this._data = { ...this._data, ...data };
+    this.data = { ...this.data, ...data };
+  }
+
+  get getRole () {
+    console.log(`role=${localStorage.getItem('role')}`);
+    return localStorage.getItem('role');
+  }
+
+  set setRole (role) {
+    localStorage.setItem('role', role);
   }
 }
