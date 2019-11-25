@@ -1,0 +1,16 @@
+.bloko-link {
+    color: #09f;
+    transition: color .1s;
+}
+
+.bloko-link:visited {
+    color: #09f;
+}
+
+.bloko-link:hover {
+    color: #fb5a69;
+}
+
+.bloko-link:focus {
+    color: #fb5a69;
+}

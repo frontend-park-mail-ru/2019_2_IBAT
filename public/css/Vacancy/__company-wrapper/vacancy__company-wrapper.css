@@ -1,0 +1,5 @@
+.vacancy__company-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}

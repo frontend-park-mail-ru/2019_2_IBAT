@@ -1,0 +1,10 @@
+.resume-userpic__default {
+    margin: 0 auto;
+    background: url(../../../img/default-userpic__min_.svg) no-repeat 0 100%;
+}
+
+.resume-userpic .resume-userpic__default {
+    width: 100px;
+    height: 117px;
+    background-size: auto 100%;
+}

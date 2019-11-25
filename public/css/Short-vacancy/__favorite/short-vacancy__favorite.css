@@ -1,0 +1,17 @@
+.short-vacancy__favorite_on {
+    display: none;
+}
+
+.short-vacancy__favorite_off {
+    display: inline;
+}
+
+.short-vacancy__favorite_selected
+.short-vacancy__favorite_on {
+    display: inline;
+}
+
+.short-vacancy__favorite_selected
+.short-vacancy__favorite_off {
+    display: none;
+}

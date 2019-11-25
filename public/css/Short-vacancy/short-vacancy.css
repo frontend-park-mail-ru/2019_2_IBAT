@@ -1,0 +1,9 @@
+.short-vacancy {
+    padding: 20px;
+    border: 1px solid #e7e7e7;
+    position: relative;
+    margin-top: -1px;
+    font-size: 14px;
+    line-height: 1.571;
+    min-width: 400px;
+}

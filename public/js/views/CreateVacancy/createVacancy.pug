@@ -1,27 +1,19 @@
 div.left-column
     h1.title-h1 Создание вакансии
     form.vacancy-form(method="POST" novalidate)
-        div.form__row
-            span.span Название компании
-            div.form__row__input
-                input.input.company-name(type="text", name='company_name')
+        div.form__section
+            span.form__legend Название компании
+            div.form__input
+                input.input.company-name(type="text", value=profile.company_name, name='company_name')
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span Профессия
-            div.form__row__input
-                input.input.profession(type="text", name='profession')
-                span.error(aria-live='polite')
-
-        div.form__row
-            span.span Должность
-            div.form__row__input
+            span.form__legend Должность
+            div.form__input
                 input.input.position(type="text", name='position')
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span Опыт работы
-            div.form__row__input
+            span.form__legend Опыт работы
+            div.form__input
                 select.input.experience(name='experience')
                     option(value="Без опыта работы") Без опыта работы
                     option(value="1-3года") 1-3года
@@ -29,16 +21,14 @@ div.left-column
                     option(value="5+ лет") 5+ лет
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span Оплата
-            div.form__row__input
+            span.form__legend Оплата
+            div.form__input
                 input.input.wage(type="text", name='wage')
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span О вакансии
-            div.form__row__input
-                textarea.input.about(name="about", rows="10" placeholder="Расскажите об обязанностях подробнее")
+            span.form__legend О вакансии
+            div.form__input
+                textarea.input.form__about(name="about", rows="10" placeholder="Расскажите об обязанностях подробнее")
                 span.error(aria-live='polite')
 
-        button.button.button_blue(type='submit') Создать
+        button.button.button_blue(type='submit') Создать и опубликовать

@@ -1,0 +1,4 @@
+.search__checkboxes {
+    display: flex;
+    flex-direction: column;
+}

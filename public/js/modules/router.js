@@ -1,68 +1,135 @@
-export default class Router {
-    constructor(root) {
-        this.root = root;
-        this.routes = new Map();
-        this.currentRoute = null;
+const pathsWithId = [
+  '/profile',
+  '/vacancy',
+  '/resume',
+  '/employer'
+];
+
+export class Router {
+  constructor (root) {
+    this.root = root;
+    this.routes = new Map();
+
+    this.currentRoute = null;
+
+    window.onpopstate = _ => {
+      if (window.location.pathname) {
+        this.route({ path: window.location.pathname, addToHistory: false });
+      }
+    };
+
+  }
+
+  /**
+   * Переход на страницу path с нужными даннами data для неё
+   * @param {String} path
+   * @param prevState
+   * @param {Object} data
+   */
+  redirect ({path, data = {}, prevState = {}}) {
+    this.route({ path, data, prevState, addToHistory: true });
+  }
+
+  /**
+   * Добавление на path нужный controller
+   * @param {String} path
+   * @param {Controller} controller
+   */
+  add (path, controller) {
+    this.routes.set(path, controller);
+  }
+
+  route ({ path, data = {}, prevState = {}, addToHistory = true } = {}) {
+    let currentController = this.routes.get(this._getRoutePath(this.currentRoute));
+    if (currentController) {
+      currentController.close();
+    } else {
+      currentController = this.routes.get(this.currentRoute);
+      if (currentController) {
+        currentController.close();
+      }
     }
 
-    toStartPage() {
-        this.route("/");
+    if (addToHistory) {
+      window.history.pushState(prevState, null, path);
     }
 
-    add(path, view) {
-        this.routes.set(path, view);
-    }
+    const pathWithoutParameters = path.split('?')[0];
+    console.log(pathWithoutParameters);
+    const routePath = this._getRoutePath(pathWithoutParameters);
 
-    route(path) {
-        const currentView = this.routes.get(this.currentRoute);
-        if (currentView){
-            currentView.hide();
+    if (this.routes.has(routePath)) {
+      const controller = this.routes.get(routePath);
+
+      //Роутинг для /.../{id}
+      if (pathsWithId.find(el => el === routePath)) {
+        let id = this._extractIdFromPath(path);
+        data = { id, ...data };
+      }
+      console.log('router-> render(data)', data);
+      this.currentRoute = path;
+      controller.openWithData(data);
+
+    } else {
+      if (this.routes.has(pathWithoutParameters)) {
+        const controller = this.routes.get(pathWithoutParameters);
+        console.log('router-> render(data)', data);
+        this.currentRoute = path;
+        controller.openWithData(data);
+      }
+      //Error 404
+    }
+  }
+
+  /**
+   * Получает первичный маршрут для роутинга без параметров запроса
+   * @param pathWithoutParameters
+   * @returns {string}
+   * @private
+   */
+  _getRoutePath (pathWithoutParameters) {
+    if (pathWithoutParameters) {
+      return '/' + pathWithoutParameters.split('/')[1];
+    }
+  }
+
+  static _normalizePath (path) {
+    return path.charAt(path.length - 1) === '/' && path !== '/' ? path.slice(0, path.length - 1) : path;
+  }
+
+  start () {
+    localStorage.removeItem('role');
+
+    window.addEventListener('click', (ev) => {
+      if (ev.target.tagName === 'A') {
+        ev.preventDefault();
+
+        if(ev.target.pathname==='/'){
+          localStorage.removeItem('role');
         }
 
-        if (window.location.pathname !== path) {
-            window.history.pushState(null, null, path);
-        }
+        this.route({ path: Router._normalizePath(ev.target.pathname), addToHistory: true });
+      }
+    }, true);
 
-        const routePath='/' + path.split('/')[1];
-        //TODO костыль, переделать под нормальный роутинг для /vacancy/{id}
-        if (this.routes.has(routePath)) {
-            const view = this.routes.get(routePath);
-            const id = this._extractIdFromPath(path);
-            view.render(id);
-            this.currentRoute = path;
-        } else {
-            //Error 404
-        }
-    }
+    window.addEventListener('offline', ev => {
+      console.log('OFFLINE');
+      this.redirect({path:'/offline'});
+    });
 
-    static _normalizePath(path) {
-        return path.charAt(path.length - 1) === '/' && path !== '/' ? path.slice(0, path.length - 1) : path;
-    }
+    window.addEventListener('online', ev => {
+      console.log('ONLINE');
+      window.history.back();
+    });
 
-    start() {
-        this.root.addEventListener('click', (ev) => {
-            if (ev.target.tagName === 'A') {
-                ev.preventDefault();
-                this.route(Router._normalizePath(ev.target.pathname));
-            }
-        });
+    this.route({ path: Router._normalizePath(window.location.pathname), addToHistory: true });
+  }
 
-        this.route(Router._normalizePath(window.location.pathname));
-    }
+  _extractIdFromPath (path) {
+    return path.split('/').pop();
+  }
 
-    //TODO переделать под нормальный роутинг
-    _routesHasPath(path){
-
-        return Array.from(this.routes.keys()).some(regexKey=>regexKey.includes(path));
-    }
-
-    //TODO переделать под номрмальный ротуинг
-    _getView (path) {
-        const key=Array.from(this.routes.keys()).find(regexKey=>RegExp(regexKey).test(path));
-        return this.routes.get(key);
-    }
-
-    _extractIdFromPath (path) {
-        return path.split('/').pop();
-    }
+  back(){
+    window.history.back();
+  }
 }

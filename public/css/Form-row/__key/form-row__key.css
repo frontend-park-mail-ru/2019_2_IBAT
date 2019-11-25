@@ -1,0 +1,6 @@
+.form-row__key {
+    width: 30%;
+    display: flex;
+    justify-content: start;
+    align-self: center;
+}

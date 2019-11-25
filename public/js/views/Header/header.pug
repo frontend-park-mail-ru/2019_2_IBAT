@@ -1,35 +1,32 @@
-div.logo.header__logo
-    a(href='/')
-        img.logo__img(src='img/ibat.jpg', alt='logo')
+div.header__logo
+    a.title-h1(href='/') IBAT
 
-if role === 'seeker'
-    nav.menu.header__menu
-        //a.menu__link(href='#') Мои резюме
-        //a.menu__link(href='#') Отклики
+div.header__fill
 
-div.header-fill
+case role
+    when 'seeker'
+        a.header__link.header__link_active(href='/createresume') Создать резюме
 
-form.search-form.header__search-form(action='/#')
-    input.input.search-form__search(type='text', placeholder='Поиск', name='s')
-    input.button.button_green(type='submit', placeholder='Поиск')
+        div.header__favorites
+            a.icon.header__favorites-icon(href='/favorite_vacancies')
 
-if role
-    case role
-        when 'seeker'
-            div.resune-button.header__resume-button
-                a.button.button_supernova.header__button(href='/createresume') Создать резюме
+    when 'employer'
+        a.header__link.header__link_active(href='/createvacancy') Разместить вакансию
 
-        when 'employer'
-            div.resune-button.header__resume-button
-                a.button.button_supernova.header__button(href='/createvacancy') Создать вакансию
+        div.header__favorites
+            a.icon.header__favorites-icon(href='/favorite_resumes')
+
+    default
+        a.header__link.header__link_active(href='/signin') Войти
 
 
-    div.profile.header__profile
-        a.profile__icon(href='/profile')
-
-    div.login-button.header__login-button
-        input.button.button_supernova.header__button(type='button', name='signOut', value='Выйти')
-
-else
-    div.login-button.header__login-button
-        a.button.button_supernova.header__button(href='/signin') Войти
+if role === 'seeker' || role === 'employer'
+    div.header__profile
+        button.icon.header__profile-icon.dropdown-btn(name='profile-menu')
+        div.dropdown
+            if role === 'seeker'
+                a.dropdown__link(href='/resumes') Мои резюме
+            if role === 'employer'
+                a.dropdown__link(href='/vacancies') Мои вакансии
+            a.dropdown__link(href='/profile') Профиль
+            div.dropdown__link(id='signOut') Выйти

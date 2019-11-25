@@ -1,0 +1,17 @@
+.icon {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    outline: none;
+    text-decoration: none;
+    border: 0;
+    background-color: var(--primary-color);
+}
+
+.icon:hover {
+    background-color: var(--primary-color_hover);
+}
+
+.icon:active {
+    background-color: var(--primary-color_hover)
+}

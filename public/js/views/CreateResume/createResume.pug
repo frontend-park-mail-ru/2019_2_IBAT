@@ -1,89 +1,80 @@
 div.left-column
-    h1.title-h1 Создание резюме
-    form.resume-form(method='POST' novalidate)
+    h1.title-h1 Ваше резюме
+    form.create-resume-form(method='POST' novalidate)
         h2.title-h2 Контактные данные
 
-        div.form__row
-            span.span Имя
-            div.form__row__input
-                input.input(type='text', name='first_name')
+        div.form__section
+            span.form__legend Имя
+            div.form__input
+                input.input(type='text', value=profile.first_name, name='first_name')
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span Фамилия
-            div.form__row__input
-                input.input(type='text', name='second_name')
+            span.form__legend Фамилия
+            div.form__input
+                input.input(type='text', value=profile.second_name, name='second_name')
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span Город
-            div.form__row__input
-                input.input(type='text', name='city')
+            span.form__legend Город
+            div.form__input
+                input.input(type='text', name='city', placeholder='Москва')
                 span.error
 
-        div.form__row
-            span.span Телефон
-            div.form__row__input
-                input.input(type='text', name='phone_number')
+            span.form__legend Телефон
+            div.form__input
+                input.input(type='text', name='phone_number', placeholder="+7(999)000-00-00")
                 span.error
 
         h2.title-h2 Основная информация
 
-        div.form__row
-            span.span Желаемая профессия
-            div.form__row__input
+        div.form__section
+            span.form__legend Желаемая профессия
+            div.form__input
                 input.input(type='text', name='profession')
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span Желаемая должность
-            div.form__row__input
+            span.form__legend Желаемая должность
+            div.form__input
                 input.input(type='text', name='position')
                 span.error(aria-live='polite')
 
-        div.form__row
-            span.span Желаемая заработанная плата
-            div.form__row__input
+            span.form__legend Желаемая заработанная плата
+            div.form__input
                 input.input(type='number', name='wage')
                 span.error(aria-live='polite')
 
         h2.title-h2 Личная информация
 
-        div.form__row
-            span.span Дата рождения
-            div.form__row__input
+        div.form__section
+            span.form__legend Дата рождения
+            div.form__input
                 input.input(type='data', name='birth_date')
                 span.error
 
-        div.form__row
-            span.span Пол
-            div.form__row__input
+            span.form__legend Пол
+            div.form__input
                 select.input.sex(name='sex')
                     option(value='F') Женский
                     option(value='M') Мужской
                     option(value='?') Не определился
                 span.error
 
-        div.form__row
-            span.span Гражданство
-            div.form__row__input
+            span.form__legend Гражданство
+            div.form__input
                 input.input(type='text', name='citizenship')
                 span.error
 
-        div.form__row
-            span.span Опыт работы
-            div.form__row__input
-                select.input.experience(name='experience')
+            span.form__legend Опыт работы
+            div.form__input
+                select.input(name='experience')
                     option(value='Без опыта работы') Без опыта работы
                     option(value='1-3года') 1-3года
                     option(value='3-5лет') 3-5лет
                     option(value='5+ лет') 5+ лет
                 span.error
 
-        div.form__row
-            span.span О себе
-            div.form__row__input
-                textarea.input.about(
+            span.form__legend О себе
+            div.form__input
+                textarea.input.form__about(
                     name='about',
                     rows='10',
                     placeholder='Расскажите о своих качествах, знаниях, увлечениях, которые, как вам кажется, будут полезны работодателю')
@@ -91,11 +82,10 @@ div.left-column
 
         h2.title-h2 Образование
 
-        div.form__row
-            span.span Уровень
-            div.form__row__input
-                select.input.education(name='education')
-                    option(value='higher') Высшее
+        div.form__section
+            span.form__legend Уровень
+            div.form__input
+                select.input(name='education')
                     option(value='bachelor') Бакалавр
                     option(value='master') Магистр
                     option(value='candidate') Кандидат наук
@@ -105,4 +95,4 @@ div.left-column
                     option(value='special_secondary') Среднее специальное
                 span.error
 
-        button.button.button_blue(type='submit') Создать
+        button.button.button_blue(type='submit') Создать и опубликовать

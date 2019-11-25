@@ -1,0 +1,7 @@
+.hint-banner__card {
+    display: flex;
+    padding: 16px 24px;
+    margin-left: 16px;
+    flex-direction: column;
+    background-color: #fff;
+}

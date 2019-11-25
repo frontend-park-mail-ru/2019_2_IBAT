@@ -1,0 +1,22 @@
+.slider__button {
+    align-self: center;
+    margin-left: 20px;
+    background-color: transparent;
+    color: #fff;
+    width: 100px;
+    border-radius: 10px;
+}
+
+.slider__button:hover {
+    background-color: transparent;
+    border-color: var(--primary-color_hover);
+}
+
+.slider__button:focus {
+    background-color: transparent;
+    border-color: var(--primary-color_hover);
+}
+
+.slider__button:active {
+    border-color: var(--primary-color_hover);
+}

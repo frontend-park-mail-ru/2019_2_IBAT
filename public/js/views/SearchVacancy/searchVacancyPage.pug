@@ -1,0 +1,52 @@
+div.left-column
+    h1.title-h1.mb30 Поиск вакансий
+    form.search
+
+        div.search__block.mb20
+            span.search__legend Желаемая позиция
+            div.search__input
+                input.input(type="text", name='position')
+
+        div.search__block.mb20
+            span.search__legend Регион
+            div.search__input
+                input.input(type="text", name='region')
+
+        div.search__block.mb20
+            span.search__legend Уровень заработной платы
+            div.search__input
+                input.input.search__wage(type="number", name='wage')
+                select.input.search__currency(name='currency')
+                    option(value="руб.") руб.
+                    option(value="USD") USD
+                    option(value="EUR") EUR
+
+        div.search__block.mb20
+            span.search__legend Требуемый опыт работы
+            div.search__input
+                select.input.search__experience(name='experience')
+                    option(value="Не имеет значения") Не имеет значения
+                    option(value="Нет опыта") Нет опыта
+                    option(value="От 1 года до 3 лет") От 1 года до 3 лет
+                    option(value="От 3 до 6 лет") От 3 до 6 лет
+                    option(value="Более 6 лет") Более 6 лет
+
+        div.search__block.mb20
+            span.search__legend Тип занятости
+            div.search__checkboxes
+                each type, index in type_of_employment
+                    div.search__item
+                        input(type='checkbox' name=type)
+                        span.ml5 #{type}
+
+        div.search__block.mb20
+            span.search__legend График работы
+            div.search__checkboxes
+                each ws, index in work_schedule
+                    div.search__item
+                        input(type='checkbox' name=ws)
+                        span.ml5 #{ws}
+
+        div.search__block.mb20
+            span.search__legend
+            button.button.button_blue(type='submit') Найти

@@ -1,22 +1,31 @@
-import { EventBus } from '../modules/eventbus';
 import { SignInView } from '../views/SignIn/SignInView';
-import { SigninModel } from '../models/SigninModel';
+import { Controller } from '../modules/controller';
+import { AUTH } from '../modules/events';
 
-const eventList = [
-  'signIn',
-  'signInSuccess',
-  'signInFailed',
-];
-
-export class SigninController {
+export class SigninController extends Controller {
   constructor (root, globalEventBus, router) {
-    const eventBus = new EventBus(eventList);
-    eventBus.subscribeToEvent('signInSuccess', (data) => {
-      globalEventBus.triggerEvent('headerLoad', data);
-      router.toStartPage();
+    super(root, globalEventBus, router);
+
+    this._globalEventBus.subscribeToEvent(AUTH.signInSuccess, (data) => {
+      // if (data.role) {
+      //   if (data.role == 'support') {
+      //     window.location = '/chat'
+      //   } else {
+      //     this._router.redirect('/');
+      //   }
+      // } else {
+      //   this._router.redirect('/');
+      // }
+      console.log(`SignInSuccess() --- ${data.role}`);
+
+      localStorage.setItem('role', data.role)
+      if (history.state.vacancyId) {
+        this._router.redirect({ path: `/vacancy/${history.state.vacancyId}` });
+      } else {
+        this._router.redirect({ path: '/' });
+      }
     });
 
-    this.signInView = new SignInView(root, eventBus);
-    this.signInModel = new SigninModel(eventBus);
+    this._view = new SignInView(this._root, this._globalEventBus);
   }
 }

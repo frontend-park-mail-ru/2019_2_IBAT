@@ -1,24 +1,34 @@
 import { IndexView } from '../views/Index/IndexView';
-import { IndexModel } from '../models/IndexModel';
-import { EventBus } from '../modules/eventbus';
+import { Controller } from '../modules/controller';
+import { ACTIONS, AUTH, VACANCY } from '../modules/events';
 
-const eventList=[
-  'getVacancies',
-  'getVacanciesSuccess',
-  'getVacanciesFailed',
-  'getResumes',
-  'getResumesSuccess',
-  'getResumesFailed',
-  'checkAuth',
-  'checkAuthResponse'
-];
+export class IndexController extends Controller {
+  constructor (root, globalEventBus, router) {
+    super(root, globalEventBus, router);
 
-export class IndexController {
-  constructor (root, globalEventBus) {
-    this._eventBus = new EventBus(eventList);
+    this._globalEventBus.subscribeToEvent(AUTH.signOutResponse, () => {
+      localStorage.removeItem('role');
 
-    this.indexView = new IndexView(root, this._eventBus, globalEventBus);
-    this.indexModel = new IndexModel(this._eventBus);
+      this._router.redirect({ path: '/' });
+    });
+
+    this._globalEventBus.subscribeToEvent(ACTIONS.seekerGuestSlide, (data) => {
+      this._router.redirect({ path: '/', data });
+    });
+
+    this._globalEventBus.subscribeToEvent(ACTIONS.employerGuestSlide, (data) => {
+      this._router.redirect({ path: '/', data });
+    });
+
+    this._globalEventBus.subscribeToEvent(ACTIONS.guestSignInOnRespond, (data) => {
+      this._router.redirect({ path: '/signin', prevState: data });
+    });
+
+    this._globalEventBus.subscribeToEvent(VACANCY.goToVacancyPage, (data) => {
+      this._router.redirect({ path: `/vacancyPage/${data.vacancyId}`, data: data });
+    });
+
+    this._view = new IndexView(this._root, this._globalEventBus);
   }
 
 }

@@ -1,0 +1,9 @@
+div.left-column
+    div.favorite-vacancies
+        h1.title-h1 Избранные вакансии
+
+        if number_of_vacancies == 0
+            div.favorite-vacancies__no-vacancies
+                p У вас нет избранных вакансий
+                p Если вам понравилась вакансия, которую вы нашли в нашем поиске, вы можете добавить её в избранное, чтобы не потерять её и вернуться к ней позже
+        div.list

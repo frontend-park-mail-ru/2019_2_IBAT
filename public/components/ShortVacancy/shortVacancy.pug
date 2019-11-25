@@ -1,0 +1,61 @@
+if wage_from != 0 && wage_to != 0
+    - var salary = `${wage_from}-${wage_to} руб.`
+else if wage_from != 0 && wage_to == 0
+    - var salary = `${wage_from} руб.`
+else if wage_from == 0 && wage_to != 0
+    - var salary = `${wage_to} руб.`
+
+if vacancy
+    if vacancy.region
+        - var city = `${vacancy.region}`
+    else
+        - var city = `Москва`
+else
+    - var city = `Москва`
+    
+//- Шаблон карточки вакансии
+div.short-vacancy.short-vacancy_gold
+    div.short-vacancy__row
+        div.short-vacancy__info.short-vacancy__title
+            a.link.bloko-link(href=`/vacancy/${vacancy.id}`) #{vacancy.position}
+        div.short-vacancy__sidebar
+            div #{vacancy.salary}
+
+    div.short-vacancy__meta-info
+        a.link.bloko-link.bloko-link_secondary(href=`employer/${vacancy.owner_id}`) #{vacancy.company_name}
+    div.short-vacancy__meta-info
+        span #{vacancy.city}
+
+    div.short-vacancy__row.short-vacancy__row_stretched
+        div.short-vacancy__column
+            div.text_box #{vacancy.tasks}
+            div.text_box #{vacancy.requirements}
+        div.short-vacancy__sidebar
+            a(href=`employer/${vacancy.owner_id}`)
+                img.short-vacancy__logo
+
+    div.short-vacancy__row_right
+        if status
+            span Статус отклика:
+            span.short-vacancy__status #{status}
+        else
+            if !vacancy.is_responded
+                span.short-vacancy__controls-item
+                    span.link.bloko-link.bloko-link_dimmed(name='respond', href='#') Откликнуться
+
+            if !vacancy.favorite
+                span.short-vacancy__controls-item
+                    span(id=vacancy.id, name='switch')
+                        span.link.bloko-link.bloko-link_dimmed
+                            span.short-vacancy__favorite_off В избранное
+                        span.link.bloko-link.bloko-link_notify
+                            span.short-vacancy__favorite_on В избранном
+            else
+                span.short-vacancy__controls-item
+                    span.short-vacancy__favorite_selected(id=id, name='switch')
+                        span.link.bloko-link.bloko-link_dimmed
+                            span.short-vacancy__favorite_off В избранное
+                        span.link.bloko-link.bloko-link_notify
+                            span.short-vacancy__favorite_on В избранном
+
+

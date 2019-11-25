@@ -1,20 +1,16 @@
-import { EventBus } from '../modules/eventbus';
 import { CreateVacancyView } from '../views/CreateVacancy/CreateVacancyView';
-import { CreateVacancyModel } from '../models/CreateVacancyModel';
+import { Controller } from '../modules/controller';
+import { VACANCY } from '../modules/events';
 
-const eventList = [
-  'createVacancy',
-  'createSuccess',
-  'createFailed'
-];
-
-export class CreateVacancyController {
+export class CreateVacancyController extends Controller {
   constructor (root, globalEventBus, router) {
-    const eventBus = new EventBus(eventList);
-    eventBus.subscribeToEvent('createSuccess', (_)=>{
-      router.toStartPage();
+    super(root, globalEventBus, router);
+
+    this._globalEventBus.subscribeToEvent(VACANCY.createVacancySuccess, (_) => {
+      //TODO перенаправлять на страницу вакансии
+      this._router.redirect({path: '/'});
     });
-    this.createVacancyView = new CreateVacancyView(root, eventBus, globalEventBus);
-    this.createVacancyModel = new CreateVacancyModel(eventBus);
+
+    this._view = new CreateVacancyView(this._root, this._globalEventBus);
   }
 }

@@ -1,0 +1,6 @@
+.hint-banner__card__step {
+    font-size: 112px;
+    font-family: "font-semibold", serif;
+    margin-bottom: 24px;
+    color: var(--primary-color_light);
+}

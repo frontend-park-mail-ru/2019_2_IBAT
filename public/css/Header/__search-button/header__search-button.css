@@ -1,0 +1,30 @@
+.header__search-button {
+    outline: none;
+    border: 0;
+    text-decoration: none;
+    padding: 0;
+    font-size: inherit;
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    line-height: inherit;
+}
+
+.header__search-button:hover .header__search-icon {
+    background-position: -30px 0;
+}
+
+.header__search-button:active .header__search-icon {
+    background-position: -30px 0;
+}
+
+.header__search-button:active .header__link {
+    color: rgb(145, 194, 250);
+}
+
+.header__search-button:hover .header__link {
+    color: rgb(145, 194, 250);
+}

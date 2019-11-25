@@ -1,20 +1,46 @@
 import template from './resumePage.pug';
 import { View } from '../../modules/view';
+import { AUTH, RESUME } from '../../modules/events';
 
 export class ResumePageView extends View {
 
-  constructor (root, eventBus) {
-    super(root, template, eventBus);
+  constructor (root, globalEventBus) {
+    super(root, template, globalEventBus);
 
-    this._eventBus.subscribeToEvent('loadResumeSuccess', this._onLoadResumeSuccess.bind(this));
+    this._globalEventBus.subscribeToEvent(AUTH.checkAuthResponse, this._onAuthResponse.bind(this));
+    this._globalEventBus.subscribeToEvent(RESUME.getResumeSuccess, this._onLoadResumeSuccess.bind(this));
   }
 
   render (data = {}) {
-    this._eventBus.triggerEvent('loadResume', data);
-    // super.render(data);
+    super.render(data);
+
+    this._globalEventBus.triggerEvent(AUTH.checkAuth);
+    this.data = data;
+
+    this._globalEventBus.triggerEvent(RESUME.getResume, data);
   }
 
-  _onLoadResumeSuccess(data){
+  /**
+   * Получает данные авторизации(роль юзера) и запрашивает резюме
+   * @param data
+   * @private
+   */
+  _onAuthResponse (data) {
+    if (this.isViewClosed) {
+      return;
+    }
+
+    this._globalEventBus.triggerEvent(RESUME.getResume, this.data.id);
+  }
+
+  /**
+   * Вызывается при успешном получении резюме
+   * @param data
+   * @private
+   */
+  _onLoadResumeSuccess (data) {
+    this.data = { ...data, ...this.data };
+
     super.render(data);
   }
 }

@@ -1,40 +1,53 @@
 import template from './header.pug';
 import { View } from '../../modules/view';
+import { AUTH } from '../../modules/events';
 
 export class HeaderView extends View {
 
-  constructor (root, eventBus, globalEventBus) {
-    super(root, template, eventBus, globalEventBus);
+  constructor (root, globalEventBus) {
+    super(root, template, globalEventBus);
 
-    this._eventBus.subscribeToEvent('checkAuthResponse', this._onAuthResponse.bind(this));
-    this._eventBus.subscribeToEvent('signOutResponse', this._onAuthResponse.bind(this));
-    this._globalEventBus.subscribeToEvent('headerLoad', this._onRenderHeader.bind(this));
-    this._globalEventBus.subscribeToEvent('getRoleFromHeader', this._getRole.bind(this));
+    this._globalEventBus.subscribeToEvent(AUTH.checkAuthResponse, this._onAuthResponse.bind(this));
   }
 
   render (data = {}) {
     super.render(data);
-    this._eventBus.triggerEvent('checkAuth');
   }
 
-  _onRenderHeader (data) {
+  /**
+   * Получает данные авторизации с модели и обновляет headerView
+   * @param data
+   * @private
+   */
+  _onAuthResponse (data) {
     super.render(data);
-    this._role = data.role;
 
-    const signOutButton = this._root.querySelector('input[name=signOut]');
-    if (signOutButton) {
-      signOutButton.addEventListener('click', (ev) => {
-        this._eventBus.triggerEvent('signOut');
+    const signOutButton = this._root.querySelector('div[id=signOut]');
+    const profileMenuButton = this._root.querySelector('button[name=profile-menu]');
+
+    if (profileMenuButton) {
+      profileMenuButton.addEventListener('click', _ => {
+        //TODO для верстки, если какие-то элементы меняют свое состояние то с одного, то на другое, использовать toggle() теперь
+        this._root.querySelector('.dropdown').classList.toggle('dropdown_show');
       });
     }
-  }
 
-  _onAuthResponse (data) {
-    this._globalEventBus.triggerEvent('headerLoad', data);
-  }
+    window.onclick = _ => {
+      if (!event.target.matches('.dropdown-btn')) {
+        const dropdowns = document.getElementsByClassName('dropdown');
+        Array.from(dropdowns).forEach(dropdown => {
+          if (dropdown.classList.contains('dropdown_show')) {
+            dropdown.classList.remove('dropdown_show');
+          }
+        });
+      }
+    };
 
-  _getRole () {
-    return this._role;
+    if (signOutButton) {
+      signOutButton.addEventListener('click', _ => {
+        this._globalEventBus.triggerEvent(AUTH.signOut);
+      });
+    }
   }
 }
 

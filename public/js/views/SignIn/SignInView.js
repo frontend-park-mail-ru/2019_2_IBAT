@@ -1,46 +1,66 @@
 import template from './signin.pug';
 import { View } from '../../modules/view';
 import Validation from '../../modules/validation';
+import { AUTH } from '../../modules/events';
 
 export class SignInView extends View {
-
-  constructor (root, eventBus) {
-    super(root, template, eventBus);
-    this._eventBus.subscribeToEvent('signInFailed', this._onSubmitFailed.bind(this));
+  constructor (root, globalEventBus) {
+    super(root, template, globalEventBus);
+    this._globalEventBus.subscribeToEvent(AUTH.signInFailed, this._onSubmitFailed.bind(this));
   }
 
   render (data = {}) {
     super.render(data);
 
-    this._loginForm = this._root.querySelector('.login__form');
+    this._loginForm = this._root.querySelector('.login__form-js');
     this._loginForm.addEventListener('submit', this._onSubmit.bind(this), false);
 
     this.setValidationListeners();
   }
 
+  /**
+   * Ставит слушатели на поля для валидации
+   */
   setValidationListeners () {
     const email = this._loginForm.elements['email'];
 
-    email.addEventListener('input', function (event) {
-      const notValid = Validation.validateEmail(event.target.value, true);
-      const error = event.target.nextElementSibling;
-      if (Validation.isEmptyField(event.target.value) || !notValid) {
-        event.target.className = 'input';
-        error.innerHTML = '';
-        error.className = 'error';
-      } else {
-        event.target.className = 'input invalid';
-        error.innerHTML = 'Некорректный email';
-      }
-    }, false);
+    email.addEventListener(
+      'input',
+      function (event) {
+        document.querySelector('.light-page__error-js').classList.remove('light-page__error_active');
+        document.querySelector('.light-page__error-js').innerHTML='';
+
+        let notValid = Validation.validateEmail(event.target.value, true);
+        let error = event.target.nextElementSibling;
+        if (Validation.isEmptyField(event.target.value) || !notValid) {
+          View._removeInputError(event.target, error);
+        } else {
+          View._addInputError(event.target, error, 'Некорректный email');
+        }
+      },
+      false
+    );
   }
 
+  get errorView () {
+    return this._root.querySelector('.light-page__error-js');
+  }
+
+  /**
+   * Вызывается, если авторизация не удалась
+   * @param data
+   * @private
+   */
   _onSubmitFailed (data) {
-    const error = this._root.querySelector('.error-block');
-    error.classList.add('error-block_login');
-    error.innerHTML = `<p>${data.error}</p>`;
+    this.errorView.classList.add('light-page__error_active');
+    this.errorView.innerHTML = `<p>${data.error}<p>`;
   }
 
+  /**
+   * Авторизация пользователя с валидацией полей
+   * @param ev
+   * @private
+   */
   _onSubmit (ev) {
     ev.preventDefault();
     let wasfail = false;
@@ -48,30 +68,18 @@ export class SignInView extends View {
     const email = this._loginForm.elements['email'];
     const password = this._loginForm.elements['password'];
 
-    const inputs = this._loginForm.querySelectorAll('.input');
-    inputs.forEach(input => {
-      if (Validation.isEmptyField(input.value)) {
-        const error = input.nextElementSibling;
-        error.innerHTML = 'Обязательное поле';
-        error.className = 'error active';
-        input.className = 'input invalid';
-        wasfail = true;
-      } else {
-        const error = input.nextElementSibling;
-        error.innerHTML = '';
-        error.className = 'error';
-        input.className = 'input';
-      }
-    });
+    let inputs = this._loginForm.querySelectorAll('.input');
+    this.errorView.classList.remove('light-page__error_active');
+    wasfail = View._validateObligotaryInputs(inputs);
 
     if (wasfail) {
       password.value = '';
     } else {
       const user = {
         email: email.value,
-        password: password.value
+        password: password.value,
       };
-      this._eventBus.triggerEvent('signIn', user);
+      this._globalEventBus.triggerEvent(AUTH.signIn, user);
     }
   }
 }

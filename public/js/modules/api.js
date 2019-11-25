@@ -10,7 +10,11 @@ export class Api {
   }
 
   /**
-   * Авторизует пользователя
+   * Авторизует  static getVacancies () {
+    return Net.doGet({
+      url: '/vacancies',
+    });
+  }пользователя
    * @returns {Promise<Response>}
    * @param user
    */
@@ -144,6 +148,25 @@ export class Api {
   }
 
   /**
+   * Запрос на поиск вакансий
+   * @param {String} getParameters
+   * @returns {Promise<Response>}
+   */
+  static searchVacancies (getParameters) {
+    console.log(getParameters);
+    return Net.doGet({ url: '/vacancies' + getParameters });
+  }
+
+  /**
+   * Запрос на 
+   * @param {String} getParameters
+   * @returns {Promise<Response>}
+   */
+  static searchCompanies (getParameters) {
+    console.log(getParameters);
+    return Net.doGet({ url: '/employers' + getParameters });
+  }
+  /**
    * Запрос данных резюме
    * @returns {Promise<Response>}
    * @param id
@@ -170,9 +193,57 @@ export class Api {
    * @param id
    * @returns {Promise<Response>}
    */
-  static getEmployerById(id={}){
+  static getEmployerById (id = {}) {
     return Net.doGet({
       url: '/employer' + '/' + id
+    });
+  }
+
+  /**
+   * Запрос на избранные вакансии
+   * @returns {Promise<Response>}
+   */
+  static getFavoriteVacancies () {
+    return Net.doGet({
+      url: '/favorite_vacancies'
+    });
+  }
+
+  /**
+   * Запрос на получение только своих резюме (для сосикателя)
+   * @returns {Promise<Response>}
+   */
+  static getOwnResumes () {
+    return Net.doGet({
+      url: '/resumes?own=true'
+    });
+  }
+
+  /**
+   * Отправляет отклик сосикателя по вакансии с его резюме
+   * @param resumeId
+   * @param vacancyId
+   * @returns {Promise<Response>}
+   */
+  static respondToVacancy (resumeId, vacancyId) {
+    return Net.doPost({
+      url: '/respond',
+      body: {
+        vacancy_id: vacancyId,
+        resume_id: resumeId
+      }
+    });
+  }
+
+  static getResponds (resumeId = '', vacancyId = '') {
+    return Net.doGet({
+      url: `/responds?vacancy_id=${vacancyId}&resume_id=${resumeId}`,
+    });
+  }
+
+  static addFavoriteVacancy (vacancyId = '') {
+    return Net.doPost({
+      url: `/favorite_vacancy/${vacancyId}`,
     });
   }
 }

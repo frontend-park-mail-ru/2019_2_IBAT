@@ -1,16 +1,52 @@
+if wage_from != 0 && wage_to != 0
+    - var salary  = `oт ${wage_from} до ${wage_to} руб.`
+else if wage_from != 0 && wage_to == 0
+    - var salary  = `oт ${wage_from} руб.`
+else if wage_from == 0 && wage_to != 0
+    - var salary  = `до ${wage_to} руб.`
+else
+    - var salary = 'з/п не указана'
+
+-var employment_mode = 'Полная занятость, полный день'
+
 div.left-column
-    h1.title-h1 #{profession}
-    h2.title-h2 #{position}
+    div.vacancy__title
+        h1.title-h1 #{profession} #{position}
+        p.vacancy__salary #{salary}
 
-    div.form__row
-        span.span Оплата - #{wage}
+    div.vacancy__company-wrapper
+        div.vacancy__company
+            a.vacancy__company-name(href=`employer/${owner_id}`) #{company_name}
+            p.vacancy__region #{region}
+        a.vacancy__company-logo(href=`employer/${owner_id}`)
+            img.vacancy__company-logo-image
 
-    div.form__row
-        span.company-name Компания - #{company_name}
+    div.vacancy__seeker-actions
+        if !is_responded
+            div.vacancy__action
+                button.button.button_green(id='respondToVacancyButton', type='submit') Откликнуться
+        else
+            div.vacancy__action
+                button.button.button_disabled(id='respondToVacancyButton', type='submit') Откликнуться
 
-    div.form__row
-        span.span Опыт работы - #{experience}
+        if !favorite
+            div.vacancy__action(id=id, name='switch')
+                button.button.button_blue.short-vacancy__favorite_off Добавить в избранное
+                button.button.button_disabled.short-vacancy__favorite_on В избранном
+        else
+            div.vacancy__action.short-vacancy__favorite_selected(id=id, name='switch')
+                button.button.button_blue.short-vacancy__favorite_off Добавить в избранное
+                button.button.button_disabled.short-vacancy__favorite_on В избранном
 
-    div.form__row
-        span.span О вакансии:
-        span.span #{about}
+    div.vacancy__description
+        div.mb25
+            p.vacancy__experience Требуемый опыт работы: #{experience}
+            p.vacancy__employment-mode  #{employment_mode}
+        div.mb25
+            h3 О вакансии:
+            p #{about}
+            h3 Требования:
+            p #{requirements}
+            h3 Условия:
+            p #{conditions}
+

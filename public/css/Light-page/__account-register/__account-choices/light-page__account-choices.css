@@ -1,0 +1,4 @@
+.light-page__account-choices {
+    display: flex;
+    flex-flow: row nowrap;
+}

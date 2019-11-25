@@ -1,0 +1,9 @@
+.vacancy__company {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 1px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}

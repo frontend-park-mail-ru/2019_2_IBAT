@@ -1,20 +1,15 @@
-import { EventBus } from '../modules/eventbus';
 import { CreateResumeView } from '../views/CreateResume/CreateResumeView';
-import { CreateResumeModel } from '../models/CreateResumeModel';
+import { Controller } from '../modules/controller';
+import { RESUME } from '../modules/events';
 
-const eventList = [
-  'createResume',
-  'createSuccess',
-  'createFailed'
-];
-
-export class CreateResumeController {
+export class CreateResumeController extends Controller {
   constructor (root, globalEventBus, router) {
-    const eventBus = new EventBus(eventList);
-    eventBus.subscribeToEvent('createSuccess', (_)=>{
-      router.toStartPage();
+    super(root, globalEventBus, router);
+
+    this._globalEventBus.subscribeToEvent(RESUME.createResumeSuccess, (_) => {
+      this._router.redirect({path: '/'});
     });
-    this.createResumeView = new CreateResumeView(root, eventBus, globalEventBus);
-    this.createResumeModel = new CreateResumeModel(eventBus);
+
+    this._view = new CreateResumeView(this._root, this._globalEventBus);
   }
 }

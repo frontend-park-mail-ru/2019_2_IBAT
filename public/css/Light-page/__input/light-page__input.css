@@ -1,0 +1,4 @@
+.light-page__input {
+    display: flex;
+    flex-direction: column;
+}

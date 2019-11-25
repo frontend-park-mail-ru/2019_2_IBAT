@@ -1,15 +1,15 @@
 import template from './signupseeker.pug';
 import { View } from '../../modules/view';
 import Validation from '../../modules/validation';
+import { AUTH } from '../../modules/events';
 
 const errInvalidPasswordData = 'Must contain at least 8 chars';
 const errNotEqualPassRePass = 'Password and Password Repeat are not equal';
 
 export class SignupSeekerView extends View {
-
-  constructor (root, eventBus) {
-    super(root, template, eventBus);
-    this._eventBus.subscribeToEvent('signUpFailed', this._onSubmitFailed.bind(this));
+  constructor (root, globalEventBus) {
+    super(root, template, globalEventBus);
+    this._globalEventBus.subscribeToEvent(AUTH.signUpFailed, this._onSubmitFailed.bind(this));
   }
 
   render (data = {}) {
@@ -21,47 +21,63 @@ export class SignupSeekerView extends View {
     this.setValidationOnChangeListeners();
   }
 
+  /**
+   * Ставит слушатели на поля для валидации
+   */
   setValidationOnChangeListeners () {
     const login = this._signupForm.elements['login'];
     const password = this._signupForm.elements['password'];
     const passwordConfirm = this._signupForm.elements['passwordConfirm'];
 
-    password.addEventListener('input', function (event) {
-      const error = event.target.nextElementSibling;
-      event.target.className = 'input';
-      error.innerHTML = '';
-      error.className = 'error';
-    }, false);
+    password.addEventListener(
+      'input',
+      function (event) {
+        let error = event.target.nextElementSibling;
+        View._removeInputError(event.target, error);
+      },
+      false
+    );
 
-    passwordConfirm.addEventListener('input', function (event) {
-      const error = event.target.nextElementSibling;
-      event.target.className = 'input';
-      error.innerHTML = '';
-      error.className = 'error';
-    }, false);
+    passwordConfirm.addEventListener(
+      'input',
+      function (event) {
+        let error = event.target.nextElementSibling;
+        View._removeInputError(event.target, error);
+      },
+      false
+    );
 
-    login.addEventListener('input', function (event) {
-      const notValid = Validation.validateEmail(event.target.value, true);
-      const error = event.target.nextElementSibling;
-      if (Validation.isEmptyField(event.target.value) || !notValid) {
-        event.target.className = 'input';
-        error.innerHTML = '';
-        error.className = 'error';
-      } else {
-        event.target.className = 'input invalid ';
-        error.innerHTML = 'Некорректный email';
-      }
-    }, false);
+    login.addEventListener(
+      'input',
+      function (event) {
+        let notValid = Validation.validateEmail(event.target.value, true);
+        let error = event.target.nextElementSibling;
+        if (Validation.isEmptyField(event.target.value) || !notValid) {
+          View._removeInputError(event.target, error);
+        } else {
+          View._addInputError(event.target, error, 'Некорректный email');
+        }
+      },
+      false
+    );
   }
 
+  /**
+   * Вызывается если регистрации не удалась
+   * @param data
+   * @private
+   */
   _onSubmitFailed (data) {
     const login = this._signupForm.querySelector('[name="login"]');
-    login.classList.add('invalid');
-
     const error = login.nextElementSibling;
-    error.innerHTML = data.error;
+    View._addInputError(login, error, data.error);
   }
 
+  /**
+   * Регистрация соискателя
+   * @param ev
+   * @private
+   */
   _onSubmit (ev) {
     ev.preventDefault();
     let wasfail = false;
@@ -72,63 +88,45 @@ export class SignupSeekerView extends View {
     const password = this._signupForm.elements['password'];
     const passwordConfirm = this._signupForm.elements['passwordConfirm'];
 
-    const inputs = this._signupForm.querySelectorAll('.input');
-    inputs.forEach(input => {
-      if (Validation.isEmptyField(input.value)) {
-        const error = input.nextElementSibling;
-        error.innerHTML = 'Обязательное поле';
-        error.className = 'error active';
-        input.className = 'input invalid';
-        wasfail = true;
-      } else {
-        const error = input.nextElementSibling;
-        error.innerHTML = '';
-        error.className = 'error';
-        input.className = 'input';
-      }
-    });
+    let inputs = this._signupForm.querySelectorAll('.input');
+
+    wasfail = View._validateObligotaryInputs(inputs);
 
     if (!email.validity.valid) {
-      const error = email.nextElementSibling;
-      error.innerHTML = 'Неверный email!';
-      error.className = 'error active';
+      let error = email.nextElementSibling;
+      View._addInputError(email, error, 'Неверный email!');
       wasfail = true;
     }
 
-    const testPass = Validation.validatePassword(password.value, true);
+    let testPass = Validation.validatePassword(password.value, true);
     if (testPass) {
       if (testPass === errInvalidPasswordData) {
-        const error = password.nextElementSibling;
-        error.innerHTML = 'Пароль должен иметь 8 символов, 1 цифру, 1 в верхнем и 1 в нижнем регистре';
-        error.className = 'error active';
-        password.className = 'input invalid';
-        passwordConfirm.className = 'input invalid';
+        let error = password.nextElementSibling;
+        View._addInputError(password, error, 'Пароль должен иметь 8 символов, 1 цифру, 1 в верхнем и 1 в нижнем регистре');
+        View._addInputError(passwordConfirm);
         wasfail = true;
       }
     } else {
-      const test = Validation.validateRepass(passwordConfirm.value, password.value);
+      let test = Validation.validateRepass(passwordConfirm.value, password.value);
       if (test === errNotEqualPassRePass) {
-        const error = passwordConfirm.nextElementSibling;
-        error.innerHTML = 'Пароли не совпадают';
-        error.className = 'error active';
-        password.className = 'input invalid';
-        passwordConfirm.className = 'input invalid';
+        let error = passwordConfirm.nextElementSibling;
+        View._addInputError(password, error, 'Пароли не совпадают');
+        View._addInputError(password);
         wasfail = true;
       }
     }
     if (wasfail) {
       passwordConfirm.value = '';
       password.value = '';
-
     } else {
-      const user = {
+      let user = {
         email: email.value,
         first_name: firstName.value,
         //TODO выполнить унификацию lastName(фронтенд) и second_name(бэкенд)
         second_name: lastName.value,
-        password: password.value
+        password: password.value,
       };
-      this._eventBus.triggerEvent('signUp', user);
+      this._globalEventBus.triggerEvent(AUTH.signUpSeeker, user);
     }
   }
 }

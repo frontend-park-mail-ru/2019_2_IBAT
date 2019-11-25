@@ -1,0 +1,39 @@
+if role
+    div.hint-banner.hint-banner_column.main-content__hint-banner
+        div.hint
+            h1.title-h1.title-h1_light.hint-banner__title-h1 Что-то искали? Просто введите
+        div.search-bar.hint-banner__search-bar.js-search-banner
+            //- Внутри подключается SearchBarComponent
+
+
+    div.personal-block
+        div.personal-block__left.js-personal-block-left
+            //- Здесь подключается CompaniesListComponent или MyEventsComponent
+            //- Здесь подключается дополнительный блок с контентом AdditionComponent(либо "Компании" для соискателя и гостя, либо "Платные услуги" для работадателя)
+        div.personal-block__right.js-personal-block-right
+            //- Здесь подключается SuggestComponent
+else
+    div.slider.main-content__slider
+        div.slider__item.slider__item_seeker
+            h2.title-h2 Хочу найти себе работу
+            a.button.slider__button.slider__button_seeker.js-slider-seeker Тык
+        div.slider__item.slider__item_employer
+            h2.title-h2 Хочу найти себе сотрудника
+            a.button.slider__button.slider__button_employer.js-slider-employer Тык
+
+    div.hint-banner.hint-banner_row.main-content__hint-banner
+        div.hint-banner__item
+            h1.title-h1.title-h1_semibold.hint-banner__title-h1 Находите работу за пару кликов
+        div.hint-banner__item
+            div.hint-banner__card
+                div.hint-banner__card__step 1
+                span
+                    b Создайте ваше резюме
+                br
+                p Ваше резюме будет доступно для потенциальных работадателей. Также его можно будет прикладывать к понравившейся вам вакансии, на которую вы откликнетесь.
+            div.hint-banner__card
+                div.hint-banner__card__step 2
+                span
+                    b Откликнитесь на вакансию
+                br
+                p Выберите понравившуся вам вакансию и отправьте свой отклик работадателя, приложив созданное вами резюме. Отслеживайте статус ваших откликов в разделе "Мои отклики"

@@ -1,18 +1,15 @@
-import { EventBus } from '../modules/eventbus';
 import { VacancyPageView } from '../views/VacancyPage/VacancyPageView';
-import { VacancyPageModel } from '../models/VacancyPageModel';
+import { Controller } from '../modules/controller';
+import { VACANCY } from '../modules/events';
 
-const eventList = [
-  'loadVacancy',
-  'loadVacancySuccess',
-  'loadVacancyFailed'
-];
-
-export class VacancyPageController {
+export class VacancyPageController extends Controller {
   constructor (root, globalEventBus, router) {
-    const eventBus = new EventBus(eventList);
+    super(root, globalEventBus, router);
 
-    this.vacancyPageView = new VacancyPageView(root, eventBus);
-    this.vacancyPageModel = new VacancyPageModel(eventBus);
+    this._globalEventBus.subscribeToEvent(VACANCY.chooseResume, data => {
+      this._router.route({ path: '/chooseResume', data, addToHistory: true });
+    });
+
+    this._view = new VacancyPageView(this._root, this._globalEventBus);
   }
 }

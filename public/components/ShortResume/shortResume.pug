@@ -1,7 +1,9 @@
-- const resumeName =  resume.profession + '/' + resume.position;
+div.card
+    span.card__span #{resume.position}
+    span.card__span #{resume.first_name} #{resume.second_name}
+    span.card__span #{resume.wage}
+    span.card__span #{resume.region}
+    span.card__span #{resume.experience}
 
-a(href=`/resume/${resumeId}`) #{resumeName}
-span.card__span #{resume.first_name} #{resume.second_name}
-span.card__span #{resume.wage} руб.
-span.card__span #{resume.city}
-span.card__span #{resume.experience}
+    if isChooseMode
+        a.link.card__view-resume(href=`/resume/${resume.id}`) Посмотреть резюме

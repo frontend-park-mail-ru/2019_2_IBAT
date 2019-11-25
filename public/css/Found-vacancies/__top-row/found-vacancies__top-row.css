@@ -1,0 +1,9 @@
+.found-vacancies__top-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+.found-vacancies__button {
+    margin-left: 5px;
+}

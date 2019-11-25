@@ -1,15 +1,23 @@
 import template from './shortResume.pug';
+import { Component } from '../../js/modules/Component';
 
-export class ShortResumeComponent {
-  constructor (data = {}) {
-    this._data = data;
-
-    this._resume = document.createElement('div');
-    this._resume.className = 'card';
-    this._resume.innerHTML = template(this._data);
+export class ShortResumeComponent extends Component {
+  constructor (resume = {}, isChooseMode = false, clickEventListener) {
+    super({ data: { resume, isChooseMode, clickEventListener }, template });
   }
 
-  appendToList (list) {
-    list.appendChild(this._resume);
+  onRender () {
+    super.onRender();
+  }
+
+  onFirstRender () {
+    this.domElement.addEventListener('click', ev => {
+      this.data.clickEventListener(this.data.resume);
+    });
+  }
+
+  //todo УБРАТЬ ПОТОМ
+  appendToList (element) {
+    super.appendTo(element);
   }
 }
