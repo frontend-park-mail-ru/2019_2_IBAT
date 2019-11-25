@@ -1,7 +1,7 @@
 const { assets } = global.serviceWorkerOption;
 const cacheName = 'myCache';
 
-let assetsToCache = [...assets];
+let assetsToCache = [...assets, '/offline'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
