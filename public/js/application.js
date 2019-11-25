@@ -1,3 +1,5 @@
+import css from '../css/index.css';
+
 import { Router } from './modules/router';
 import { EventBus } from './modules/eventbus';
 
@@ -26,9 +28,45 @@ import { FavoriteVacanciesController } from './controllers/FavoriteVacanciesCont
 import { ChooseResumeController } from './controllers/ChooseResumeController';
 import { MyRespondsController } from './controllers/MyRespondsController';
 import { EmployerPageController } from './controllers/EmployerPageController';
+import { OfflinePageController } from './controllers/OfflinePageController';
+
+function renderHTML () {
+  const body = document.querySelector('body');
+  body.classList.add('page');
+
+  body.innerHTML = `
+      <header class="header"></header>
+      <div class="main-content">
+          <div class="left-column"></div>
+          <div class="right-column"></div>
+      </div>
+  
+<!--      <div class="chatbubble">-->
+<!--          <div class="unexpanded">-->
+<!--              <div class="title">Чат с поддержкой</div>-->
+<!--              <iframe class="iframe-chat" src="/chat"></iframe>-->
+<!--          </div>-->
+<!--      </div>-->
+<!--      <script src="./js/modules/popupChat.js"></script>-->
+   `;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-  const body = document.querySelector('.page');
+  renderHTML();
+
+  // Проверим, что эта технология доступна в браузере
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+      .then((reg) => {
+        // регистрация сработала
+        console.log('Registration succeeded. Scope is ' + reg.scope);
+      }).catch((error) => {
+      // регистрация прошла неудачно
+      console.log('Registration failed with ' + error);
+    });
+  }
+
+  const body = document.querySelector('body');
   const header = document.querySelector('header');
   const content = document.querySelector('.main-content');
 
@@ -60,7 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const favoriteVacanciesController = new FavoriteVacanciesController(content, globalEventBus, router);
   const chooseResumeController = new ChooseResumeController(content, globalEventBus, router);
   const myRespondsController = new MyRespondsController(content, globalEventBus, router);
-  const employerPageController = new EmployerPageController(content, globalEventBus, router)
+  const employerPageController = new EmployerPageController(content, globalEventBus, router);
+  const offlinePageController = new OfflinePageController(content, globalEventBus, router);
 
   headerController.openWithData();
 
@@ -80,6 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
   router.add('/vacancies', foundVacanciesController);
   router.add('/favorite_vacancies', favoriteVacanciesController);
   router.add('/employer', employerPageController);
+
+  router.add('/offline', offlinePageController);
 
   router.start();
 });

@@ -99,6 +99,16 @@ export class Router {
       }
     }, true);
 
+    window.addEventListener('offline', ev => {
+      console.log('OFFLINE');
+      this.redirect('/offline', true);
+    });
+
+    window.addEventListener('online', ev => {
+      console.log('ONLINE');
+      window.history.back();
+    });
+
     this.route({ path: Router._normalizePath(window.location.pathname), addToHistory: true });
   }
 
