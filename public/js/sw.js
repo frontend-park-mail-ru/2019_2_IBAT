@@ -22,8 +22,10 @@ self.addEventListener('fetch', (event) => {
         return fetch(event.request)
           .then((response) => {
             return caches.open(cacheName).then((cache) => {
-              // cache.put(event.request, response.clone());
-              // return response;
+              if(!event.request.url.includes('/api/')){
+                cache.put(event.request.url, response.clone());
+              }
+              return response;
             });
           });
       })
