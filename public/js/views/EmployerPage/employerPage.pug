@@ -5,7 +5,7 @@ div.company
                 div.company__sidebar
                     div
                         div.company__logo
-                            img.company__logo-img(src=`https://82.146.43.113:8080/${path_to_img}`)
+                            img.company__logo-img(src=`${Net.getServerImgURL()}/${path_to_img.split('/')[2]}`)
                         div.company__short-info
                             p #{region}
                             div

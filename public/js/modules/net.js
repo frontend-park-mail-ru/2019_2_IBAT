@@ -1,4 +1,5 @@
-export const serverURL = 'http://82.146.43.113:8080/api';
+export const serverURL = 'http://82.146.43.113/api';
+export const serverImgURL = 'http://82.146.43.113/img';
 // export const serverURL = '/api';
 export const serverChatURL = 'ws://82.146.43.113:8090/chat';
 
@@ -80,6 +81,14 @@ export default class Net {
    */
   static getServerURL () {
     return serverURL;
+  }
+
+  /**
+   * Возвращает url api server-a для получения img
+   * @returns {string}
+   */
+  static getServerImgURL () {
+    return serverImgURL;
   }
 
   /**

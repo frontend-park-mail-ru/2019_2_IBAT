@@ -113,7 +113,7 @@ export class EmployerPageView extends View {
     const list = document.querySelector('.list');
 
     test.forEach(vacancy => {
-      new ShortVacancyComponent({ vacancy: vacancy, globalEventBus: this._globalEventBus }).appendTo(list);
+      new ShortVacancyComponent({ data: { vacancy: vacancy }, globalEventBus: this._globalEventBus }).appendTo(list);
     });
   }
 }
