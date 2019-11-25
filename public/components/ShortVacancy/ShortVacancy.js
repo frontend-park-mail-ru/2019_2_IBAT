@@ -30,7 +30,7 @@ export class ShortVacancyComponent extends Component {
         if (res.ok) {
           res.json().then(employer => {
             if (employer.path_to_img !== '' && employer.path_to_img !== 'default.jpg') {
-              logo.setAttribute('src', `${Net.getServerURL()}/${employer.path_to_img}`);
+              logo.setAttribute('src', `${Net.getServerImgURL()}/${employer.path_to_img.split('/')[2]}`);
             } else {
               logo.style.display = 'none';
             }
