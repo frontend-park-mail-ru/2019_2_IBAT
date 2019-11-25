@@ -28,9 +28,7 @@ import { FavoriteVacanciesController } from './controllers/FavoriteVacanciesCont
 import { ChooseResumeController } from './controllers/ChooseResumeController';
 import { MyRespondsController } from './controllers/MyRespondsController';
 import { EmployerPageController } from './controllers/EmployerPageController';
-
 import { SearchCompanyController } from './controllers/SearchCompanyController';
-
 import { OfflinePageController } from './controllers/OfflinePageController';
 
 function renderHTML () {
@@ -103,8 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const myRespondsController = new MyRespondsController(content, globalEventBus, router);
   const employerPageController = new EmployerPageController(content, globalEventBus, router);
   const searchCompanyController = new SearchCompanyController(content, globalEventBus, router);
-
   const offlinePageController = new OfflinePageController(content, globalEventBus, router);
+
   headerController.openWithData();
 
   router.add('/', indexController);

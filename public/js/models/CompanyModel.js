@@ -58,19 +58,30 @@ export class CompanyModel {
       });
   }
 
-  _onSearchCompanies(parametrs) {
-    new Promise((resolve, reject) => {
-      const companies = [
-        { id: '235fsd655423dfjsdf2', name: 'Sberbank' }
-      ];
-      resolve(companies);
+  _onSearchCompanies(data) {
+    console.log(data);
+
+    let getParameters = '?';
+
+    // Object.entries(data).forEach.call(function(value, key)  {
+    //   getParameters += `${key}=${value}&`;
+    // },getParameters);
+
+    getParameters += `company_name=${data['company_name']}&region=${data['region']}`;
+
+    console.log(getParameters);
+
+    Api.searchCompanies(getParameters)
+    .then(res => {
+      if (res.ok) {
+        res.json().then(data => {
+          this._globalEventBus.triggerEvent(COMPANY.searchSuccess, data);
+        });
+      }
     })
-      .then(res => {
-        this._globalEventBus.triggerEvent(COMPANY.searchSuccess, res);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    .catch(error => {
+      console.error(error);
+    });
   }
 }
 export default new CompanyModel();

@@ -1,6 +1,18 @@
 div.left-column
     h1.title-h1.mb30 Поиск компаний
-    div.search-bar__input
-        input.input(placeholder='Название компании')
-    button.button.search-bar__button Найти
+    form.search.mb15
+        div.search__block.mb20
+            span.search__legend Название компании
+            div.search__input
+                input.input(type="text", name='company_name')
+        
+        div.search__block.mb20
+            span.search__legend Регион
+            div.search__input
+                input.input(type="text", name='region')
+
+        div.search__block.mb20
+                span.search__legend
+                button.button.button_blue(type='submit') Найти
+
     div.search-company

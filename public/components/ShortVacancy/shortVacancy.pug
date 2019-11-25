@@ -5,11 +5,14 @@ else if wage_from != 0 && wage_to == 0
 else if wage_from == 0 && wage_to != 0
     - var salary = `${wage_to} руб.`
 
-if vacancy.region
-    - var city = `${vacancy.region}`
+if vacancy
+    if vacancy.region
+        - var city = `${vacancy.region}`
+    else
+        - var city = `Москва`
 else
     - var city = `Москва`
-
+    
 //- Шаблон карточки вакансии
 div.short-vacancy.short-vacancy_gold
     div.short-vacancy__row

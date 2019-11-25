@@ -40,9 +40,14 @@ export class Router {
   }
 
   route ({ path, data = {}, prevState = {}, addToHistory = true } = {}) {
-    const currentController = this.routes.get(this._getRoutePath(this.currentRoute));
+    let currentController = this.routes.get(this._getRoutePath(this.currentRoute));
     if (currentController) {
       currentController.close();
+    } else {
+      currentController = this.routes.get(this.currentRoute);
+      if (currentController) {
+        currentController.close();
+      }
     }
 
     if (addToHistory) {

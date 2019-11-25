@@ -29,13 +29,5 @@ export class FoundVacanciesView extends View {
         new ShortVacancyComponent({ data: { vacancy } }).appendTo(list);
       });
     }
-
-    this.changeButton.addEventListener('click',ev=>{
-      this._globalEventBus.triggerEvent(ACTIONS.changeRequest);
-    });
-  }
-
-  get changeButton(){
-    return this._root.querySelector('.change-request-js');
   }
 }
