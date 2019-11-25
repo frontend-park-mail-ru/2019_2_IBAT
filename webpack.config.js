@@ -17,7 +17,7 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({}),
     new ServiceWorkerWebpackPlugin({
-      entry: path.join(__dirname, '/public/dist/static/sw.js')
+      entry: path.join(__dirname, '/public/js/sw.js')
     }),
   ],
   output: {
