@@ -1,55 +1,55 @@
 .input {
-  display: inline-block;
-  box-sizing: border-box;
-  margin: 0;
-  border-radius: 0;
-  border: 1px solid;
-  border-color: var(--primary-color);
-  font-size: 14px;
-  color: var(--text-color);
-  background-color: #fff;
-  height: 38px;
-  padding: 0 11px;
-  width: 100%;
-  line-height: 38px;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0;
+    border-radius: 2px;
+    border: 1px solid;
+    border-color: var(--primary-color);
+    font-size: 14px;
+    color: var(--text-color);
+    background-color: #fff;
+    height: 38px;
+    padding: 0 11px;
+    width: 100%;
+    line-height: 38px;
 }
 
 .input:disabled {
-  background: #dddddd;
+    background: #dddddd;
 }
 
 .input:focus {
-  outline: none;
-  border-color: var(--primary-color_hover);
+    outline: none;
+    border-color: var(--primary-color_hover);
 }
 
 .input:hover {
-  border-color: #a6adb1;
+    border-color: #a6adb1;
 }
 
-input:focus input:active{
-  outline: none;
-  border-color: var(--primary-color_hover);
+input:focus input:active {
+    outline: none;
+    border-color: var(--primary-color_hover);
 }
 
 input:focus:invalid {
-  outline: none;
+    outline: none;
 }
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input[type=checkbox] {
-  align-self: center;
+    align-self: center;
 }
 
 .upload {
-  margin: 0;
-  width: auto;
-  box-sizing: border-box;
-  font-family: Arial,sans-serif;
-  font-size: 14px;
+    margin: 0;
+    width: auto;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
 }

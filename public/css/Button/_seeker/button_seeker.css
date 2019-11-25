@@ -1,10 +1,10 @@
-.button_seeker{
+.button_seeker {
     background-color: var(--seeker-color);
     border-color: var(--seeker-color);
     color: white;
 }
 
-.button_seeker:hover{
+.button_seeker:hover {
     background-color: var(--seeker-color_hover);
     border-color: var(--seeker-color_hover);
     color: white;

@@ -7,7 +7,7 @@ export class ProfileController extends Controller {
     super(root, globalEventBus, router);
 
     this._globalEventBus.subscribeToEvent(PROFILE.saveProfileSuccess, () => {
-      router.redirect('/');
+      router.redirect({ path: '/' });
     });
 
     this._view = new ProfileView(this._root, this._globalEventBus);

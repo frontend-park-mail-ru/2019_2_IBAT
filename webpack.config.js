@@ -1,17 +1,33 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
+
 const path = require('path');
+const fs = require('fs');
 
 module.exports = {
   entry: {
     application: './public/js/application.js',
-    chat: './public/js/chat.js'
+    // chat: './public/js/chat.js'
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      inject: true,
+      title: 'IBAT'
+    }),
+    new MiniCssExtractPlugin({}),
+    new ServiceWorkerWebpackPlugin({
+      entry: path.join(__dirname, '/public/dist/static/sw.js')
+    }),
+  ],
   output: {
-    path: path.resolve(__dirname, 'public/dist'),
+    path: path.resolve(__dirname, 'public/dist/static'),
+    publicPath: '/static/',
     filename: '[name].js',
   },
   devtool: 'inline-source-map',
   resolve: {
-    extensions: [".ts", ".js"]
+    extensions: ['.ts', '.js']
   },
   module: {
     rules: [
@@ -27,11 +43,16 @@ module.exports = {
       {
         // Для включения в css файлов шрифтов и картинок
         test: /\.(jp?g|png|woff|woff2|eot|ttf|svg)$/,
-        loader: 'url-loader?limit=100000',
+        use: [
+          'url-loader',
+        ],
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader'
+        ],
       },
       {
         test: /\.pug/,
@@ -41,3 +62,5 @@ module.exports = {
   },
   performance: { hints: false },
 };
+
+fs.rename('public/dist/static/index.html', 'public/dist/index.html', _ => {});

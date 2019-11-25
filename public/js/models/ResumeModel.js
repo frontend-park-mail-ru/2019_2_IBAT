@@ -72,7 +72,7 @@ class ResumeModel {
       });
   }
 
-  _onGetOwnResumes(){
+  _onGetOwnResumes () {
     Api.getOwnResumes()
       .then(response => {
         if (response.ok) {

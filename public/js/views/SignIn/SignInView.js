@@ -27,6 +27,9 @@ export class SignInView extends View {
     email.addEventListener(
       'input',
       function (event) {
+        document.querySelector('.light-page__error-js').classList.remove('light-page__error_active');
+        document.querySelector('.light-page__error-js').innerHTML='';
+
         let notValid = Validation.validateEmail(event.target.value, true);
         let error = event.target.nextElementSibling;
         if (Validation.isEmptyField(event.target.value) || !notValid) {
@@ -39,15 +42,18 @@ export class SignInView extends View {
     );
   }
 
+  get errorView () {
+    return this._root.querySelector('.light-page__error-js');
+  }
+
   /**
    * Вызывается, если авторизация не удалась
    * @param data
    * @private
    */
   _onSubmitFailed (data) {
-    let error = this._root.querySelector('.light-page__error-js');
-    error.classList.add('light-page__error_active');
-    error.innerHTML = `<p>${data.error}<p>`;
+    this.errorView.classList.add('light-page__error_active');
+    this.errorView.innerHTML = `<p>${data.error}<p>`;
   }
 
   /**
@@ -63,6 +69,7 @@ export class SignInView extends View {
     const password = this._loginForm.elements['password'];
 
     let inputs = this._loginForm.querySelectorAll('.input');
+    this.errorView.classList.remove('light-page__error_active');
     wasfail = View._validateObligotaryInputs(inputs);
 
     if (wasfail) {

@@ -3,3 +3,5 @@ node_modules
 public/dist
 package-lock.json
 .vscode
+aws
+s3_credentials.js

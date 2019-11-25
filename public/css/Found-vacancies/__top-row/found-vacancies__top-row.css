@@ -1,6 +1,6 @@
-.found-vacancies__top-row{
+.found-vacancies__top-row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 25px; 
+    margin-bottom: 25px;
 }

@@ -4,5 +4,11 @@
 }
 
 .short-vacancy__row_stretched {
+    display: flex;
     justify-content: space-between;
+}
+
+.short-vacancy__row_right {
+    display: flex;
+    justify-content: flex-end;
 }

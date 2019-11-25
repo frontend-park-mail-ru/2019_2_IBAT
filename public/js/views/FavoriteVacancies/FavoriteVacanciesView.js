@@ -11,7 +11,7 @@ export class FavoriteVacanciesView extends View {
   render (vacancies = []) {
     console.log(vacancies);
     let data = {
-        'number_of_vacancies': vacancies.length
+      'number_of_vacancies': vacancies.length
     };
     super.render(data);
 
@@ -19,7 +19,7 @@ export class FavoriteVacanciesView extends View {
 
     if (vacancies) {
       vacancies.forEach((vacancy) => {
-        new ShortVacancyComponent(vacancy).appendTo(list);
+        new ShortVacancyComponent({data: {vacancy}}).appendTo(list);
       });
     }
   }

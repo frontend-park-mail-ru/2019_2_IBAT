@@ -29,7 +29,7 @@ export class ChatView extends View {
       this.chat.appendChild(messageElement);
 
       this._globalEventBus.triggerEvent(CHAT.send, this.messageInput.value);
-      this.messageInput.value='';
+      this.messageInput.value = '';
     });
   }
 

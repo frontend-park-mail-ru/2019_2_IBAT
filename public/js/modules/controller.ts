@@ -10,10 +10,10 @@ export class Controller {
     protected readonly _root: HTMLElement;
     protected readonly _router: Router;
 
-    constructor (root: HTMLElement, globalEventBus:  EventBus, router: Router) {
-      this._root = root;
-      this._globalEventBus = globalEventBus;
-      this._router = router;
+    constructor(root: HTMLElement, globalEventBus: EventBus, router: Router) {
+        this._root = root;
+        this._globalEventBus = globalEventBus;
+        this._router = router;
     }
 
     openWithData(data = {}) {

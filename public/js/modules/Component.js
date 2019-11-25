@@ -25,7 +25,7 @@ export class Component {
     const node = document.createElement('div');
     node.innerHTML = this.render();
     element.appendChild(node);
-    this.domElement = element;
+    this.domElement = node;
 
     if (!this.isRendered) {
       this.isRendered = true;
@@ -45,5 +45,9 @@ export class Component {
 
   merge (data) {
     this.data = { ...this.data, ...data };
+  }
+
+  get getRole(){
+    return localStorage.getItem('role');
   }
 }

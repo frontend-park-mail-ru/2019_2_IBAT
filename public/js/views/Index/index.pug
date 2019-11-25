@@ -1,4 +1,18 @@
-if role === undefined
+if role
+    div.hint-banner.hint-banner_column.main-content__hint-banner
+        div.hint
+            h1.title-h1.title-h1_light.hint-banner__title-h1 Что-то искали? Просто введите
+        div.search-bar.hint-banner__search-bar.js-search-banner
+            //- Внутри подключается SearchBarComponent
+
+
+    div.personal-block
+        div.personal-block__left.js-personal-block-left
+            //- Здесь подключается CompaniesListComponent или MyEventsComponent
+            //- Здесь подключается дополнительный блок с контентом AdditionComponent(либо "Компании" для соискателя и гостя, либо "Платные услуги" для работадателя)
+        div.personal-block__right.js-personal-block-right
+            //- Здесь подключается SuggestComponent
+else
     div.slider.main-content__slider
         div.slider__item.slider__item_seeker
             h2.title-h2 Хочу найти себе работу
@@ -23,19 +37,3 @@ if role === undefined
                     b Откликнитесь на вакансию
                 br
                 p Выберите понравившуся вам вакансию и отправьте свой отклик работадателя, приложив созданное вами резюме. Отслеживайте статус ваших откликов в разделе "Мои отклики"
-
-else
-    div.hint-banner.hint-banner_column.main-content__hint-banner
-        div.hint
-            h1.title-h1.title-h1_light.hint-banner__title-h1 Что-то искали? Просто введите
-        div.search-bar.hint-banner__search-bar.js-search-banner
-            //- Внутри подключается SearchBarComponent
-
-
-    div.personal-block
-        div.personal-block__left.js-personal-block-left
-            //- Здесь подключается CompaniesListComponent или MyEventsComponent
-            //- Здесь подключается дополнительный блок с контентом AdditionComponent(либо "Компании" для соискателя и гостя, либо "Платные услуги" для работадателя)
-        div.personal-block__right.js-personal-block-right
-            //- Здесь подключается SuggestComponent
-

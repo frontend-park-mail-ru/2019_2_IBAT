@@ -10,14 +10,15 @@ export class IndexView extends View {
   constructor (root, globalEventBus) {
     super(root, template, globalEventBus);
 
-    this._data = {};
+    this.data = {};
 
     this._globalEventBus.subscribeToEvent(AUTH.checkAuthResponse, this._onAuthResponse.bind(this));
   }
 
   render (data = {}) {
-    this.merge(data);
     this.isViewClosed = false;
+
+    this.merge(data);
 
     this._globalEventBus.triggerEvent(AUTH.checkAuth);
   }
@@ -32,14 +33,8 @@ export class IndexView extends View {
       return;
     }
     // //TODO костыль, чтобы этот checkAuth не затирал своим undefined для гостя его статус после клика (guestSeeker, guestEmployer)
-    if (this._data.role && this._data.role.match('Guest') && !data.role) {
-
-    }
-    else {
-      this.merge(data);
-    }
-    console.log(this._data.role);
-    super.render(this._data);
+    console.log(`HeaderView: _onAuthResponse() --- ${this.getRole}`);
+    super.render(this.data);
   }
 
   get searchBanner () {
@@ -65,45 +60,45 @@ export class IndexView extends View {
   onRender () {
     if (this.sliderSeeker) {
       this.sliderSeeker.addEventListener('click', _ => {
-        this._data.role = 'seekerGuest';
-        this._globalEventBus.triggerEvent(ACTIONS.seekerGuestSlide, this._data);
+        localStorage.setItem('role','seekerGuest');
+        this._globalEventBus.triggerEvent(ACTIONS.seekerGuestSlide, this.data);
       });
     }
     if (this.sliderEmployer) {
       this.sliderEmployer.addEventListener('click', _ => {
-        this._data.role = 'employerGuest';
-        this._globalEventBus.triggerEvent(ACTIONS.employerGuestSlide, this._data);
+        localStorage.setItem('role','employerGuest');
+        this._globalEventBus.triggerEvent(ACTIONS.employerGuestSlide, this.data);
       });
     }
 
-    if (this._data.role) {
+    if (this.getRole) {
       this.showSearchBar();
       this.showPersonalBlock();
     }
-    console.log(this._data.role);
+    console.log(this.getRole);
   }
 
   showPersonalBlock () {
-    console.log('showPersonalBlock()'+this._data.role);
-    if (this._data.role === 'seeker' || this._data.role === 'employer') {
-      const myEventsComponent = new MyEventsComponent(this._data);
+    console.log('showPersonalBlock()' + this.getRole);
+    if (this.getRole === 'seeker' || this.getRole === 'employer') {
+      const myEventsComponent = new MyEventsComponent(this.data);
       myEventsComponent.renderTo(this.personalBlockLeft);
     }
-    if (this._data.role === 'seekerGuest') {
-      const companiesListComponent = new CompaniesListComponent(this._data, this._globalEventBus);
+    if (this.getRole === 'seekerGuest') {
+      const companiesListComponent = new CompaniesListComponent(this.data, this._globalEventBus);
       companiesListComponent.renderTo(this.personalBlockLeft);
     }
-    if (this._data.role === 'employerGuest') {
+    if (this.getRole === 'employerGuest') {
       //показываем PaidServicesComponent
     }
 
     //пока что показываем что не авторизованным, что авторизованным популярные вакансии/резюме, потом будем показывать реккомендуемые для last
-    const popularComponent = new PopularComponent(this._data, this._globalEventBus);
+    const popularComponent = new PopularComponent(this.data, this._globalEventBus);
     popularComponent.renderTo(this.personalBlockRight);
   }
 
   showSearchBar () {
-    const searchBar = new SearchBarComponent(this._data);
+    const searchBar = new SearchBarComponent(this.data, this._globalEventBus);
     searchBar.renderTo(this.searchBanner);
   }
 

@@ -16,7 +16,7 @@ export class ChooseResumeView extends View {
    * @param data
    */
   render (data = {}) {
-    this._data = data;
+    this.data = data;
     super.render();
 
     this._globalEventBus.triggerEvent(AUTH.checkAuth);
@@ -40,7 +40,7 @@ export class ChooseResumeView extends View {
         new ShortResumeComponent(resume, true, (resume) => {
           this._globalEventBus.triggerEvent(RESPOND.respondToVacancy, {
             resume_id: resume.id,
-            vacancy_id: this._data.vacancyId
+            vacancy_id: this.data.vacancyId
           });
         }).appendTo(list);
       });

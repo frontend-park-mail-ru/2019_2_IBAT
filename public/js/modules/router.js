@@ -23,10 +23,11 @@ export class Router {
   /**
    * Переход на страницу path с нужными даннами data для неё
    * @param {String} path
+   * @param prevState
    * @param {Object} data
    */
-  redirect (path, data = {}) {
-    this.route({ path, data, addToHistory: true });
+  redirect ({path, data = {}, prevState = {}}) {
+    this.route({ path, data, prevState, addToHistory: true });
   }
 
   /**
@@ -38,14 +39,14 @@ export class Router {
     this.routes.set(path, controller);
   }
 
-  route ({ path, data = {}, addToHistory = true } = {}) {
+  route ({ path, data = {}, prevState = {}, addToHistory = true } = {}) {
     const currentController = this.routes.get(this._getRoutePath(this.currentRoute));
     if (currentController) {
       currentController.close();
     }
 
     if (addToHistory) {
-      window.history.pushState(null, null, path);
+      window.history.pushState(prevState, null, path);
     }
 
     const pathWithoutParameters = path.split('?')[0];
@@ -92,17 +93,38 @@ export class Router {
   }
 
   start () {
+    localStorage.removeItem('role');
+
     window.addEventListener('click', (ev) => {
       if (ev.target.tagName === 'A') {
         ev.preventDefault();
+
+        if(ev.target.pathname==='/'){
+          localStorage.removeItem('role');
+        }
+
         this.route({ path: Router._normalizePath(ev.target.pathname), addToHistory: true });
       }
     }, true);
+
+    window.addEventListener('offline', ev => {
+      console.log('OFFLINE');
+      this.redirect({path:'/offline'});
+    });
+
+    window.addEventListener('online', ev => {
+      console.log('ONLINE');
+      window.history.back();
+    });
 
     this.route({ path: Router._normalizePath(window.location.pathname), addToHistory: true });
   }
 
   _extractIdFromPath (path) {
     return path.split('/').pop();
+  }
+
+  back(){
+    window.history.back();
   }
 }

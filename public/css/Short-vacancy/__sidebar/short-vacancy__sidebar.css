@@ -1,9 +1,8 @@
-.short-vacancy__sidebar  {
+.short-vacancy__sidebar {
     flex: 0 0 auto;
     margin-left: 15px;
     font-size: 18px;
 }
-
 
 
 @media (max-width: 699px) {

@@ -5,6 +5,8 @@
 export const ACTIONS = {
   seekerGuestSlide: 'sgs',
   employerGuestSlide: 'egs',
+  guestSignInOnRespond: 'gsior',
+  changeRequest: 'cr',
 };
 
 export const COMPANY = {
@@ -65,6 +67,8 @@ export const VACANCY = {
   getFavorite: 'getFav',
   getFavoriteSuccess: 'getFavS',
   getFavoriteFailed: 'getFavF',
+
+  goToVacancyPage: 'gtvp'
 };
 
 export const RESPOND = {

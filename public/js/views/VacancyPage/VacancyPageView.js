@@ -1,6 +1,6 @@
 import template from './vacancyPage.pug';
 import { View } from '../../modules/view';
-import { AUTH, VACANCY } from '../../modules/events';
+import { ACTIONS, AUTH, VACANCY } from '../../modules/events';
 import { Api } from '../../modules/api';
 
 export class VacancyPageView extends View {
@@ -14,10 +14,12 @@ export class VacancyPageView extends View {
   }
 
   render (data = {}) {
-    super.render(this._data);
+    data.role=localStorage.getItem('role');
+
+    this.merge(data);
+    this.isViewClosed = false;
 
     this._globalEventBus.triggerEvent(AUTH.checkAuth);
-    this._data = data;
   }
 
   /**
@@ -29,9 +31,8 @@ export class VacancyPageView extends View {
     if (this.isViewClosed) {
       return;
     }
-    this._data = { role: data.role, ...this._data };
 
-    this._globalEventBus.triggerEvent(VACANCY.getVacancy, this._data.id);
+    this._globalEventBus.triggerEvent(VACANCY.getVacancy, this.data.id);
   }
 
   /**
@@ -40,23 +41,35 @@ export class VacancyPageView extends View {
    * @private
    */
   _onGetVacancySuccess (data = {}) {
-    this._data = { ...data, ...this._data };
-    this._data['wage_from'] = this._data['wage_from'].split('.')[0];
-    this._data['wage_to'] = this._data['wage_to'].split('.')[0];
-    
-    super.render(this._data);
+    if(this.isViewClosed){
+      return;
+    }
+    this.merge(data);
 
-    this.respondButton = document.getElementById('respondToVacancyButton');
-    if (this.respondButton) {
+    this.data['wage_from'] = this.data['wage_from'].split('.')[0];
+    this.data['wage_to'] = this.data['wage_to'].split('.')[0];
+
+    super.render(this.data);
+  }
+
+  onRender () {
+    if (!this.data.is_responded) {
+      this.respondButton = document.getElementById('respondToVacancyButton');
       this.respondButton.addEventListener('click', (ev) => {
-        //TODO првоерять что отклик уже был дан
-        this._globalEventBus.triggerEvent(VACANCY.chooseResume, {
-          vacancyId: document.location.pathname.split('/').pop()
-        });
+        if (this.getRole.match(/Guest/)) {
+          this._globalEventBus.triggerEvent(ACTIONS.guestSignInOnRespond, {
+            vacancyId: this.data.id
+          });
+        } else {
+          this._globalEventBus.triggerEvent(VACANCY.chooseResume, {
+            vacancyId: this.data.id
+          });
+        }
       });
+
     }
 
-    if (!this._data['favorite']) {
+    if (!this.data.favorite) {
       let toFavorite = document.querySelector('[name="switch"]');
       console.log(toFavorite);
       toFavorite.addEventListener('click', this._onToFavorite.bind(this), true);
@@ -73,7 +86,7 @@ export class VacancyPageView extends View {
     //
   }
 
-  _onToFavorite(event) {
+  _onToFavorite (event) {
     console.log(event);
     let link = event.currentTarget;
     Api.addFavoriteVacancy(link.id)
@@ -87,6 +100,6 @@ export class VacancyPageView extends View {
       })
       .catch(err => {
         console.error(err);
-      })
+      });
   }
 }

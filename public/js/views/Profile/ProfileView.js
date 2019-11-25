@@ -24,7 +24,7 @@ export class ProfileView extends View {
 
   render (data = {}) {
     //TODO везде вызывать дефолтный рендеринг super.render(data); => можно будет убрать this.isViewClosed=false;
-    this.isViewClosed=false;
+    this.isViewClosed = false;
 
     this._globalEventBus.triggerEvent(AUTH.checkAuth);
     this._globalEventBus.triggerEvent(PROFILE.loadProfile);
@@ -36,7 +36,7 @@ export class ProfileView extends View {
    * @private
    */
   _onLoadProfileSuccess (data) {
-    if(this.isViewClosed){
+    if (this.isViewClosed) {
       return;
     }
     super.render(data);

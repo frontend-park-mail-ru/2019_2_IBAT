@@ -30,9 +30,10 @@ export class MyRespondsView extends View {
 
     responds.forEach(respond => {
       new ShortVacancyComponent({
-        vacancy: respond.vacancy,
-        isStatusMode: true,
-        status: respond.Status,
+        data: {
+          vacancy: respond.vacancy,
+          status: respond.Status,
+        },
         globalEventBus: this._globalEventBus
       })
         .appendTo(list);

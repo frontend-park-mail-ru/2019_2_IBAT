@@ -1,7 +1,7 @@
 import template from './shortResume.pug';
 import { Component } from '../../js/modules/Component';
 
-export class ShortResumeComponent extends Component{
+export class ShortResumeComponent extends Component {
   constructor (resume = {}, isChooseMode = false, clickEventListener) {
     super({ data: { resume, isChooseMode, clickEventListener }, template });
   }

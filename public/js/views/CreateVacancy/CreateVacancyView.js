@@ -13,7 +13,7 @@ export class CreateVacancyView extends View {
   }
 
   render (data = {}) {
-    this.isViewClosed=false;
+    this.isViewClosed = false;
 
     this._globalEventBus.triggerEvent(AUTH.checkAuth);
   }
@@ -24,7 +24,7 @@ export class CreateVacancyView extends View {
    * @private
    */
   _onLoadProfileSuccess (data) {
-    if(this.isViewClosed){
+    if (this.isViewClosed) {
       return;
     }
     super.render(data);
@@ -39,7 +39,7 @@ export class CreateVacancyView extends View {
    * @private
    */
   _onAuthResponse (data) {
-    if(this.isViewClosed){
+    if (this.isViewClosed) {
       return;
     }
     this._globalEventBus.triggerEvent(PROFILE.loadProfile);

@@ -11,7 +11,7 @@ export class CompanyModel {
     this._globalEventBus.subscribeToEvent(COMPANY.search, this._onSearchCompanies.bind(this));
   }
 
-  _onGetCompanyInfo(id) {
+  _onGetCompanyInfo (id) {
     console.log(id);
     Api.getEmployerById(id)
       .then(res => {
@@ -21,7 +21,7 @@ export class CompanyModel {
             this._globalEventBus.triggerEvent(COMPANY.getCompanyInfoSuccess, data);
           });
         }
-      })
+      });
   }
 
   _onGetPopularCompanies () {

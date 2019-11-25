@@ -7,7 +7,7 @@ export class SignupSeekerController extends Controller {
     super(root, globalEventBus, router);
 
     this._globalEventBus.subscribeToEvent(AUTH.signUpSuccess, (data) => {
-      this._router.redirect('/');
+      this._router.redirect({ path: '/' });
     });
 
     this._view = new SignupSeekerView(this._root, this._globalEventBus);

@@ -3,20 +3,24 @@ div.header__logo
 
 div.header__fill
 
-if role
-    case role
-        when 'seeker'
-            a.header__link.header__link_active(href='/createresume') Создать резюме
+case role
+    when 'seeker'
+        a.header__link.header__link_active(href='/createresume') Создать резюме
 
-            div.header__favorites
-                a.icon.header__favorites-icon(href='/favorite_vacancies')
+        div.header__favorites
+            a.icon.header__favorites-icon(href='/favorite_vacancies')
 
-        when 'employer'
-            a.header__link.header__link_active(href='/createvacancy') Разместить вакансию
+    when 'employer'
+        a.header__link.header__link_active(href='/createvacancy') Разместить вакансию
 
-            div.header__favorites
-                a.icon.header__favorites-icon(href='/favorite_resumes')
+        div.header__favorites
+            a.icon.header__favorites-icon(href='/favorite_resumes')
 
+    default
+        a.header__link.header__link_active(href='/signin') Войти
+
+
+if role === 'seeker' || role === 'employer'
     div.header__profile
         button.icon.header__profile-icon.dropdown-btn(name='profile-menu')
         div.dropdown
@@ -26,6 +30,3 @@ if role
                 a.dropdown__link(href='/vacancies') Мои вакансии
             a.dropdown__link(href='/profile') Профиль
             div.dropdown__link(id='signOut') Выйти
-
-else
-    a.header__link.header__link_active(href='/signin') Войти

@@ -17,7 +17,6 @@
 @import './Button/_icon-only/button_icon-only.css';
 @import './Button/_employer/button_employer.css';
 @import './Button/_seeker/button_seeker.css';
-
 @import './Button/__icon/button__icon.css';
 @import './Link/link.css';
 @import './Link/link_list-item.css';
@@ -33,13 +32,10 @@
 @import './Form/__input/form__input.css';
 @import './Form/__section/form__section.css';
 @import './Form/__about/form__about.css';
-
 @import './Form-row/form-row.css';
 @import './Form-row/__key/form-row__key.css';
 @import './Form-row/__value/form-row__value.css';
-
 @import './Chat/chat.css';
-
 @import './Header/header.css';
 @import './Header/__logo/header__logo.css';
 @import './Header/__menu/header__menu.css';
@@ -54,14 +50,12 @@
 @import './Header/__favorites/header__favorites.css';
 @import './Header/__favorites/__favorites-icon/header__favorites-icon.css';
 @import './Header/__profile/__profile-icon/header__profile-icon.css';
-
 @import './Slider/slider.css';
 @import './Slider/main-content__slider.css';
 @import './Slider/__button/slider__button.css';
 @import './Slider/__item/slider__item.css';
 @import './Slider/__item/slider__item_employer.css';
 @import './Slider/__item/slider__item_seeker.css';
-
 @import './Hint-banner/hint-banner.css';
 @import './Hint-banner/hint-banner__title-h1.css';
 @import './Hint-banner/main-content__hint-banner.css';
@@ -71,15 +65,12 @@
 @import './Hint-banner/__search-bar/hint-banner__search-bar.css';
 @import './Hint-banner/_column/hint-banner_column.css';
 @import './Hint-banner/_row/hint-banner_row.css';
-
 @import "./Personal-block/personal-block.css";
 @import "./Personal-block/__left/personal-block__left.css";
 @import "./Personal-block/__right/personal-block__right.css";
-
 @import 'Dropdown/dropdown.css';
 @import 'Dropdown/dropdown_show.css';
 @import 'Dropdown/__link/dropdown__link.css';
-
 @import './Wrapper/wrapper.css';
 @import './Wrapper/__light-page/wrapper__light-page.css';
 @import './Light-page/light-page.css';
@@ -93,31 +84,24 @@
 @import './Light-page/__form/light-page__form.css';
 @import './Light-page/__header/light-page__header.css';
 @import './Light-page/__input/light-page__input.css';
-
 @import './Error/error.css';
 @import './Error/_active/error_active.css';
 @import './Error/_active/error_active.css';
-
 @import './Title/title-h1.css';
 @import './Title/title-h1_semibold.css';
 @import './Title/title-h1_light.css';
 @import './Title/title-h2.css';
-
 @import './Form-row/form-row.css';
 @import './Form-row/__key/form-row__key.css';
 @import './Form-row/__value/form-row__value.css';
-
 @import './Input/_invalid/input_invalid.css';
-
 @import './Light-page/__title/light-page__title.css';
 @import './Light-page/__title/-additional/light-page__title-additional.css';
-
 @import './Resume/__header-wrapper/resume__header-wrapper.css';
 @import './Resume/__photo/resume__photo.css';
 @import './Resume-userpic/resume-userpic.css';
 @import './Resume-userpic/__default-wrapper/resume-userpic__default-wrapper.css';
 @import './Resume-userpic/__default/resume-userpic__default.css';
-
 @import './Search/__block/search__block.css';
 @import './Search/__input/search__input.css';
 @import './Search/__legend/search__legend.css';
@@ -127,14 +111,11 @@
 @import './Search/__currency/search__currency.css';
 @import './Search/__experience/search__experience.css';
 @import './Search/search.css';
-
 @import './SearchBar/search-bar.css';
 @import './SearchBar/__input/search-bar__input.css';
 @import './SearchBar/__button/search-bar__button.css';
-
 @import './Favorite-vacancies/favorite-vacancies.css';
 @import './Favorite-vacancies/__no-vacancies/favorite-vacancies__no-vacancies.css';
-
 @import './Short-vacancy/short-vacancy.css';
 @import './Short-vacancy/_gold/short-vacancy_gold.css';
 @import './Short-vacancy/__info/short-vacancy__info.css';
@@ -142,14 +123,12 @@
 @import './Short-vacancy/__row/short-vacancy__row.css';
 @import './Short-vacancy/__column/short-vacancy__column.css';
 @import './Short-vacancy/__title/short-vacancy__title.css';
-@import './Short-vacancy/__wage/short-vacancy__wage.css';
 @import './Short-vacancy/__controls-item/short-vacancy__controls-item.css';
 @import './Short-vacancy/__meta-info/short-vacancy__meta-info.css';
 @import './Short-vacancy/__logo/short-vacancy__logo.css';
 @import './Short-vacancy/__sidebar/short-vacancy__sidebar.css';
 @import './Short-vacancy/__status/short-vacancy__status.css';
 @import './Short-vacancy/__favorite/short-vacancy__favorite.css';
-
 @import './Vacancy/__company-logo-img/vacancy__company-logo-img.css';
 @import './Vacancy/__company-logo/vacancy__company-logo.css';
 @import './Vacancy/__company-wrapper/vacancy__company-wrapper.css';
@@ -161,16 +140,13 @@
 @import './Vacancy/__action/vacancy__action.css';
 @import './Vacancy/__seeker-actions/vacancy__seeker-actions.css';
 @import './Vacancy/__description/vacancy__description.css';
-
 @import './Profile/__avatar/profile__avatar.css';
 @import './Profile/__hint/profile__hint.css';
 @import './Profile/__form/profile__form.css';
 @import './Profile/__save-avatar/profile__save-avatar.css';
-
 @import './Found-vacancies/found-vacancies.css';
 @import './Found-vacancies/__top-row/found-vacancies__top-row.css';
 @import './Found-vacancies/__wrapper/found-vacancies__wrapper.css';
-
 @import './Company/__logo-img/company__logo-img.css';
 @import './Company/__logo/company__logo.css';
 @import './Company/__sidebar-wrapper/company__sidebar-wrapper.css';
@@ -184,20 +160,20 @@
 @import './Search-company/search-company.css';
 @import './Search-company/__name/search-company__name.css';
 /* do not touch anything above*/
-
 @import 'card_list.css';
 
 .list {
-  display: flex;
-  flex-direction: column;
-  max-width: 690px;
+    display: flex;
+    flex-direction: column;
+    max-width: 690px;
 }
+
 p {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  outline: none;
-  background: transparent;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
 }
 
 .chatbubble {
@@ -207,6 +183,7 @@ p {
     right: 30px;
     transition: transform .3s ease-in-out;
 }
+
 .chatbubble.opened {
     transform: translateY(0)
 }
@@ -224,6 +201,7 @@ p {
     width: 350px;
     border-radius: 10px 10px 0 0;
 }
+
 .chatbubble .expanded {
     background-color: #fff;
     text-align: left;
@@ -234,7 +212,12 @@ p {
 }
 
 .iframe-chat {
+    display: none;
     height: 500px;
     width: 350px;
     background-color: #fff;
+}
+
+.iframe-chat_opened {
+    display: block;
 }

@@ -78,23 +78,37 @@ class VacancyModel {
 
     let getParameters = '?';
 
-    // Временный костыль, на бэке не обрабатывается остальное
-    if (searchParameters['region'] != '') {
+    if(searchParameters.position){
       getParameters +=
-        'region=' + searchParameters['region'] + '&';
+        'position=' + searchParameters.position + '&';
     }
-    getParameters +=
-      'wage=' + searchParameters['wage'] + '&' +
-      'experience=' + searchParameters['experience'];
+
+    // Временный костыль, на бэке не обрабатывается остальное
+    if (searchParameters.region) {
+      getParameters +=
+        'region=' + searchParameters.region + '&';
+    }
+    if(searchParameters.wage){
+      getParameters +=
+        'wage=' + searchParameters.wage + '&';
+    }
+     if(searchParameters.experience){
+       getParameters +=
+         'experience=' + searchParameters.experience + '&';
+     }
     // конец костыля
 
-    searchParameters['type_of_employment'].forEach(element => {
-      getParameters += '&type_of_employment=' + element;
-    });
+    if(searchParameters.type_of_employment){
+      searchParameters.type_of_employment.forEach(element => {
+        getParameters += '&type_of_employment=' + element;
+      });
+    }
 
-    searchParameters['work_schedule'].forEach(element => {
-      getParameters += '&work_schedule=' + element;
-    });
+    if(searchParameters.work_schedule){
+      searchParameters.work_schedule.forEach(element => {
+        getParameters += '&work_schedule=' + element;
+      });
+    }
     console.log('getParameters:', getParameters);
 
     let url = '/vacancies' + getParameters;
@@ -105,7 +119,7 @@ class VacancyModel {
         if (response.ok) {
           response.json().then(data => {
             console.log(data);
-            this._globalEventBus.triggerEvent(VACANCY.searchSuccess, url, data);
+            this._globalEventBus.triggerEvent(VACANCY.searchSuccess, url, data, searchParameters);
           });
         } else {
           response.json().then(data => {
@@ -118,7 +132,7 @@ class VacancyModel {
       });
   }
 
-  _onGetFavorite() {
+  _onGetFavorite () {
     Api.getFavoriteVacancies()
       .then(response => {
         if (response.ok) {
@@ -137,7 +151,7 @@ class VacancyModel {
       });
   }
 
-  _onGetFavoriteIds() {
+  _onGetFavoriteIds () {
     Api.getFavoriteVacancies()
       .then(response => {
         if (response.ok) {
@@ -146,7 +160,7 @@ class VacancyModel {
             let ids = [];
             vacancies.forEach(v => {
               ids.push(v['id']);
-            })
+            });
             this._globalEventBus.triggerEvent(VACANCY.getFavoriteIdsSuccess, ids);
           });
         } else {

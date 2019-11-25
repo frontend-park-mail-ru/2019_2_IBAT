@@ -1,5 +1,5 @@
 .form-row__value {
-  display: flex;
-  flex-flow: column nowrap;
-  width: 70%;
+    display: flex;
+    flex-flow: column nowrap;
+    width: 70%;
 }
