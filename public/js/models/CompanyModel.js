@@ -1,5 +1,6 @@
 import { Api } from '../modules/api';
 import { COMPANY, PROFILE } from '../modules/events';
+import Net from '../modules/net';
 
 export class CompanyModel {
 
@@ -18,6 +19,9 @@ export class CompanyModel {
         if (res.ok) {
           res.json().then(data => {
             console.log(data);
+            //TODO ЭТО КОСТЫЛЬ, split('/')[2] --- убрать!!!
+            data.path_to_img = `${Net.getServerImgURL()}/${data.path_to_img.split('/')[2]}`;
+
             this._globalEventBus.triggerEvent(COMPANY.getCompanyInfoSuccess, data);
           });
         }
@@ -25,40 +29,24 @@ export class CompanyModel {
   }
 
   _onGetPopularCompanies () {
-    // Net.doGet({
-    //   url: '/company/'
-    // })
-    new Promise((resolve, reject) => {
-      const data = {
-        companies: [
-          { id: '235fsd655423dfjsdf2', name: 'Sberbank' },
-          { id: '235fsd655423dfjsdf2', name: 'Sberbank' },
-          { id: '235fsd655423dfjsdf2', name: 'Sberbank' },
-          { id: '235fsd655423dfjsdf2', name: 'Sberbank' },
-          { id: '235fsd655423dfjsdf2', name: 'Sberbank' },
-          { id: '235fsd655423dfjsdf2', name: 'Sberbank' },
-          { id: '235fsd655423dfjsdf2', name: 'Sberbank' },
-        ]
-      };
-      resolve(data);
+    Net.doGet({
+      url: '/employers'
     })
       .then(res => {
-        this._globalEventBus.triggerEvent(COMPANY.getPopularCompaniesSuccess, res);
-        // if (res.ok) {
-        //   res.json().then(data => {
-        //     data.profile.path_to_img = `${Net.getServerURL()}/${data.profile.path_to_img}`;
-        //     this._globalEventBus.triggerEvent(PROFILE.loadProfileSuccess, data);
-        //   });
-        // } else {
-        //   this._globalEventBus.triggerEvent(PROFILE.loadProfileFailed);
-        // }
+        if (res.ok) {
+          res.json().then(data => {
+            this._globalEventBus.triggerEvent(COMPANY.getPopularCompaniesSuccess, {companies: data});
+          });
+        } else {
+          this._globalEventBus.triggerEvent(PROFILE.loadProfileFailed);
+        }
       })
       .catch(error => {
         console.error(error);
       });
   }
 
-  _onSearchCompanies(data) {
+  _onSearchCompanies (data) {
     console.log(data);
 
     let getParameters = '?';
@@ -72,16 +60,17 @@ export class CompanyModel {
     console.log(getParameters);
 
     Api.searchCompanies(getParameters)
-    .then(res => {
-      if (res.ok) {
-        res.json().then(data => {
-          this._globalEventBus.triggerEvent(COMPANY.searchSuccess, data);
-        });
-      }
-    })
-    .catch(error => {
-      console.error(error);
-    });
+      .then(res => {
+        if (res.ok) {
+          res.json().then(data => {
+            this._globalEventBus.triggerEvent(COMPANY.searchSuccess, data);
+          });
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 }
+
 export default new CompanyModel();

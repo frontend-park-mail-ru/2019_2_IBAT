@@ -6,11 +6,11 @@ export class CompaniesListComponent extends Component {
   constructor (data, globalEventBus) {
     super({ data, template, globalEventBus });
 
+    this._globalEventBus.triggerEvent(COMPANY.getPopularCompanies);
     globalEventBus.subscribeToEvent(COMPANY.getPopularCompaniesSuccess, this.showCompanies.bind(this));
   }
 
   onFirstRender () {
-    this._globalEventBus.triggerEvent(COMPANY.getPopularCompanies);
   }
 
   showCompanies (data) {
