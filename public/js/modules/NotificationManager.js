@@ -70,7 +70,7 @@ export class NotificationManager {
     //   //   notificationsList.removeChild(notificationElement);
     //   // },3000);
     // }, 2000);
-
+    //
     // setTimeout(() => {
     //   const data = {
     //     title: 'Hello!!!',
