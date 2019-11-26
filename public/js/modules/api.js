@@ -137,15 +137,6 @@ export class Api {
     });
   }
 
-  /**
-   * Запрос списка вакансий
-   * @returns {Promise<Response>}
-   */
-  static getVacancies () {
-    return Net.doGet({
-      url: '/vacancies',
-    });
-  }
 
   /**
    * Запрос на поиск вакансий
@@ -158,7 +149,7 @@ export class Api {
   }
 
   /**
-   * Запрос на 
+   * Запрос на
    * @param {String} getParameters
    * @returns {Promise<Response>}
    */

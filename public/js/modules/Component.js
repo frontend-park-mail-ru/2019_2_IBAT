@@ -33,6 +33,7 @@ export class Component {
     }
 
     this.onRender();
+    return node;
   }
 
   render () {
@@ -44,7 +45,7 @@ export class Component {
   onFirstRender () {}
 
   merge (data) {
-    this.data = { ...this.data, ...data };
+    this.data = { ...this.data, ...data, role: this.getRole};
   }
 
   get getRole(){

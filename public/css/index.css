@@ -157,6 +157,14 @@
 @import './Company/__short-info/company__short-info.css';
 @import './Company/__vacancies-header/company__vacancies-header.css';
 
+@import 'List/list.css';
+@import 'List/list_notifications.css';
+
+@import 'Notification/notification.css';
+@import 'Notification/__text/notification__text.css';
+@import 'Notification/__title/notification__title.css';
+@import 'Notification/__close/notification__close.css';
+
 @import './Search-company/search-company.css';
 @import './Search-company/__name/search-company__name.css';
 /* do not touch anything above*/

@@ -30,6 +30,7 @@ import { ChooseResumeController } from './controllers/ChooseResumeController';
 import { MyRespondsController } from './controllers/MyRespondsController';
 import { EmployerPageController } from './controllers/EmployerPageController';
 import { OfflinePageController } from './controllers/OfflinePageController';
+import { NotificationManager } from './modules/NotificationManager';
 
 function renderHTML () {
   const body = document.querySelector('body');
@@ -128,4 +129,10 @@ document.addEventListener('DOMContentLoaded', () => {
   router.add('/offline', offlinePageController);
 
   router.start();
+
+  globalEventBus.subscribeToEvent(ACTIONS.goTo, (info) => {
+    router.redirect({ path: info.path, data: info.data });
+  });
+
+  const nm = new NotificationManager(globalEventBus);
 });

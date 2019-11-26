@@ -7,6 +7,7 @@ export const ACTIONS = {
   employerGuestSlide: 'egs',
   guestSignInOnRespond: 'gsior',
   changeRequest: 'cr',
+  goTo: 'goTo'
 };
 
 export const COMPANY = {
@@ -48,6 +49,10 @@ export const VACANCY = {
   getVacancies: 'getVacancies',
   getVacanciesSuccess: 'getVacanciesS',
   getVacanciesFailed: 'getVacanciesFailed',
+
+  getVacanciesRecommended: 'gVR',
+  getVacanciesRecommendedSuccess: 'gVRS',
+  getVacanciesRecommendedFailed: 'gVRF',
 
   createVacancy: 'createV',
   createVacancySuccess: 'createVS',
