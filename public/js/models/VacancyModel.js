@@ -1,5 +1,6 @@
 import { Api } from '../modules/api';
 import { RESUME, VACANCY } from '../modules/events';
+import Net from '../modules/net';
 
 class VacancyModel {
 
@@ -11,10 +12,17 @@ class VacancyModel {
     this._globalEventBus.subscribeToEvent(VACANCY.createVacancy, this._onCreateVacancy.bind(this));
     this._globalEventBus.subscribeToEvent(VACANCY.search, this._onSearch.bind(this));
     this._globalEventBus.subscribeToEvent(VACANCY.getFavorite, this._onGetFavorite.bind(this));
+    this._globalEventBus.subscribeToEvent(VACANCY.getVacanciesRecommended, this._onGetVacancies.bind(this).bind(null,{recommended:true}));
   }
 
-  _onGetVacancies () {
-    Api.getVacancies()
+  _onGetVacancies (params) {
+    const queryString = Object.keys(params).map((key) => {
+      return encodeURIComponent(key) + '=' + encodeURIComponent(params[key])
+    }).join('&');
+
+    Net.doGet({
+      url: `/vacancies?${queryString}`,
+    })
       .then(res => {
         if (res.ok) {
           res.json().then(data => {

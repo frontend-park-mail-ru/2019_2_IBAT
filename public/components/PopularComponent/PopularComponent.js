@@ -10,10 +10,14 @@ export class PopularComponent extends Component {
 
     this._globalEventBus.subscribeToEvent(RESUME.getResumesSuccess, this.showItems.bind(this));
     this._globalEventBus.subscribeToEvent(VACANCY.getVacanciesSuccess, this.showItems.bind(this));
+    this._globalEventBus.subscribeToEvent(VACANCY.getVacanciesRecommendedSuccess, this.showItems.bind(this));
   }
 
   onFirstRender () {
-    if (this.getRole === 'seeker' || this.getRole === 'seekerGuest') {
+    if (this.getRole === 'seeker') {
+      this._globalEventBus.triggerEvent(VACANCY.getVacanciesRecommended);
+    }
+    if(this.getRole === 'seekerGuest'){
       this._globalEventBus.triggerEvent(VACANCY.getVacancies);
     }
     if (this.getRole === 'employer' || this.getRole === 'employerGuest') {
