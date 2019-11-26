@@ -9,7 +9,7 @@ export class NotificationComponent extends Component {
 
   onFirstRender () {
     this.domElement.addEventListener('click', ev =>{
-      this._globalEventBus.triggerEvent(ACTIONS.goTo, {path: `/vacancy/${this.data.vacancyId}`})
+      this._globalEventBus.triggerEvent(ACTIONS.goTo, {path: `/vacancy/${this.data.id}`})
       this.domElement.parentElement.removeChild(this.domElement);
     });
 

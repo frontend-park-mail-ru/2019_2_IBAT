@@ -59,6 +59,16 @@ export class ShortVacancyComponent extends Component {
         }
       });
     }
+
+    this.employerLink.addEventListener('click', ev=>{
+      this._globalEventBus.triggerEvent(ACTIONS.goTo, {path: `/employer/${this.data.vacancy.owner_id}`});
+      ev.stopPropagation();
+    });
+
+    this.domElement.addEventListener('click',ev=>{
+      this._globalEventBus.triggerEvent(ACTIONS.goTo, {path: `/vacancy/${this.data.vacancy.id}`});
+      ev.stopPropagation();
+    });
   }
 
   _onToFavorite (event) {
@@ -83,6 +93,11 @@ export class ShortVacancyComponent extends Component {
         });
     }
   }
+
+  get employerLink(){
+    return this.domElement.querySelector('.js-employer-link');
+  }
+
 
   onRender () {
   }

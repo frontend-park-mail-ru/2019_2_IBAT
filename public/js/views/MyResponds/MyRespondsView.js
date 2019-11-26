@@ -2,6 +2,7 @@ import template from './myResponds.pug';
 import { View } from '../../modules/view';
 import { ShortVacancyComponent } from '../../../components/ShortVacancy/ShortVacancy';
 import { AUTH, RESPOND } from '../../modules/events';
+import { Api } from '../../modules/api';
 
 export class MyRespondsView extends View {
   constructor (root, globalEventBus) {
@@ -29,14 +30,24 @@ export class MyRespondsView extends View {
     this._root.querySelector('.left-column').appendChild(list);
 
     responds.forEach(respond => {
-      new ShortVacancyComponent({
-        data: {
-          vacancy: respond.vacancy,
-          status: respond.Status,
-        },
-        globalEventBus: this._globalEventBus
-      })
-        .appendTo(list);
+      Api.getVacancyById(respond.vacancy_id)
+        .then(res => {
+          if (res.ok) {
+            return res.json();
+          }
+        })
+        .then(vacancy => {
+          new ShortVacancyComponent({
+            data: {
+              vacancy: vacancy,
+              status: respond.Status,
+            },
+            globalEventBus: this._globalEventBus
+          }).appendTo(list);
+        })
+        .catch(error => {
+          console.error(error);
+        });
     });
   }
 }

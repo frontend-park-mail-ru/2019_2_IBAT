@@ -17,7 +17,7 @@ export class ProfileModel {
       .then(res => {
         if (res.ok) {
           res.json().then(data => {
-            data.profile.path_to_img = `${Net.getServerURL()}/${data.profile.path_to_img}`;
+            data.profile.path_to_img = `${Net.getServerImgURL()}/${data.profile.path_to_img.split('/')[2]}`;
             this._globalEventBus.triggerEvent(PROFILE.loadProfileSuccess, data);
           });
         } else {
