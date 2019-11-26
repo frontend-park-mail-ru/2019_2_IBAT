@@ -42,7 +42,6 @@ export const CHAT = {
   ws_opened: 'wsopen',
   send: 'send',
   receive: 'receive',
-
 };
 
 export const VACANCY = {
@@ -60,9 +59,9 @@ export const VACANCY = {
 
   chooseResume: 'chooseRes',
 
-  search: 'search',
-  searchSuccess: 'searchS',
-  searchFailed: 'searchF',
+  search: 'searchV',
+  searchSuccess: 'searchVS',
+  searchFailed: 'searchVF',
 
   getFavorite: 'getFav',
   getFavoriteSuccess: 'getFavS',
@@ -97,6 +96,10 @@ export const RESUME = {
   getResume: 'getRes',
   getResumeSuccess: 'getResS',
   getResumeFailed: 'getResF',
+
+  search: 'searchR',
+  searchSuccess: 'searchRS',
+  searchFailed: 'searchRF',
 };
 
 export const PROFILE = {

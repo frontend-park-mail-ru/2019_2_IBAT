@@ -1,4 +1,4 @@
-import { SearchCompanyView } from '../views/SearchCompany/SearchCompanyView';
+import { SearchCompanyView } from '../views/Search/SearchCompanyView';
 import { Controller } from '../modules/controller';
 import { COMPANY } from '../modules/events';
 

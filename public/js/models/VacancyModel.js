@@ -83,7 +83,6 @@ class VacancyModel {
         'position=' + searchParameters.position + '&';
     }
 
-    // Временный костыль, на бэке не обрабатывается остальное
     if (searchParameters.region) {
       getParameters +=
         'region=' + searchParameters.region + '&';
@@ -92,18 +91,17 @@ class VacancyModel {
       getParameters +=
         'wage=' + searchParameters.wage + '&';
     }
-     if(searchParameters.experience){
-       getParameters +=
-         'experience=' + searchParameters.experience + '&';
-     }
-    // конец костыля
+    if(searchParameters.experience){
+      getParameters +=
+        'experience=' + searchParameters.experience + '&';
+    }
 
     if(searchParameters.type_of_employment){
       searchParameters.type_of_employment.forEach(element => {
         getParameters += '&type_of_employment=' + element;
       });
     }
-
+    
     if(searchParameters.work_schedule){
       searchParameters.work_schedule.forEach(element => {
         getParameters += '&work_schedule=' + element;

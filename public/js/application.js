@@ -22,13 +22,13 @@ import { CreateResumeController } from './controllers/CreateResumeController';
 import { ProfileController } from './controllers/ProfileController';
 import { VacancyPageController } from './controllers/VacancyPageController';
 import { ResumePageController } from './controllers/ResumePageController';
-import { SearchVacancyController } from './controllers/SearchVacancyController';
+import { SearchController } from './controllers/SearchController';
 import { FoundVacanciesController } from './controllers/FoundVacanciesController';
+import { FoundResumesController } from './controllers/FoundResumesController';
 import { FavoriteVacanciesController } from './controllers/FavoriteVacanciesController';
 import { ChooseResumeController } from './controllers/ChooseResumeController';
 import { MyRespondsController } from './controllers/MyRespondsController';
 import { EmployerPageController } from './controllers/EmployerPageController';
-import { SearchCompanyController } from './controllers/SearchCompanyController';
 import { OfflinePageController } from './controllers/OfflinePageController';
 
 function renderHTML () {
@@ -94,13 +94,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const profileController = new ProfileController(content, globalEventBus, router);
   const vacancyPageController = new VacancyPageController(content, globalEventBus, router);
   const resumePageController = new ResumePageController(content, globalEventBus, router);
-  const searchVacancyController = new SearchVacancyController(content, globalEventBus, router);
+  const searchController = new SearchController(content, globalEventBus, router);
   const foundVacanciesController = new FoundVacanciesController(content, globalEventBus, router);
+  const foundResumesController = new FoundResumesController(content, globalEventBus, router);
   const favoriteVacanciesController = new FavoriteVacanciesController(content, globalEventBus, router);
   const chooseResumeController = new ChooseResumeController(content, globalEventBus, router);
   const myRespondsController = new MyRespondsController(content, globalEventBus, router);
   const employerPageController = new EmployerPageController(content, globalEventBus, router);
-  const searchCompanyController = new SearchCompanyController(content, globalEventBus, router);
   const offlinePageController = new OfflinePageController(content, globalEventBus, router);
 
   headerController.openWithData();
@@ -112,17 +112,19 @@ document.addEventListener('DOMContentLoaded', () => {
   router.add('/createvacancy', createVacancyController);
   router.add('/createresume', createResumeController);
   router.add('/profile', profileController);
+  router.add('/employer', employerPageController);
   router.add('/vacancy', vacancyPageController);
   router.add('/resume', resumePageController);
   router.add('/chooseResume', chooseResumeController);
   router.add('/my_responds', myRespondsController);
 
-  router.add('/search/vacancy', searchVacancyController);
-  router.add('/vacancies', foundVacanciesController);
-  router.add('/favorite_vacancies', favoriteVacanciesController);
-  router.add('/employer', employerPageController);
-  router.add('/search/company', searchCompanyController);
+  router.add('/search/vacancy', searchController);
+  router.add('/search/company', searchController);
+  router.add('/search/resume', searchController);
 
+  router.add('/vacancies', foundVacanciesController);
+  router.add('/resumes', foundResumesController);
+  router.add('/favorite_vacancies', favoriteVacanciesController);
   router.add('/offline', offlinePageController);
 
   router.start();

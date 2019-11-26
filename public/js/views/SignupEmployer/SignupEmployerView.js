@@ -58,8 +58,10 @@ export class SignupEmployerView extends View {
    */
   _onSubmitFailed (data) {
     let message = this._root.querySelector('.light-page__error-js');
-    message.classList.add('light-page__error_active');
-    message.innerHTML = `<p>${data.error}<p>`;
+    if (message) {
+      message.classList.add('light-page__error_active');
+      message.innerHTML = `<p>${data.error}<p>`;
+    }
   }
 
   /**

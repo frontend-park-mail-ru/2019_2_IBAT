@@ -166,6 +166,17 @@ export class Api {
     console.log(getParameters);
     return Net.doGet({ url: '/employers' + getParameters });
   }
+
+  /**
+   * Запрос на 
+   * @param {String} getParameters
+   * @returns {Promise<Response>}
+   */
+  static searchResumes (getParameters) {
+    console.log(getParameters);
+    return Net.doGet({ url: '/resumes' + getParameters });
+  }
+
   /**
    * Запрос данных резюме
    * @returns {Promise<Response>}
@@ -235,15 +246,36 @@ export class Api {
     });
   }
 
+  /**
+   * 
+   * @param resumeId
+   * @param vacancyId
+   * @returns {Promise<Response>}
+   */
   static getResponds (resumeId = '', vacancyId = '') {
     return Net.doGet({
       url: `/responds?vacancy_id=${vacancyId}&resume_id=${resumeId}`,
     });
   }
 
+  /**
+   * 
+   * @param vacancyId
+   * @returns {Promise<Response>}
+   */
   static addFavoriteVacancy (vacancyId = '') {
     return Net.doPost({
       url: `/favorite_vacancy/${vacancyId}`,
     });
+  }
+
+  /**
+   * Запрос тегов
+   * @returns {Promise<Response>}
+   */
+  static getTags () {
+    return Net.doGet({
+      url: '/tags'
+    })
   }
 }
