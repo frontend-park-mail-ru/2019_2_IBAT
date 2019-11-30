@@ -2,6 +2,18 @@ import template from './createVacancy.pug';
 import { View } from '../../modules/view';
 import { AUTH, PROFILE, VACANCY } from '../../modules/events';
 
+const type_of_employment = [
+  'Полная занятость', 'Частичная занятость', 'Проектная/Временная работа', 'Волонтерство', 'Стажировка'
+];
+
+const work_schedule = [
+  'Полный день', 'Сменный график', 'Гибкий график', 'Удаленная работа', 'Вахтовый метод'
+];
+
+const experience = [
+  'Не имеет значения', 'Нет опыта', 'От 1 года до 3 лет', 'От 3 до 6 лет', 'Более 6 лет'
+]
+
 export class CreateVacancyView extends View {
 
   constructor (root, eventBus) {
@@ -13,6 +25,7 @@ export class CreateVacancyView extends View {
   }
 
   render (data = {}) {
+    data = { ...data, type_of_employment, work_schedule, experience };
     this.isViewClosed = false;
 
     this._globalEventBus.triggerEvent(AUTH.checkAuth);
@@ -27,6 +40,7 @@ export class CreateVacancyView extends View {
     if (this.isViewClosed) {
       return;
     }
+    data = { ...data, type_of_employment, work_schedule, experience };
     super.render(data);
 
     this._createVacancyForm = this._root.querySelector('.vacancy-form');
@@ -69,10 +83,11 @@ export class CreateVacancyView extends View {
     wasfail = View._validateObligotaryInputs(inputs);
 
     if (!wasfail) {
-      const vacancy = {};
+      let vacancy = {};
       Array.prototype.forEach.call(this._createVacancyForm.elements, elem => {
         vacancy[elem.name] = elem.value;
       });
+      console.log(vacancy);
       this._globalEventBus.triggerEvent(VACANCY.createVacancy, vacancy);
     }
   }

@@ -25,8 +25,8 @@ if role === 'seeker' || role === 'employer'
         button.icon.header__profile-icon.dropdown-btn(name='profile-menu')
         div.dropdown
             if role === 'seeker'
-                a.dropdown__link(href='/resumes') Мои резюме
+                a.dropdown__link(href='/my_resumes') Мои резюме
             if role === 'employer'
-                a.dropdown__link(href='/vacancies') Мои вакансии
+                a.dropdown__link(href='/my_vacancies') Мои вакансии
             a.dropdown__link(href='/profile') Профиль
             div.dropdown__link(id='signOut') Выйти

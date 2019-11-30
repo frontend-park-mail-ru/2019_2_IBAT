@@ -46,24 +46,14 @@ export class CompanyModel {
       });
   }
 
-  _onSearchCompanies (data) {
-    console.log(data);
+  _onSearchCompanies (request = '/employers?') {
+    console.log(request);
 
-    let getParameters = '?';
-
-    // Object.entries(data).forEach.call(function(value, key)  {
-    //   getParameters += `${key}=${value}&`;
-    // },getParameters);
-
-    getParameters += `company_name=${data['company_name']}&region=${data['region']}`;
-
-    console.log(getParameters);
-
-    Api.searchCompanies(getParameters)
+    Api.searchCompanies(request)
       .then(res => {
         if (res.ok) {
-          res.json().then(data => {
-            this._globalEventBus.triggerEvent(COMPANY.searchSuccess, data);
+          res.json().then(employers => {
+            this._globalEventBus.triggerEvent(COMPANY.searchSuccess, employers);
           });
         }
       })

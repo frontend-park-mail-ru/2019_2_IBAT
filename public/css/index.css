@@ -111,6 +111,7 @@
 @import './Search/__currency/search__currency.css';
 @import './Search/__experience/search__experience.css';
 @import './Search/search.css';
+@import './Search/__wage/search__wage-options.css';
 @import './SearchBar/search-bar.css';
 @import './SearchBar/__input/search-bar__input.css';
 @import './SearchBar/__button/search-bar__button.css';
@@ -167,6 +168,15 @@
 
 @import './Search-company/search-company.css';
 @import './Search-company/__name/search-company__name.css';
+
+@import './Slider/__button/slider__button.css';
+@import './Slider/__item/slider__item.css';
+@import './Slider/__item/slider__item_employer.css';
+@import './Slider/__item/slider__item_seeker.css';
+@import './Slider/__title/slider__title.css';
+@import './Slider/main-content__slider.css';
+@import './Slider/slider.css';
+
 /* do not touch anything above*/
 @import 'card_list.css';
 

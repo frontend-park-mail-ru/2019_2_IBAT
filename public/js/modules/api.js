@@ -140,32 +140,32 @@ export class Api {
 
   /**
    * Запрос на поиск вакансий
-   * @param {String} getParameters
+   * @param {String} request
    * @returns {Promise<Response>}
    */
-  static searchVacancies (getParameters) {
-    console.log(getParameters);
-    return Net.doGet({ url: '/vacancies' + getParameters });
+  static searchVacancies (request) {
+    console.log(request);
+    return Net.doGet({ url: request });
   }
 
   /**
    * Запрос на
-   * @param {String} getParameters
+   * @param {String} request
    * @returns {Promise<Response>}
    */
-  static searchCompanies (getParameters) {
-    console.log(getParameters);
-    return Net.doGet({ url: '/employers' + getParameters });
+  static searchCompanies (request) {
+    console.log(request);
+    return Net.doGet({ url: request });
   }
 
   /**
    * Запрос на 
-   * @param {String} getParameters
+   * @param {String} request
    * @returns {Promise<Response>}
    */
-  static searchResumes (getParameters) {
-    console.log(getParameters);
-    return Net.doGet({ url: '/resumes' + getParameters });
+  static searchResumes (request) {
+    console.log(request);
+    return Net.doGet({ url: request });
   }
 
   /**

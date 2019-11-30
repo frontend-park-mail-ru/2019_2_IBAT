@@ -1,7 +1,7 @@
 import template from './searchPage.pug';
 import { View } from '../../modules/view';
 import { Api } from '../../modules/api';
-import { AUTH, VACANCY, COMPANY, RESUME } from '../../modules/events';
+import { AUTH, VACANCY, COMPANY, RESUME, SEARCH } from '../../modules/events';
 
 const type_of_employment = [
   'Полная занятость', 'Частичная занятость', 'Проектная/Временная работа', 'Волонтерство', 'Стажировка'
@@ -19,14 +19,29 @@ const education = [
   'Бакалавр', 'Магистр', 'Кандидат наук', 'Доктор наук', 'Неоконченное выысшее', 'Среднее', 'Среднее специальное'
 ]
 
+const shema = {
+  'vacancy': {
+    mode: 'vacancy',
+    url: '/vacancies'
+  },
+  'resume': {
+    mode: 'resume',
+    url: '/resumes'
+  },
+  'company': {
+    mode: 'company',
+    url: '/employers'
+  }
+}
+
 export class SearchView extends View {
 
   constructor (root, globalEventBus) {
     super(root, template, globalEventBus);
 
-    this._searchParametrs = {};
     this._globalEventBus.subscribeToEvent(COMPANY.searchSuccess, this._onFounedCompanies.bind(this));
 
+    // 1 раз просим тэги у бэка и всё
     Api.getTags()
       .then(res => {
         console.log(res);
@@ -46,10 +61,7 @@ export class SearchView extends View {
     console.log(this._tags);
 
     data = { ...data, type_of_employment, work_schedule, experience, education };
-
-    console.log(data['mode']);
     this._mode = data['mode'];
-    this._globalEventBus.triggerEvent(AUTH.checkAuth);
 
     super.render(data);
 
@@ -58,7 +70,7 @@ export class SearchView extends View {
 
     // Если мы кликнули на компанию, перешли на страницу компании, а потом вернулись
     // надо отобразить те же компании
-    if (this._companies && this._mode == 'company') {
+    if (this._companies && this._mode == shema.company.mode) {
       this._showCompanies()
     } 
   }
@@ -66,34 +78,36 @@ export class SearchView extends View {
   _onSubmit (ev) {
     ev.preventDefault();
 
-    let data = new Map();
-    data['type_of_employment'] = [];
-    data['work_schedule'] = [];
+    let getParameters = '?';
+
     Array.prototype.forEach.call(this._searchForm.elements, elem => {
       if (elem.tagName == 'SELECT' || elem.tagName == 'INPUT') {
         if (elem.type == 'checkbox' && elem.checked) {
           if (type_of_employment.find(item => item == elem.name)) {
-            data['type_of_employment'].push(elem.name);
+            getParameters += `type_of_employment=${elem.name}&`;
           }
           if (work_schedule.find(item => item == elem.name)) {
-            console.log(data);
-            data['work_schedule'].push(elem.name);
+            getParameters += `work_schedule=${elem.name}&`;
           }
-        } else if (elem.type != 'checkbox') {
-          data[elem.name] = elem.value;
+        } 
+        else if (elem.type != 'checkbox' && elem.value) {
+          getParameters += `${elem.name}=${elem.value}&`;
         }
       }
     });
+    
+    console.log(getParameters);
 
-    this._searchParametrs = data;
-    console.log(this._searchParametrs);
     switch (this._mode) {
-      case 'vacancy':
-        this._globalEventBus.triggerEvent(VACANCY.search, this._searchParametrs);
-      case 'company':
-        this._globalEventBus.triggerEvent(COMPANY.search, this._searchParametrs);
-      case 'resume':
-        this._globalEventBus.triggerEvent(RESUME.search, this._searchParametrs);
+      case shema.vacancy.mode:
+        this._globalEventBus.triggerEvent(SEARCH.search, `${shema.vacancy.url}${getParameters}`);
+        break;
+      case shema.resume.mode:
+        this._globalEventBus.triggerEvent(SEARCH.search, `${shema.resume.url}${getParameters}`);
+        break;
+      case shema.company.mode:
+        this._globalEventBus.triggerEvent(COMPANY.search, `${shema.company.url}${getParameters}`);
+        break;
     }
   }
 

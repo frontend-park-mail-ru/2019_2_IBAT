@@ -11,10 +11,11 @@ export class Router {
     this.routes = new Map();
 
     this.currentRoute = null;
-
+      // window.location.search: если мы венулись
+      // то в window.location.search наши параметры лежат, которые нам нужны для поиска
     window.onpopstate = _ => {
       if (window.location.pathname) {
-        this.route({ path: window.location.pathname, addToHistory: false });
+        this.route({ path: `${window.location.pathname}${window.location.search}`, addToHistory: false });
       }
     };
 
@@ -40,75 +41,63 @@ export class Router {
   }
 
   route ({ path, data = {}, prevState = {}, addToHistory = true } = {}) {
-    let currentController = this.routes.get(this._getRoutePath(this.currentRoute));
-    if (currentController) {
-      currentController.close();
-    } else {
-      currentController = this.routes.get(this.currentRoute);
-      if (currentController) {
-        currentController.close();
-      }
-    }
-
+    // Добаввляем в историю перед переходом
     if (addToHistory) {
       window.history.pushState(prevState, null, path);
     }
 
-    const pathWithoutParameters = path.split('?')[0];
-    console.log(pathWithoutParameters);
-    const routePath = this._getRoutePath(pathWithoutParameters);
+    // Получаем текущий контроллер и закрываем его
+    let currentController = this.routes.get(this._getRoutePath(this.currentRoute));
+    if (currentController) {
+      currentController.close();
+    }
+
+    //получаем корневой путь
+    const routePath = this._getRoutePath(path);
 
     if (this.routes.has(routePath)) {
+      // получаем назначенного контроллера
       const controller = this.routes.get(routePath);
 
-      //Роутинг для /.../{id}
+      //Роутинг для /<root>/{id}
       if (pathsWithId.find(el => el === routePath)) {
         let id = this._extractIdFromPath(path);
         data = { id, ...data };
       }
-      console.log('router-> render(data)', data);
-      this.currentRoute = path;
-      controller.openWithData(data);
 
+      this.currentRoute = path;
+      // переход на страницу
+      controller.openWithData(data);
     } else {
-      if (this.routes.has(pathWithoutParameters)) {
-        const controller = this.routes.get(pathWithoutParameters);
-        console.log('router-> render(data)', data);
-        this.currentRoute = path;
-        controller.openWithData(data);
-      }
-      //Error 404
+      //Error 404 Page Not Found
     }
   }
 
   /**
-   * Получает первичный маршрут для роутинга без параметров запроса
-   * @param pathWithoutParameters
-   * @returns {string}
+   * Получает первичный маршрут для роутинга
+   * @param path
+   * @returns {string|null}
    * @private
    */
-  _getRoutePath (pathWithoutParameters) {
-    if (pathWithoutParameters) {
-      return '/' + pathWithoutParameters.split('/')[1];
+  _getRoutePath (path) {
+    if (path) {
+      return '/' + (path.split('?')[0]).split('/')[1];
     }
-  }
-
-  static _normalizePath (path) {
-    return path.charAt(path.length - 1) === '/' && path !== '/' ? path.slice(0, path.length - 1) : path;
   }
 
   start () {
     localStorage.removeItem('role');
 
+    // вешаем обработчик на переход по ссылкам
     window.addEventListener('click', (ev) => {
       if (ev.target.tagName === 'A') {
         ev.preventDefault();
 
-        if(ev.target.pathname==='/'){
+        if (ev.target.pathname === '/') {
           localStorage.removeItem('role');
         }
 
-        this.route({ path: Router._normalizePath(ev.target.pathname), addToHistory: true });
+        this.route({ path: ev.target.pathname, addToHistory: true });
       }
     }, true);
 
@@ -122,7 +111,15 @@ export class Router {
       window.history.back();
     });
 
-    this.route({ path: Router._normalizePath(window.location.pathname), addToHistory: true });
+    // при перезагрузке страницы у нас уже есть история и страница в истории, 
+    // поэтому мы её повторно не должны записывать в историю, но если нет то запишем
+    if (window.history.length == 0) {
+      this.route({ path: window.location.pathname, addToHistory: true });
+    } else {
+      // window.location.search: если мы перезагрузилистраницу, 
+      // то в window.location.search наши параметры лежат, которые нам нужны для поиска
+      this.route({ path: `${window.location.pathname}${window.location.search}`, addToHistory: false });
+    }
   }
 
   _extractIdFromPath (path) {

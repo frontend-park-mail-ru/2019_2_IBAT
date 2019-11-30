@@ -1,10 +1,16 @@
 div.left-column
+    div.
     h1.title-h1 Создание вакансии
     form.vacancy-form(method="POST" novalidate)
         div.form__section
             span.form__legend Название компании
             div.form__input
                 input.input.company-name(type="text", value=profile.company_name, name='company_name')
+                span.error(aria-live='polite')
+            
+            span.form__legend Город
+            div.form__input
+                input.input.company-region(type="text", value=profile.region, name='region')
                 span.error(aria-live='polite')
 
             span.form__legend Должность
@@ -15,16 +21,51 @@ div.left-column
             span.form__legend Опыт работы
             div.form__input
                 select.input.experience(name='experience')
-                    option(value="Без опыта работы") Без опыта работы
-                    option(value="1-3года") 1-3года
-                    option(value="3-5лет") 3-5лет
-                    option(value="5+ лет") 5+ лет
+                    each e, i in experience
+                        option(value=e) #{e}
                 span.error(aria-live='polite')
 
             span.form__legend Оплата
             div.form__input
-                input.input.wage(type="text", name='wage')
+                div.search__input
+                    div.search__wage-options от
+                    input.input.search__wage(type="number", name='wage_from')
+                    div.search__wage-options до
+                    input.input.search__wage(type="number", name='wage_to')
+                    select.input.search__currency(name='currency')
+                        option(value="руб.") руб.
                 span.error(aria-live='polite')
+
+            span.form__legend Обязанности
+            div.form__input
+                textarea.input.form__about(name="tasks", rows="10" placeholder="Расскажите об обязанностях")
+                span.error(aria-live='polite')
+            
+            span.form__legend Требования
+            div.form__input
+                textarea.input.form__about(name="requirements", rows="10" placeholder="Расскажите о требованиях")
+                span.error(aria-live='polite')
+
+            div.search__block.mb20
+                span.search__legend Тип занятости
+                div.search__checkboxes
+                    each type, i in type_of_employment
+                        div.search__item
+                            input(type='radio', value=type, name='type_of_employment')
+                            span.ml5 #{type}
+            
+            div.search__block.mb20
+                span.search__legend График работы
+                div.search__checkboxes
+                    each ws, i in work_schedule
+                        div.search__item
+                            input(type='radio', value=ws, name='work_schedule')
+                            span.ml5 #{ws}
+
+            span.form__legend Условия
+                div.form__input
+                    textarea.input.form__about(name="conditions", rows="10" placeholder="Расскажите об условиях вакансии подробнее")
+                    span.error(aria-live='polite')
 
             span.form__legend О вакансии
             div.form__input

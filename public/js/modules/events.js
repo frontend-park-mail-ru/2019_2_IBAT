@@ -10,6 +10,10 @@ export const ACTIONS = {
   goTo: 'goTo'
 };
 
+export const SEARCH = {
+  search: 'initsearch',
+}
+
 export const COMPANY = {
   getPopularCompanies: 'gpc',
   getPopularCompaniesSuccess: 'gpcs',

@@ -1,6 +1,21 @@
 import template from './searchBar.pug';
 import { Component } from '../../js/modules/Component';
-import { VACANCY, RESUME } from '../../js/modules/events';
+import { SEARCH } from '../../js/modules/events';
+
+const shema = {
+  'vacancy': {
+    mode: 'vacancy',
+    url: '/vacancies'
+  },
+  'resume': {
+    mode: 'resume',
+    url: '/resumes'
+  },
+  'company': {
+    mode: 'company',
+    url: '/companies'
+  }
+}
 
 export class SearchBarComponent extends Component {
   constructor (data, globalEventBus) {
@@ -11,16 +26,20 @@ export class SearchBarComponent extends Component {
     let role = localStorage.getItem('role');
     this.domElement.querySelector('.search-bar__button')
       .addEventListener('click', (ev) => {
-        const query = this.domElement.querySelector('[name="query"]').value;
+        const query = '?position=' + this.domElement.querySelector('[name="query"]').value;
         switch (role) {
           case 'seeker':
-            this._globalEventBus.triggerEvent(VACANCY.search, { position: query });
+            this._globalEventBus.triggerEvent(SEARCH.search, `${shema.vacancy.url}${query}`);
+            break;
           case 'employer':
-            this._globalEventBus.triggerEvent(RESUME.search, { position: query });
+            this._globalEventBus.triggerEvent(SEARCH.search, `${shema.resume.url}${query}`);
+            break;
           case 'employerGuest':
-            this._globalEventBus.triggerEvent(RESUME.search, { position: query });
+            this._globalEventBus.triggerEvent(SEARCH.search, `${shema.resume.url}${query}`);
+            break;
           default:
-            this._globalEventBus.triggerEvent(VACANCY.search, { position: query });
+            this._globalEventBus.triggerEvent(SEARCH.search, `${shema.vacancy.url}${query}`);
+            break;
         }
       });
   };

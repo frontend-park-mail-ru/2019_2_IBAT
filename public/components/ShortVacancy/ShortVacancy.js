@@ -20,7 +20,6 @@ export class ShortVacancyComponent extends Component {
 
     if (!this.data.vacancy.favorite) {
       const toFavorite = this.domElement.querySelector('[name="switch"]');
-      console.log(toFavorite);
       toFavorite.addEventListener('click', this._onToFavorite.bind(this), true);
     }
 
@@ -62,11 +61,6 @@ export class ShortVacancyComponent extends Component {
 
     this.employerLink.addEventListener('click', ev=>{
       this._globalEventBus.triggerEvent(ACTIONS.goTo, {path: `/employer/${this.data.vacancy.owner_id}`});
-      ev.stopPropagation();
-    });
-
-    this.domElement.addEventListener('click',ev=>{
-      this._globalEventBus.triggerEvent(ACTIONS.goTo, {path: `/vacancy/${this.data.vacancy.id}`});
       ev.stopPropagation();
     });
   }

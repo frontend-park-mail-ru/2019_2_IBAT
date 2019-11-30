@@ -91,63 +91,16 @@ class ResumeModel {
       });
   }
 
-  _onSearch (searchParameters) {
-    console.log(searchParameters);
-
-    let getParameters = '?';
-
-    if(searchParameters.position){
-      getParameters +=
-        'position=' + searchParameters.position + '&';
-    }
-
-    if (searchParameters.region) {
-      getParameters +=
-        'region=' + searchParameters.region + '&';
-    }
-
-    if(searchParameters.wage_from){
-      getParameters +=
-        'wage_from=' + searchParameters.wage_from + '&';
-    }
-
-    if(searchParameters.wage_from){
-      getParameters +=
-        'wage_to=' + searchParameters.wage_to + '&';
-    }
+  _onSearch (request = '/resumes?') {
+    console.log(request);
     
-    if(searchParameters.experience){
-      getParameters +=
-        'experience=' + searchParameters.experience + '&';
-    }
-
-    if(searchParameters.education){
-      getParameters +=
-        'education=' + searchParameters.experience + '&';
-    }
-
-    if(searchParameters.type_of_employment){
-      searchParameters.type_of_employment.forEach(element => {
-        getParameters += '&type_of_employment=' + element;
-      });
-    }
-    
-    if(searchParameters.work_schedule){
-      searchParameters.work_schedule.forEach(element => {
-        getParameters += '&work_schedule=' + element;
-      });
-    }
-    console.log('getParameters:', getParameters);
-
-    let url = '/resumes' + getParameters;
-
-    Api.searchResumes(getParameters)
+    Api.searchResumes(request)
       .then(response => {
         console.log(response);
         if (response.ok) {
-          response.json().then(data => {
-            console.log(data);
-            this._globalEventBus.triggerEvent(RESUME.searchSuccess, url, data, searchParameters);
+          response.json().then(resumes => {
+            console.log(resumes);
+            this._globalEventBus.triggerEvent(RESUME.searchSuccess, resumes);
           });
         } else {
           response.json().then(data => {

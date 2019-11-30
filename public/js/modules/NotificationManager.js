@@ -7,7 +7,7 @@ export class NotificationManager {
   constructor (globalEventBus = {}) {
     this._globalEventBus = globalEventBus;
     this.wsIsOpened = false;
-
+  
     this._globalEventBus.subscribeToEvent(AUTH.signInSuccess, this.onCreateWSConnection.bind(this));
     this._globalEventBus.subscribeToEvent(AUTH.checkAuthResponse, this.onCreateWSConnection.bind(this));
     this._globalEventBus.subscribeToEvent(AUTH.signOut, this.onDeleteWSConnection.bind(this));
@@ -52,10 +52,13 @@ export class NotificationManager {
   }
 
   listen () {
-    const notificationsList = document.createElement('div');
-    notificationsList.classList.add('list', 'list_notifications', 'page__list_notifications');
-
-    window.document.querySelector('.page').appendChild(notificationsList);
+    let notificationsList = window.document.querySelector('.list_notifications');
+    if (!notificationsList) {
+      notificationsList = document.createElement('div');
+      notificationsList.classList.add('list', 'list_notifications', 'page__list_notifications');
+  
+      window.document.querySelector('.page').appendChild(notificationsList);
+    }
 
     //TODO для дебага
     setTimeout(() => {
@@ -69,7 +72,7 @@ export class NotificationManager {
             res.json().then(data=>{
               const notificationElement = new NotificationComponent(data, this._globalEventBus).appendTo(notificationsList);
               setTimeout(() => {
-                notificationsList.removeChild(notificationElement);
+                notificationElement.remove();
               }, 5000);
             });
           }

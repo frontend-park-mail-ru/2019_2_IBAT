@@ -1,4 +1,4 @@
 a.link.title-h2(href='/companies') Компании
 if companies
     each company in companies
-        a.link.link_list-item(href=`/employer/${company.id}`) #{company.company_name}
+        a.link.link_list-item.bloko-link(href=`/employer/${company.id}`) #{company.company_name}
