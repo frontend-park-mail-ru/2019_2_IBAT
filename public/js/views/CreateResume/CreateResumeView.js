@@ -1,6 +1,7 @@
 import template from './createResume.pug';
 import { View } from '../../modules/view';
 import { AUTH, PROFILE, RESUME, VACANCY } from '../../modules/events';
+import { INPUTS } from '../constInputs';
 
 export class CreateResumeView extends View {
 
@@ -23,10 +24,11 @@ export class CreateResumeView extends View {
    * @param data
    * @private
    */
-  _onLoadProfileSuccess (data) {
+  _onLoadProfileSuccess (data = {}) {
     if (this.isViewClosed) {
       return;
     }
+    data = { ...data, INPUTS };
     super.render(data);
 
     this._createResumeForm = this._root.querySelector('.create-resume-form');

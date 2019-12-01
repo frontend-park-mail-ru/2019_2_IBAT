@@ -1,18 +1,7 @@
 import template from './createVacancy.pug';
 import { View } from '../../modules/view';
 import { AUTH, PROFILE, VACANCY } from '../../modules/events';
-
-const type_of_employment = [
-  'Полная занятость', 'Частичная занятость', 'Проектная/Временная работа', 'Волонтерство', 'Стажировка'
-];
-
-const work_schedule = [
-  'Полный день', 'Сменный график', 'Гибкий график', 'Удаленная работа', 'Вахтовый метод'
-];
-
-const experience = [
-  'Не имеет значения', 'Нет опыта', 'От 1 года до 3 лет', 'От 3 до 6 лет', 'Более 6 лет'
-]
+import { INPUTS } from '../constInputs';
 
 export class CreateVacancyView extends View {
 
@@ -25,7 +14,7 @@ export class CreateVacancyView extends View {
   }
 
   render (data = {}) {
-    data = { ...data, type_of_employment, work_schedule, experience };
+    data = { ...data, INPUTS };
     this.isViewClosed = false;
 
     this._globalEventBus.triggerEvent(AUTH.checkAuth);
@@ -40,7 +29,7 @@ export class CreateVacancyView extends View {
     if (this.isViewClosed) {
       return;
     }
-    data = { ...data, type_of_employment, work_schedule, experience };
+    data = { ...data, INPUTS };
     super.render(data);
 
     this._createVacancyForm = this._root.querySelector('.vacancy-form');

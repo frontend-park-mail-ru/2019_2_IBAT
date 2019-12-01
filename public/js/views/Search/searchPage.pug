@@ -17,7 +17,7 @@ div.left-column
                             input.input(type="text", name='position')
                     
                     //- div.search__block.mb20
-                    //-     span.search__legend Уровень заработной платы
+                    //-     span.search__legend Сфера
                     //-     div.search__input
                     //-         input.input.search__wage(type="number", name='wage')
                     //-         select.input.search__currency(name='tags')
@@ -40,13 +40,13 @@ div.left-column
                         span.search__legend Требуемый опыт работы
                         div.search__input
                             select.input.search__experience(name='experience')
-                                each e, i in experience
+                                each e, i in INPUTS.experience
                                     option(value=e) #{e}
 
                     div.search__block.mb20
                         span.search__legend Тип занятости
                         div.search__checkboxes
-                            each type, i in type_of_employment
+                            each type, i in INPUTS.type_of_employment
                                 div.search__item
                                     input(type='checkbox' name=type)
                                     span.ml5 #{type}
@@ -54,7 +54,7 @@ div.left-column
                     div.search__block.mb20
                         span.search__legend График работы
                         div.search__checkboxes
-                            each ws, i in work_schedule
+                            each ws, i in INPUTS.work_schedule
                                 div.search__item
                                     input(type='checkbox' name=ws)
                                     span.ml5 #{ws}
@@ -94,20 +94,20 @@ div.left-column
                         span.search__legend Требуемый опыт работы
                         div.search__input
                             select.input.search__experience(name='experience')
-                                each e, i in experience
+                                each e, i in INPUTS.experience
                                     option(value=e) #{e}
                                        
                     div.search__block.mb20
                         span.search__legend Образование
                         div.search__input
                             select.input.search__experience(name='education')
-                                each e, i in education
+                                each e, i in INPUTS.education
                                     option(value=e) #{e}
                                     
                     div.search__block.mb20
                         span.search__legend Тип занятости
                         div.search__checkboxes
-                            each type, i in type_of_employment
+                            each type, i in INPUTS.type_of_employment
                                 div.search__item
                                     input(type='checkbox' name=type)
                                     span.ml5 #{type}
@@ -115,7 +115,7 @@ div.left-column
                     div.search__block.mb20
                         span.search__legend График работы
                         div.search__checkboxes
-                            each ws, i in work_schedule
+                            each ws, i in INPUTS.work_schedule
                                 div.search__item
                                     input(type='checkbox' name=ws)
                                     span.ml5 #{ws}

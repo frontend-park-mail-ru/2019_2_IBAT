@@ -177,6 +177,14 @@
 @import './Slider/main-content__slider.css';
 @import './Slider/slider.css';
 
+@import './Resume-search-item/resume-search-item.css';
+@import './Resume-search-item/__additionals/resume-search-item__additionals.css';
+@import './Resume-search-item/__content/resume-search-item__content.css';
+@import './Resume-search-item/__content/-layout/resume-search-item__content-layout.css';
+@import './Resume-search-item/__content/-wrapper/resume-search-item__content-wrapper.css';
+@import './Resume-search-item/__description-title/resume-search-item__description-title.css';
+@import './Resume-search-item/__wage/resume-search-item__wage.css';
+@import './Resume-search-item/__position/resume-search-item__position.css';
 /* do not touch anything above*/
 @import 'card_list.css';
 

@@ -1,9 +1,15 @@
-div.card
-    span.card__span #{resume.position}
-    span.card__span #{resume.first_name} #{resume.second_name}
-    span.card__span #{resume.wage}
-    span.card__span #{resume.region}
-    span.card__span #{resume.experience}
+div.resume-search-item
+    div.resume-search-item__content-wrapper
+        div.resume-search-item__content-layout
+            div.resume-search-item__content
+                div.resume-search-item__header
+                    a.link.bloko-link.resume-search-item__position(href=`/resume/${resume.id}`) #{resume.position}
+                    div.resume-search-item__region #{resume.region}
+                    div.resume-search-item__wage #{resume.wage}
+                    div.resume-search-item__description-title Опыт работы
+                    div.resume-search-item__description-content #{resume.experience}
 
-
-    a.bloko-link.card__view-resume(href=`/resume/${resume.id}`) Посмотреть резюме
+            div.resume-search-item__additionals
+                div.resume-userpic.resume-userpic_small
+                    div.resume-userpic__default-wrapper
+                        div.resume-userpic__default.resume-userpic__default_small

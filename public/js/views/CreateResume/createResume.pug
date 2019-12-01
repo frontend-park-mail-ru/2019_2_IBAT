@@ -27,11 +27,6 @@ div.left-column
         h2.title-h2 Основная информация
 
         div.form__section
-            span.form__legend Желаемая профессия
-            div.form__input
-                input.input(type='text', name='profession')
-                span.error(aria-live='polite')
-
             span.form__legend Желаемая должность
             div.form__input
                 input.input(type='text', name='position')
@@ -39,8 +34,26 @@ div.left-column
 
             span.form__legend Желаемая заработанная плата
             div.form__input
-                input.input(type='number', name='wage')
-                span.error(aria-live='polite')
+                div.search__input.search__input_no-space
+                    input.input.search__wage(type="number", name='wage')
+                    select.input.search__currency(name='currency')
+                        option(value="руб.") руб.
+            
+            div.search__block.mb20
+                span.search__legend Тип занятости
+                div.search__checkboxes
+                    each type, i in INPUTS.type_of_employment
+                        div.search__item
+                            input(type='radio', value=type, name='type_of_employment')
+                            span.ml5 #{type}
+            
+            div.search__block.mb20
+                span.search__legend График работы
+                div.search__checkboxes
+                    each ws, i in INPUTS.work_schedule
+                        div.search__item
+                            input(type='radio', value=ws, name='work_schedule')
+                            span.ml5 #{ws}
 
         h2.title-h2 Личная информация
 
@@ -53,9 +66,8 @@ div.left-column
             span.form__legend Пол
             div.form__input
                 select.input.sex(name='sex')
-                    option(value='F') Женский
-                    option(value='M') Мужской
-                    option(value='?') Не определился
+                    each s, i in INPUTS.sex
+                        option(value=s) #{s}
                 span.error
 
             span.form__legend Гражданство
@@ -66,10 +78,8 @@ div.left-column
             span.form__legend Опыт работы
             div.form__input
                 select.input(name='experience')
-                    option(value='Без опыта работы') Без опыта работы
-                    option(value='1-3года') 1-3года
-                    option(value='3-5лет') 3-5лет
-                    option(value='5+ лет') 5+ лет
+                        each e, i in INPUTS.experience
+                            option(value=e) #{e}
                 span.error
 
             span.form__legend О себе
@@ -86,13 +96,8 @@ div.left-column
             span.form__legend Уровень
             div.form__input
                 select.input(name='education')
-                    option(value='bachelor') Бакалавр
-                    option(value='master') Магистр
-                    option(value='candidate') Кандидат наук
-                    option(value='doctor') Доктор наук
-                    option(value='unfinished_higher') Неоконченное высшее
-                    option(value='secondary') Среднее
-                    option(value='special_secondary') Среднее специальное
+                    each e, i in INPUTS.education
+                        option(value=e) #{e}
                 span.error
 
         button.button.button_blue(type='submit') Создать и опубликовать

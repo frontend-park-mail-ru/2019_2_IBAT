@@ -1,0 +1,9 @@
+.resume-search-item {
+    border: 1px solid #dfdfdf;
+    display: flex;
+    margin-top: -1px;
+    padding: 20px;
+    position: relative;
+    line-height: 21px;
+    font-size: 14px;
+}

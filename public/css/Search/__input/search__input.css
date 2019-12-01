@@ -4,3 +4,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
+.search__input_no-space {
+    justify-content: flex-start;
+}
