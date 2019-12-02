@@ -68,10 +68,10 @@ export class SearchView extends View {
     Array.prototype.forEach.call(this._searchForm.elements, elem => {
       if (elem.tagName == 'SELECT' || elem.tagName == 'INPUT') {
         if (elem.type == 'checkbox' && elem.checked) {
-          if (type_of_employment.find(item => item == elem.name)) {
+          if (INPUTS.type_of_employment.find(item => item == elem.name)) {
             getParameters += `type_of_employment=${elem.name}&`;
           }
-          if (work_schedule.find(item => item == elem.name)) {
+          if (INPUTS.work_schedule.find(item => item == elem.name)) {
             getParameters += `work_schedule=${elem.name}&`;
           }
         } 

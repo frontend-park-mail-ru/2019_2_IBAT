@@ -75,6 +75,7 @@ export class CreateResumeView extends View {
       Array.prototype.forEach.call(this._createResumeForm.elements, elem => {
         resume[elem.name] = elem.value;
       });
+      console.log(resume);
       this._globalEventBus.triggerEvent(RESUME.createResume, resume);
     }
   }
