@@ -34,6 +34,11 @@ import { SigninController } from './controllers/SigninController';
 import { SearchController } from './controllers/SearchController';
 
 function renderHTML () {
+  let metaViewport = document.createElement('meta');
+  metaViewport.name = 'viewport';
+  metaViewport.content = 'width=device-width, initial-scale=1';
+  document.head.appendChild(metaViewport); 
+
   const body = document.querySelector('body');
   body.classList.add('page');
 

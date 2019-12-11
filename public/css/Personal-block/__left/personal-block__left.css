@@ -8,3 +8,9 @@
 .personal-block__left_no-border {
     border-right: none;
 }
+
+@media all and (max-width : 655px) {
+    .personal-block__left {
+        display: none;
+    }
+}

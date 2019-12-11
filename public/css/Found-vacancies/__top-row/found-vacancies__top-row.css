@@ -1,9 +1,18 @@
 .found-vacancies__top-row {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: space-between;
     margin-bottom: 25px;
 }
+
 .found-vacancies__button {
     margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+@media all and (max-width : 455px) {
+    .found-vacancies__button {
+        margin: 0 0 5px;
+        width: 100%;
+    }
 }

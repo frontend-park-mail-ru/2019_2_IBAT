@@ -111,6 +111,7 @@
 @import './Search/__currency/search__currency.css';
 @import './Search/__experience/search__experience.css';
 @import './Search/search.css';
+@import './Search/__legend/search__find-fill.css';
 @import './Search/__wage/search__wage-options.css';
 @import './SearchBar/search-bar.css';
 @import './SearchBar/__input/search-bar__input.css';
@@ -185,8 +186,19 @@
 @import './Resume-search-item/__description-title/resume-search-item__description-title.css';
 @import './Resume-search-item/__wage/resume-search-item__wage.css';
 @import './Resume-search-item/__position/resume-search-item__position.css';
-/* do not touch anything above*/
 @import 'card_list.css';
+
+@-ms-viewport {
+    width: device-width;
+}
+@-o-viewport {
+    width: device-width;
+}
+@viewport {
+    width: device-width;
+}
+/* do not touch anything above*/
+
 
 .list {
     display: flex;

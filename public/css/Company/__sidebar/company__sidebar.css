@@ -6,6 +6,20 @@
     font-size: 13px;
     position: relative;
     padding: 20px;
+    margin-bottom: 20px;
 
     background-color: #f9f9f9;
+}
+
+.company__sidebar-long {
+    display: none;
+    flex-direction: row;
+}
+
+
+@media all and (max-width : 655px) {
+    .company__sidebar-long {
+        display: flex;
+        justify-content: space-between;
+    }
 }

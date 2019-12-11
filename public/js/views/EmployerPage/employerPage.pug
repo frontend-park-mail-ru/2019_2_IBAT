@@ -16,6 +16,17 @@ div.company
         div.personal-block__right.company__right-block
             div.company__name
                 h1 #{company_name}
+            div.company__sidebar
+                div.company__sidebar-long
+                    div.company__short-info
+                        p #{region}
+                        div
+                            a.bloko-link.company__url(href=`http://${site}/` rel="noopener noreferrer nofollow noindex" target="_blank") #{site}
+                        div
+                            p.company__short-info-header Сферы деятельности
+                            p #{spheres_of_work}
+                    div.company__logo
+                        img.company__logo-img(src=path_to_img)
             div #{description}
             h3.company__vacancies-header Вакансии компании
             div.list

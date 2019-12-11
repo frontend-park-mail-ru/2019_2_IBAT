@@ -1,3 +1,11 @@
 .wrapper__light-page {
     margin: 25px 0;
+    display: flex;
+}
+
+@media all and (max-width : 600px) {
+    .wrapper__light-page {
+        margin: 0;
+        width: 100%;
+    }
 }

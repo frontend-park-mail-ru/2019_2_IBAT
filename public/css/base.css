@@ -32,7 +32,11 @@ html {
     padding: 40px 40px;
     box-sizing: border-box;
 }
-
+@media (max-width: 455px) {
+    .left-column {
+        padding: 40px 10px;
+    }
+}
 .right-column {
     display: flex;
     flex-direction: column;

@@ -3,6 +3,7 @@ import { View } from '../../modules/view';
 import { Api } from '../../modules/api';
 import { COMPANY, SEARCH } from '../../modules/events';
 import { INPUTS } from '../constInputs';
+import { reject } from 'q';
 
 const shema = {
   'vacancy': {
@@ -33,7 +34,7 @@ export class SearchView extends View {
         if (res.ok) {
           return res.json();
         } else {
-          throw res.json();
+          reject(res);
         }
       })
       .then(tags => { console.log(tags); this._tags = tags; })

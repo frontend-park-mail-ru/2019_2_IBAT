@@ -4,3 +4,9 @@
     justify-content: start;
     align-self: center;
 }
+
+@media all and (max-width : 655px) {
+    .form-row__key {
+        align-self: flex-start;
+    }
+}

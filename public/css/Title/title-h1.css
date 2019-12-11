@@ -6,3 +6,9 @@
     margin: 0 0 15px;
     color: var(--text-color);
 }
+
+@media all and (max-width : 500px) {
+    .title-h1 {
+        font-size: 28px;
+    }
+}
