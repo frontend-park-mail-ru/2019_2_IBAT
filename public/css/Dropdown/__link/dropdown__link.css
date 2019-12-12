@@ -4,6 +4,16 @@
     display: block;
 }
 
+.dropdown__link_mobile {
+    display: none;
+}
+
+@media all and (max-width : 655px) {
+    .dropdown__link_mobile {
+        display: block;
+    }
+}
+
 .dropdown__link:hover {
     background-color: #f3f3f3
 }

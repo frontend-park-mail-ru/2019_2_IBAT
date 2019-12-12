@@ -26,7 +26,10 @@ if role === 'seeker' || role === 'employer'
         div.dropdown
             if role === 'seeker'
                 a.dropdown__link(href='/my_resumes') Мои резюме
+            a.dropdown__link.dropdown__link_mobile(href='/my_responds') Мои отклики
+            a.dropdown__link.dropdown__link_mobile(href='/offers') Мои предложения
             if role === 'employer'
                 a.dropdown__link(href='/my_vacancies') Мои вакансии
             a.dropdown__link(href='/profile') Профиль
+
             div.dropdown__link(id='signOut') Выйти

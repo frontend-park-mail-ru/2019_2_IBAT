@@ -5,6 +5,6 @@
 
 @media all and (max-width : 600px) {
     .light-page__form {
-        width: 100%;
+        width: auto;
     }
 }

@@ -11,3 +11,11 @@
     right: 24px;
     bottom: 24px;
 }
+
+@media all and (max-width : 565px) {
+    .page__list_notifications {
+        right: 5px;
+        top: 5px;
+    }
+    
+}
