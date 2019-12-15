@@ -1,5 +1,5 @@
 .vacancy__seeker-actions {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     margin-bottom: 25px;
 }

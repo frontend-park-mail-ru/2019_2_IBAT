@@ -10,7 +10,7 @@ export class ShortVacancyComponent extends Component {
   }
 
   onFirstRender () {
-
+    console.log(this.data);
     if (this.data.vacancy['wage_from']) {
       this.data.vacancy['wage_from'] = this.data.vacancy['wage_from'].split('.')[0];
     }
@@ -20,43 +20,49 @@ export class ShortVacancyComponent extends Component {
 
     if (!this.data.vacancy.favorite) {
       const toFavorite = this.domElement.querySelector('[name="switch"]');
-      toFavorite.addEventListener('click', this._onToFavorite.bind(this), true);
+      if (toFavorite) {
+        toFavorite.addEventListener('click', this._onToFavorite.bind(this), true);
+      }
     }
 
     let logo = this.domElement.querySelector('.short-vacancy__logo ');
-    Api.getEmployerById(this.data.vacancy.owner_id)
-      .then(res => {
-        if (res.ok) {
-          res.json().then(employer => {
-            if (employer.path_to_img !== '' && employer.path_to_img !== 'default.jpg') {
-              logo.setAttribute('src', `${Net.getServerImgURL()}/${employer.path_to_img.split('/')[2]}`);
-            } else {
-              logo.style.display = 'none';
-            }
-          });
-        } else {
-          logo.style.display = 'none';
-        }
-      })
-      .catch(err => {
-        logo.style.display = 'none';
-        console.error(err);
-      });
+    logo.style.display = 'none';
+
+    // Эта дичь тупо дудосит бэк, и на главной странице мы наблюдаем нихера:)
+    // Api.getEmployerById(this.data.vacancy.owner_id)
+    //   .then(res => {
+    //     if (res.ok) {
+    //       res.json().then(employer => {
+    //         if (employer.path_to_img !== '' && employer.path_to_img !== 'default.jpg') {
+    //           logo.setAttribute('src', `${Net.getServerImgURL()}/${employer.path_to_img.split('/')[2]}`);
+    //         } else {
+    //           logo.style.display = 'none';
+    //         }
+    //       });
+    //     } else {
+    //       logo.style.display = 'none';
+    //     }
+    //   })
+    //   .catch(err => {
+    //     logo.style.display = 'none';
+    //     console.error(err);
+    //   });
 
     if (!this.data.vacancy.is_responded) {
       this.respondButton = this.domElement.querySelector('[name="respond"]');
-
-      this.respondButton.addEventListener('click', (ev) => {
-        if (this.getRole.match(/Guest/)) {
-          this._globalEventBus.triggerEvent(ACTIONS.guestSignInOnRespond, {
-            vacancyId: this.data.vacancy.id
-          });
-        } else {
-          this._globalEventBus.triggerEvent(VACANCY.chooseResume, {
-            vacancyId: this.data.vacancy.id
-          });
-        }
-      });
+      if (this.respondButton) {
+        this.respondButton.addEventListener('click', (ev) => {
+          if (this.getRole.match(/Guest/)) {
+            this._globalEventBus.triggerEvent(ACTIONS.guestSignInOnRespond, {
+              vacancyId: this.data.vacancy.id
+            });
+          } else {
+            this._globalEventBus.triggerEvent(VACANCY.chooseResume, {
+              vacancyId: this.data.vacancy.id
+            });
+          }
+        });
+      }
     }
 
     this.employerLink.addEventListener('click', ev=>{

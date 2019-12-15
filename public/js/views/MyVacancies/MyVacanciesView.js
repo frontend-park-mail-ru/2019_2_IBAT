@@ -1,9 +1,9 @@
-import template from './foundVacancies.pug';
+import template from './myVacancies.pug';
 import { View } from '../../modules/view';
-import { ShortVacancyComponent } from '../../../components/ShortVacancy/ShortVacancy';
+import { ShortVacancyComponent } from '../../../components/ShortVacancy/ShortVacancy'
 
-export class FoundVacanciesView extends View {
 
+export class MyVacanciesView extends View {
   constructor (root, globalEventBus) {
     super(root, template, globalEventBus);
   }
@@ -19,6 +19,8 @@ export class FoundVacanciesView extends View {
 
     if (vacancies.length > 0) {
       vacancies.forEach(vacancy => {
+        console.log(vacancy);
+        vacancy['employer_mode'] = true;
         new ShortVacancyComponent({ data: { vacancy }}).appendTo(list);
       });
     }

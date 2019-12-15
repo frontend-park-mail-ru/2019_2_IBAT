@@ -3,3 +3,9 @@
     background: #f8f8f8;
     height: max-content;
 }
+
+@media all and (max-width : 600px) {
+    .light-page {
+        height: 100%;
+    }
+}

@@ -1,5 +1,5 @@
 .favorite-vacancies {
     vertical-align: top;
     box-sizing: border-box;
-    width: 685px;
+    max-width: 685px;
 }

@@ -11,18 +11,15 @@ export class MyResumesController extends Controller {
 
   openWithData() {
     Api.getOwnResumes()
-     .then(response => {
-      if (response.ok) {
-        response.json()
-        .then(resumes => {
-          this._view.render(resumes );
-        })
-      } else {
-        this._view.render();
-      }
+    .then(response => {
+      return response.ok ? response.json() : null;
     })
-      .catch(error => {
-        console.log(error);
-      })
+    .then(resumes => {
+      console.log(resumes);
+      this._view.render(resumes);
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
 }

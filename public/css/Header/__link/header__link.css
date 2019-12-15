@@ -3,6 +3,7 @@
     font-size: 14px;
     margin: 10px;
     align-self: center;
+    text-align: center;
 }
 
 .header__link:hover {
@@ -11,4 +12,10 @@
 
 .header__link:active {
     color: #1f1f1f
+}
+
+@media (max-width: 455px) {
+    .header__link {
+        font-size: 12px;
+    }
 }

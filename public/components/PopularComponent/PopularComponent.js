@@ -28,20 +28,22 @@ export class PopularComponent extends Component {
   onRender () {
     if (this.data.items) {
       if (this.getRole === 'seeker' || this.getRole === 'seekerGuest') {
-        this.data.items.forEach(vacancy => {
-          const shortVacancyComponent = new ShortVacancyComponent({
-            data: {
-              vacancy,
-              role: this.getRole
-            },
-            globalEventBus: this._globalEventBus
-          });
-          shortVacancyComponent.appendTo(this.list);
+        this.data.items.forEach((vacancy, count) => {
+          if (count < 15) {
+            let shortVacancyComponent = new ShortVacancyComponent({
+              data: {
+                vacancy,
+                role: this.getRole
+              },
+              globalEventBus: this._globalEventBus
+            });
+            shortVacancyComponent.appendTo(this.list);
+          }
         });
       }
       if (this.getRole === 'employer' || this.getRole === 'employerGuest') {
         this.data.items.forEach(resume => {
-          const shortResumeComponent = new ShortResumeComponent(resume);
+          let shortResumeComponent = new ShortResumeComponent(resume);
           shortResumeComponent.appendTo(this.list);
         });
       }

@@ -34,28 +34,29 @@ div.short-vacancy.short-vacancy_gold
             a(href=`employer/${vacancy.owner_id}`)
                 img.short-vacancy__logo
 
-    div.short-vacancy__row_right
-        if status
-            span Статус отклика:
-            span.short-vacancy__status #{status}
-        else
-            if !vacancy.is_responded
-                span.short-vacancy__controls-item
-                    span.link.bloko-link.bloko-link_dimmed(name='respond', href='#') Откликнуться
-
-            if !vacancy.favorite
-                span.short-vacancy__controls-item
-                    span(id=vacancy.id, name='switch')
-                        span.link.bloko-link.bloko-link_dimmed
-                            span.short-vacancy__favorite_off В избранное
-                        span.link.bloko-link.bloko-link_notify
-                            span.short-vacancy__favorite_on В избранном
+    if (!vacancy.employer_mode)
+        div.short-vacancy__row_right
+            if status
+                span Статус отклика:
+                span.short-vacancy__status #{status}
             else
-                span.short-vacancy__controls-item
-                    span.short-vacancy__favorite_selected(id=id, name='switch')
-                        span.link.bloko-link.bloko-link_dimmed
-                            span.short-vacancy__favorite_off В избранное
-                        span.link.bloko-link.bloko-link_notify
-                            span.short-vacancy__favorite_on В избранном
+                if !vacancy.is_responded
+                    span.short-vacancy__controls-item
+                        span.link.bloko-link.bloko-link_dimmed(name='respond', href='#') Откликнуться
+
+                if !vacancy.favorite
+                    span.short-vacancy__controls-item
+                        span(id=vacancy.id, name='switch')
+                            span.link.bloko-link.bloko-link_dimmed
+                                span.short-vacancy__favorite_off В избранное
+                            span.link.bloko-link.bloko-link_notify
+                                span.short-vacancy__favorite_on В избранном
+                else
+                    span.short-vacancy__controls-item
+                        span.short-vacancy__favorite_selected(id=id, name='switch')
+                            span.link.bloko-link.bloko-link_dimmed
+                                span.short-vacancy__favorite_off В избранное
+                            span.link.bloko-link.bloko-link_notify
+                                span.short-vacancy__favorite_on В избранном
 
 

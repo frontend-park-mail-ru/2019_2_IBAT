@@ -4,3 +4,9 @@
     padding: 0 24px;
     width: 100%;
 }
+
+@media all and (max-width : 655px) {
+    .personal-block__right {
+        padding: 0;
+    }
+}

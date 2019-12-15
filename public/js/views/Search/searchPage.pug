@@ -15,14 +15,15 @@ div.left-column
                         span.search__legend Желаемая должность
                         div.search__input
                             input.input(type="text", name='position')
-                    
-                    //- div.search__block.mb20
-                    //-     span.search__legend Сфера
-                    //-     div.search__input
-                    //-         input.input.search__wage(type="number", name='wage')
-                    //-         select.input.search__currency(name='tags')
-                    //-             each t, i in tags
-                    //-                 option(value=t) #{t}
+
+                    div.search__block.mb20
+                        span.search__legend Профессиональная область
+                        div.search__input
+                            div.search__column
+                                select.input.search__spheres-first(name='spheres')
+                                    each s, i in spheresFirst
+                                        option(value=s) #{s}
+                                div.search__spheres-second
 
                     div.search__block.mb20
                         span.search__legend Регион
@@ -74,6 +75,15 @@ div.left-column
                             span.search__legend Желаемая должность
                             div.search__input
                                 input.input(type="text", name='position')
+                    
+                    div.search__block.mb20
+                        span.search__legend Профессиональная область
+                        div.search__input
+                            div.search__column
+                                select.input.search__spheres-first(name='spheres')
+                                    each s, i in spheresFirst
+                                        option(value=s) #{s}
+                                div.search__spheres-second
 
                     div.search__block.mb20
                         span.search__legend Регион
@@ -121,7 +131,7 @@ div.left-column
                                     span.ml5 #{ws}
 
             div.search__block.mb20
-                span.search__legend
+                span.search__legend.search__find-fill
                 button.button.button_blue(type='submit') Найти
 
             div.search-company
