@@ -13,6 +13,14 @@ div.left-column
                 input.input.company-region(type="text", value=profile.region, name='region')
                 span.error(aria-live='polite')
 
+            span.form__legend Профессиональная область
+            div.form__input
+                select.input.search__spheres-first(name='spheres')
+                    each t, i in tags
+                        option(value=t) #{t}
+                span.error(aria-live='polite')
+                div.search__spheres-second
+
             span.form__legend Должность
             div.form__input
                 input.input.position(type="text", name='position')

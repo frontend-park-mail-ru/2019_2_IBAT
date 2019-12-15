@@ -50,6 +50,7 @@ class VacancyModel {
       .then(response => {
         if (response.ok) {
           response.json().then(data => {
+            console.log(data);
             this._globalEventBus.triggerEvent(VACANCY.createVacancySuccess, data);
           });
         } else {

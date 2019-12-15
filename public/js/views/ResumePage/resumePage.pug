@@ -20,3 +20,8 @@ div.left-column
     div <b>Опыт работы:</b> - #{experience}
     div <b>Заработанная плата:</b> - #{wage}
     div <b>О себе:</b> #{about}
+
+    if (my_id == own_id)
+        div.resume__owner-section
+            button.button.resume__owner-button.resume__owner-button_change Редактировать
+            button.button.button_red.resume__owner-button.resume__owner-button_delete Удалить

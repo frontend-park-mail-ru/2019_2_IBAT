@@ -1,9 +1,8 @@
 import template from './searchPage.pug';
 import { View } from '../../modules/view';
-import { Api } from '../../modules/api';
 import { COMPANY, SEARCH } from '../../modules/events';
 import { INPUTS } from '../constInputs';
-import { reject } from 'q';
+import tagsModel from '../../models/TagsModel';
 
 const shema = {
   'vacancy': {
@@ -26,27 +25,18 @@ export class SearchView extends View {
     super(root, template, globalEventBus);
 
     this._globalEventBus.subscribeToEvent(COMPANY.searchSuccess, this._onFounedCompanies.bind(this));
-
-    // 1 раз просим тэги у бэка и всё
-    Api.getTags()
-      .then(res => {
-        console.log(res);
-        if (res.ok) {
-          return res.json();
-        } else {
-          reject(res);
-        }
-      })
-      .then(tags => { console.log(tags); this._tags = tags; })
-      .catch(error => {
-        console.error(error);
-      });
   }
 
   render (data = {}) {
+    this._tags = tagsModel.getTags();
     console.log(this._tags);
+    let spheresFirst = [''];
+    Object.entries(this._tags).forEach(([key, value]) => {
+      spheresFirst.push(key);
+    });
 
-    data = { ...data, INPUTS };
+    data = { ...data, INPUTS, spheresFirst };
+
     this._mode = data['mode'];
 
     super.render(data);
@@ -54,11 +44,47 @@ export class SearchView extends View {
     this._searchForm = this._root.querySelector('.search-js');
     this._searchForm.addEventListener('submit', this._onSubmit.bind(this), false);
 
+    this._spheresFirst = this._searchForm.querySelector('.search__spheres-first');
+    this._spheresSecond = this._searchForm.querySelector('.search__spheres-second');
+
+    if (this._spheresFirst && this._spheresSecond) {
+      this._spheresFirst.addEventListener('input', this._onFirstTagChanged.bind(this), false)
+    }
+
     // Если мы кликнули на компанию, перешли на страницу компании, а потом вернулись
     // надо отобразить те же компании
     if (this._companies && this._mode == shema.company.mode) {
       this._showCompanies()
     } 
+  }
+
+  _onFirstTagChanged(event) {
+    this._spheresSecond.innerHTML = '';
+    let secondTags = this._tags[event.target.value] ? this._tags[event.target.value] : [];
+    this._renderSecondTags(secondTags);
+  }
+
+  _renderSecondTags(tags) {
+    tags.forEach(tag => {
+      this._createSecondTag(tag);      
+    })
+  }
+
+  _createSecondTag(tagName) {
+    let tag = document.createElement('div');
+      tag.classList.add('search__item');
+
+      let input = document.createElement('input');
+      input.type = 'checkbox';
+      input.value = tagName;
+      tag.appendChild(input);
+
+      let name = document.createElement('span');
+      name.classList.add('ml5');
+      name.innerHTML = tagName;
+      tag.appendChild(name);
+
+      this._spheresSecond.appendChild(tag);
   }
 
   _onSubmit (ev) {
@@ -75,8 +101,11 @@ export class SearchView extends View {
           if (INPUTS.work_schedule.find(item => item == elem.name)) {
             getParameters += `work_schedule=${elem.name}&`;
           }
+          if (this._tags[this._spheresFirst.value].find(item => item == elem.value)) {
+            getParameters += `${this._spheresFirst.value}=${elem.value}`;
+          }
         } 
-        else if (elem.type != 'checkbox' && elem.value) {
+        else if (elem.type != 'checkbox' && elem.value && elem.name != 'spheres') {
           getParameters += `${elem.name}=${elem.value}&`;
         }
       }

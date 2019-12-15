@@ -114,6 +114,12 @@ export class Api {
     });
   }
 
+  static changeResume (resume = {}) {
+    return Net.doPut({
+      url: `/resume/${resume.id}`,
+      body: resume
+    });
+  }
   /**
    * Создание вакансии
    * @returns {Promise<Response>}
@@ -171,9 +177,9 @@ export class Api {
   /**
    * Запрос данных резюме
    * @returns {Promise<Response>}
-   * @param id
+   * @param {String} id
    */
-  static getResumeById (id = {}) {
+  static getResumeById (id = '') {
     return Net.doGet({
       url: '/resume' + '/' + id
     });
@@ -182,9 +188,9 @@ export class Api {
   /**
    * Запрос данных вакансии
    * @returns {Promise<Response>}
-   * @param id
+   * @param {String} id
    */
-  static getVacancyById (id = {}) {
+  static getVacancyById (id = '') {
     return Net.doGet({
       url: '/vacancy' + '/' + id
     });
@@ -192,10 +198,10 @@ export class Api {
 
   /**
    * Запрос работадателя по его id
-   * @param id
+   * @param {String} id
    * @returns {Promise<Response>}
    */
-  static getEmployerById (id = {}) {
+  static getEmployerById (id = '') {
     return Net.doGet({
       url: '/employer' + '/' + id
     });
@@ -222,12 +228,22 @@ export class Api {
   }
 
   /**
-   * Отправляет отклик сосикателя по вакансии с его резюме
-   * @param resumeId
-   * @param vacancyId
+   * Запрос на получение только своих вакансий (для работодателя)
    * @returns {Promise<Response>}
    */
-  static respondToVacancy (resumeId, vacancyId) {
+  static getOwnVacancies () {
+    return Net.doGet({
+      url: '/vacancies?own=true'
+    });
+  }
+
+  /**
+   * Отправляет отклик сосикателя по вакансии с его резюме
+   * @param {String} resumeId
+   * @param {String} vacancyId
+   * @returns {Promise<Response>}
+   */
+  static respondToVacancy (resumeId = '', vacancyId = '') {
     return Net.doPost({
       url: '/respond',
       body: {
@@ -239,8 +255,8 @@ export class Api {
 
   /**
    * 
-   * @param resumeId
-   * @param vacancyId
+   * @param {String} resumeId
+   * @param {String} vacancyId
    * @returns {Promise<Response>}
    */
   static getResponds (resumeId = '', vacancyId = '') {
@@ -251,7 +267,7 @@ export class Api {
 
   /**
    * 
-   * @param vacancyId
+   * @param {String} vacancyId
    * @returns {Promise<Response>}
    */
   static addFavoriteVacancy (vacancyId = '') {

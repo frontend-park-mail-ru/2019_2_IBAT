@@ -25,6 +25,7 @@ import { ChooseResumeController } from './controllers/ChooseResumeController';
 import { EmployerPageController } from './controllers/EmployerPageController';
 import { OfflinePageController } from './controllers/OfflinePageController';
 import { VacancyPageController } from './controllers/VacancyPageController';
+import { MyVacanciesController } from './controllers/MyVacanciesController';
 import { ResumePageController } from './controllers/ResumePageController';
 import { MyRespondsController } from './controllers/MyRespondsController';
 import { MyResumesController } from './controllers/MyResumesController';
@@ -102,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const employerPageController = new EmployerPageController(content, globalEventBus, router);
   const vacancyPageController = new VacancyPageController(content, globalEventBus, router);
   const offlinePageController = new OfflinePageController(content, globalEventBus, router);
+  const myVacanciesController = new MyVacanciesController(content, globalEventBus, router);
   const myRespondsController = new MyRespondsController(content, globalEventBus, router);
   const resumePageController = new ResumePageController(content, globalEventBus, router);
   const myResumesController = new MyResumesController(content, globalEventBus, router);
@@ -124,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
   router.add('/favorite_vacancies', favoriteVacanciesController);
   router.add('/my_responds', myRespondsController);
   router.add('/my_resumes', myResumesController);
+  router.add('/my_vacancies', myVacanciesController);
   router.add('/employer', employerPageController);
   router.add('/vacancy', vacancyPageController);
   router.add('/resume', resumePageController);
