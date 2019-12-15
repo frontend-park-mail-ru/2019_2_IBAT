@@ -1,8 +1,8 @@
-export const hostIP = 'tko.vladimir.fvds.ru';
+export const host = 'tko.vladimir.fvds.ru';
 
-export const serverURL = `https://${hostIP}/api`;
-export const serverNotificationURL = `ws://${hostIP}/api/notifications`;
-export const serverImgURL = `https://${hostIP}/img`;
+export const serverURL = `https://${host}/api`;
+export const serverNotificationURL = `wss://${host}/api/notifications`;
+export const serverImgURL = `https://${host}/img`;
 // export const serverURL = '/api';
 export const serverChatURL = `ws://${hostIP}:8090/chat`;
 
