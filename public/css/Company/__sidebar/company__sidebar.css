@@ -14,12 +14,19 @@
 .company__sidebar-long {
     display: none;
     flex-direction: row;
+    justify-content: space-between;
+
+    font-size: 13px;
+    position: relative;
+
+    margin-bottom: 20px;
+    background-color: #f9f9f9;  
 }
 
 
 @media all and (max-width : 655px) {
     .company__sidebar-long {
         display: flex;
-        justify-content: space-between;
+        padding: 20px;
     }
 }
