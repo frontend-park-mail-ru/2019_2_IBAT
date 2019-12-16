@@ -43,8 +43,6 @@ export class ChatApp extends Component {
         );
     }
 
-
-
     onRender() {
         const {domElement} = this;
 
@@ -59,6 +57,8 @@ export class ChatApp extends Component {
     };
 
     showChats() {
+        this.model.loadChats();
+
         const chats = new Chats({
             model: this.model
         });

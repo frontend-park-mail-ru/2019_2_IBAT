@@ -4,15 +4,12 @@ import { ACTIONS } from '../../js/modules/events';
 
 export class NotificationComponent extends Component {
   constructor (notification, globalEventBus) {
-    super({ notification, template, globalEventBus });
+    super({ data: notification, template, globalEventBus });
   }
 
   onFirstRender () {
     this.domElement.addEventListener('click', ev => {
-      const path = this.data.params.role === 'seeker' ?
-        `/vacancy/${this.data.params.link}` :
-        `/resume/${this.data.params.link}`;
-      this._globalEventBus.triggerEvent(ACTIONS.goTo, { path });
+      this._globalEventBus.triggerEvent(ACTIONS.goTo, { path: this.data.link });
       this.domElement.parentElement.removeChild(this.domElement);
     });
 

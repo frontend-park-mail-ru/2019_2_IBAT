@@ -1,6 +1,6 @@
 import Component from '../../framework/Component';
 import ItemModel from '../../models/ItemModel';
-import {CHAT} from '../../modules/events';
+import {chat_configs, MODES} from "../../modules/chatConfig";
 
 class ChatRoomOptions {
     model: ItemModel;
@@ -10,6 +10,12 @@ export default class ChatRoom extends Component {
 
     constructor(private options: ChatRoomOptions) {
         super();
+
+        window.onpopstate = _ => {
+            if (!window.location.pathname.match('/chat')) {
+                chat_configs.setMode({chat_id: options.model.item.chat_id, mode: MODES.notification});
+            }
+        }
     }
 
     render(): string {
@@ -23,7 +29,7 @@ export default class ChatRoom extends Component {
         return `<div class="chat">
 				<a href="/employer/${companion_id}">${companion_name}</a> 
 				<div class="chat__content">
-					${rows ? rows.join('') : `
+					${rows.length!==0 ? rows.join('') : `
 						<div style="text-align:center">Сообщений с данным пользователем нет</div>
 					`}
 				</div>			
@@ -51,7 +57,7 @@ export default class ChatRoom extends Component {
     onRender() {
         this.messageForm.onsubmit = this.handleSubmit.bind(this);
 
-        this.chat.scrollTop = this.chat.scrollHeight;
+        chat_configs.setMode({chat_id: this.options.model.item.chat_id, mode: MODES.chat});
     }
 
     handleSubmit = (ev) => {
@@ -60,7 +66,7 @@ export default class ChatRoom extends Component {
         const {options} = this;
         const {model} = options;
 
-        const text=ev.target.input.value;
+        const text = ev.target.input.value;
 
         const messageElement = this.createMessageComponent(
             false,
@@ -71,6 +77,8 @@ export default class ChatRoom extends Component {
 
         model.send(text);
         ev.target.input.value = '';
+        this.chat.scrollTop = this.chat.scrollHeight;
+
     };
 
     createMessageComponent(is_not_yours: boolean, content: string, created_at: Date): ChildNode {

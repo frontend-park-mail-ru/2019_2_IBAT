@@ -19,8 +19,6 @@ export class IndexView extends View {
     this.isViewClosed = false;
 
     this.merge(data);
-
-    this._globalEventBus.triggerEvent(AUTH.checkAuth);
   }
 
   /**

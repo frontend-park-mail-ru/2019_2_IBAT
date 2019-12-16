@@ -2,15 +2,14 @@ import ItemModel from './ItemModel';
 import {CHAT} from "../modules/events";
 
 export default class ListModel {
-    constructor(globalEventBus: any) {
+    constructor(private globalEventBus: any) {
         globalEventBus.subscribeToEvent(CHAT.getChatsSuccess, (chats) => {
+            this.list=[];
             chats.forEach(chat => {
                 this.addItem(ItemModel.load(this, chat, globalEventBus));
             });
             this.triggerUpdate();
         });
-
-        this.load(globalEventBus);
     }
 
 
@@ -62,7 +61,7 @@ export default class ListModel {
         ));
     }
 
-    load(globalEventBus){
-        globalEventBus.triggerEvent(CHAT.getChats);
+    loadChats(){
+        this.globalEventBus.triggerEvent(CHAT.getChats);
     }
 }

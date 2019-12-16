@@ -33,10 +33,11 @@ class ChatModel {
       .then(response => {
         response.json().then(data => {
           if (response.ok) {
-
-            data.forEach(message=>{
-              message.created_at=new Date(message.created_at);
-            });
+            if(data) {
+              data.forEach(message=>{
+                message.created_at=new Date(message.created_at);
+              });
+            }
 
             this._globalEventBus.triggerEvent(CHAT.getChatHistorySuccess, data);
           } else {

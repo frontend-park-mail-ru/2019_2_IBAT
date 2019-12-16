@@ -32,9 +32,6 @@ export class ChatManager {
     this.ws.onopen = _ => {
       console.log('WebSocket соеденинение для чата установлено');
       this.wsIsOpened = true;
-      if(chat_configs.mode===undefined){
-        chat_configs.mode = MODES.notification;
-      }
       this.listen();
     };
 
@@ -77,9 +74,10 @@ export class ChatManager {
       console.log(`Chat Message Received() ===> ${event.data}`);
       const message = JSON.parse(event.data);
 
-      if (chat_configs.mode === MODES.notification) {
+      if (chat_configs.getMode(message.chat_id) === MODES.notification || chat_configs.getMode(message.chat_id)===undefined) {
         const notification = {
-          title: `Вам пришло новое сообщение от ${message.owner_name}`
+          title: `Вам пришло новое сообщение от ${message.owner_name}`,
+          link: `/chat/${message.chat_id}`,
         };
         const notificationElement = new NotificationComponent(
           notification, this._globalEventBus).appendTo(notificationsList);
@@ -87,7 +85,7 @@ export class ChatManager {
           notificationElement.remove();
         }, 5000);
       }
-      if (chat_configs.mode === MODES.chat) {
+      if (chat_configs.getMode(message.chat_id) === MODES.chat) {
         this._globalEventBus.triggerEvent(CHAT.messageReceived, message);
       }
     };

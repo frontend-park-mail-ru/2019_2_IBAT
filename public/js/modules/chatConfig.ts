@@ -1,12 +1,12 @@
 class ChatConfigurations {
-  chat_mode = undefined;
+  private chat_mode = {};
 
-  get mode () {
-    return this.chat_mode;
+  getMode ({chat_id}) {
+    return this.chat_mode[chat_id];
   }
 
-  set mode (value) {
-    this.chat_mode = value;
+  setMode({chat_id, mode}){
+    this.chat_mode[chat_id]=mode;
   }
 }
 

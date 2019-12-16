@@ -1,3 +1,5 @@
+import { chat_configs, MODES } from './chatConfig';
+
 const pathsWithId = [
   '/profile',
   '/vacancy',
@@ -12,8 +14,8 @@ export class Router {
     this.routes = new Map();
 
     this.currentRoute = null;
-      // window.location.search: если мы венулись
-      // то в window.location.search наши параметры лежат, которые нам нужны для поиска
+    // window.location.search: если мы венулись
+    // то в window.location.search наши параметры лежат, которые нам нужны для поиска
     window.onpopstate = _ => {
       if (window.location.pathname) {
         this.route({ path: `${window.location.pathname}${window.location.search}`, addToHistory: false });
@@ -28,7 +30,7 @@ export class Router {
    * @param prevState
    * @param {Object} data
    */
-  redirect ({path, data = {}, prevState = {}}) {
+  redirect ({ path, data = {}, prevState = {} }) {
     this.route({ path, data, prevState, addToHistory: true });
   }
 
@@ -104,7 +106,7 @@ export class Router {
 
     window.addEventListener('offline', ev => {
       console.log('OFFLINE');
-      this.redirect({path:'/offline'});
+      this.redirect({ path: '/offline' });
     });
 
     window.addEventListener('online', ev => {
@@ -127,7 +129,7 @@ export class Router {
     return path.split('/').pop();
   }
 
-  back(){
+  back () {
     window.history.back();
   }
 }

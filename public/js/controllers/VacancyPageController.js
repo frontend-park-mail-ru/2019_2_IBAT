@@ -7,7 +7,7 @@ export class VacancyPageController extends Controller {
     super(root, globalEventBus, router);
 
     this._globalEventBus.subscribeToEvent(VACANCY.chooseResume, data => {
-      this._router.route({ path: '/chooseResume', data, addToHistory: true });
+      this._router.redirect({ path: '/chooseResume', data, addToHistory: true });
     });
 
     this._view = new VacancyPageView(this._root, this._globalEventBus);
