@@ -117,6 +117,14 @@ export const RESUME = {
   createResumeSuccess: 'createResS',
   createResumeFailed: 'createResF',
 
+  changeResume: 'chengeRes',
+  changeResumeSuccess: 'changeResS',
+  changeResumeFailed: 'changeResF',
+
+  deleteResume: 'delRes',
+  deleteResumeSuccess: 'delResS',
+  deleteResumeFailed: 'delResF',
+
   getResume: 'getRes',
   getResumeSuccess: 'getResS',
   getResumeFailed: 'getResF',

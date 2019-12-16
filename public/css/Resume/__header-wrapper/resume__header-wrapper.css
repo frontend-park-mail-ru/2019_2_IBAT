@@ -1,5 +1,6 @@
 .resume__header-wrapper {
     position: relative;
     display: flex;
-    width: 756px;
+    flex-flow: row wrap;
+    margin-bottom: 20px;
 }

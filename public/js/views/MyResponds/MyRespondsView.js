@@ -4,6 +4,12 @@ import { ShortVacancyComponent } from '../../../components/ShortVacancy/ShortVac
 import { AUTH, RESPOND } from '../../modules/events';
 import { Api } from '../../modules/api';
 
+const statuses = {
+  'awaits' : 'В ожидании',
+  'rejected': 'Откланён',
+  'acceptes': 'Подтверждён'
+}
+
 export class MyRespondsView extends View {
   constructor (root, globalEventBus) {
     super(root, template, globalEventBus);
@@ -37,10 +43,11 @@ export class MyRespondsView extends View {
           }
         })
         .then(vacancy => {
+
           new ShortVacancyComponent({
             data: {
               vacancy: vacancy,
-              status: respond.Status,
+              status: statuses[respond.Status],
             },
             globalEventBus: this._globalEventBus
           }).appendTo(list);

@@ -4,3 +4,15 @@
     align-items: center;
     width: 50%;
 }
+
+@media all and (max-width : 655px) {
+    .search-bar {
+        width: 75%;
+    }
+}
+
+@media all and (max-width : 500px) {
+    .search-bar {
+        width: 100%;
+    }
+}

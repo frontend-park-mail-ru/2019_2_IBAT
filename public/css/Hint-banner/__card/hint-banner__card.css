@@ -5,3 +5,10 @@
     flex-direction: column;
     background-color: #fff;
 }
+
+@media all and (max-width : 455px) {
+    .hint-banner__card {
+        margin-left: 0;
+        margin-bottom: 15px;
+    }
+}

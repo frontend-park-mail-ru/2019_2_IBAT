@@ -1,4 +1,4 @@
-import { CHAT, SUPPORT_CHAT } from '../modules/events';
+import { ACTIONS, CHAT, SUPPORT_CHAT } from '../modules/events';
 import Net from '../modules/net';
 
 class ChatModel {
@@ -7,6 +7,25 @@ class ChatModel {
 
     this._globalEventBus.subscribeToEvent(CHAT.getChatHistory, this._onGetChatHistory.bind(this));
     this._globalEventBus.subscribeToEvent(CHAT.getChats, this._onGetChats.bind(this));
+    this._globalEventBus.subscribeToEvent(ACTIONS.startChat, this._onStartChat.bind(this));
+  }
+
+  _onStartChat(id){
+    Net.doPost({ url: `/chat/${id}` })
+      .then(response => {
+        response.json().then(data => {
+          if (response.ok) {
+            //Новый чат создан
+            this._globalEventBus.triggerEvent(ACTIONS.goTo, {path:'/chat'});
+          } else {
+            //Чат уже был создан ранее
+            this._globalEventBus.triggerEvent(ACTIONS.goTo, {path:'/chat'});
+          }
+        });
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   _onGetChatHistory (id) {

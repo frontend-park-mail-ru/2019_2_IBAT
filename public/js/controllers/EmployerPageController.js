@@ -12,10 +12,6 @@ export class EmployerPageController extends Controller {
       this._view.render(this._data);
     });
 
-    this._globalEventBus.subscribeToEvent(ACTIONS.startChat, (employer_id)=>{
-      this._router.redirect({path:`/chat/${employer_id}`});
-    });
-
     this._view = new EmployerPageView(this._root, this._globalEventBus);
   }
 

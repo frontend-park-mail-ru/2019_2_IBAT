@@ -1,0 +1,10 @@
+.resume__owner-section {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 20px 0;
+}
+
+.resume__owner-button {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}

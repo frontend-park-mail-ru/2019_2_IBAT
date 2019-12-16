@@ -19,7 +19,7 @@ export class FoundVacanciesView extends View {
 
     if (vacancies.length > 0) {
       vacancies.forEach(vacancy => {
-        new ShortVacancyComponent({ data: { vacancy } }).appendTo(list);
+        new ShortVacancyComponent({ data: { vacancy }}).appendTo(list);
       });
     }
   }

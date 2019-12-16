@@ -3,3 +3,9 @@
     flex-flow: column nowrap;
     width: 70%;
 }
+
+@media all and (max-width : 655px) {
+    .form-row__value {
+        width: 100%
+    }
+}

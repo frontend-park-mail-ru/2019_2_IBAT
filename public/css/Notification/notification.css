@@ -19,3 +19,11 @@
 .notification:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
+
+@media all and (max-width : 565px) {
+    .notification {
+        width: auto;
+        padding-left: 15px;
+        padding-bottom: 11px;
+    }
+}

@@ -2,3 +2,9 @@
     max-width: 170px;
     max-height: 170px;
 }
+
+@media all and (max-width : 355px) {
+    .company__logo-img {
+        display: none;
+    }
+}

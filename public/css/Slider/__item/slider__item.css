@@ -6,3 +6,15 @@
     align-items: center;
     color: #fff;
 }
+@media all and (max-width : 455px) {
+    .slider__item {
+        flex-basis: 100%;
+    }
+}
+
+@media all and (max-width : 455px) {
+    .slider__item {
+        flex-basis: 100%;
+        padding-block-end: 20px;
+    }
+}

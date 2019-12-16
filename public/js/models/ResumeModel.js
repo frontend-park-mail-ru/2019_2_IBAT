@@ -11,6 +11,23 @@ class ResumeModel {
     this._globalEventBus.subscribeToEvent(RESUME.getResume, this._onGetResume.bind(this));
     this._globalEventBus.subscribeToEvent(RESUME.createResume, this._onCreateResume.bind(this));
     this._globalEventBus.subscribeToEvent(RESUME.getOwnResumes, this._onGetOwnResumes.bind(this));
+    this._globalEventBus.subscribeToEvent(RESUME.changeResume, this._onChangeResume.bind(this));
+    this._globalEventBus.subscribeToEvent(RESUME.deleteResume, this._onDeleteResume.bind(this));
+  }
+
+  _onDeleteResume (id = '') {
+    console.log(id);
+    Api.deleteResume(id)
+      .then(res => {
+        if (res.ok) {
+          this._globalEventBus.triggerEvent(RESUME.deleteResumeSuccess);
+        } else {
+          this._globalEventBus.triggerEvent(RESUME.deleteResumeFailed);
+        }
+      })
+      .catch(error =>{
+        console.error(error);
+      })
   }
 
   _onGetResumes () {
@@ -48,6 +65,20 @@ class ResumeModel {
           response.json().then(data => {
             this._globalEventBus.triggerEvent(RESUME.createResumeFailed, data);
           });
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
+  _onChangeResume (resume) {
+    Api.changeResume(resume)
+      .then(response => {
+        if (response.ok) {
+          this._globalEventBus.triggerEvent(RESUME.changeResumeSuccess);
+        } else {
+          this._globalEventBus.triggerEvent(RESUME.changeResumeFailed);
         }
       })
       .catch(error => {
@@ -99,7 +130,6 @@ class ResumeModel {
         console.log(response);
         if (response.ok) {
           response.json().then(resumes => {
-            console.log(resumes);
             this._globalEventBus.triggerEvent(RESUME.searchSuccess, resumes);
           });
         } else {
