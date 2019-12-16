@@ -10,7 +10,6 @@ export class ShortVacancyComponent extends Component {
   }
 
   onFirstRender () {
-    console.log(this.data);
     if (this.data.vacancy['wage_from']) {
       this.data.vacancy['wage_from'] = this.data.vacancy['wage_from'].split('.')[0];
     }

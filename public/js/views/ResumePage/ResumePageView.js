@@ -2,7 +2,7 @@ import template from './resumePage.pug';
 import { View } from '../../modules/view';
 import { ACTIONS, RESUME } from '../../modules/events';
 import { Api } from '../../modules/api';
-
+import { PopupToConfirm } from '../../../components/PopupToConfirm/PopupToConfirm'
 export class ResumePageView extends View {
 
   constructor (root, globalEventBus) {
@@ -68,12 +68,18 @@ export class ResumePageView extends View {
 
   _onChange(event) {
     event.preventDefault();
-    this.ro
     console.log(this.data);
     this._globalEventBus.triggerEvent(ACTIONS.goTo, {path: '/createresume', data: this.data});
   }
 
   _onDelete(event) {
     event.preventDefault();
+    // if (PopupToConfirm('Удаление резюме', 'Отменить удаление будет невозможно.',
+    //   'Вы действительно хотите удалить резюме?','Удалить', 'Отменить')) {
+    //     alert('OK');
+    //   }
+    if (confirm("Вы действительно хотите удалить резюме?")) {
+      this._globalEventBus.triggerEvent(RESUME.deleteResume, this.data.id);
+    }
   }
 }

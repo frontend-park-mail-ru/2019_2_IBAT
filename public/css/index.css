@@ -182,7 +182,7 @@
 @import './Slider/__title/slider__title.css';
 @import './Slider/main-content__slider.css';
 @import './Slider/slider.css';
-
+@import './Modal/modal.css';
 @import './Resume-search-item/resume-search-item.css';
 @import './Resume-search-item/__additionals/resume-search-item__additionals.css';
 @import './Resume-search-item/__content/resume-search-item__content.css';

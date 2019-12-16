@@ -120,6 +120,13 @@ export class Api {
       body: resume
     });
   }
+
+  static deleteResume (id = '') {
+    return Net.doDelete({
+      url: `/resume/${id}`,
+    });
+  }
+
   /**
    * Создание вакансии
    * @returns {Promise<Response>}

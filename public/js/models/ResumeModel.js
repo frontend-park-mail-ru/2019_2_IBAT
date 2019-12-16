@@ -12,6 +12,22 @@ class ResumeModel {
     this._globalEventBus.subscribeToEvent(RESUME.createResume, this._onCreateResume.bind(this));
     this._globalEventBus.subscribeToEvent(RESUME.getOwnResumes, this._onGetOwnResumes.bind(this));
     this._globalEventBus.subscribeToEvent(RESUME.changeResume, this._onChangeResume.bind(this));
+    this._globalEventBus.subscribeToEvent(RESUME.deleteResume, this._onDeleteResume.bind(this));
+  }
+
+  _onDeleteResume (id = '') {
+    console.log(id);
+    Api.deleteResume(id)
+      .then(res => {
+        if (res.ok) {
+          this._globalEventBus.triggerEvent(RESUME.deleteResumeSuccess);
+        } else {
+          this._globalEventBus.triggerEvent(RESUME.deleteResumeFailed);
+        }
+      })
+      .catch(error =>{
+        console.error(error);
+      })
   }
 
   _onGetResumes () {
