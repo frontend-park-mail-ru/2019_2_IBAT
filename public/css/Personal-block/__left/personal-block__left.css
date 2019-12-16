@@ -1,10 +1,15 @@
 .personal-block__left {
     display: flex;
     flex-direction: column;
-    padding: 0 24px;
     border-right: 1px solid var(--primary-color);
 }
 
 .personal-block__left_no-border {
     border-right: none;
+}
+
+@media all and (max-width : 655px) {
+    .personal-block__left {
+        display: none;
+    }
 }

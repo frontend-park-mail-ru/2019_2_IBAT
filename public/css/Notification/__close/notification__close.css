@@ -1,0 +1,6 @@
+.notification__close {
+    -webkit-mask-image: url(../../../img/close.svg);
+    align-self: flex-end;
+    width: 24px;
+    height: 24px;
+}

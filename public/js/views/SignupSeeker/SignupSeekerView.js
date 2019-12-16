@@ -68,9 +68,11 @@ export class SignupSeekerView extends View {
    * @private
    */
   _onSubmitFailed (data) {
-    const login = this._signupForm.querySelector('[name="login"]');
-    const error = login.nextElementSibling;
-    View._addInputError(login, error, data.error);
+    if (this._signupForm) {
+      const login = this._signupForm.querySelector('[name="login"]');
+      const error = login.nextElementSibling;
+      View._addInputError(login, error, data.error);
+    }
   }
 
   /**

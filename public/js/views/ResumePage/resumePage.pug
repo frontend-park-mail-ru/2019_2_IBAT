@@ -5,18 +5,32 @@ div.left-column
                 div.resume-userpic__default-wrapper
                     div.resume-userpic__default
         //- здесь должна быть проверка на то что фото у юзера есть иначе дефолтная
-
-
-    h2.title-h2 #{first_name} #{second_name}
-    div <b>Пол:</b> #{sex}
-    div <b>Родился:</b> #{birth_date}
-    div <b>Город:</b> #{region}
-    div <b>Образование:</b> #{education}
-    div <b>Номер телефона:</b> #{phone_number}
-
-    h1.title-h1 Содержание резюме
+        div.resume__header
+            h2.title-h2 #{first_name} #{second_name}
+            div.resume__header-block
+                div <b>Пол:</b> #{sex}
+                div <b>Родился:</b> #{birth_date}
+                div <b>Город:</b> #{region}
+                div <b>Номер телефона:</b> #{phone_number}
 
     h2.title-h2 #{position}
-    div <b>Опыт работы:</b> - #{experience}
-    div <b>Заработанная плата:</b> - #{wage}
-    div <b>О себе:</b> #{about}
+
+    div.mb20
+        div Занятость: #{type_of_employment}
+        div График работы: #{work_schedule}
+
+    h3 Опыт работы:
+    p #{experience}
+    h3 Заработанная плата:
+    p #{wage}
+    h3 Образование
+    p #{education}
+    h3 Обо мне
+    p #{about}
+    h3 Гражданство
+    p #{citizenship}
+
+    if (my_id == own_id)
+        div.resume__owner-section
+            button.button.resume__owner-button.resume__owner-button_change Редактировать
+            button.button.button_red.resume__owner-button.resume__owner-button_delete Удалить

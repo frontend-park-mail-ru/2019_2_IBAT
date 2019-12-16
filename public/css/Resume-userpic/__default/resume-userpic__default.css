@@ -8,3 +8,9 @@
     height: 117px;
     background-size: auto 100%;
 }
+
+.resume-userpic_small .resume-userpic__default_small {
+    width: 46px;
+    height: 52px;
+    background-size: auto 100%;
+}

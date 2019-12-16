@@ -8,6 +8,7 @@
 @import './Icon/icon.css';
 @import './Block-icon/block-icon.css';
 @import './Button/button.css';
+@import './Button/_red/button_red.css';
 @import './Button/_blue/button_blue.css';
 @import './Button/_green/button_green.css';
 @import './Button/_small/button_small.css';
@@ -99,18 +100,23 @@
 @import './Light-page/__title/-additional/light-page__title-additional.css';
 @import './Resume/__header-wrapper/resume__header-wrapper.css';
 @import './Resume/__photo/resume__photo.css';
+@import './Resume/__owner-section/resume__owner-section.css';
 @import './Resume-userpic/resume-userpic.css';
 @import './Resume-userpic/__default-wrapper/resume-userpic__default-wrapper.css';
 @import './Resume-userpic/__default/resume-userpic__default.css';
 @import './Search/__block/search__block.css';
 @import './Search/__input/search__input.css';
 @import './Search/__legend/search__legend.css';
+@import './Search/__spheres-first/search__spheres-first.css';
 @import './Search/__checkboxes/search__checkboxes.css';
 @import './Search/__item/search__item.css';
 @import './Search/__wage/search__wage.css';
 @import './Search/__currency/search__currency.css';
 @import './Search/__experience/search__experience.css';
 @import './Search/search.css';
+@import './Search/__column/search__column.css';
+@import './Search/__legend/search__find-fill.css';
+@import './Search/__wage/search__wage-options.css';
 @import './SearchBar/search-bar.css';
 @import './SearchBar/__input/search-bar__input.css';
 @import './SearchBar/__button/search-bar__button.css';
@@ -157,10 +163,46 @@
 @import './Company/__short-info/company__short-info.css';
 @import './Company/__vacancies-header/company__vacancies-header.css';
 
+@import 'List/list.css';
+@import 'List/list_notifications.css';
+
+@import 'Notification/notification.css';
+@import 'Notification/__text/notification__text.css';
+@import 'Notification/__title/notification__title.css';
+@import 'Notification/__close/notification__close.css';
+
 @import './Search-company/search-company.css';
 @import './Search-company/__name/search-company__name.css';
-/* do not touch anything above*/
+
+@import './Slider/__button/slider__button.css';
+@import './Slider/__item/slider__item.css';
+@import './Slider/__item/slider__item_employer.css';
+@import './Slider/__item/slider__item_seeker.css';
+@import './Slider/__title/slider__title.css';
+@import './Slider/main-content__slider.css';
+@import './Slider/slider.css';
+@import './Modal/modal.css';
+@import './Resume-search-item/resume-search-item.css';
+@import './Resume-search-item/__additionals/resume-search-item__additionals.css';
+@import './Resume-search-item/__content/resume-search-item__content.css';
+@import './Resume-search-item/__content/-layout/resume-search-item__content-layout.css';
+@import './Resume-search-item/__content/-wrapper/resume-search-item__content-wrapper.css';
+@import './Resume-search-item/__description-title/resume-search-item__description-title.css';
+@import './Resume-search-item/__wage/resume-search-item__wage.css';
+@import './Resume-search-item/__position/resume-search-item__position.css';
 @import 'card_list.css';
+
+@-ms-viewport {
+    width: device-width;
+}
+@-o-viewport {
+    width: device-width;
+}
+@viewport {
+    width: device-width;
+}
+/* do not touch anything above*/
+
 
 .list {
     display: flex;

@@ -1,0 +1,11 @@
+.resume__header {
+    flex-grow: 1;
+    display: flex;
+    line-height: 22px;
+}
+
+.resume__header-block {
+    margin-bottom: 10px;
+    display: flex;
+    flex-flow: row wrap;
+}

@@ -38,23 +38,26 @@ class RespondModel {
         }
       })
       .then(data => {
-        console.log(`_onGetSeekerResponds():\n responds = ${data}`);
-        Promise.all(data.map(respond => Api.getVacancyById(respond.vacancy_id)))
-          .then(responses => {
-            console.log(`_onGetSeekerResponds():\n data = ${responses}`);
-            return responses;
-          })
-          .then(responses => {
-            console.log(`_onGetSeekerResponds():\n data = ${responses}`);
-            return Promise.all(responses.map(r => r.json()));
-          })
-          .then(vacancies => {
-            data.forEach(respond => respond.vacancy = vacancies.find(vacancy => vacancy.id === respond.vacancy_id));
-            console.log(`_onGetSeekerResponds():\n data = ${data}`);
-
-            this._globalEventBus.triggerEvent(RESPOND.getSeekerRespondsSuccess, data);
-          });
+        this._globalEventBus.triggerEvent(RESPOND.getSeekerRespondsSuccess, data);
       })
+      // .then(data => {
+      //   console.log(`_onGetSeekerResponds():\n responds = ${data}`);
+      //   Promise.all(data.map(respond => Api.getVacancyById(respond.vacancy_id)))
+      //     .then(responses => {
+      //       console.log(`_onGetSeekerResponds():\n data = ${responses}`);
+      //       return responses;
+      //     })
+        //     .then(responses => {
+        //       console.log(`_onGetSeekerResponds():\n data = ${responses}`);
+        //       return Promise.all(responses.map(r => r.json()));
+        //     })
+      //     .then(vacancies => {
+      //       data.forEach(respond => respond.vacancy = vacancies.find(vacancy => vacancy.id === respond.vacancy_id));
+      //       console.log(`_onGetSeekerResponds():\n data = ${data}`);
+      //
+      //       this._globalEventBus.triggerEvent(RESPOND.getSeekerRespondsSuccess, data);
+      //     });
+      // })
       .catch(error => {
         console.error(`_onGetSeekerResponds(): Failed - ${error}`);
       });

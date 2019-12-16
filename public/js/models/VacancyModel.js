@@ -1,5 +1,6 @@
 import { Api } from '../modules/api';
 import { RESUME, VACANCY } from '../modules/events';
+import Net from '../modules/net';
 
 class VacancyModel {
 
@@ -11,10 +12,17 @@ class VacancyModel {
     this._globalEventBus.subscribeToEvent(VACANCY.createVacancy, this._onCreateVacancy.bind(this));
     this._globalEventBus.subscribeToEvent(VACANCY.search, this._onSearch.bind(this));
     this._globalEventBus.subscribeToEvent(VACANCY.getFavorite, this._onGetFavorite.bind(this));
+    this._globalEventBus.subscribeToEvent(VACANCY.getVacanciesRecommended, this._onGetVacancies.bind(this).bind(null,{recommended:true}));
   }
 
-  _onGetVacancies () {
-    Api.getVacancies()
+  _onGetVacancies (params = {}) {
+    const queryString = Object.keys(params).map((key) => {
+      return encodeURIComponent(key) + '=' + encodeURIComponent(params[key])
+    }).join('&');
+
+    Net.doGet({
+      url: `/vacancies?${queryString}`,
+    })
       .then(res => {
         if (res.ok) {
           res.json().then(data => {
@@ -37,11 +45,12 @@ class VacancyModel {
       });
   }
 
-  _onCreateVacancy (vacancy) {
+  _onCreateVacancy (vacancy = {}) {
     Api.createVacancy(vacancy)
       .then(response => {
         if (response.ok) {
           response.json().then(data => {
+            console.log(data);
             this._globalEventBus.triggerEvent(VACANCY.createVacancySuccess, data);
           });
         } else {
@@ -73,53 +82,16 @@ class VacancyModel {
       });
   }
 
-  _onSearch (searchParameters) {
-    console.log(searchParameters);
+  _onSearch (request = '/vacancies?') {
+    console.log(request);
 
-    let getParameters = '?';
-
-    if(searchParameters.position){
-      getParameters +=
-        'position=' + searchParameters.position + '&';
-    }
-
-    // Временный костыль, на бэке не обрабатывается остальное
-    if (searchParameters.region) {
-      getParameters +=
-        'region=' + searchParameters.region + '&';
-    }
-    if(searchParameters.wage){
-      getParameters +=
-        'wage=' + searchParameters.wage + '&';
-    }
-     if(searchParameters.experience){
-       getParameters +=
-         'experience=' + searchParameters.experience + '&';
-     }
-    // конец костыля
-
-    if(searchParameters.type_of_employment){
-      searchParameters.type_of_employment.forEach(element => {
-        getParameters += '&type_of_employment=' + element;
-      });
-    }
-
-    if(searchParameters.work_schedule){
-      searchParameters.work_schedule.forEach(element => {
-        getParameters += '&work_schedule=' + element;
-      });
-    }
-    console.log('getParameters:', getParameters);
-
-    let url = '/vacancies' + getParameters;
-
-    Api.searchVacancies(getParameters)
+    Api.searchVacancies(request)
       .then(response => {
         console.log(response);
         if (response.ok) {
-          response.json().then(data => {
-            console.log(data);
-            this._globalEventBus.triggerEvent(VACANCY.searchSuccess, url, data, searchParameters);
+          response.json().then(vacancies => {
+            console.log(vacancies);
+            this._globalEventBus.triggerEvent(VACANCY.searchSuccess, vacancies);
           });
         } else {
           response.json().then(data => {

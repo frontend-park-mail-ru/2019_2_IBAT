@@ -3,3 +3,9 @@
     display: flex;
     flex-flow: row wrap;
 }
+
+@media all and (max-width : 655px) {
+    .form-row {
+        flex-flow: column nowrap;
+    }
+}

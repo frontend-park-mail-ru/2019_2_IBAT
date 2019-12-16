@@ -1,5 +1,5 @@
 import { Controller } from '../modules/controller';
-import { COMPANY } from '../modules/events';
+import { ACTIONS, COMPANY } from '../modules/events';
 import { EmployerPageView } from '../views/EmployerPage/EmployerPageView';
 
 export class EmployerPageController extends Controller {

@@ -1,8 +1,8 @@
 import template from './chatView.pug';
 import { View } from '../../modules/view';
-import { AUTH, CHAT } from '../../modules/events';
+import { AUTH, SUPPORT_CHAT } from '../../modules/events';
 
-export class ChatView extends View {
+export class SupportChatView extends View {
   constructor (root, globalEventBus) {
     super(root, template, globalEventBus);
   }
@@ -13,7 +13,7 @@ export class ChatView extends View {
   }
 
   onRender () {
-    this._globalEventBus.subscribeToEvent(CHAT.receive, (message) => {
+    this._globalEventBus.subscribeToEvent(SUPPORT_CHAT.receive, (message) => {
       const messageElement = document.createElement('div');
       messageElement.classList.add('message_other');
       messageElement.innerHTML = `${message}`;
@@ -28,7 +28,7 @@ export class ChatView extends View {
 
       this.chat.appendChild(messageElement);
 
-      this._globalEventBus.triggerEvent(CHAT.send, this.messageInput.value);
+      this._globalEventBus.triggerEvent(SUPPORT_CHAT.send, this.messageInput.value);
       this.messageInput.value = '';
     });
   }

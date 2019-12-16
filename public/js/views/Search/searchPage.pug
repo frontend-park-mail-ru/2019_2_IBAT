@@ -1,0 +1,137 @@
+case mode
+  when 'vacancy'
+    - var title = 'Поиск вакансий'
+  when 'company'
+    - var title = 'Поиск компаний'
+  when 'resume'
+    - var title = 'Поиск резюме'
+
+div.left-column
+        h1.title-h1.mb30 #{title}
+        form.search.search-js
+            case mode
+                when 'vacancy'
+                    div.search__block.mb20
+                        span.search__legend Желаемая должность
+                        div.search__input
+                            input.input(type="text", name='position')
+
+                    div.search__block.mb20
+                        span.search__legend Профессиональная область
+                        div.search__input
+                            div.search__column
+                                select.input.search__spheres-first(name='spheres')
+                                    each s, i in spheresFirst
+                                        option(value=s) #{s}
+                                div.search__spheres-second
+
+                    div.search__block.mb20
+                        span.search__legend Регион
+                        div.search__input
+                            input.input(type="text", name='region')
+
+                    div.search__block.mb20
+                        span.search__legend Уровень заработной платы
+                        div.search__input
+                            input.input.search__wage(type="number", name='wage')
+                            select.input.search__currency(name='currency')
+                                option(value="руб.") руб.
+
+                    div.search__block.mb20
+                        span.search__legend Требуемый опыт работы
+                        div.search__input
+                            select.input.search__experience(name='experience')
+                                each e, i in INPUTS.experience
+                                    option(value=e) #{e}
+
+                    div.search__block.mb20
+                        span.search__legend Тип занятости
+                        div.search__checkboxes
+                            each type, i in INPUTS.type_of_employment
+                                div.search__item
+                                    input(type='checkbox' name=type)
+                                    span.ml5 #{type}
+
+                    div.search__block.mb20
+                        span.search__legend График работы
+                        div.search__checkboxes
+                            each ws, i in INPUTS.work_schedule
+                                div.search__item
+                                    input(type='checkbox' name=ws)
+                                    span.ml5 #{ws}
+                when 'company'
+                    div.search__block.mb20
+                        span.search__legend Название компании
+                        div.search__input
+                            input.input(type="text", name='company_name')
+                
+                    div.search__block.mb20
+                        span.search__legend Регион
+                        div.search__input
+                            input.input(type="text", name='region')
+                            
+                when 'resume'
+                    div.search__block.mb20
+                            span.search__legend Желаемая должность
+                            div.search__input
+                                input.input(type="text", name='position')
+                    
+                    div.search__block.mb20
+                        span.search__legend Профессиональная область
+                        div.search__input
+                            div.search__column
+                                select.input.search__spheres-first(name='spheres')
+                                    each s, i in spheresFirst
+                                        option(value=s) #{s}
+                                div.search__spheres-second
+
+                    div.search__block.mb20
+                        span.search__legend Регион
+                        div.search__input
+                            input.input(type="text", name='region')
+                    
+                    div.search__block.mb20
+                        span.search__legend Зарплата
+                        div.search__input
+                            div.search__wage-options от
+                            input.input.search__wage(type="number", name='wage_from')
+                            div.search__wage-options до
+                            input.input.search__wage(type="number", name='wage_to')
+                            select.input.search__currency(name='currency')
+                                option(value="руб.") руб.
+
+                    div.search__block.mb20
+                        span.search__legend Требуемый опыт работы
+                        div.search__input
+                            select.input.search__experience(name='experience')
+                                each e, i in INPUTS.experience
+                                    option(value=e) #{e}
+                                       
+                    div.search__block.mb20
+                        span.search__legend Образование
+                        div.search__input
+                            select.input.search__experience(name='education')
+                                each e, i in INPUTS.education
+                                    option(value=e) #{e}
+                                    
+                    div.search__block.mb20
+                        span.search__legend Тип занятости
+                        div.search__checkboxes
+                            each type, i in INPUTS.type_of_employment
+                                div.search__item
+                                    input(type='checkbox' name=type)
+                                    span.ml5 #{type}
+
+                    div.search__block.mb20
+                        span.search__legend График работы
+                        div.search__checkboxes
+                            each ws, i in INPUTS.work_schedule
+                                div.search__item
+                                    input(type='checkbox' name=ws)
+                                    span.ml5 #{ws}
+
+            div.search__block.mb20
+                span.search__legend.search__find-fill
+                button.button.button_blue(type='submit') Найти
+
+            div.search-company

@@ -7,8 +7,6 @@ else if wage_from == 0 && wage_to != 0
 else
     - var salary = 'з/п не указана'
 
--var employment_mode = 'Полная занятость, полный день'
-
 div.left-column
     div.vacancy__title
         h1.title-h1 #{profession} #{position}
@@ -16,15 +14,31 @@ div.left-column
 
     div.vacancy__company-wrapper
         div.vacancy__company
-            a.vacancy__company-name(href=`employer/${owner_id}`) #{company_name}
+            a.bloko-link.vacancy__company-name(href=`/employer/${owner_id}`) #{company_name}
             p.vacancy__region #{region}
-        a.vacancy__company-logo(href=`employer/${owner_id}`)
+        a.vacancy__company-logo(href=`/employer/${owner_id}`)
             img.vacancy__company-logo-image
+
+    div.vacancy__description
+        div.mb25
+            p.vacancy__experience Требуемый опыт работы: #{experience}
+            p.vacancy__employment-mode  #{type_of_employment}, #{work_schedule}
+        div.mb25
+            h3 Обязанности:
+            p #{tasks}
+            h3 Требования:
+            p #{requirements}
+            h3 Условия:
+            p #{conditions}
+            h3 О вакансии:
+            p #{about}
 
     div.vacancy__seeker-actions
         if !is_responded
             div.vacancy__action
                 button.button.button_green(id='respondToVacancyButton', type='submit') Откликнуться
+            div.vacancy__action
+                button.button.button_green(id='startChat', type='submit') Написать
         else
             div.vacancy__action
                 button.button.button_disabled(id='respondToVacancyButton', type='submit') Откликнуться
@@ -37,16 +51,3 @@ div.left-column
             div.vacancy__action.short-vacancy__favorite_selected(id=id, name='switch')
                 button.button.button_blue.short-vacancy__favorite_off Добавить в избранное
                 button.button.button_disabled.short-vacancy__favorite_on В избранном
-
-    div.vacancy__description
-        div.mb25
-            p.vacancy__experience Требуемый опыт работы: #{experience}
-            p.vacancy__employment-mode  #{employment_mode}
-        div.mb25
-            h3 О вакансии:
-            p #{about}
-            h3 Требования:
-            p #{requirements}
-            h3 Условия:
-            p #{conditions}
-

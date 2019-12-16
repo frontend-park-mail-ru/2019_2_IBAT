@@ -6,10 +6,28 @@ class ResumeModel {
   setGlobalEventBus (globalEventBus) {
     this._globalEventBus = globalEventBus;
 
+    this._globalEventBus.subscribeToEvent(RESUME.search, this._onSearch.bind(this));
     this._globalEventBus.subscribeToEvent(RESUME.getResumes, this._onGetResumes.bind(this));
     this._globalEventBus.subscribeToEvent(RESUME.getResume, this._onGetResume.bind(this));
     this._globalEventBus.subscribeToEvent(RESUME.createResume, this._onCreateResume.bind(this));
     this._globalEventBus.subscribeToEvent(RESUME.getOwnResumes, this._onGetOwnResumes.bind(this));
+    this._globalEventBus.subscribeToEvent(RESUME.changeResume, this._onChangeResume.bind(this));
+    this._globalEventBus.subscribeToEvent(RESUME.deleteResume, this._onDeleteResume.bind(this));
+  }
+
+  _onDeleteResume (id = '') {
+    console.log(id);
+    Api.deleteResume(id)
+      .then(res => {
+        if (res.ok) {
+          this._globalEventBus.triggerEvent(RESUME.deleteResumeSuccess);
+        } else {
+          this._globalEventBus.triggerEvent(RESUME.deleteResumeFailed);
+        }
+      })
+      .catch(error =>{
+        console.error(error);
+      })
   }
 
   _onGetResumes () {
@@ -54,6 +72,20 @@ class ResumeModel {
       });
   }
 
+  _onChangeResume (resume) {
+    Api.changeResume(resume)
+      .then(response => {
+        if (response.ok) {
+          this._globalEventBus.triggerEvent(RESUME.changeResumeSuccess);
+        } else {
+          this._globalEventBus.triggerEvent(RESUME.changeResumeFailed);
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
   _onGetResume (id) {
     Api.getResumeById(id)
       .then(response => {
@@ -82,6 +114,27 @@ class ResumeModel {
         } else {
           response.json().then(data => {
             this._globalEventBus.triggerEvent(RESUME.getOwnResumesFailed, data);
+          });
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
+  _onSearch (request = '/resumes?') {
+    console.log(request);
+    
+    Api.searchResumes(request)
+      .then(response => {
+        console.log(response);
+        if (response.ok) {
+          response.json().then(resumes => {
+            this._globalEventBus.triggerEvent(RESUME.searchSuccess, resumes);
+          });
+        } else {
+          response.json().then(data => {
+            this._globalEventBus.triggerEvent(RESUME.searchFailed, data);
           });
         }
       })

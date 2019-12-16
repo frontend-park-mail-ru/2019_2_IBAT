@@ -1,0 +1,21 @@
+.list_notifications {
+    z-index: 100;
+    flex-direction: column;
+    justify-content: end;
+    flex-basis: 100%;
+    align-items: end;
+}
+
+.page__list_notifications {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+}
+
+@media all and (max-width : 565px) {
+    .page__list_notifications {
+        right: 5px;
+        top: 5px;
+    }
+    
+}

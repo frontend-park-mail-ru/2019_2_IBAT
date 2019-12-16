@@ -1,7 +1,6 @@
 import template from './foundVacancies.pug';
 import { View } from '../../modules/view';
 import { ShortVacancyComponent } from '../../../components/ShortVacancy/ShortVacancy';
-import { ACTIONS } from '../../modules/events';
 
 export class FoundVacanciesView extends View {
 
@@ -9,24 +8,18 @@ export class FoundVacanciesView extends View {
     super(root, template, globalEventBus);
   }
 
-  render (vacancies = {}) {
-    // Если мы пришли сюда из поиска, то это массив, а если мы вернулись назад на найденные
-    // то вакансии не прокинутся и мы отрендерим старые(чтобы по 500 раз не искать одно и тоже)
-    if (Array.isArray(vacancies)) {
-      this._vacancies = vacancies;
-    }
-
+  render (vacancies = []) {
     let data = {
-      'number_of_vacancies': this._vacancies.length
+      'number_of_vacancies': vacancies.length
     };
 
     super.render(data);
 
     const list = document.querySelector('.list');
 
-    if (this._vacancies.length > 0) {
-      this._vacancies.forEach(vacancy => {
-        new ShortVacancyComponent({ data: { vacancy } }).appendTo(list);
+    if (vacancies.length > 0) {
+      vacancies.forEach(vacancy => {
+        new ShortVacancyComponent({ data: { vacancy }}).appendTo(list);
       });
     }
   }

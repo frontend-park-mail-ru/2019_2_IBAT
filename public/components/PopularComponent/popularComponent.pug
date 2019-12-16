@@ -1,5 +1,6 @@
 - let title='';
-- if(role==='seeker' || role==='seekerGuest') title='Популярные вакансии'
-- if(role==='employer' || role==='employerGuest') title='Популярные резюме'
+- if (role==='seeker') title='Рекомендуемые вакансии'
+- if (role==='seekerGuest') title='Популярные вакансии'
+- if (role==='employer' || role==='employerGuest') title='Популярные резюме'
 h2.title-h2 #{title}
 div.list.js-list

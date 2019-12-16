@@ -75,6 +75,10 @@ export class VacancyPageView extends View {
       toFavorite.addEventListener('click', this._onToFavorite.bind(this), true);
     }
 
+    this.startChatButton.addEventListener('click', (ev) => {
+      this._globalEventBus.triggerEvent(ACTIONS.startChat, this.data.owner_id);
+    });
+
   }
 
   /**
@@ -101,5 +105,9 @@ export class VacancyPageView extends View {
       .catch(err => {
         console.error(err);
       });
+  }
+
+  get startChatButton () {
+    return this._root.querySelector('button[id=startChat]');
   }
 }

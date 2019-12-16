@@ -114,6 +114,19 @@ export class Api {
     });
   }
 
+  static changeResume (resume = {}) {
+    return Net.doPut({
+      url: `/resume/${resume.id}`,
+      body: resume
+    });
+  }
+
+  static deleteResume (id = '') {
+    return Net.doDelete({
+      url: `/resume/${id}`,
+    });
+  }
+
   /**
    * Создание вакансии
    * @returns {Promise<Response>}
@@ -137,41 +150,43 @@ export class Api {
     });
   }
 
-  /**
-   * Запрос списка вакансий
-   * @returns {Promise<Response>}
-   */
-  static getVacancies () {
-    return Net.doGet({
-      url: '/vacancies',
-    });
-  }
 
   /**
    * Запрос на поиск вакансий
-   * @param {String} getParameters
+   * @param {String} request
    * @returns {Promise<Response>}
    */
-  static searchVacancies (getParameters) {
-    console.log(getParameters);
-    return Net.doGet({ url: '/vacancies' + getParameters });
+  static searchVacancies (request) {
+    console.log(request);
+    return Net.doGet({ url: request });
+  }
+
+  /**
+   * Запрос на
+   * @param {String} request
+   * @returns {Promise<Response>}
+   */
+  static searchCompanies (request) {
+    console.log(request);
+    return Net.doGet({ url: request });
   }
 
   /**
    * Запрос на 
-   * @param {String} getParameters
+   * @param {String} request
    * @returns {Promise<Response>}
    */
-  static searchCompanies (getParameters) {
-    console.log(getParameters);
-    return Net.doGet({ url: '/employers' + getParameters });
+  static searchResumes (request) {
+    console.log(request);
+    return Net.doGet({ url: request });
   }
+
   /**
    * Запрос данных резюме
    * @returns {Promise<Response>}
-   * @param id
+   * @param {String} id
    */
-  static getResumeById (id = {}) {
+  static getResumeById (id = '') {
     return Net.doGet({
       url: '/resume' + '/' + id
     });
@@ -180,9 +195,9 @@ export class Api {
   /**
    * Запрос данных вакансии
    * @returns {Promise<Response>}
-   * @param id
+   * @param {String} id
    */
-  static getVacancyById (id = {}) {
+  static getVacancyById (id = '') {
     return Net.doGet({
       url: '/vacancy' + '/' + id
     });
@@ -190,10 +205,10 @@ export class Api {
 
   /**
    * Запрос работадателя по его id
-   * @param id
+   * @param {String} id
    * @returns {Promise<Response>}
    */
-  static getEmployerById (id = {}) {
+  static getEmployerById (id = '') {
     return Net.doGet({
       url: '/employer' + '/' + id
     });
@@ -220,12 +235,22 @@ export class Api {
   }
 
   /**
-   * Отправляет отклик сосикателя по вакансии с его резюме
-   * @param resumeId
-   * @param vacancyId
+   * Запрос на получение только своих вакансий (для работодателя)
    * @returns {Promise<Response>}
    */
-  static respondToVacancy (resumeId, vacancyId) {
+  static getOwnVacancies () {
+    return Net.doGet({
+      url: '/vacancies?own=true'
+    });
+  }
+
+  /**
+   * Отправляет отклик сосикателя по вакансии с его резюме
+   * @param {String} resumeId
+   * @param {String} vacancyId
+   * @returns {Promise<Response>}
+   */
+  static respondToVacancy (resumeId = '', vacancyId = '') {
     return Net.doPost({
       url: '/respond',
       body: {
@@ -235,15 +260,36 @@ export class Api {
     });
   }
 
+  /**
+   * 
+   * @param {String} resumeId
+   * @param {String} vacancyId
+   * @returns {Promise<Response>}
+   */
   static getResponds (resumeId = '', vacancyId = '') {
     return Net.doGet({
       url: `/responds?vacancy_id=${vacancyId}&resume_id=${resumeId}`,
     });
   }
 
+  /**
+   * 
+   * @param {String} vacancyId
+   * @returns {Promise<Response>}
+   */
   static addFavoriteVacancy (vacancyId = '') {
     return Net.doPost({
       url: `/favorite_vacancy/${vacancyId}`,
     });
+  }
+
+  /**
+   * Запрос тегов
+   * @returns {Promise<Response>}
+   */
+  static getTags () {
+    return Net.doGet({
+      url: '/tags'
+    })
   }
 }

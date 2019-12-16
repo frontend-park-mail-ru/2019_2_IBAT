@@ -10,10 +10,14 @@ export class PopularComponent extends Component {
 
     this._globalEventBus.subscribeToEvent(RESUME.getResumesSuccess, this.showItems.bind(this));
     this._globalEventBus.subscribeToEvent(VACANCY.getVacanciesSuccess, this.showItems.bind(this));
+    this._globalEventBus.subscribeToEvent(VACANCY.getVacanciesRecommendedSuccess, this.showItems.bind(this));
   }
 
   onFirstRender () {
-    if (this.getRole === 'seeker' || this.getRole === 'seekerGuest') {
+    if (this.getRole === 'seeker') {
+      this._globalEventBus.triggerEvent(VACANCY.getVacanciesRecommended);
+    }
+    if(this.getRole === 'seekerGuest'){
       this._globalEventBus.triggerEvent(VACANCY.getVacancies);
     }
     if (this.getRole === 'employer' || this.getRole === 'employerGuest') {
@@ -24,20 +28,22 @@ export class PopularComponent extends Component {
   onRender () {
     if (this.data.items) {
       if (this.getRole === 'seeker' || this.getRole === 'seekerGuest') {
-        this.data.items.forEach(vacancy => {
-          const shortVacancyComponent = new ShortVacancyComponent({
-            data: {
-              vacancy,
-              role: this.getRole
-            },
-            globalEventBus: this._globalEventBus
-          });
-          shortVacancyComponent.appendTo(this.list);
+        this.data.items.forEach((vacancy, count) => {
+          if (count < 15) {
+            let shortVacancyComponent = new ShortVacancyComponent({
+              data: {
+                vacancy,
+                role: this.getRole
+              },
+              globalEventBus: this._globalEventBus
+            });
+            shortVacancyComponent.appendTo(this.list);
+          }
         });
       }
       if (this.getRole === 'employer' || this.getRole === 'employerGuest') {
         this.data.items.forEach(resume => {
-          const shortResumeComponent = new ShortResumeComponent(resume);
+          let shortResumeComponent = new ShortResumeComponent(resume);
           shortResumeComponent.appendTo(this.list);
         });
       }

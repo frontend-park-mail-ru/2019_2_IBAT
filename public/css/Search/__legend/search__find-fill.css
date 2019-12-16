@@ -1,0 +1,6 @@
+
+@media all and (max-width : 548px) {
+    .search__find-fill {
+        display: none;
+    }
+}

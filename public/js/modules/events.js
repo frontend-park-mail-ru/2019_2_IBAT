@@ -7,6 +7,12 @@ export const ACTIONS = {
   employerGuestSlide: 'egs',
   guestSignInOnRespond: 'gsior',
   changeRequest: 'cr',
+  startChat: 'stChat',
+  goTo: 'goTo'
+};
+
+export const SEARCH = {
+  search: 'initsearch',
 };
 
 export const COMPANY = {
@@ -38,17 +44,34 @@ export const AUTH = {
 
 };
 
-export const CHAT = {
+export const SUPPORT_CHAT = {
   ws_opened: 'wsopen',
   send: 'send',
   receive: 'receive',
+};
 
+export const CHAT = {
+  getChatHistory: 'getChatHist',
+  getChatHistorySuccess: 'getChatHistSuccess',
+  getChatHistoryFailed: 'getChatHistFailed',
+  getChats: 'getChats',
+  getChatsSuccess: 'getChatsSuc',
+  getChatsFailed: 'getChatsFail',
+  openWs: 'openWs',
+  submit: 'SUBMIT',
+  openChat: 'OPEN',
+  messageReceived: 'messageRe',
+  messageSent: 'messageSe',
 };
 
 export const VACANCY = {
   getVacancies: 'getVacancies',
   getVacanciesSuccess: 'getVacanciesS',
   getVacanciesFailed: 'getVacanciesFailed',
+
+  getVacanciesRecommended: 'gVR',
+  getVacanciesRecommendedSuccess: 'gVRS',
+  getVacanciesRecommendedFailed: 'gVRF',
 
   createVacancy: 'createV',
   createVacancySuccess: 'createVS',
@@ -60,9 +83,9 @@ export const VACANCY = {
 
   chooseResume: 'chooseRes',
 
-  search: 'search',
-  searchSuccess: 'searchS',
-  searchFailed: 'searchF',
+  search: 'searchV',
+  searchSuccess: 'searchVS',
+  searchFailed: 'searchVF',
 
   getFavorite: 'getFav',
   getFavoriteSuccess: 'getFavS',
@@ -94,9 +117,21 @@ export const RESUME = {
   createResumeSuccess: 'createResS',
   createResumeFailed: 'createResF',
 
+  changeResume: 'chengeRes',
+  changeResumeSuccess: 'changeResS',
+  changeResumeFailed: 'changeResF',
+
+  deleteResume: 'delRes',
+  deleteResumeSuccess: 'delResS',
+  deleteResumeFailed: 'delResF',
+
   getResume: 'getRes',
   getResumeSuccess: 'getResS',
   getResumeFailed: 'getResF',
+
+  search: 'searchR',
+  searchSuccess: 'searchRS',
+  searchFailed: 'searchRF',
 };
 
 export const PROFILE = {

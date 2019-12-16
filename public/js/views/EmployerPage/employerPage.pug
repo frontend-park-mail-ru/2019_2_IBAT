@@ -5,7 +5,7 @@ div.company
                 div.company__sidebar
                     div
                         div.company__logo
-                            img.company__logo-img(src=`${Net.getServerImgURL()}/${path_to_img.split('/')[2]}`)
+                            img.company__logo-img(src=path_to_img)
                         div.company__short-info
                             p #{region}
                             div
@@ -13,16 +13,23 @@ div.company
                             div
                                 p.company__short-info-header Сферы деятельности
                                 p #{spheres_of_work}
+                        div
+                            button.button.button_stretched.button_green.company__sidebar__chat(id='startChat', type='submit') Написать
+
         div.personal-block__right.company__right-block
             div.company__name
                 h1 #{company_name}
+            div.company__sidebar-long
+                div.company__short-info
+                    p #{region}
+                    div
+                        a.bloko-link.company__url(href=`http://${site}/` rel="noopener noreferrer nofollow noindex" target="_blank") #{site}
+                    div
+                        p.company__short-info-header Сферы деятельности
+                        p #{spheres_of_work}
+                div.company__logo
+                    img.company__logo-img(src=path_to_img)
             div #{description}
             h3.company__vacancies-header Вакансии компании
-            div.list
-
-//- vacancies: Array(4)
-//- 0: "dbbf4066-fef8-40d2-9bd4-248af9ac0563"
-//- 1: "a1c70afa-c1d2-4162-bd78-73f6e9e47f4a"
-//- 2: "00b0d80b-88b0-4eea-b7e7-5fb8ff294629"
-//- 3: "75c6a58e-3dc8-44c4-9a72-bb78805ed14c"
+            div.company__vacancies-list
 

@@ -17,7 +17,7 @@ export class FavoriteVacanciesView extends View {
 
     const list = document.querySelector('.list');
 
-    if (vacancies) {
+    if (vacancies.length) {
       vacancies.forEach((vacancy) => {
         new ShortVacancyComponent({data: {vacancy}}).appendTo(list);
       });

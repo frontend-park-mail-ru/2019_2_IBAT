@@ -20,12 +20,17 @@ export class View {
 
   static _validateObligotaryInputs (inputs = {}) {
     let wasfail = false;
+    let focus = false;
     if (inputs) {
       inputs.forEach(input => {
         let error = input.nextElementSibling;
-        if (Validation.isEmptyField(input.value)) {
+        if (Validation.isEmptyField(input.value) && input.tagName == 'INPUT') {
           this._addInputError(input, error, 'Обязательное поле');
           wasfail = true;
+          if (!focus) {
+            input.focus();
+            focus = true;
+          }
         } else {
           this._removeInputError(input, error);
         }

@@ -1,7 +1,10 @@
-export const serverURL = 'http://82.146.43.113/api';
-export const serverImgURL = 'http://82.146.43.113/img';
-// export const serverURL = '/api';
-export const serverChatURL = 'ws://82.146.43.113:8090/chat';
+export const host = 'tko.vladimir.fvds.ru';
+
+export const serverURL = `https://${host}/api`;
+export const serverNotificationURL = `wss://${host}/api/notifications`;
+export const serverImgURL = `https://${host}/img`;
+export const serverSupportChatURL = `wss://${host}:443/chat`;
+export const serverChatURL = `wss://${host}:443/api/chat/ws`;
 
 export default class Net {
   /**

@@ -1,0 +1,20 @@
+.button_red {
+    color: #fff;
+    background: #fd2200;
+    border-color: #fd2200;
+}
+
+.button_red:active {
+    border-color: #cc0014;
+    background-color: #cc0014
+}
+
+.button_red:focus {
+    border-color: #cc0014;
+    background-color: #cc0014;
+}
+
+.button_red:hover {
+    border-color: #cc0014;
+    background-color: #cc0014;
+}

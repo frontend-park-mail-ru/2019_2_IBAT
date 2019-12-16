@@ -3,7 +3,7 @@
 const express = require('express');
 const path = require('path');
 
-const PORT = 8080;
+const PORT = 3000;
 
 const dist = 'public/dist/';
 // const CHAT = 'chat.html';

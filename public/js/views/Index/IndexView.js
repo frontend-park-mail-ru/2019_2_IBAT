@@ -32,7 +32,6 @@ export class IndexView extends View {
     if (this.isViewClosed) {
       return;
     }
-    // //TODO костыль, чтобы этот checkAuth не затирал своим undefined для гостя его статус после клика (guestSeeker, guestEmployer)
     console.log(`HeaderView: _onAuthResponse() --- ${this.getRole}`);
     super.render(this.data);
   }

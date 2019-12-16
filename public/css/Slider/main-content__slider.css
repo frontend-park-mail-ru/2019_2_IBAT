@@ -1,3 +1,16 @@
 .main-content__slider {
     margin-top: 0px;
 }
+
+@media all and (max-width : 455px) {
+    .main-content__slider  {
+        flex-flow: wrap;
+
+    }
+}
+
+@media all and (max-width : 364px) {
+    .main-content__slider  {
+        margin-block-end: 40px;
+    }
+}
