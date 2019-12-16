@@ -1,13 +1,12 @@
 import { AUTH } from './events';
-import { serverNotificationURL } from './net';
 import { NotificationComponent } from '../../components/NotificationComponent/NotificationComponent';
 import { Api } from './api';
 
-export class NotificationManager {
+export class RecommendNotifManager {
   constructor (globalEventBus = {}) {
     this._globalEventBus = globalEventBus;
     this.wsIsOpened = false;
-  
+
     this._globalEventBus.subscribeToEvent(AUTH.signInSuccess, this.onCreateWSConnection.bind(this));
     this._globalEventBus.subscribeToEvent(AUTH.checkAuthResponse, this.onCreateWSConnection.bind(this));
     this._globalEventBus.subscribeToEvent(AUTH.signOut, this.onDeleteWSConnection.bind(this));
@@ -56,7 +55,7 @@ export class NotificationManager {
     if (!notificationsList) {
       notificationsList = document.createElement('div');
       notificationsList.classList.add('list', 'list_notifications', 'page__list_notifications');
-  
+
       window.document.querySelector('.page').appendChild(notificationsList);
     }
 
@@ -64,27 +63,35 @@ export class NotificationManager {
     setTimeout(() => {
       const data = '{"id":"49355d24-f856-4b06-810e-6f627b3c849d"}';
       console.log(`Notification Received() ===> ${data}`);
-      const vacancy=JSON.parse(data);
+      const vacancy = JSON.parse(data);
 
       Api.getVacancyById(vacancy.id)
-        .then(res=>{
-          if(res.ok){
-            res.json().then(data=>{
-              const notificationElement = new NotificationComponent(data, this._globalEventBus).appendTo(notificationsList);
+        .then(res => {
+          if (res.ok) {
+            res.json().then(data => {
+              const notification={
+                title: 'Уведомление!',
+                // text: data.text,
+                params: {
+                  link: data.id,
+                  role: 'seeker'
+                }
+              };
+              const notificationElement = new NotificationComponent(notification, this._globalEventBus).appendTo(notificationsList);
               setTimeout(() => {
                 notificationElement.remove();
               }, 5000);
             });
           }
         })
-        .catch(error=>{
+        .catch(error => {
           console.error(error);
         });
     }, 2000);
 
     // this.ws.onmessage = event => {
     //   console.log(`Notification Received() ===> ${event.data}`);
-      // const vacancy=JSON.parse(event.data);
+    // const vacancy=JSON.parse(event.data);
     //
     //   Api.getVacancyById(vacancy.id))
     //     .then(res=>{

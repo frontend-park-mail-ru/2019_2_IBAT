@@ -1,5 +1,5 @@
 import { Controller } from '../modules/controller';
-import { COMPANY } from '../modules/events';
+import { ACTIONS, COMPANY } from '../modules/events';
 import { EmployerPageView } from '../views/EmployerPage/EmployerPageView';
 
 export class EmployerPageController extends Controller {
@@ -10,6 +10,10 @@ export class EmployerPageController extends Controller {
       console.log(data);
       this._data = data;
       this._view.render(this._data);
+    });
+
+    this._globalEventBus.subscribeToEvent(ACTIONS.startChat, (employer_id)=>{
+      this._router.redirect({path:`/chat/${employer_id}`});
     });
 
     this._view = new EmployerPageView(this._root, this._globalEventBus);

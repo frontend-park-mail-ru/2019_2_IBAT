@@ -2,7 +2,8 @@ const pathsWithId = [
   '/profile',
   '/vacancy',
   '/resume',
-  '/employer'
+  '/employer',
+  '/chat',
 ];
 
 export class Router {
@@ -111,12 +112,12 @@ export class Router {
       window.history.back();
     });
 
-    // при перезагрузке страницы у нас уже есть история и страница в истории, 
+    // при перезагрузке страницы у нас уже есть история и страница в истории,
     // поэтому мы её повторно не должны записывать в историю, но если нет то запишем
     if (window.history.length == 0) {
       this.route({ path: window.location.pathname, addToHistory: true });
     } else {
-      // window.location.search: если мы перезагрузилистраницу, 
+      // window.location.search: если мы перезагрузилистраницу,
       // то в window.location.search наши параметры лежат, которые нам нужны для поиска
       this.route({ path: `${window.location.pathname}${window.location.search}`, addToHistory: false });
     }

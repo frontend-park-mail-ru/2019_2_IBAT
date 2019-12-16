@@ -5,7 +5,7 @@ import { EventBus } from './modules/eventbus';
 
 import { HeaderController } from './controllers/HeaderController';
 import { IndexController } from './controllers/IndexController';
-import { ACTIONS, AUTH, PROFILE, RESPOND, RESUME, VACANCY, COMPANY, SEARCH } from './modules/events';
+import { ACTIONS, AUTH, PROFILE, RESPOND, RESUME, VACANCY, COMPANY, SEARCH, CHAT} from './modules/events';
 
 import vacancyModel from './models/VacancyModel';
 import profileModel from './models/ProfileModel';
@@ -13,6 +13,7 @@ import respondModel from './models/RespondModel';
 import companyModel from './models/CompanyModel';
 import resumeModel from './models/ResumeModel';
 import authModel from './models/AuthModel';
+import chatModel from './models/ChatModel';
 
 import { FavoriteVacanciesController } from './controllers/FavoriteVacanciesController';
 import { SignupEmployerController } from './controllers/SignupEmployerController';
@@ -28,10 +29,12 @@ import { VacancyPageController } from './controllers/VacancyPageController';
 import { ResumePageController } from './controllers/ResumePageController';
 import { MyRespondsController } from './controllers/MyRespondsController';
 import { MyResumesController } from './controllers/MyResumesController';
-import { NotificationManager } from './modules/NotificationManager';
+import { RecommendNotifManager } from './modules/recommendNotifManager';
 import { ProfileController } from './controllers/ProfileController';
 import { SigninController } from './controllers/SigninController';
 import { SearchController } from './controllers/SearchController';
+import { ChatController } from './controllers/ChatController';
+import { ChatManager } from './modules/сhatManager';
 
 function renderHTML () {
   const body = document.querySelector('body');
@@ -73,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const header = document.querySelector('header');
   const content = document.querySelector('.main-content');
 
-  const globalEventBus = new EventBus([AUTH, VACANCY, RESUME, PROFILE, RESPOND, ACTIONS, COMPANY, SEARCH ].map(model => Object.values(model)).flat());
+  const globalEventBus = new EventBus([AUTH, VACANCY, RESUME, PROFILE, RESPOND, ACTIONS, COMPANY, SEARCH , CHAT].map(model => Object.values(model)).flat());
   const models = {
     auth: authModel,
     vacancy: vacancyModel,
@@ -81,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     profile: profileModel,
     respond: respondModel,
     company: companyModel,
+    chat: chatModel,
   };
   Object.values(models).forEach(model => model.setGlobalEventBus(globalEventBus));
 
@@ -105,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchController = new SearchController(content, globalEventBus, router);
   const headerController = new HeaderController(header, globalEventBus, router);
   const indexController = new IndexController(content, globalEventBus, router);
+  const chatController = new ChatController(content, globalEventBus, router);
 
   headerController.openWithData();
 
@@ -127,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
   router.add('/search', searchController);
   router.add('/vacancies', foundVacanciesController);
   router.add('/resumes', foundResumesController);
+  router.add('/chat', chatController);
 
   router.start();
 
@@ -134,5 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
     router.redirect({ path: info.path, data: info.data });
   });
 
-  const nm = new NotificationManager(globalEventBus);
+  const nm = new RecommendNotifManager(globalEventBus);
+  const cm = new ChatManager(globalEventBus);
+
+  globalEventBus.triggerEvent(AUTH.checkAuth);
 });

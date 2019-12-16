@@ -1,13 +1,13 @@
 import { EventBus } from './modules/eventbus';
-import { AUTH, CHAT } from './modules/events';
+import { AUTH, SUPPORT_CHAT } from './modules/events';
 import authModel from './models/AuthModel';
-import chatModel from './models/ChatModel';
-import { ChatController } from './controllers/ChatController';
+import chatModel from './models/SupportChatModel';
+import { SupportChatController } from './controllers/SupportChatController';
 
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.querySelector('.page');
 
-  const globalEventBus = new EventBus([AUTH, CHAT].map(model => Object.values(model)).flat());
+  const globalEventBus = new EventBus([AUTH, SUPPORT_CHAT].map(model => Object.values(model)).flat());
 
   const models = {
     auth: authModel,
@@ -18,5 +18,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   Object.values(models).forEach(model => model.setGlobalEventBus(globalEventBus));
 
-  new ChatController(body, globalEventBus).start();
+  new SupportChatController(body, globalEventBus).start();
 });

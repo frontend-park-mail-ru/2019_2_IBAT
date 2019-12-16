@@ -7,12 +7,13 @@ export const ACTIONS = {
   employerGuestSlide: 'egs',
   guestSignInOnRespond: 'gsior',
   changeRequest: 'cr',
+  startChat: 'stChat',
   goTo: 'goTo'
 };
 
 export const SEARCH = {
   search: 'initsearch',
-}
+};
 
 export const COMPANY = {
   getPopularCompanies: 'gpc',
@@ -43,10 +44,24 @@ export const AUTH = {
 
 };
 
-export const CHAT = {
+export const SUPPORT_CHAT = {
   ws_opened: 'wsopen',
   send: 'send',
   receive: 'receive',
+};
+
+export const CHAT = {
+  getChatHistory: 'getChatHist',
+  getChatHistorySuccess: 'getChatHistSuccess',
+  getChatHistoryFailed: 'getChatHistFailed',
+  getChats: 'getChats',
+  getChatsSuccess: 'getChatsSuc',
+  getChatsFailed: 'getChatsFail',
+  openWs: 'openWs',
+  submit: 'SUBMIT',
+  openChat: 'OPEN',
+  messageReceived: 'messageRe',
+  messageSent: 'messageSe',
 };
 
 export const VACANCY = {

@@ -1,7 +1,9 @@
 import template from './employerPage.pug';
 import { View } from '../../modules/view';
 import { ShortVacancyComponent } from '../../../components/ShortVacancy/ShortVacancy';
+import { ACTIONS } from '../../modules/events';
 
+//TODO когда на беке можно будет запросить вакансии по id, убираем test
 const test = [
   {
     'id': 'dbbf4066-fef8-40d2-9bd4-248af9ac0563',
@@ -104,10 +106,11 @@ export class EmployerPageView extends View {
 
   constructor (root, globalEventBus) {
     super(root, template, globalEventBus);
-    this._vacancies = test;
   }
 
   render (data = {}) {
+    this.merge(data);
+
     super.render(data);
 
     const list = document.querySelector('.list');
@@ -115,5 +118,15 @@ export class EmployerPageView extends View {
     test.forEach(vacancy => {
       new ShortVacancyComponent({ data: { vacancy: vacancy }, globalEventBus: this._globalEventBus }).appendTo(list);
     });
+  }
+
+  onRender () {
+    this.startChatButton.addEventListener('submit', (ev) => {
+      this._globalEventBus.triggerEvent(ACTIONS.startChat, this.data.id);
+    });
+  }
+
+  get startChatButton () {
+    return this._root.querySelector('button[id=startChat]');
   }
 }

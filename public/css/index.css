@@ -157,6 +157,7 @@
 @import './Company/__right-block/company__right-block.css';
 @import './Company/__short-info/company__short-info.css';
 @import './Company/__vacancies-header/company__vacancies-header.css';
+@import './Company/__sidebar/company__sidebar__chat/company__sidebar__chat.css';
 
 @import 'List/list.css';
 @import 'List/list_notifications.css';

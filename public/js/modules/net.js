@@ -3,8 +3,8 @@ export const host = 'tko.vladimir.fvds.ru';
 export const serverURL = `https://${host}/api`;
 export const serverNotificationURL = `wss://${host}/api/notifications`;
 export const serverImgURL = `https://${host}/img`;
-// export const serverURL = '/api';
-export const serverChatURL = `wss://${host}:8090/chat`;
+export const serverSupportChatURL = `wss://${host}:443/chat`;
+export const serverChatURL = `wss://${host}:443/api/chat/ws`;
 
 export default class Net {
   /**

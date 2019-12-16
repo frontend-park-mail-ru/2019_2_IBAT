@@ -3,7 +3,6 @@ import {Router} from "./router";
 import {EventBus} from "./eventbus";
 
 export class Controller {
-    protected readonly _model: any;
     protected _view: View;
 
     protected readonly _globalEventBus: EventBus;
