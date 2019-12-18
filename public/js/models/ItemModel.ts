@@ -14,6 +14,23 @@ type OnItemChangeCallback = () => void;
 export default class ItemModel {
 
     constructor(private list: ListModel, public item: Item, private globalEventBus: any) {
+        this.globalEventBus.subscribeToEvent(CHAT.getChatHistorySuccess, (messages) => {
+            if(messages && messages[0].chat_id===item.chat_id){
+                this.item.messages=[];
+                this.item.messages.push(...messages);
+                this.triggerUpdate();
+            }
+        });
+    }
+
+    private _isListening=false;
+
+    get isListening(): boolean {
+        return this._isListening;
+    }
+
+    set isListening(value: boolean) {
+        this._isListening = value;
     }
 
     get isNew() {
@@ -36,12 +53,15 @@ export default class ItemModel {
         this.setValue('companion_name', value)
     }
 
-    send(value: string) {
+    send({is_not_yours, content, created_at}) {
         const message={
             chat_id: this.id,
-            text: value,
+            content,
+            is_not_yours,
+            created_at
         };
-        this.globalEventBus.triggerEvent(CHAT.messageSent, JSON.stringify(message));
+        this.item.messages.push(message);
+        this.globalEventBus.triggerEvent(CHAT.messageSent, JSON.stringify({chat_id:this.id, content}));
     }
 
 
@@ -51,18 +71,15 @@ export default class ItemModel {
 
     listenMessages(){
         this.globalEventBus.subscribeToEvent(CHAT.messageReceived, (message)=>{
-            this.item.messages.push(message);
-            this.triggerUpdate();
+            if(message.chat_id===this.item.chat_id){
+                this.item.messages.push(message);
+                this.triggerUpdate();
+            }
         });
     }
 
     loadChatHistory() {
         this.globalEventBus.triggerEvent(CHAT.getChatHistory, this.id);
-
-        this.globalEventBus.subscribeToEvent(CHAT.getChatHistorySuccess, (messages) => {
-            this.item.messages.push(...messages);
-            this.triggerUpdate();
-        });
     }
 
     triggerUpdate() {

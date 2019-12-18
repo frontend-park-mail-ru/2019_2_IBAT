@@ -41,7 +41,7 @@ function renderHTML () {
   let metaViewport = document.createElement('meta');
   metaViewport.name = 'viewport';
   metaViewport.content = 'width=device-width, initial-scale=1';
-  document.head.appendChild(metaViewport); 
+  document.head.appendChild(metaViewport);
 
   const body = document.querySelector('body');
   body.classList.add('page');
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Проверим, что эта технология доступна в браузере
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js')
+    navigator.serviceWorker.register('/sw.js')
       .then((reg) => {
         // регистрация сработала
         console.log('Registration succeeded. Scope is ' + reg.scope);

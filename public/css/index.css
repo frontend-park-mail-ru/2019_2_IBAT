@@ -50,6 +50,8 @@
 @import './Header/__search/header__search.css';
 @import './Header/__favorites/header__favorites.css';
 @import './Header/__favorites/__favorites-icon/header__favorites-icon.css';
+@import './Header/__chats/header__chats.css';
+@import './Header/__chats/__chats-icon/header__chats-icon.css';
 @import './Header/__profile/__profile-icon/header__profile-icon.css';
 @import './Slider/slider.css';
 @import './Slider/main-content__slider.css';

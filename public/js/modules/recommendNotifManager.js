@@ -86,7 +86,7 @@ export class RecommendNotifManager {
       console.log(`Notification Received() ===> ${event.id}`);
 
       //ПОКА ЧТО ТОЛЬКО ДЛЯ СИКЕРА
-      const vacancy=JSON.parse(event.id);
+      const vacancy=JSON.parse(event.data);
 
       Api.getVacancyById(vacancy.id)
         .then(res => {

@@ -25,6 +25,7 @@ class AuthModel {
       .then(data => {
         this.data = { ...this.data, role: data.role };
         if(data.role){
+
           localStorage.setItem('role', data.role);
         }
         this._globalEventBus.triggerEvent(AUTH.checkAuthResponse);

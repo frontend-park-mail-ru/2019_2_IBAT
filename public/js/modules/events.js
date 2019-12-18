@@ -60,6 +60,7 @@ export const CHAT = {
   openWs: 'openWs',
   submit: 'SUBMIT',
   openChat: 'OPEN',
+  openFirstChat: 'OPEN_FIRST',
   messageReceived: 'messageRe',
   messageSent: 'messageSe',
 };
