@@ -34,7 +34,7 @@ div.short-vacancy.short-vacancy_gold
             a(href=`employer/${vacancy.owner_id}`)
                 img.short-vacancy__logo
 
-    if (!vacancy.employer_mode)
+    if (seeker)
         div.short-vacancy__row_right
             if status
                 span Статус отклика:

@@ -16,9 +16,6 @@ export class ChooseResumeView extends View {
    * @param data
    */
   render (data = {}) {
-    this.data = data;
-    super.render();
-
     this._globalEventBus.triggerEvent(AUTH.checkAuth);
     this._globalEventBus.triggerEvent(RESUME.getOwnResumes);
   }
@@ -28,14 +25,16 @@ export class ChooseResumeView extends View {
    * @param resumes
    * @private
    */
-  _onGetOwnResumesSuccess (resumes) {
-    const list = document.createElement('div');
-    list.className = 'list';
-
-    this._root.querySelector('.left-column').appendChild(list);
+  _onGetOwnResumesSuccess (resumes = []) {
+    let data = {
+      'number_of_resumes': resumes.length
+    };
+    super.render(data);
+    
+    const list = document.querySelector('.list');
 
     console.log('INDEX:onGetResumesSuccess', resumes);
-    if (resumes) {
+    if (resumes.length) {
       resumes.forEach(resume => {
         new ShortResumeComponent(resume, true, (resume) => {
           this._globalEventBus.triggerEvent(RESPOND.respondToVacancy, {

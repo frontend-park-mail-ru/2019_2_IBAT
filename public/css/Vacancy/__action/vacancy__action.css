@@ -1,8 +1,5 @@
 .vacancy__action {
     display: inline-block;
     margin-left: 10px;
-}
-
-.vacancy__action:first-child {
     margin-bottom: 10px;
 }

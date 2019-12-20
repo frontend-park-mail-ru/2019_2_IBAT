@@ -98,6 +98,10 @@ export class ShortVacancyComponent extends Component {
   }
 
 
-  onRender () {
+  render () {
+    if (this.getRole.match(/seeker/)) {
+      this.data['seeker'] = true;
+    }
+    return this.template(this.data);
   }
 }

@@ -24,6 +24,7 @@ export const COMPANY = {
 
   search: 'scmp',
   searchSuccess: 'scmps',
+  searchFailed: 'scmpf',
 };
 
 export const AUTH = {

@@ -10,6 +10,7 @@ export class SignInView extends View {
   }
 
   render (data = {}) {
+    document.body.classList.add('page_full');
     super.render(data);
 
     this._loginForm = this._root.querySelector('.login__form-js');
@@ -81,5 +82,10 @@ export class SignInView extends View {
       };
       this._globalEventBus.triggerEvent(AUTH.signIn, user);
     }
+  }
+
+  hide() {
+    document.body.classList.remove('page_full');
+    super.hide();
   }
 }

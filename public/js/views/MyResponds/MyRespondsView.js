@@ -17,9 +17,7 @@ export class MyRespondsView extends View {
     this._globalEventBus.subscribeToEvent(RESPOND.getSeekerRespondsSuccess, this._onGetSeekerRespondsSuccess.bind(this));
   }
 
-  render (data = {}) {
-    super.render(data);
-
+  render () {
     this._globalEventBus.triggerEvent(AUTH.checkAuth);
     this._globalEventBus.triggerEvent(RESPOND.getSeekerResponds);
   }
@@ -29,32 +27,35 @@ export class MyRespondsView extends View {
    * @param responds
    * @private
    */
-  _onGetSeekerRespondsSuccess (responds) {
-    const list = document.createElement('div');
-    list.className = 'list';
+  _onGetSeekerRespondsSuccess (responds = []) {
+    let data = {
+      'number_of_responds': responds.length
+    };
+    super.render(data);
 
-    this._root.querySelector('.left-column').appendChild(list);
-
-    responds.forEach(respond => {
-      Api.getVacancyById(respond.vacancy_id)
-        .then(res => {
-          if (res.ok) {
-            return res.json();
-          }
-        })
-        .then(vacancy => {
-
-          new ShortVacancyComponent({
-            data: {
-              vacancy: vacancy,
-              status: statuses[respond.Status],
-            },
-            globalEventBus: this._globalEventBus
-          }).appendTo(list);
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    });
+    const list = document.querySelector('.list');
+   
+    if (responds.length) {
+      responds.forEach(respond => {
+        Api.getVacancyById(respond.vacancy_id)
+          .then(res => {
+            if (res.ok) {
+              return res.json();
+            }
+          })
+          .then(vacancy => {
+            new ShortVacancyComponent({
+              data: {
+                vacancy: vacancy,
+                status: statuses[respond.Status],
+              },
+              globalEventBus: this._globalEventBus
+            }).appendTo(list);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      });
+    }
   }
 }

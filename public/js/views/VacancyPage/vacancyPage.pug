@@ -33,21 +33,22 @@ div.left-column
             h3 О вакансии:
             p #{about}
 
-    div.vacancy__seeker-actions
-        if !is_responded
-            div.vacancy__action
-                button.button.button_green(id='respondToVacancyButton', type='submit') Откликнуться
-            div.vacancy__action
-                button.button.button_green(id='startChat', type='submit') Написать
-        else
-            div.vacancy__action
-                button.button.button_disabled(id='respondToVacancyButton', type='submit') Откликнуться
+    if seeker
+        div.vacancy__seeker-actions
+            if !is_responded
+                div.vacancy__action
+                    button.button.button_green(id='respondToVacancyButton', type='submit') Откликнуться
+                div.vacancy__action
+                    button.button.button_green(id='startChat', type='submit') Написать
+            else
+                div.vacancy__action
+                    button.button.button_disabled(id='respondToVacancyButton', type='submit') Откликнуться
 
-        if !favorite
-            div.vacancy__action(id=id, name='switch')
-                button.button.button_blue.short-vacancy__favorite_off Добавить в избранное
-                button.button.button_disabled.short-vacancy__favorite_on В избранном
-        else
-            div.vacancy__action.short-vacancy__favorite_selected(id=id, name='switch')
-                button.button.button_blue.short-vacancy__favorite_off Добавить в избранное
-                button.button.button_disabled.short-vacancy__favorite_on В избранном
+            if !favorite
+                div.vacancy__action(id=id, name='switch')
+                    button.button.button_blue.short-vacancy__favorite_off Добавить в избранное
+                    button.button.button_disabled.short-vacancy__favorite_on В избранном
+            else
+                div.vacancy__action.short-vacancy__favorite_selected(id=id, name='switch')
+                    button.button.button_blue.short-vacancy__favorite_off Добавить в избранное
+                    button.button.button_disabled.short-vacancy__favorite_on В избранном

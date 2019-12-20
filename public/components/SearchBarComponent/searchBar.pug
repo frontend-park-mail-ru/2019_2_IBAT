@@ -1,4 +1,9 @@
-div.search-bar__input
-    input.input(name='query', placeholder='К примеру, frontend-разработчик')
-    //- a.link(href='/search/vacancy')
-button.button.search-bar__button Поиск
+form.search-bar__form
+    div.search-bar__input
+        input.input.search-bar__query(name='query', placeholder='Должность')
+    div.search-bar__select
+        select.input.search-bar__select-input(name='mode')
+            option(value="/resumes") Резюме
+            option(value="/vacancies") Вакансии
+            option(value="/employers") Компании
+    button.button.search-bar__button(type='submit') Найти

@@ -1,0 +1,4 @@
+.search-bar__form {
+    display: flex;
+    flex-grow: 1;
+}
