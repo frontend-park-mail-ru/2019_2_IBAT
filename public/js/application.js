@@ -16,6 +16,7 @@ import authModel from './models/AuthModel';
 import chatModel from './models/ChatModel';
 
 import { FavoriteVacanciesController } from './controllers/FavoriteVacanciesController';
+import { FoundCompaniesController } from './controllers/FoundCompaniesController';
 import { SignupEmployerController } from './controllers/SignupEmployerController';
 import { FoundVacanciesController } from './controllers/FoundVacanciesController';
 import { CreateVacancyController } from './controllers/CreateVacancyController';
@@ -36,6 +37,7 @@ import { SigninController } from './controllers/SigninController';
 import { SearchController } from './controllers/SearchController';
 import { ChatController } from './controllers/ChatController';
 import { ChatManager } from './modules/сhatManager';
+import { FoundCompaniesView } from './views/FoundCompanies/FoundCompaniesView';
 
 function renderHTML () {
   let metaViewport = document.createElement('meta');
@@ -97,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const router = new Router(body);
 
   const favoriteVacanciesController = new FavoriteVacanciesController(content, globalEventBus, router);
+  const foundCompaniesController = new FoundCompaniesController(content, globalEventBus, router);
   const signupEmployerController = new SignupEmployerController(content, globalEventBus, router);
   const foundVacanciesController = new FoundVacanciesController(content, globalEventBus, router);
   const createVacancyController = new CreateVacancyController(content, globalEventBus, router);
@@ -140,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
   router.add('/search', searchController);
   router.add('/vacancies', foundVacanciesController);
   router.add('/resumes', foundResumesController);
+  router.add('/employers', foundCompaniesController);
   router.add('/chat', chatController);
 
   router.start();
