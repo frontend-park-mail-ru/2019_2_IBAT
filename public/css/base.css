@@ -80,3 +80,7 @@ html {
 .create-resume-form {
     font-size: 14px;
 }
+
+::-webkit-inner-spin-button { 
+    display: none; 
+}

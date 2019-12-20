@@ -14,8 +14,6 @@ export class VacancyPageView extends View {
   }
 
   render (data = {}) {
-    data.role=localStorage.getItem('role');
-
     this.merge(data);
     this.isViewClosed = false;
 
@@ -48,37 +46,40 @@ export class VacancyPageView extends View {
 
     this.data['wage_from'] = this.data['wage_from'].split('.')[0];
     this.data['wage_to'] = this.data['wage_to'].split('.')[0];
-
+    this.data['seeker'] = localStorage.getItem('role').match(/seeker/);
     super.render(this.data);
   }
 
   onRender () {
     if (!this.data.is_responded) {
       this.respondButton = document.getElementById('respondToVacancyButton');
-      this.respondButton.addEventListener('click', (ev) => {
-        if (this.getRole.match(/Guest/)) {
-          this._globalEventBus.triggerEvent(ACTIONS.guestSignInOnRespond, {
-            vacancyId: this.data.id
-          });
-        } else {
-          this._globalEventBus.triggerEvent(VACANCY.chooseResume, {
-            vacancyId: this.data.id
-          });
-        }
-      });
-
+      if (this.respondButton) {
+        this.respondButton.addEventListener('click', (ev) => {
+          if (this.getRole.match(/Guest/)) {
+            this._globalEventBus.triggerEvent(ACTIONS.guestSignInOnRespond, {
+              vacancyId: this.data.id
+            });
+          } else {
+            this._globalEventBus.triggerEvent(VACANCY.chooseResume, {
+              vacancyId: this.data.id
+            });
+          }
+        });
+      }
     }
 
     if (!this.data.favorite) {
       let toFavorite = document.querySelector('[name="switch"]');
-      console.log(toFavorite);
-      toFavorite.addEventListener('click', this._onToFavorite.bind(this), true);
+      if (toFavorite) {
+        toFavorite.addEventListener('click', this._onToFavorite.bind(this), true);
+      }
     }
 
-    this.startChatButton.addEventListener('click', (ev) => {
-      this._globalEventBus.triggerEvent(ACTIONS.startChat, this.data.owner_id);
-    });
-
+    if (this.startChatButton) {
+      this.startChatButton.addEventListener('click', (ev) => {
+        this._globalEventBus.triggerEvent(ACTIONS.startChat, this.data.owner_id);
+      });
+    }
   }
 
   /**

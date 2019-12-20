@@ -35,6 +35,7 @@ export class ResumePageView extends View {
    */
   _onLoadResumeSuccess (data) {
     this.data = data;
+
     Api.getProfile()
       .then(res => {
         if (res.ok) {
