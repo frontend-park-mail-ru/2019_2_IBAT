@@ -19,7 +19,7 @@ export class MyResumesView extends View {
 
     if (resumes.length > 0) {
       resumes.forEach(resume => {
-        new ShortResumeComponent(resume).appendTo(list);
+        new ShortResumeComponent({resume}).appendTo(list);
       });
     }
   }

@@ -13,16 +13,17 @@ export class ChooseResumeView extends View {
 
   /**
    * в data хранится vacancyId
-   * @param data
+   * @param {Object} data
    */
   render (data = {}) {
+    this.vacancy_id = data.vacancyId;
     this._globalEventBus.triggerEvent(AUTH.checkAuth);
     this._globalEventBus.triggerEvent(RESUME.getOwnResumes);
   }
 
   /**
    * Получает резюме от модели и отображает списком
-   * @param resumes
+   * @param {Array} resumes
    * @private
    */
   _onGetOwnResumesSuccess (resumes = []) {
@@ -33,20 +34,52 @@ export class ChooseResumeView extends View {
     
     const list = document.querySelector('.list');
 
-    console.log('INDEX:onGetResumesSuccess', resumes);
     if (resumes.length) {
       resumes.forEach(resume => {
-        new ShortResumeComponent(resume, true, (resume) => {
-          this._globalEventBus.triggerEvent(RESPOND.respondToVacancy, {
-            resume_id: resume.id,
-            vacancy_id: this.data.vacancyId
-          });
-        }).appendTo(list);
+        this._showChoice(resume, list);
+      });
+      document.querySelector('form').addEventListener('submit', this._onSubmit.bind(this));
+    }
+  }
+
+  _onSubmit(event) {
+    event.preventDefault();
+    let chosen = document.querySelector('input[name="resume"]:checked');
+    if (chosen) {
+      console.log(this.vacancy_id);
+      this._globalEventBus.triggerEvent(RESPOND.respondToVacancy, {
+        resume_id: chosen.value,
+        vacancy_id: this.vacancy_id,
       });
     }
   }
 
   _onRespondToVacancyFailed () {
     //
+  }
+
+  /**
+   *
+   * @param {Object} resume
+   * @param {HTMLDivElement} list
+   * @private
+   */
+  _showChoice(resume = {}, list) {
+    let choice = document.createElement('div');
+    choice.classList.add('choice');
+
+    let radio = document.createElement('input');
+    radio.classList.add('choice__radio')
+    radio.type = 'radio';
+    radio.name = 'resume';
+    radio.value = resume.id;
+    choice.appendChild(radio);
+
+    let card = document.createElement('div');
+    card.classList.add('choice__card');
+    choice.appendChild(card);
+
+    new ShortResumeComponent({resume}).appendTo(card);
+    list.appendChild(choice);
   }
 }
