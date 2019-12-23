@@ -196,6 +196,7 @@
 @import './Resume-search-item/__wage/resume-search-item__wage.css';
 @import './Resume-search-item/__position/resume-search-item__position.css';
 @import 'card_list.css';
+@import './Profile/profile.css';
 
 @-ms-viewport {
     width: device-width;
@@ -267,4 +268,19 @@ p {
 
 .iframe-chat_opened {
     display: block;
+}
+
+.choice {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 15px;
+}
+
+.choice__radio {
+    align-self: center;
+    margin-right: 20px;
+}
+
+.choice__card {
+    width: 100%;
 }
