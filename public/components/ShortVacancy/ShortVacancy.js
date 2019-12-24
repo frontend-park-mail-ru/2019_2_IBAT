@@ -1,6 +1,5 @@
 import template from './shortVacancy.pug';
 import { Api } from '../../js/modules/api';
-import Net from '../../js/modules/net';
 import { Component } from '../../js/modules/Component';
 import { ACTIONS, VACANCY } from '../../js/modules/events';
 
@@ -63,11 +62,6 @@ export class ShortVacancyComponent extends Component {
         });
       }
     }
-
-    this.employerLink.addEventListener('click', ev=>{
-      this._globalEventBus.triggerEvent(ACTIONS.goTo, {path: `/employer/${this.data.vacancy.owner_id}`});
-      ev.stopPropagation();
-    });
   }
 
   _onToFavorite (event) {
@@ -93,14 +87,12 @@ export class ShortVacancyComponent extends Component {
     }
   }
 
-  get employerLink(){
-    return this.domElement.querySelector('.js-employer-link');
-  }
-
-
   render () {
-    if (this.getRole.match(/seeker/)) {
-      this.data['seeker'] = true;
+    let role = this.getRole;
+    if (role) {
+      if (role.match(/seeker/)) {
+        this.data['seeker'] = true;
+      }
     }
     return this.template(this.data);
   }

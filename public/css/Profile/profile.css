@@ -1,0 +1,16 @@
+.profile {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.thumb-wrapper {
+    display: flex;
+    flex-flow: column;
+}
+
+.thumb-error {
+    color: red;
+    padding-top: 5px;
+}
