@@ -1,13 +1,16 @@
 import Component from '../../framework/Component';
 import ItemModel from '../../models/ItemModel';
 import {chat_configs, MODES} from "../../modules/chatConfig";
-import Message from "../../models/MessageModel";
+import ChatContent from "./ChatContent";
+import {CHAT} from "../../modules/events";
 
 class ChatRoomOptions {
     model: ItemModel;
 }
 
 export default class ChatRoom extends Component {
+
+    private chatContent: ChatContent;
 
     constructor(private options: ChatRoomOptions) {
         super();
@@ -20,31 +23,15 @@ export default class ChatRoom extends Component {
     }
 
     render(): string {
-        const {chat_id, companion_id, companion_name, messages} = this.options.model.item;
-
-        const rows = messages ? messages.map(({is_not_yours, content, created_at}) =>
-            (this.createMessageComponent({is_not_yours, content, created_at}) as HTMLElement)
-                .outerHTML
-        ) : null;
-
-        //TODO ТОП 10 МЕГАКОСТЫЛЕЙ ГОДА. Уберите детей от экранов!
-        //TODO ПРОБЛЕМА РЕШАЕТСЯ ПРОСТО. ПОДЕЛИТЬ НА ДВЕ КОМПОНЕНТЫ (ROOM_CONTENT, которая будет отрисовываться, при этом не трогая SEND_BAR)
-        let inputOldValue='';
-        if(this.domElement&&this.domElement.querySelector('.chat__input')){
-            inputOldValue=this.domElement.querySelector('.chat__input').value;
-        }
+        const {companion_id, companion_name} = this.options.model.item;
 
         return `<div class="chat__room-wrapper">
                     <h2>
                         <a class="link_list-item" href="/employer/${companion_id}">${companion_name}</a>
                     </h2> 
-                    <div class="chat__content">
-                        ${rows.length !== 0 ? rows.join('') : `
-                            <div>Сообщений с данным пользователем нет</div>
-                        `}
-                    </div>			
+                    <div class="chat__content"></div>			
                     <form class="chat__row js-message-form">
-                        <input class="input chat__input" value="${inputOldValue}" name="input"/>
+                        <input class="input chat__input" name="input"/>
                         <input type="submit" value="Отправить" class="button"/>
                     </form>
                 </div>
@@ -60,16 +47,15 @@ export default class ChatRoom extends Component {
     }
 
     onFirstRender() {
-        // autoBind(domElement, options.model);
-        const {model} = this.options;
-        model.onUpdate(() => this.update());
     }
 
     onRender() {
         this.messageForm.onsubmit = this.handleSubmit.bind(this);
-        this.chat.scrollTop = this.chat.scrollHeight;
+        // this.chat.scrollTop = this.chat.scrollHeight;
+        this.showChatContent(this.options.model);
 
-        this.domElement.querySelector('.chat__input').focus();
+        this.domElement.querySelector('.chat__content');
+        // this.domElement.querySelector('.chat__input').focus();
 
         chat_configs.setMode({chat_id: this.options.model.item.chat_id, mode: MODES.chat});
     }
@@ -88,28 +74,16 @@ export default class ChatRoom extends Component {
             created_at: new Date(),
         };
 
-        const messageElement = this.createMessageComponent(message);
-        this.chat.appendChild(messageElement);
+        this.chatContent.handleCreateMessage(message);
 
         model.send(message);
         ev.target.input.value = '';
-        this.chat.scrollTop = this.chat.scrollHeight;
+        this.chat.lastChild.scrollTop = this.chat.lastChild.scrollHeight;
 
     };
 
-    createMessageComponent({is_not_yours, content, created_at}): ChildNode {
-        const timestampString = created_at.toLocaleString();
-
-        const htmlString = `<div class="message ${is_not_yours ? 'message_other' : 'message_my'}">
-                                <span data-bind="content" class="span__message"></span>
-                                <span data-bind="created_at" class="timestamp__message"></span>
-                            </div>`;
-        const div = document.createElement('div');
-        div.innerHTML = htmlString.trim();
-        div.querySelector('.span__message').innerHTML = content;
-        div.querySelector('.timestamp__message').innerHTML = timestampString;
-
-        // Change this to div.childNodes to support multiple top-level nodes
-        return div.firstChild;
+    showChatContent(model: ItemModel) {
+        this.chatContent = new ChatContent({model});
+        this.chatContent.renderTo(this.chat);
     }
 }

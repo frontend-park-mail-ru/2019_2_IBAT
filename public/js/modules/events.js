@@ -61,6 +61,7 @@ export const CHAT = {
   submit: 'SUBMIT',
   openChat: 'OPEN',
   openFirstChat: 'OPEN_FIRST',
+  messageCreate: "MSG_CREATE",
   messageReceived: 'messageRe',
   messageSent: 'messageSe',
 };

@@ -33,7 +33,6 @@ export class ChatApp extends Component {
         const {domElement} = this;
 
         domElement.addEventListener(CHAT.openChat, this.handleOpen);
-        // domElement.addEventListener(CHAT.openFirstChat, this.handleOpenFirst);
 
         this.showChats();
     }
@@ -42,13 +41,13 @@ export class ChatApp extends Component {
         this.showChat(detail)
     };
 
-    handleOpenFirst = () => {
-        // //включать первый чат по списку(или в локалсторадже запоминать тот на котором остановились)
-        // if(this.model.list.length){
-        //     //Открыть по дефолту первый чат
-        //     this.showChat(this.model.list[0]);
-        // }
-    };
+    // handleOpenFirst = () => {
+    //     // //включать первый чат по списку(или в локалсторадже запоминать тот на котором остановились)
+    //     // if(this.model.list.length){
+    //     //     //Открыть по дефолту первый чат
+    //     //     this.showChat(this.model.list[0]);
+    //     // }
+    // };
 
     showChats() {
         this.model.loadChats();
@@ -64,7 +63,6 @@ export class ChatApp extends Component {
 
         this.model.list.forEach(chat=>{
             chat_configs.setMode({chat_id: chat.item.chat_id, mode: MODES.notification});
-
         });
 
         model.loadChatHistory();

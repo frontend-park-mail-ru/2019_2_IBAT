@@ -33,8 +33,6 @@ export default class Chats extends Component {
 
     handleTrClick = (model: ItemModel) => this.triggerEvent(CHAT.openChat, model);
 
-    handleOpenFirstChat = () => this.triggerEvent(CHAT.openFirstChat);
-
     onRender() {
         const {domElement, options} = this;
         const {model} = options;
@@ -43,7 +41,9 @@ export default class Chats extends Component {
             const itemId = trElement.getAttribute('data-item-id');
             const itemModel = model.getById(itemId);
 
-            trElement.onclick = this.handleTrClick(itemModel);
+            trElement.addEventListener('click', (ev)=>{
+                this.handleTrClick(itemModel);
+            });
 
             autoBind(trElement, itemModel);
         });
@@ -52,6 +52,5 @@ export default class Chats extends Component {
     onFirstRender() {
         const {model} = this.options;
         model.onUpdate(() => this.update());
-        // this.handleOpenFirstChat();
     }
 }

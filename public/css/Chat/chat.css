@@ -14,6 +14,7 @@
 
 .chat__room-wrapper{
     display: flex;
+    overflow: auto;
     flex-basis: 100%;
     flex-direction: column;
 }
