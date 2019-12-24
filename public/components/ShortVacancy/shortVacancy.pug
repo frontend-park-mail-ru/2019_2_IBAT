@@ -22,7 +22,7 @@ div.short-vacancy.short-vacancy_gold
             div #{vacancy.salary}
 
     div.short-vacancy__meta-info
-        a.link.bloko-link.bloko-link_secondary.js-employer-link #{vacancy.company_name}
+        a.link.bloko-link.bloko-link_secondary.js-employer-link(href=`employer/${vacancy.owner_id}`) #{vacancy.company_name}
     div.short-vacancy__meta-info
         span #{vacancy.city}
 
