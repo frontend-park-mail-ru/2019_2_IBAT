@@ -35,6 +35,7 @@ export class ResumePageView extends View {
    */
   _onLoadResumeSuccess (data) {
     this.data = data;
+
     Api.getProfile()
       .then(res => {
         if (res.ok) {
@@ -50,14 +51,16 @@ export class ResumePageView extends View {
         return document.querySelector('.resume__owner-section');
       })
       .then(ownerSection => {
-        const changeButton = ownerSection.querySelector('.resume__owner-button_change');
-        const deleteButton = ownerSection.querySelector('.resume__owner-button_delete');
-
-        if (changeButton) {
-          changeButton.addEventListener('click', this._onChange.bind(this), false);
-        }
-        if (deleteButton) {
-          deleteButton.addEventListener('click', this._onDelete.bind(this), false);
+        if (ownerSection) {
+          const changeButton = ownerSection.querySelector('.resume__owner-button_change');
+          const deleteButton = ownerSection.querySelector('.resume__owner-button_delete');
+  
+          if (changeButton) {
+            changeButton.addEventListener('click', this._onChange.bind(this), false);
+          }
+          if (deleteButton) {
+            deleteButton.addEventListener('click', this._onDelete.bind(this), false);
+          }
         }
       })
       .catch(error => {

@@ -1,2 +1,11 @@
 div.left-column
     h1.title-h1 Выберите резюме, просто кликнув на него
+
+    if number_of_resumes == 0
+        div.favorite-vacancies__no-vacancies
+            p У вас нет созданных резюме
+            p Вы можете создать своё первое резюме, для этого нажмите кнопку "Создать резюме"
+    else
+        form.mb20
+            div.list.mb20
+            button.button.button_blue(type="submit") Выбрать

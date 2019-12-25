@@ -1,90 +1,91 @@
-div.left-column
-    h1.title-h1 Профиль пользователя
+div.profile
+    div.left-column
+        h1.title-h1 Профиль пользователя
 
-    form.form.profile__form(method='POST', enctype='multipart/form-data', novalidate)
-
-
-        span.form__legend Email
-        div.form__input
-            input.input(type='text', name='email', value=profile.email, disabled)
-
-        case role
-            when 'seeker'
-                span.form__legend Имя
-                div.form__input
-                    input.input(type='text', name='first_name', value=profile.first_name)
+        form.form.profile__form(method='POST', enctype='multipart/form-data', novalidate)
 
 
-                span.form__legend Фамилия
-                div.form__input
-                    input.input(type='text', name='second_name', value=profile.second_name)
+            span.form__legend Email
+            div.form__input
+                input.input(type='text', name='email', value=profile.email, disabled)
 
-            when 'employer'
-                span.form__legend Название компании
-                div.form__input
-                    input.input(type='text', name='company_name', value=profile.company_name)
-
-                span.form__legend Сайт
-                div.form__input
-                    input.input(type='text', name='site', value=profile.site)
-
-                span.form__legend Количество сотрудниклв
-                div.form__input
-                    input.input(type='number', name='empl_num', value=profile.empl_num)
-
-                span.form__legend Город
-                div.form__input
-                    input.input(type='text', name='city', value=profile.city)
-
-                h2.title-h2 Контактное лицо
-                div
+            case role
+                when 'seeker'
                     span.form__legend Имя
                     div.form__input
                         input.input(type='text', name='first_name', value=profile.first_name)
-                        span.error
 
-                div.form__row
+
                     span.form__legend Фамилия
                     div.form__input
                         input.input(type='text', name='second_name', value=profile.second_name)
-                        span.error
 
-                div.form__row
-                    span.form__legend Телефон
+                when 'employer'
+                    span.form__legend Название компании
                     div.form__input
-                        input.input(type='tel', name='phone_number', value=profile.phone_number)
-                        span.error
+                        input.input(type='text', name='company_name', value=profile.company_name)
 
-                div.form__row
-                    span.form__legend Дополнительный телефон
+                    span.form__legend Сайт
                     div.form__input
-                        input.input(type='tel', name='extra_phone_number', value=profile.extra_phone_number)
-                        span.error
+                        input.input(type='text', name='site', value=profile.site)
+
+                    span.form__legend Количество сотрудниклв
+                    div.form__input
+                        input.input(type='number', name='empl_num', value=profile.empl_num)
+
+                    span.form__legend Город
+                    div.form__input
+                        input.input(type='text', name='city', value=profile.city)
+
+                    h2.title-h2 Контактное лицо
+                    div
+                        span.form__legend Имя
+                        div.form__input
+                            input.input(type='text', name='first_name', value=profile.first_name)
+                            span.error
+
+                    div.form__row
+                        span.form__legend Фамилия
+                        div.form__input
+                            input.input(type='text', name='second_name', value=profile.second_name)
+                            span.error
+
+                    div.form__row
+                        span.form__legend Телефон
+                        div.form__input
+                            input.input(type='tel', name='phone_number', value=profile.phone_number)
+                            span.error
+
+                    div.form__row
+                        span.form__legend Дополнительный телефон
+                        div.form__input
+                            input.input(type='tel', name='extra_phone_number', value=profile.extra_phone_number)
+                            span.error
 
 
-        span.form__legend Новый пароль
-        div.form__input
-            input.input.password(type='password', name='password', value=profile.password)
-            span.error(aria-live='polite')
+            span.form__legend Новый пароль
+            div.form__input
+                input.input.password(type='password', name='password', value=profile.password)
+                span.error(aria-live='polite')
 
-        span.form__legend Подтверждение пароля
-        div.form__input
-            input.input.password(type='password', name='passwordConfirm', value=profile.password)
-            span.error(aria-live='polite')
+            span.form__legend Подтверждение пароля
+            div.form__input
+                input.input.password(type='password', name='passwordConfirm', value=profile.password)
+                span.error(aria-live='polite')
 
-        div
-            button.button.button_blue.save-profile(type='submit') Сохранить профиль
+            div
+                button.button.button_blue.save-profile(type='submit') Сохранить профиль
 
-div.right-column
-    h1.title-h1 Фотография:
-    div
-        img.thumb(src=profile.path_to_img)
-        span.error
+    div.right-column
+        h1.title-h1 Фотография:
+        div.thumb-wrapper
+            img.thumb(src=profile.path_to_img)
+            span.error.thumb-error
 
-    div.profile__avatar.mb10
-        label.form__legend Загрузить новую фотографию
-        div.mb5
-            div.profile__hint jpg, png, bmp, gif
-        input.upload(type='file', name='my_file', accept='image/*')
+        div.profile__avatar.mb10
+            label.form__legend Загрузить новую фотографию
+            div.mb5
+                div.profile__hint jpg, png, bmp, gif
+            input.upload(type='file', name='my_file', accept='image/*')
 
-    button.button.button_blue.profile__save-avatar(name='save_avatar') Сохранить
+        button.button.button_blue.profile__save-avatar(name='save_avatar') Сохранить

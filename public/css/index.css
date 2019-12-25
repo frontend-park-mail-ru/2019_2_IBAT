@@ -120,7 +120,10 @@
 @import './Search/__legend/search__find-fill.css';
 @import './Search/__wage/search__wage-options.css';
 @import './SearchBar/search-bar.css';
+@import './SearchBar/__query/search-bar__query.css';
+@import './SearchBar/__form/search-bar__form.css';
 @import './SearchBar/__input/search-bar__input.css';
+@import './SearchBar/__select-input/search-bar__select-input.css';
 @import './SearchBar/__button/search-bar__button.css';
 @import './Favorite-vacancies/favorite-vacancies.css';
 @import './Favorite-vacancies/__no-vacancies/favorite-vacancies__no-vacancies.css';
@@ -193,6 +196,7 @@
 @import './Resume-search-item/__wage/resume-search-item__wage.css';
 @import './Resume-search-item/__position/resume-search-item__position.css';
 @import 'card_list.css';
+@import './Profile/profile.css';
 
 @-ms-viewport {
     width: device-width;
@@ -264,4 +268,19 @@ p {
 
 .iframe-chat_opened {
     display: block;
+}
+
+.choice {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 15px;
+}
+
+.choice__radio {
+    align-self: center;
+    margin-right: 20px;
+}
+
+.choice__card {
+    width: 100%;
 }

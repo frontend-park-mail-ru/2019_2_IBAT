@@ -1,2 +1,8 @@
 div.left-column
-    h1.title-h1 Вакансии, на которые вы откликнулись:
+    h1.title-h1 Вакансии, на которые вы откликнулись
+
+    if number_of_responds == 0
+        div.favorite-vacancies__no-vacancies
+            p У вас нет откликов
+            p Вы можете откликнуться на любую понравившуюся вам вакансию 
+    div.list

@@ -43,7 +43,7 @@ export class PopularComponent extends Component {
       }
       if (this.getRole === 'employer' || this.getRole === 'employerGuest') {
         this.data.items.forEach(resume => {
-          let shortResumeComponent = new ShortResumeComponent(resume);
+          let shortResumeComponent = new ShortResumeComponent({resume});
           shortResumeComponent.appendTo(this.list);
         });
       }

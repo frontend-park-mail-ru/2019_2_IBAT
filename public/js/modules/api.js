@@ -292,4 +292,10 @@ export class Api {
       url: '/tags'
     })
   }
+
+  static getResumesByIds(ids='') {
+    return Net.doGet({
+      url: '/resumes' + ids
+    })
+  }
 }
