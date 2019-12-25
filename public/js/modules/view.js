@@ -71,7 +71,6 @@ export class View {
   }
 
   get getRole () {
-    console.log(`role=${localStorage.getItem('role')}`);
     return localStorage.getItem('role');
   }
 

@@ -37,6 +37,7 @@
     flex-direction: column;
     padding: 20px 8px;
     border-bottom: 1px solid var(--primary-color);
+    cursor: pointer;
 }
 
 .chat__list__item:hover{
