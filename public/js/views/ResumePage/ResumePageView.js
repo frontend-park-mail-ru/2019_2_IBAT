@@ -34,6 +34,7 @@ export class ResumePageView extends View {
    * @private
    */
   _onLoadResumeSuccess (data) {
+    data.birth_date = new Date(data.birth_date).toDateString();
     this.data = data;
 
     Api.getProfile()
@@ -71,7 +72,7 @@ export class ResumePageView extends View {
 
   _onChange(event) {
     event.preventDefault();
-    console.log(this.data);
+    this.data.birth_date = new Date(this.data.birth_date).toISOString();
     this._globalEventBus.triggerEvent(ACTIONS.goTo, {path: '/createresume', data: this.data});
   }
 

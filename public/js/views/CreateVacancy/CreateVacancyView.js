@@ -162,7 +162,13 @@ export class CreateVacancyView extends View {
     if (!wasfail) {
       let vacancy = {};
       Array.prototype.forEach.call(this._createVacancyForm.elements, elem => {
-        vacancy[elem.name] = elem.value;
+        if (elem.tagName == 'INPUT' && elem.type == 'radio') {
+          if (elem.checked) {
+            resume[elem.name] = elem.value;
+          }
+        } else {
+          resume[elem.name] = elem.value;
+        }
       });
       
       let spheres = this._getChosenSpheres();

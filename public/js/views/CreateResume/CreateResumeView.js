@@ -180,7 +180,13 @@ export class CreateResumeView extends View {
     if (!wasfail) {
       let resume = {};
       Array.prototype.forEach.call(this._createResumeForm.elements, elem => {
-        resume[elem.name] = elem.value;
+        if (elem.tagName == 'INPUT' && elem.type == 'radio') {
+          if (elem.checked) {
+            resume[elem.name] = elem.value;
+          }
+        } else {
+          resume[elem.name] = elem.value;
+        }
       });
 
       let spheres = this._getChosenSpheres();

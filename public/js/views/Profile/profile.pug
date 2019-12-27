@@ -13,12 +13,12 @@ div.profile
                 when 'seeker'
                     span.form__legend Имя
                     div.form__input
-                        input.input(type='text', name='first_name', value=profile.first_name)
+                        input.input(type='text', name='first_name', value=profile.first_name, autocomplete='given-name')
 
 
                     span.form__legend Фамилия
                     div.form__input
-                        input.input(type='text', name='second_name', value=profile.second_name)
+                        input.input(type='text', name='second_name', value=profile.second_name, autocomplete='family-name')
 
                 when 'employer'
                     span.form__legend Название компании
