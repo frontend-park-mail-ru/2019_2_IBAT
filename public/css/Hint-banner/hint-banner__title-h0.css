@@ -1,0 +1,10 @@
+.hint-banner__title-h1 {
+    width: 400px;
+}
+
+@media all and (max-width : 655px) {
+    .hint-banner__title-h1 {
+        width: auto;
+        text-align: center;
+    }
+}
