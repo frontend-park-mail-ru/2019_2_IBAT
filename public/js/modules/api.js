@@ -172,7 +172,7 @@ export class Api {
   }
 
   /**
-   * Запрос на 
+   * Запрос на
    * @param {String} request
    * @returns {Promise<Response>}
    */
@@ -212,6 +212,12 @@ export class Api {
     return Net.doGet({
       url: '/employer' + '/' + id
     });
+  }
+
+  static getSeekerById (id = '') {
+    return Net.doGet({
+      url: '/seeker' + '/' + id
+    })
   }
 
   /**
@@ -261,7 +267,7 @@ export class Api {
   }
 
   /**
-   * 
+   *
    * @param {String} resumeId
    * @param {String} vacancyId
    * @returns {Promise<Response>}
@@ -273,7 +279,7 @@ export class Api {
   }
 
   /**
-   * 
+   *
    * @param {String} vacancyId
    * @returns {Promise<Response>}
    */

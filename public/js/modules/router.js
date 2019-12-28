@@ -16,11 +16,11 @@ export class Router {
     this.currentRoute = null;
     // window.location.search: если мы венулись
     // то в window.location.search наши параметры лежат, которые нам нужны для поиска
-    window.onpopstate = _ => {
+    window.addEventListener('popstate', () => {
       if (window.location.pathname) {
         this.route({ path: `${window.location.pathname}${window.location.search}`, addToHistory: false });
       }
-    };
+    });
 
   }
 

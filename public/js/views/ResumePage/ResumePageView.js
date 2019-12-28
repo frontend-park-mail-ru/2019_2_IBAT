@@ -39,7 +39,7 @@ export class ResumePageView extends View {
     data.birth_date = new Date(data.birth_date).toDateString();
     this.data = data;
 
-    Api.getProfile()
+    Api.getSeekerById(data.own_id)
       .then(res => {
         if (res.ok) {
           return res.json();
@@ -48,7 +48,7 @@ export class ResumePageView extends View {
         }
       })
       .then(profileData => {
-        this.data = { ...this.data, ...profileData.profile };
+        this.data = { ...this.data, ...profileData };
         this.data.path_to_img = `${Net.getServerImgURL()}/${this.data.path_to_img.split('/')[2]}`;
         super.render(this.data);
         return document.querySelector('.resume__owner-section');

@@ -177,6 +177,7 @@
 @import 'Notification/notification.css';
 @import 'Notification/__text/notification__text.css';
 @import 'Notification/__title/notification__title.css';
+@import 'Notification/__actions/notification__actions.css';
 @import 'Notification/__close/notification__close.css';
 
 @import './Search-company/search-company.css';
