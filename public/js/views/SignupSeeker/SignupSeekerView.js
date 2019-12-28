@@ -3,8 +3,8 @@ import { View } from '../../modules/view';
 import Validation from '../../modules/validation';
 import { AUTH } from '../../modules/events';
 
-const errInvalidPasswordData = 'Must contain at least 8 chars';
-const errNotEqualPassRePass = 'Password and Password Repeat are not equal';
+const errInvalidPasswordData = 'Пароль должен содержать не меньше 8 символов';
+const errNotEqualPassRePass = 'Пароли не совпадают';
 
 export class SignupSeekerView extends View {
   constructor (root, globalEventBus) {
