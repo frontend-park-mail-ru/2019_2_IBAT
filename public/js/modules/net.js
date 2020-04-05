@@ -1,10 +1,10 @@
-export const host = '84.201.173.146';
+export const host = '89.208.211.219';
 
 export const serverURL = `http://${host}/api`;
 export const serverNotificationURL = `ws://${host}/api/notifications`;
 export const serverImgURL = `http://${host}/img`;
-export const serverSupportChatURL = `ws://${host}:443/chat`;
-export const serverChatURL = `ws://${host}:443/api/chat/ws`;
+export const serverSupportChatURL = `ws://${host}/chat`;
+export const serverChatURL = `ws://${host}/api/chat/ws`;
 
 export default class Net {
   /**
