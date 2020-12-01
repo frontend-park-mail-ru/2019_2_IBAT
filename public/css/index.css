@@ -61,9 +61,11 @@
 @import './Slider/__item/slider__item_seeker.css';
 @import './Hint-banner/hint-banner.css';
 @import './Hint-banner/hint-banner__title-h1.css';
+@import './Hint-banner/hint-banner__title-h0.css';
 @import './Hint-banner/main-content__hint-banner.css';
 @import './Hint-banner/__item/hint-banner__item.css';
 @import './Hint-banner/__card/hint-banner__card.css';
+@import './Hint-banner/__image/hint-banner__image.css';
 @import './Hint-banner/__card/__step/hint-banner__card__step.css';
 @import './Hint-banner/__search-bar/hint-banner__search-bar.css';
 @import './Hint-banner/_column/hint-banner_column.css';
@@ -90,6 +92,7 @@
 @import './Error/error.css';
 @import './Error/_active/error_active.css';
 @import './Error/_active/error_active.css';
+@import './Title/title-h0.css';
 @import './Title/title-h1.css';
 @import './Title/title-h1_semibold.css';
 @import './Title/title-h1_light.css';
@@ -174,6 +177,7 @@
 @import 'Notification/notification.css';
 @import 'Notification/__text/notification__text.css';
 @import 'Notification/__title/notification__title.css';
+@import 'Notification/__actions/notification__actions.css';
 @import 'Notification/__close/notification__close.css';
 
 @import './Search-company/search-company.css';

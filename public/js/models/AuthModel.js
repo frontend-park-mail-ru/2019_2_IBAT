@@ -1,5 +1,6 @@
 import { Api } from '../modules/api';
 import { AUTH } from '../modules/events';
+import { localeStrings } from '../modules/localeStrings';
 
 class AuthModel {
 
@@ -19,7 +20,7 @@ class AuthModel {
         if (response.status === 401 || response.ok) {
           return response.json();
         } else {
-          throw Error(response.status);
+          console.log(response.status);
         }
       })
       .then(data => {
@@ -62,7 +63,7 @@ class AuthModel {
           });
         } else {
           res.json().then(data => {
-            this._globalEventBus.triggerEvent(AUTH.signInFailed, data);
+            this._globalEventBus.triggerEvent(AUTH.signInFailed, localeStrings[data.error]);
           });
         }
       })

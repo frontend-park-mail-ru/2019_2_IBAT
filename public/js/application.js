@@ -38,6 +38,7 @@ import { SearchController } from './controllers/SearchController';
 import { ChatController } from './controllers/ChatController';
 import { ChatManager } from './modules/сhatManager';
 import { FoundCompaniesView } from './views/FoundCompanies/FoundCompaniesView';
+import { PresentationPageController } from './controllers/PresentationPageController';
 
 function renderHTML () {
   let metaViewport = document.createElement('meta');
@@ -121,6 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const indexController = new IndexController(content, globalEventBus, router);
   const chatController = new ChatController(content, globalEventBus, router);
 
+  const presentationPageController = new PresentationPageController(content, globalEventBus, router);
+
   headerController.openWithData();
 
   router.add('/', indexController);
@@ -145,6 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
   router.add('/resumes', foundResumesController);
   router.add('/employers', foundCompaniesController);
   router.add('/chat', chatController);
+
+  router.add('/presentation', presentationPageController);
 
   router.start();
 

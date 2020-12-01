@@ -1,7 +1,14 @@
-.hint-banner__item {
+.hint-banner__item-left {
     display: flex;
     flex-direction: row;
-    flex-basis: 50%;
+    flex-basis: 45%;
+    justify-content: center;
+}
+
+.hint-banner__item-right {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 55%;
     justify-content: center;
 }
 

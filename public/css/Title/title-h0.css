@@ -1,0 +1,14 @@
+.title-h0 {
+    font-family: "font-regular", serif;
+    font-size: 56px;
+    line-height: normal;
+    font-weight: 400;
+    margin: 0 0 15px;
+    color: var(--text-color);
+}
+
+@media all and (max-width : 500px) {
+    .title-h0 {
+        font-size: 28px;
+    }
+}

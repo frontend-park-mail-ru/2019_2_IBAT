@@ -2,8 +2,8 @@ const errEmailIsInvalid = 'Неверный email адрес';
 const errInvalidPasswordData =
   'Пароль должен иметь 8 символов, 1 цифру, 1 в верхнем и 1 в нижнем регистре';
 const errNotEqualPassRePass = 'Пароли не совпадают';
-const errImageExtensionIsInvalid = 'Image extension is not valid';
-const errImageSizeIsNotValid = 'Image size must be less than 15 MB';
+const errImageExtensionIsInvalid = 'Тип расширения файла не поддерживается';
+const errImageSizeIsNotValid = 'Размер изображения должен быть меньше 15 Мб';
 
 const emailRegexExp = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
 const passRegexExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.{8,})/;

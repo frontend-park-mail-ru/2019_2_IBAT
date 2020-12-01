@@ -1,5 +1,6 @@
 import template from './shortResume.pug';
 import { Component } from '../../js/modules/Component';
+import { Api } from '../../js/modules/api';
 
 export class ShortResumeComponent extends Component {
   constructor (resume = {}) {

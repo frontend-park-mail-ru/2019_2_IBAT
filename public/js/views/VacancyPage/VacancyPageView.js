@@ -115,6 +115,10 @@ export class VacancyPageView extends View {
       }
     }
 
+    if (this.getRole.match(/Guest/)){
+      this.startChatButton.style.display='none';
+    }
+
     if (!this.data.favorite) {
       let toFavorite = document.querySelector('[name="switch"]');
       if (toFavorite) {

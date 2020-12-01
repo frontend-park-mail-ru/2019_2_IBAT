@@ -20,7 +20,7 @@ export default class ChatContent extends Component {
                 .outerHTML
         ) : null;
 
-        return `<div class="chat__room-wrapper">
+        return `<div class="chat__room_content-wrapper">
                     ${rows.length !== 0 ? rows.join('') : `
                         <div>Сообщений с данным пользователем нет</div>
                     `}

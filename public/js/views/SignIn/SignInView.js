@@ -52,9 +52,9 @@ export class SignInView extends View {
    * @param data
    * @private
    */
-  _onSubmitFailed (data) {
+  _onSubmitFailed (error) {
     this.errorView.classList.add('light-page__error_active');
-    this.errorView.innerHTML = `<p>${data.error}<p>`;
+    this.errorView.innerHTML = `<p>${error}<p>`;
   }
 
   /**

@@ -1,10 +1,10 @@
 export const host = 'myjobs.ru.com';
 
-export const serverURL = `https://${host}/api`;
-export const serverNotificationURL = `wss://${host}/api/notifications`;
-export const serverImgURL = `https://${host}/img`;
-export const serverSupportChatURL = `wss://${host}:443/chat`;
-export const serverChatURL = `wss://${host}:443/api/chat/ws`;
+export const serverURL = `http://${host}/api`;
+export const serverNotificationURL = `ws://${host}/api/notifications`;
+export const serverImgURL = `http://${host}/img`;
+export const serverSupportChatURL = `ws://${host}/chat`;
+export const serverChatURL = `ws://${host}/api/chat/ws`;
 
 export default class Net {
   /**
