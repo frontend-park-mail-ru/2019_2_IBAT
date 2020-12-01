@@ -7,6 +7,7 @@ export class ChatManager {
   constructor (globalEventBus = {}) {
     this._globalEventBus = globalEventBus;
     this.wsIsOpened = false;
+    this.wsIsWaitingForOpenening = false;
 
     this._globalEventBus.subscribeToEvent(CHAT.openWs, this.onCreateWSConnection.bind(this));
     this._globalEventBus.subscribeToEvent(CHAT.messageSent, this.send.bind(this));
@@ -22,12 +23,13 @@ export class ChatManager {
   }
 
   onCreateWSConnection () {
-    if (this.wsIsOpened) {
+    if (this.wsIsOpened || this.wsIsWaitingForOpenening) {
       return;
     }
 
     // WS соединение для получения уведомлений seeker (соискателю)
     this.ws = new WebSocket(`${serverChatURL}`);
+    this.wsIsWaitingForOpenening=true;
 
     this.ws.onopen = _ => {
       console.log('WebSocket соеденинение для чата установлено');
@@ -52,7 +54,7 @@ export class ChatManager {
 
   onDeleteWSConnection () {
     if (this.wsIsOpened) {
-      this.ws.close(1001, 'User has logged out!');
+      this.ws.close(1000, 'User has logged out!');
     }
   }
 
@@ -74,7 +76,9 @@ export class ChatManager {
       console.log(`Chat Message Received() ===> ${event.data}`);
       const message = JSON.parse(event.data);
 
-      if (chat_configs.getMode(message.chat_id) === MODES.notification || chat_configs.getMode(message.chat_id)===undefined) {
+      const chat_id=message.chat_id;
+
+      if (chat_configs.getMode({chat_id}) === MODES.notification || chat_configs.getMode({chat_id})===undefined) {
         const notification = {
           title: `Вам пришло новое сообщение от ${message.owner_name}`,
           link: `/chat/${message.chat_id}`,
@@ -85,7 +89,7 @@ export class ChatManager {
           notificationElement.remove();
         }, 5000);
       }
-      if (chat_configs.getMode(message.chat_id) === MODES.chat) {
+      if (chat_configs.getMode({chat_id}) === MODES.chat) {
         this._globalEventBus.triggerEvent(CHAT.messageReceived, message);
       }
     };

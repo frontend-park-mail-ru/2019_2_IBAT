@@ -3,6 +3,8 @@ import { View } from '../../modules/view';
 import { ACTIONS, RESUME } from '../../modules/events';
 import { Api } from '../../modules/api';
 import { PopupToConfirm } from '../../../components/PopupToConfirm/PopupToConfirm'
+import Net from '../../modules/net';
+
 export class ResumePageView extends View {
 
   constructor (root, globalEventBus) {
@@ -34,8 +36,10 @@ export class ResumePageView extends View {
    * @private
    */
   _onLoadResumeSuccess (data) {
+    data.birth_date = new Date(data.birth_date).toDateString();
     this.data = data;
-    Api.getProfile()
+
+    Api.getSeekerById(data.own_id)
       .then(res => {
         if (res.ok) {
           return res.json();
@@ -44,20 +48,22 @@ export class ResumePageView extends View {
         }
       })
       .then(profileData => {
-        let my_id = profileData.profile.id;
-        this.data = { ...this.data, my_id };
+        this.data = { ...this.data, ...profileData };
+        this.data.path_to_img = `${Net.getServerImgURL()}/${this.data.path_to_img.split('/')[2]}`;
         super.render(this.data);
         return document.querySelector('.resume__owner-section');
       })
       .then(ownerSection => {
-        const changeButton = ownerSection.querySelector('.resume__owner-button_change');
-        const deleteButton = ownerSection.querySelector('.resume__owner-button_delete');
+        if (ownerSection) {
+          const changeButton = ownerSection.querySelector('.resume__owner-button_change');
+          const deleteButton = ownerSection.querySelector('.resume__owner-button_delete');
 
-        if (changeButton) {
-          changeButton.addEventListener('click', this._onChange.bind(this), false);
-        }
-        if (deleteButton) {
-          deleteButton.addEventListener('click', this._onDelete.bind(this), false);
+          if (changeButton) {
+            changeButton.addEventListener('click', this._onChange.bind(this), false);
+          }
+          if (deleteButton) {
+            deleteButton.addEventListener('click', this._onDelete.bind(this), false);
+          }
         }
       })
       .catch(error => {
@@ -68,7 +74,7 @@ export class ResumePageView extends View {
 
   _onChange(event) {
     event.preventDefault();
-    console.log(this.data);
+    this.data.birth_date = new Date(this.data.birth_date).toISOString();
     this._globalEventBus.triggerEvent(ACTIONS.goTo, {path: '/createresume', data: this.data});
   }
 

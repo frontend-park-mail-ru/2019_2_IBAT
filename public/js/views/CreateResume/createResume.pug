@@ -15,22 +15,22 @@ div.left-column
         div.form__section
             span.form__legend Имя
             div.form__input
-                input.input(type='text', value=firstname, name='first_name')
+                input.input(type='text', value=firstname, name='first_name', autocomplete='given-name')
                 span.error(aria-live='polite')
 
             span.form__legend Фамилия
             div.form__input
-                input.input(type='text', value=secondname, name='second_name')
+                input.input(type='text', value=secondname, name='second_name', autocomplete='family-name')
                 span.error(aria-live='polite')
 
             span.form__legend Город
             div.form__input
-                input.input(type='text', value=region, name='region', placeholder='Москва')
+                input.input(type='text', value=region, name='region', placeholder='Москва', autocomplete='address-level2')
                 span.error
 
             span.form__legend Телефон
             div.form__input
-                input.input(type='text', value=phone_number, name='phone_number', placeholder="+7(999)000-00-00")
+                input.input(type='tel', value=phone_number, name='phone_number', placeholder="+7(999)000-00-00", autocomplete='tel')
                 span.error
 
         h2.title-h2 Основная информация
@@ -52,7 +52,9 @@ div.left-column
             span.form__legend Желаемая заработанная плата
             div.form__input
                 div.search__input.search__input_no-space
-                    input.input.search__wage(type="number", value=wage, name='wage')
+                    div.form__input
+                        input.input.search__wage(type="number", value=wage, name='wage')
+                        span.error(aria-live='polite')
                     select.input.search__currency(name='currency')
                         option(value="руб.") руб.
             
@@ -77,7 +79,7 @@ div.left-column
         div.form__section
             span.form__legend Дата рождения
             div.form__input
-                input.input(type='data', value=birth_date, name='birth_date')
+                input.input(type='date', value=birth_date, name='birth_date')
                 span.error
 
             span.form__legend Пол
@@ -89,7 +91,7 @@ div.left-column
 
             span.form__legend Гражданство
             div.form__input
-                input.input(type='text', value=citizenship, name='citizenship')
+                input.input(type='text', value=citizenship, name='citizenship', placeholder="Россия")
                 span.error
 
             span.form__legend Опыт работы

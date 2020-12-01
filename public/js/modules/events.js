@@ -24,6 +24,7 @@ export const COMPANY = {
 
   search: 'scmp',
   searchSuccess: 'scmps',
+  searchFailed: 'scmpf',
 };
 
 export const AUTH = {
@@ -60,6 +61,8 @@ export const CHAT = {
   openWs: 'openWs',
   submit: 'SUBMIT',
   openChat: 'OPEN',
+  openFirstChat: 'OPEN_FIRST',
+  messageCreate: "MSG_CREATE",
   messageReceived: 'messageRe',
   messageSent: 'messageSe',
 };

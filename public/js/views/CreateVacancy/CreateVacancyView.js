@@ -60,7 +60,7 @@ export class CreateVacancyView extends View {
    */
   _renderSecondTags(tags) {
     tags.forEach(tag => {
-      this._createSecondTag(tag);      
+      this._createSecondTag(tag);
     })
   }
 
@@ -71,12 +71,12 @@ export class CreateVacancyView extends View {
    */
   _getFirstTags() {
     this._tags = tagsModel.getTags();
-    
+
     let firstTags = [''];
     Object.entries(this._tags).forEach(([key, value]) => {
       firstTags.push(key);
     });
-    
+
     return firstTags;
   }
 
@@ -138,7 +138,7 @@ export class CreateVacancyView extends View {
       checkboxes.forEach(elem => {
         if (elem.checked) {
           spheres.push({
-            "first" : this._spheresFirst.value, 
+            "first" : this._spheresFirst.value,
             "second": elem.value
           })
         }
@@ -162,9 +162,15 @@ export class CreateVacancyView extends View {
     if (!wasfail) {
       let vacancy = {};
       Array.prototype.forEach.call(this._createVacancyForm.elements, elem => {
-        vacancy[elem.name] = elem.value;
+        if (elem.tagName == 'INPUT' && elem.type == 'radio') {
+          if (elem.checked) {
+            vacancy[elem.name] = elem.value;
+          }
+        } else {
+          vacancy[elem.name] = elem.value;
+        }
       });
-      
+
       let spheres = this._getChosenSpheres();
       vacancy = {...vacancy, spheres };
       console.log(vacancy);

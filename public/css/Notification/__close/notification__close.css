@@ -3,4 +3,12 @@
     align-self: flex-end;
     width: 24px;
     height: 24px;
+    margin-right: 8px;
+}
+
+.notification__mute{
+    -webkit-mask-image: url(../../../img/mute.svg);
+    align-self: flex-end;
+    width: 24px;
+    height: 24px;
 }

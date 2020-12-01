@@ -50,6 +50,8 @@
 @import './Header/__search/header__search.css';
 @import './Header/__favorites/header__favorites.css';
 @import './Header/__favorites/__favorites-icon/header__favorites-icon.css';
+@import './Header/__chats/header__chats.css';
+@import './Header/__chats/__chats-icon/header__chats-icon.css';
 @import './Header/__profile/__profile-icon/header__profile-icon.css';
 @import './Slider/slider.css';
 @import './Slider/main-content__slider.css';
@@ -59,9 +61,11 @@
 @import './Slider/__item/slider__item_seeker.css';
 @import './Hint-banner/hint-banner.css';
 @import './Hint-banner/hint-banner__title-h1.css';
+@import './Hint-banner/hint-banner__title-h0.css';
 @import './Hint-banner/main-content__hint-banner.css';
 @import './Hint-banner/__item/hint-banner__item.css';
 @import './Hint-banner/__card/hint-banner__card.css';
+@import './Hint-banner/__image/hint-banner__image.css';
 @import './Hint-banner/__card/__step/hint-banner__card__step.css';
 @import './Hint-banner/__search-bar/hint-banner__search-bar.css';
 @import './Hint-banner/_column/hint-banner_column.css';
@@ -88,6 +92,7 @@
 @import './Error/error.css';
 @import './Error/_active/error_active.css';
 @import './Error/_active/error_active.css';
+@import './Title/title-h0.css';
 @import './Title/title-h1.css';
 @import './Title/title-h1_semibold.css';
 @import './Title/title-h1_light.css';
@@ -118,7 +123,10 @@
 @import './Search/__legend/search__find-fill.css';
 @import './Search/__wage/search__wage-options.css';
 @import './SearchBar/search-bar.css';
+@import './SearchBar/__query/search-bar__query.css';
+@import './SearchBar/__form/search-bar__form.css';
 @import './SearchBar/__input/search-bar__input.css';
+@import './SearchBar/__select-input/search-bar__select-input.css';
 @import './SearchBar/__button/search-bar__button.css';
 @import './Favorite-vacancies/favorite-vacancies.css';
 @import './Favorite-vacancies/__no-vacancies/favorite-vacancies__no-vacancies.css';
@@ -169,6 +177,7 @@
 @import 'Notification/notification.css';
 @import 'Notification/__text/notification__text.css';
 @import 'Notification/__title/notification__title.css';
+@import 'Notification/__actions/notification__actions.css';
 @import 'Notification/__close/notification__close.css';
 
 @import './Search-company/search-company.css';
@@ -191,6 +200,7 @@
 @import './Resume-search-item/__wage/resume-search-item__wage.css';
 @import './Resume-search-item/__position/resume-search-item__position.css';
 @import 'card_list.css';
+@import './Profile/profile.css';
 
 @-ms-viewport {
     width: device-width;
@@ -262,4 +272,19 @@ p {
 
 .iframe-chat_opened {
     display: block;
+}
+
+.choice {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 15px;
+}
+
+.choice__radio {
+    align-self: center;
+    margin-right: 20px;
+}
+
+.choice__card {
+    width: 100%;
 }

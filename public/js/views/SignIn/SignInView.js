@@ -10,6 +10,7 @@ export class SignInView extends View {
   }
 
   render (data = {}) {
+    document.body.classList.add('page_full');
     super.render(data);
 
     this._loginForm = this._root.querySelector('.login__form-js');
@@ -51,9 +52,9 @@ export class SignInView extends View {
    * @param data
    * @private
    */
-  _onSubmitFailed (data) {
+  _onSubmitFailed (error) {
     this.errorView.classList.add('light-page__error_active');
-    this.errorView.innerHTML = `<p>${data.error}<p>`;
+    this.errorView.innerHTML = `<p>${error}<p>`;
   }
 
   /**
@@ -81,5 +82,10 @@ export class SignInView extends View {
       };
       this._globalEventBus.triggerEvent(AUTH.signIn, user);
     }
+  }
+
+  hide() {
+    document.body.classList.remove('page_full');
+    super.hide();
   }
 }

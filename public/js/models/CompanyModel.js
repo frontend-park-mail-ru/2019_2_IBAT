@@ -55,10 +55,13 @@ export class CompanyModel {
           res.json().then(employers => {
             this._globalEventBus.triggerEvent(COMPANY.searchSuccess, employers);
           });
+        } else {
+          throw new Error(res);
         }
       })
       .catch(error => {
         console.error(error);
+        this._globalEventBus.triggerEvent(COMPANY.searchFailed);
       });
   }
 }

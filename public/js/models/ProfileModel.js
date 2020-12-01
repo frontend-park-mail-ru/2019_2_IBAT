@@ -17,7 +17,12 @@ export class ProfileModel {
       .then(res => {
         if (res.ok) {
           res.json().then(data => {
-            data.profile.path_to_img = `${Net.getServerImgURL()}/${data.profile.path_to_img.split('/')[2]}`;
+            if(data.profile.path_to_img === 'default.jpg'){
+              data.profile.path_to_img = `${Net.getServerImgURL()}/${data.profile.path_to_img}`;
+            }
+            else{
+              data.profile.path_to_img = `${Net.getServerImgURL()}/${data.profile.path_to_img.split('/')[2]}`;
+            }
             this._globalEventBus.triggerEvent(PROFILE.loadProfileSuccess, data);
           });
         } else {

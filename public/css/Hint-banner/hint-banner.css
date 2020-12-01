@@ -6,3 +6,13 @@
     padding: 40px 0;
     align-items: center;
 }
+
+.hint-banner-white{
+    background-color: white;
+}
+
+@media all and (max-width: 655px) {
+    .main-banner{
+        display: none;
+    }
+}

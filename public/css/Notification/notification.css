@@ -4,16 +4,14 @@
     width: 480px;
     height: 70px;
     justify-content: start;
-    padding-top: 8px;
-    padding-left: 24px;
-    padding-right: 8px;
-    padding-bottom: 28px;
+    padding: 8px 8px 24px 24px;
     border-radius: 4px;
     background-color: white;
     margin-top: 16px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
     border: 1px solid var(--seeker-color);
+    cursor: pointer;
 }
 
 .notification:hover {

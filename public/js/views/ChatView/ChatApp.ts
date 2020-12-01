@@ -4,6 +4,7 @@ import Chats from "./Chats";
 import ListModel from "../../models/ListModel";
 import ItemModel from "../../models/ItemModel";
 import ChatRoom from "./ChatRoom";
+import {chat_configs, MODES} from "../../modules/chatConfig";
 
 export class ChatApp extends Component {
 
@@ -14,33 +15,18 @@ export class ChatApp extends Component {
     model = new ListModel(this.globalEventBus);
 
     render(): string {
-        const link = document.createElement("link");
-        link.setAttribute("rel", "stylesheet");
-        link.setAttribute("type", "text/css");
-        link.setAttribute("href", 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
-        link.setAttribute("crossorigin", 'anonymous');
-        document.getElementsByTagName("head")[0].appendChild(link);
-
-
-        return `<div class=".container-fluid p-3">
-			<h1>Чаты</h1>
-			<div class="row">
-				<div class="col-3" data-child="chats"></div>
-				<div class="col-9" data-child="chat"></div>
-			</div>
-		</div>`;
+        return `<div class="chat">
+                    <div class="chat__list list"></div>
+                    <div class="chat__room"></div>
+        		</div>`;
     }
 
     get chatsElement() {
-        return this.domElement.querySelector(
-            '[data-child="chats"]'
-        );
+        return this.domElement.querySelector('.chat__list');
     }
 
     get chatElement() {
-        return this.domElement.querySelector(
-            '[data-child="chat"]'
-        );
+        return this.domElement.querySelector('.chat__room');
     }
 
     onRender() {
@@ -48,13 +34,20 @@ export class ChatApp extends Component {
 
         domElement.addEventListener(CHAT.openChat, this.handleOpen);
 
-        //включать первый чат по списку(или в локалсторадже запоминать тот на котором остановились)
         this.showChats();
     }
 
     handleOpen = ({detail}) => {
         this.showChat(detail)
     };
+
+    // handleOpenFirst = () => {
+    //     // //включать первый чат по списку(или в локалсторадже запоминать тот на котором остановились)
+    //     // if(this.model.list.length){
+    //     //     //Открыть по дефолту первый чат
+    //     //     this.showChat(this.model.list[0]);
+    //     // }
+    // };
 
     showChats() {
         this.model.loadChats();
@@ -68,8 +61,16 @@ export class ChatApp extends Component {
 
     showChat(model: ItemModel) {
 
+        this.model.list.forEach(chat=>{
+            chat_configs.setMode({chat_id: chat.item.chat_id, mode: MODES.notification});
+        });
+
         model.loadChatHistory();
-        model.listenMessages();
+
+        if(!model.isListening){
+            model.listenMessages();
+            model.isListening=true;
+        }
 
         const chat = new ChatRoom({model});
 

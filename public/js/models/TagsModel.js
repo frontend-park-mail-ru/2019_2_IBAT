@@ -17,7 +17,7 @@ class TagsModel {
             if (res.ok) {
                 return res.json();
             } else {
-                throw new Error(res.text);
+                throw new Error(res);
             }
         })
         .then(tags => {

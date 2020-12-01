@@ -7,6 +7,7 @@ export class RecommendNotifManager {
   constructor (globalEventBus = {}) {
     this._globalEventBus = globalEventBus;
     this.wsIsOpened = false;
+    this.wsIsWaitingForOpenening = false;
 
     this._globalEventBus.subscribeToEvent(AUTH.signInSuccess, this.onCreateWSConnection.bind(this));
     this._globalEventBus.subscribeToEvent(AUTH.checkAuthResponse, this.onCreateWSConnection.bind(this));
@@ -14,12 +15,13 @@ export class RecommendNotifManager {
   }
 
   onCreateWSConnection () {
-    if (this.wsIsOpened || localStorage.getItem('role') !== 'seeker') {
+    if (this.wsIsOpened || this.wsIsWaitingForOpenening || localStorage.getItem('role') !== 'seeker') {
       return;
     }
 
     // WS соединение для получения уведомлений seeker (соискателю)
     this.ws = new WebSocket(`${serverNotificationURL}`);
+    this.wsIsWaitingForOpenening=true;
 
     this.ws.onopen = _ => {
       console.log('WebSocket соеденинение для уведомлений установлено');
@@ -86,7 +88,7 @@ export class RecommendNotifManager {
       console.log(`Notification Received() ===> ${event.id}`);
 
       //ПОКА ЧТО ТОЛЬКО ДЛЯ СИКЕРА
-      const vacancy=JSON.parse(event.id);
+      const vacancy=JSON.parse(event.data);
 
       Api.getVacancyById(vacancy.id)
         .then(res => {

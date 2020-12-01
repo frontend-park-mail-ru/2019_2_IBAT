@@ -16,6 +16,7 @@ import authModel from './models/AuthModel';
 import chatModel from './models/ChatModel';
 
 import { FavoriteVacanciesController } from './controllers/FavoriteVacanciesController';
+import { FoundCompaniesController } from './controllers/FoundCompaniesController';
 import { SignupEmployerController } from './controllers/SignupEmployerController';
 import { FoundVacanciesController } from './controllers/FoundVacanciesController';
 import { CreateVacancyController } from './controllers/CreateVacancyController';
@@ -36,12 +37,14 @@ import { SigninController } from './controllers/SigninController';
 import { SearchController } from './controllers/SearchController';
 import { ChatController } from './controllers/ChatController';
 import { ChatManager } from './modules/сhatManager';
+import { FoundCompaniesView } from './views/FoundCompanies/FoundCompaniesView';
+import { PresentationPageController } from './controllers/PresentationPageController';
 
 function renderHTML () {
   let metaViewport = document.createElement('meta');
   metaViewport.name = 'viewport';
   metaViewport.content = 'width=device-width, initial-scale=1';
-  document.head.appendChild(metaViewport); 
+  document.head.appendChild(metaViewport);
 
   const body = document.querySelector('body');
   body.classList.add('page');
@@ -68,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Проверим, что эта технология доступна в браузере
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js')
+    navigator.serviceWorker.register('/sw.js')
       .then((reg) => {
         // регистрация сработала
         console.log('Registration succeeded. Scope is ' + reg.scope);
@@ -97,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const router = new Router(body);
 
   const favoriteVacanciesController = new FavoriteVacanciesController(content, globalEventBus, router);
+  const foundCompaniesController = new FoundCompaniesController(content, globalEventBus, router);
   const signupEmployerController = new SignupEmployerController(content, globalEventBus, router);
   const foundVacanciesController = new FoundVacanciesController(content, globalEventBus, router);
   const createVacancyController = new CreateVacancyController(content, globalEventBus, router);
@@ -117,6 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const headerController = new HeaderController(header, globalEventBus, router);
   const indexController = new IndexController(content, globalEventBus, router);
   const chatController = new ChatController(content, globalEventBus, router);
+
+  const presentationPageController = new PresentationPageController(content, globalEventBus, router);
 
   headerController.openWithData();
 
@@ -140,7 +146,10 @@ document.addEventListener('DOMContentLoaded', () => {
   router.add('/search', searchController);
   router.add('/vacancies', foundVacanciesController);
   router.add('/resumes', foundResumesController);
+  router.add('/employers', foundCompaniesController);
   router.add('/chat', chatController);
+
+  router.add('/presentation', presentationPageController);
 
   router.start();
 

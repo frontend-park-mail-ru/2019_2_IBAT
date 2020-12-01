@@ -17,9 +17,16 @@ export class NotificationComponent extends Component {
       this.domElement.parentElement.removeChild(this.domElement);
       ev.stopPropagation();
     });
+    this.muteButton.addEventListener('click', ev => {
+      ev.stopPropagation();
+    });
   }
 
   get closeButton () {
     return this.domElement.querySelector('[name=closeNotification]');
+  }
+
+  get muteButton () {
+    return this.domElement.querySelector('[name=muteNotification]');
   }
 }

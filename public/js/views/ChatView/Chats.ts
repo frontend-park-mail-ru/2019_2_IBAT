@@ -19,38 +19,34 @@ export default class Chats extends Component {
 
         console.log(model);
         const rows = [...model.list].map(({id, companion_name}) => `
-			<tr data-item-id="${id}">
-			  <td data-bind="companion_name"></td>
-			</tr>
+	        <div data-item-id="${id}" class="chat__list__item" data-bind="companion_name">${companion_name}</div>
 		`);
 
-        return `<div>
-			<table class="table table-hover">
-				  <tbody>
-					${rows.length ? rows.join('') : `
-						<tr>
-							<td colspan="1" style="text-align: center">Созданных чатов нет</td>
-						</tr>
-					`}
-				  </tbody>
-			</table>
-		</div>`;
+        return `
+            <h2 class="title-h1_semibold">Чаты</h2>
+			<div class="chat__list__content">
+                ${rows.length ? rows.join('') : `
+                    <div style="text-align:center">Созданных чатов нет</div>
+                `}
+			</div>`;
     }
 
-    handleTrClick = (model: ItemModel) => () => this.triggerEvent(CHAT.openChat, model);
+    handleTrClick = (model: ItemModel) => this.triggerEvent(CHAT.openChat, model);
 
     onRender() {
         const {domElement, options} = this;
         const {model} = options;
 
-        domElement.querySelectorAll('[data-item-id]').forEach((trElement) => {
+        domElement.querySelectorAll('[data-item-id]').forEach(trElement => {
             const itemId = trElement.getAttribute('data-item-id');
             const itemModel = model.getById(itemId);
 
-            trElement.onclick = this.handleTrClick(itemModel);
+            trElement.addEventListener('click', (ev)=>{
+                this.handleTrClick(itemModel);
+            });
 
             autoBind(trElement, itemModel);
-        })
+        });
     }
 
     onFirstRender() {

@@ -44,4 +44,8 @@ export class EventBus {
       callback(...args)
     );
   }
+
+  hasSubscriber(eventName){
+    return this.events.has(eventName);
+  }
 }

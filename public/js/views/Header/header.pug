@@ -1,5 +1,5 @@
 div.header__logo
-    a.title-h1(href='/') IBAT
+    a.title-h1(href='/') MyJobs
 
 div.header__fill
 
@@ -21,6 +21,9 @@ case role
 
 
 if role === 'seeker' || role === 'employer'
+    div.header__chats
+        a.icon.header__chats-icon(href='/chat')
+
     div.header__profile
         button.icon.header__profile-icon.dropdown-btn(name='profile-menu')
         div.dropdown
