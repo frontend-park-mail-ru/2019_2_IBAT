@@ -1,4 +1,4 @@
-export const host = 'tko.vladimir.fvds.ru';
+export const host = 'myjobs.ru.com';
 
 export const serverURL = `https://${host}/api`;
 export const serverNotificationURL = `wss://${host}/api/notifications`;
