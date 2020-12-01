@@ -29,7 +29,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
-      title: 'IBAT'
+      title: 'MyJobs'
     }),
     new MiniCssExtractPlugin({}),
     new ServiceWorkerWebpackPlugin({
